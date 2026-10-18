@@ -21,7 +21,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node bauen.js
+      # Ohne Datei CNAME liegt die Seite unter /<repo>/ (Probebetrieb), mit CNAME an der Wurzel.
+      - run: |
+          if [ -f CNAME ]; then BASIS=""; else BASIS="/${{ github.event.repository.name }}"; fi
+          BASIS="$BASIS" node bauen.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

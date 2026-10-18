@@ -17,6 +17,17 @@ const AUS = path.join(WURZEL, '_site');
 const cfg = JSON.parse(fs.readFileSync(path.join(WURZEL, 'seiten.json'), 'utf8'));
 const vorlage = fs.readFileSync(path.join(WURZEL, 'vorlage', 'seite.html'), 'utf8');
 const stand = Date.now().toString(36);
+// Vorspann für den Probebetrieb unter https://<konto>.github.io/<repo>/:
+// dort liegt die Seite nicht an der Wurzel. Mit eigener Domain (Datei CNAME)
+// ist BASIS leer. Der Workflow setzt die Variable, lokal bleibt sie leer.
+const BASIS = (process.env.BASIS || '').replace(/\/$/, '');
+function mitBasis(html) {
+  if (!BASIS) return html;
+  return html
+    .replace(/(\s(?:href|src|content)=")\/(?!\/)/g, '$1' + BASIS + '/')
+    .replace(/url\((['"]?)\/(?!\/)/g, 'url($1' + BASIS + '/')
+    .replace(/(["'])\/bilder\//g, '$1' + BASIS + '/bilder/');
+}
 
 const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -103,11 +114,11 @@ const artikel = seiten.filter(s => s.kopf.blog);
 for (const s of seiten) {
   const ziel = path.join(AUS, s.rel);
   fs.mkdirSync(path.dirname(ziel), { recursive: true });
-  fs.writeFileSync(ziel, seiteBauen(s, artikel));
+  fs.writeFileSync(ziel, mitBasis(seiteBauen(s, artikel)));
 }
 kopieren(path.join(WURZEL, 'bilder'), path.join(AUS, 'bilder'));
 kopieren(path.join(WURZEL, 'schrift'), path.join(AUS, 'schrift'));
-fs.copyFileSync(path.join(WURZEL, 'vorlage', 'stil.css'), path.join(AUS, 'stil.css'));
+fs.writeFileSync(path.join(AUS, 'stil.css'), mitBasis(fs.readFileSync(path.join(WURZEL, 'vorlage', 'stil.css'), 'utf8')));
 if (fs.existsSync(path.join(WURZEL, 'CNAME'))) fs.copyFileSync(path.join(WURZEL, 'CNAME'), path.join(AUS, 'CNAME'));
 fs.writeFileSync(path.join(AUS, '.nojekyll'), '');
 
@@ -117,7 +128,7 @@ fs.writeFileSync(path.join(AUS, 'sitemap.xml'), `<?xml version="1.0" encoding="U
 fs.writeFileSync(path.join(AUS, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${cfg.domain}/sitemap.xml\n`);
 
 // 404-Seite
-fs.writeFileSync(path.join(AUS, '404.html'), seiteBauen({ rel: '404.html', kopf: { titel: 'Seite nicht gefunden' },
-  inhalt: '<div class="fliess"><h1>Seite nicht gefunden</h1><p>Diese Seite gibt es nicht (mehr). <a href="/">Zur Startseite</a></p></div>' }, artikel));
+fs.writeFileSync(path.join(AUS, '404.html'), mitBasis(seiteBauen({ rel: '404.html', kopf: { titel: 'Seite nicht gefunden' },
+  inhalt: '<div class="fliess"><h1>Seite nicht gefunden</h1><p>Diese Seite gibt es nicht (mehr). <a href="/">Zur Startseite</a></p></div>' }, artikel)));
 
 console.log(`${seiten.length} Seiten gebaut (${artikel.length} Blogartikel) -> _site/`);
