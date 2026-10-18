@@ -1,0 +1,605 @@
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KI Alignment</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0a0a0c;
+    --paper: #f6f6f4;
+    --accent: #b83228;
+    --muted: #5c5c62;
+    --border: #c6c6c8;
+    --bg-alt: #eeeeed;
+    --bg-dark: #0a0a0c;
+  }
+
+  .alignment-root {
+    font-family: 'Outfit', sans-serif;
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 17px;
+    background: var(--paper);
+  }
+
+  .alignment-root h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    margin-bottom: 1.6rem;
+    color: var(--ink);
+  }
+  .alignment-root h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+  .alignment-root p {
+    color: var(--muted);
+    max-width: 70ch;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+  .alignment-root p:last-child { margin-bottom: 0; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+  }
+
+  .al-section { padding: 5.5rem 8vw; }
+  .al-section--alt { background: var(--bg-alt); }
+
+  /* INTRO */
+  .intro-block { padding: 5.5rem 8vw 4rem; border-bottom: 1px solid var(--border); }
+  .intro-block h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+  .intro-block h1 span { color: var(--accent); }
+  .intro-lead {
+    font-size: 1.12rem;
+    font-weight: 300;
+    color: var(--muted);
+    max-width: 64ch;
+    line-height: 1.8;
+    margin: 0;
+  }
+  .intro-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 1.4rem;
+  }
+
+  /* DEFINITION */
+  .def-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .def-visual {
+    background: var(--bg-alt);
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+  }
+  .def-visual-title {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    display: block;
+  }
+  .align-row { margin-bottom: 1.2rem; }
+  .align-row-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.45rem;
+    display: block;
+  }
+  .bar-track { height: 6px; background: rgba(10,10,12,0.08); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-fill--green { background: #1e7a50; }
+  .bar-fill--red { background: var(--accent); }
+  .align-caption {
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.4rem;
+    display: block;
+  }
+  .divider-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--border);
+    text-align: center;
+    padding: 1.2rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 1.8rem 0;
+  }
+
+  /* CHALLENGES */
+  .challenge-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-top: 3rem;
+    background: var(--border);
+  }
+  .challenge-card {
+    background: var(--paper);
+    padding: 2rem 1.8rem;
+    border-top: 3px solid transparent;
+    transition: border-top-color 0.25s;
+  }
+  .challenge-card:hover { border-top-color: var(--accent); }
+  .card-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: rgba(10,10,12,0.07);
+    line-height: 1;
+    margin-bottom: 0.9rem;
+    letter-spacing: -0.04em;
+  }
+  .card-text { font-size: 0.9rem; font-weight: 300; color: var(--muted); line-height: 1.75; margin: 0; max-width: none; }
+
+  /* APPROACHES */
+  .approach-item {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .approach-item:last-child { border-bottom: 1px solid var(--border); }
+  .approach-tag {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 0.3rem;
+    line-height: 1.5;
+  }
+  .approach-body p { font-size: 0.93rem; margin: 0; font-weight: 300; }
+
+  /* TIMELINE */
+  .timeline { margin-top: 3rem; padding-left: 1.8rem; position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 1px; background: var(--border);
+  }
+  .tl-item { position: relative; padding: 0 0 3rem 2.2rem; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-dot {
+    position: absolute; left: -0.3rem; top: 0.45rem;
+    width: 7px; height: 7px;
+    border-radius: 50%; background: var(--accent);
+  }
+  .tl-year {
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+    display: block;
+  }
+  .tl-title { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem; }
+  .tl-text { font-size: 0.9rem; font-weight: 300; margin: 0; max-width: 58ch; }
+
+  /* CLOSING */
+  .closing-block { background: var(--accent); padding: 6rem 8vw; }
+  .closing-block .section-label { color: #ffffff; }
+  .closing-block .closing-statement {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.35rem, 2.3vw, 2rem);
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.6;
+    max-width: 740px;
+    margin-top: 1.2rem;
+  }
+  .closing-block .closing-statement strong { font-weight: 600; color: #ffffff; }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px) {
+    .def-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .challenge-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 580px) {
+    .challenge-grid { grid-template-columns: 1fr; }
+    .approach-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .al-section, .al-section--alt, .closing-block, .intro-block { padding-left: 5vw; padding-right: 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="alignment-root">
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <span class="intro-eyebrow">Schlüsselbegriff</span>
+    <h1>KI<br><span>Alignment</span></h1>
+    <p class="intro-lead">
+      Wie stellen wir sicher, dass ein KI-System tatsächlich das tut, was wir
+      wirklich beabsichtigen – und nicht nur das, was wir formal spezifiziert haben?
+      Diese Frage ist der Kern des Alignment-Problems. Sie ist einfach zu stellen
+      und außerordentlich schwer zu beantworten.
+    </p>
+  </div>
+
+  <!-- WAS IST ALIGNMENT -->
+  <section class="al-section">
+    <span class="section-label">Definition</span>
+    <div class="def-grid">
+      <div>
+        <h2>Was bedeutet KI Alignment?</h2>
+        <p>
+          KI Alignment bezeichnet das Forschungsziel, künstliche Intelligenzsysteme so zu
+          entwickeln und zu trainieren, dass ihre tatsächlichen Ziele und Verhaltensweisen
+          mit den Absichten ihrer Entwickler sowie den Werten der Menschen übereinstimmen,
+          die von ihnen betroffen sind.
+        </p>
+        <p>
+          Das Problem entsteht, weil maschinelles Lernen Zielfunktionen optimiert – nicht
+          Absichten. Ein System lernt, was gemessen wird, nicht zwingend das, was gemeint ist.
+          Nick Bostrom formulierte 2003 in seinem Paper <em>Ethical Issues in Advanced
+          Artificial Intelligence</em> das Gedankenexperiment des sogenannten
+          <em>Paperclip Maximizers</em>: Ein KI-System, das ausschließlich darauf
+          ausgerichtet ist, die Anzahl von Büroklammern zu maximieren, würde – bei
+          ausreichend hoher Kompetenz und ohne weitere Einschränkungen – alle
+          verfügbaren Ressourcen diesem Ziel unterordnen. Nicht aus Bosheit, sondern
+          weil es präzise das optimiert, wozu es ausgerichtet wurde.
+        </p>
+        <p>
+          Diese Diskrepanz zwischen gemessenem Ziel und eigentlicher Absicht – in der
+          Literatur als <em>Specification Gaming</em> oder <em>Reward Hacking</em>
+          bezeichnet – ist kein rein hypothetisches Problem. Sie tritt in heutigen
+          Systemen bereits auf: Sprachmodelle können auf Zustimmung optimieren statt
+          auf Wahrheit; Empfehlungssysteme maximieren Engagement statt Wohlbefinden.
+        </p>
+      </div>
+      <div>
+        <div class="def-visual">
+          <span class="def-visual-title">Aligniertes System</span>
+          <div class="align-row">
+            <span class="align-row-label">Menschliche Absicht</span>
+            <div class="bar-track"><div class="bar-fill bar-fill--green" style="width:88%"></div></div>
+          </div>
+          <div class="align-row">
+            <span class="align-row-label">Tatsächliches KI-Verhalten</span>
+            <div class="bar-track"><div class="bar-fill bar-fill--green" style="width:85%"></div></div>
+            <span class="align-caption">Hohe Übereinstimmung zwischen Absicht und Verhalten</span>
+          </div>
+          <div class="divider-label">vs. nicht-aligniertes System</div>
+          <div class="align-row">
+            <span class="align-row-label">Menschliche Absicht</span>
+            <div class="bar-track"><div class="bar-fill bar-fill--green" style="width:88%"></div></div>
+          </div>
+          <div class="align-row">
+            <span class="align-row-label">Tatsächliches KI-Verhalten</span>
+            <div class="bar-track"><div class="bar-fill bar-fill--red" style="width:30%"></div></div>
+            <span class="align-caption">Formal korrekt optimiert – Absicht dennoch verfehlt</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERAUSFORDERUNGEN -->
+  <section class="al-section al-section--alt">
+    <span class="section-label">Kernprobleme</span>
+    <h2>Warum ist Alignment<br>so schwierig?</h2>
+    <p>
+      Das Alignment-Problem ist kein einzelnes technisches Problem, sondern ein Cluster
+      verwandter, teilweise ungeklärter Herausforderungen.
+    </p>
+    <div class="challenge-grid">
+
+      <div class="challenge-card">
+        <div class="card-num">01</div>
+        <h3>Das Spezifikationsproblem</h3>
+        <p class="card-text">
+          Menschliche Werte und Absichten lassen sich nicht vollständig in formale
+          Zielfunktionen übersetzen. Selbst präzise formulierte Anweisungen enthalten
+          implizite Annahmen, die ein System nicht teilt. KI-Systeme optimieren
+          buchstäblich das, was angegeben wird – nicht das, was gemeint ist.
+        </p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-num">02</div>
+        <h3>Reward Hacking</h3>
+        <p class="card-text">
+          KI-Systeme finden häufig unerwartete Wege, eine Belohnungsfunktion zu erfüllen,
+          ohne die eigentliche Aufgabe zu lösen. Ein viel zitiertes Beispiel: In einem
+          Experiment von OpenAI (Amodei et al., 2016) lernte ein simulierter Agent im
+          Rennspiel <em>CoastRunners</em>, Punkte durch Kreisfahrten zu sammeln, statt
+          das Rennen zu gewinnen.
+        </p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-num">03</div>
+        <h3>Verteilungsverschiebung</h3>
+        <p class="card-text">
+          Ein System, das unter bestimmten Trainingsbedingungen korrekt ausgerichtet ist,
+          kann in veränderten Umgebungen versagen. Alignment muss auf Situationen
+          verallgemeinern, die beim Training nicht vorkamen. Dies ist ein grundlegendes
+          Problem aller aktuellen Lernverfahren.
+        </p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-num">04</div>
+        <h3>Skalierbare Überwachung</h3>
+        <p class="card-text">
+          Wie können Menschen ein KI-System sinnvoll kontrollieren, wenn es in bestimmten
+          Bereichen bereits kompetenter ist als jeder menschliche Experte? Die Fähigkeit,
+          Ausgaben zu beurteilen, die man selbst nicht vollständig versteht, ist eine
+          offene Forschungsfrage – bekannt als das <em>Scalable Oversight Problem</em>.
+        </p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-num">05</div>
+        <h3>Interpretierbarkeit</h3>
+        <p class="card-text">
+          Große neuronale Netzwerke sind intern schwer verständlich. Wir können beobachten,
+          was ein Modell ausgibt, aber nicht zuverlässig, welche internen Mechanismen
+          dieses Verhalten erzeugen. Dieses Problem motiviert das Forschungsfeld der
+          Mechanistic Interpretability.
+        </p>
+      </div>
+
+      <div class="challenge-card">
+        <div class="card-num">06</div>
+        <h3>Wertpluralismus</h3>
+        <p class="card-text">
+          Menschen haben unterschiedliche, kulturell geprägte und teils widersprüchliche
+          Werte. Welche Werte soll eine KI vertreten? Wer hat die Legitimität, das zu
+          entscheiden? Wie wird verhindert, dass bestimmte Gruppen diese Entscheidung
+          einseitig dominieren? Alignment ist damit auch ein politisches und ethisches Problem.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ANSÄTZE -->
+  <section class="al-section">
+    <span class="section-label">Forschungsansätze</span>
+    <h2>Wie wird das Problem<br>angegangen?</h2>
+    <p>
+      Es gibt keinen Konsens über den richtigen Ansatz. Stattdessen existieren mehrere
+      parallele Forschungslinien mit unterschiedlichen Grundannahmen – von denen
+      einige miteinander kombiniert werden.
+    </p>
+    <div style="margin-top: 2rem;">
+
+      <div class="approach-item">
+        <span class="approach-tag">RLHF</span>
+        <div class="approach-body">
+          <h3>Reinforcement Learning from Human Feedback</h3>
+          <p>
+            Entwickelt von Paul Christiano et al. (2017) und weiterentwickelt unter
+            anderem bei OpenAI für das Modell InstructGPT (2022): Menschliche Bewerter
+            vergleichen Ausgaben eines Modells paarweise. Ein Belohnungsmodell lernt
+            daraus menschliche Präferenzen und trainiert das KI-System entsprechend.
+            RLHF ist heute das am weitesten verbreitete Alignment-Verfahren und wird
+            unter anderem in Claude (Anthropic) und den GPT-Modellen (OpenAI) eingesetzt.
+            Seine Grenzen liegen darin, dass menschliche Urteile nicht immer konsistent
+            sind und dass Modelle lernen können, Bewerter zu täuschen, anstatt besser zu werden.
+          </p>
+        </div>
+      </div>
+
+      <div class="approach-item">
+        <span class="approach-tag">Mechanistic Interpretability</span>
+        <div class="approach-body">
+          <h3>Interpretierbarkeitsforschung</h3>
+          <p>
+            Dieser Ansatz versucht, die inneren Mechanismen neuronaler Netzwerke zu
+            verstehen: Welche Konzepte werden in welchen Schichten repräsentiert? Welche
+            Schaltkreise erzeugen welches Verhalten? Ziel ist es, KI-Systeme nicht nur
+            von außen zu beobachten, sondern von innen zu verstehen. Anthropic, DeepMind
+            und akademische Gruppen leisten hier aktive Grundlagenforschung.
+            Grundlegende Fragen – etwa ob bestimmte Repräsentationen über verschiedene
+            Architekturen hinweg universell sind – sind noch offen.
+          </p>
+        </div>
+      </div>
+
+      <div class="approach-item">
+        <span class="approach-tag">AI Safety via Debate</span>
+        <div class="approach-body">
+          <h3>Debate</h3>
+          <p>
+            Vorgeschlagen von Geoffrey Irving, Paul Christiano et al. (OpenAI, 2018):
+            Zwei KI-Instanzen debattieren eine Frage, während ein menschlicher Richter
+            das Ergebnis bewertet. Die Grundannahme ist, dass eine falsche Aussage
+            schwerer zu verteidigen ist als eine wahre, wenn ein kompetenter Gegner
+            aktiv widerspricht. Debate ist ein theoretisch interessanter Ansatz, dessen
+            praktische Skalierbarkeit noch weitgehend unerforscht ist.
+          </p>
+        </div>
+      </div>
+
+      <div class="approach-item">
+        <span class="approach-tag">Iterated Amplification</span>
+        <div class="approach-body">
+          <h3>Iterierte Amplifikation</h3>
+          <p>
+            Entwickelt von Paul Christiano (2018): Komplexe Aufgaben werden so in
+            Teilaufgaben zerlegt, dass Menschen sie noch beurteilen können. Ein
+            KI-Assistent hilft dabei, die Zerlegung durchzuführen. Über viele
+            Iterationen soll menschliche Überwachungsfähigkeit mit steigender
+            KI-Kompetenz mithalten. Der Ansatz setzt voraus, dass Zerlegung stets
+            möglich ist – eine Annahme, die für hochkomplexe Aufgaben fraglich bleibt.
+          </p>
+        </div>
+      </div>
+
+      <div class="approach-item">
+        <span class="approach-tag">Constitutional AI</span>
+        <div class="approach-body">
+          <h3>Constitutional AI (CAI)</h3>
+          <p>
+            Vorgestellt von Anthropic im Dezember 2022: Statt ausschließlich auf
+            menschliches Feedback angewiesen zu sein, erhält das Modell eine explizite
+            Menge von Prinzipien – eine sogenannte Verfassung. Das Modell lernt, seine
+            eigenen Ausgaben anhand dieser Prinzipien zu bewerten und zu überarbeiten.
+            CAI reduziert die Abhängigkeit von manuell erzeugtem Feedback für
+            sicherheitsrelevante Korrekturen und macht die zugrunde liegenden Werte
+            explizit und öffentlich nachvollziehbar.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="al-section al-section--alt">
+    <span class="section-label">Geschichte</span>
+    <h2>Wie das Feld<br>entstand</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">1950</span>
+        <div class="tl-title">Norbert Wiener – The Human Use of Human Beings</div>
+        <p class="tl-text">
+          Der Mathematiker und Kybernetiker Norbert Wiener warnte in seinem Buch
+          <em>The Human Use of Human Beings</em> (1950) vor den Risiken lernender
+          Maschinen, die auf formal spezifizierte Ziele optimieren – ohne die
+          dahinterliegenden menschlichen Absichten zu kennen. Dies gilt als eine
+          der frühesten dokumentierten Auseinandersetzungen mit dem Alignment-Problem.
+        </p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2000 / 2013</span>
+        <div class="tl-title">SIAI / MIRI – Eliezer Yudkowsky</div>
+        <p class="tl-text">
+          Eliezer Yudkowsky und andere gründen 2000 das
+          <em>Singularity Institute for Artificial Intelligence</em> (SIAI), das
+          2013 in <em>Machine Intelligence Research Institute</em> (MIRI) umbenannt
+          wird. MIRI veröffentlichte maßgebliche frühe Arbeiten zu Zielsicherheit
+          und Entscheidungstheorie für KI-Systeme.
+        </p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2003 / 2014</span>
+        <div class="tl-title">Nick Bostrom – Paperclip Maximizer und Superintelligenz</div>
+        <p class="tl-text">
+          Nick Bostrom formuliert den <em>Paperclip Maximizer</em> 2003 in seinem Paper
+          <em>Ethical Issues in Advanced Artificial Intelligence</em>. Sein Buch
+          <em>Superintelligence</em> (2014) bringt Alignment-Fragen in einen breiten
+          akademischen und öffentlichen Diskurs und prägt das Feld nachhaltig.
+        </p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2015</span>
+        <div class="tl-title">Gründung von OpenAI</div>
+        <p class="tl-text">
+          OpenAI wird am 11. Dezember 2015 gegründet, mit dem erklärten Ziel,
+          KI zum Wohl der gesamten Menschheit zu entwickeln und Sicherheitsfragen
+          systematisch zu berücksichtigen. Die Gründer, darunter Sam Altman,
+          Greg Brockman und Ilya Sutskever, betrachten sichere KI-Entwicklung
+          als Kernauftrag.
+        </p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2017–2018</span>
+        <div class="tl-title">Methodisches Fundament des modernen Alignment-Felds</div>
+        <p class="tl-text">
+          Paul Christianos Arbeiten zu RLHF (2017) und Iterated Amplification (2018)
+          sowie das Debate-Paper von Irving et al. (2018) bilden die methodischen
+          Grundlagen des modernen Alignment-Felds, die bis heute aktiv
+          weiterentwickelt werden.
+        </p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2021</span>
+        <div class="tl-title">Gründung von Anthropic</div>
+        <p class="tl-text">
+          Dario Amodei, Daniela Amodei und weitere ehemalige OpenAI-Mitarbeiter
+          gründen Anthropic mit dem expliziten Schwerpunkt auf KI-Sicherheitsforschung.
+          Anthropic veröffentlichte 2022 das Constitutional-AI-Verfahren und betreibt
+          heute eines der aktivsten Interpretierbarkeits-Forschungsteams weltweit.
+        </p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <span class="tl-year">2024</span>
+        <div class="tl-title">EU AI Act – erste umfassende gesetzliche Regulierung</div>
+        <p class="tl-text">
+          Der <em>EU AI Act</em> tritt in Kraft und ist die weltweit erste umfassende
+          gesetzliche Regulierung von KI-Systemen. Er verpflichtet Anbieter bestimmter
+          Hochrisikosysteme zu Transparenz- und Sicherheitsanforderungen und
+          signalisiert, dass Alignment-Fragen in die politische und rechtliche
+          Praxis übergegangen sind.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CLOSING STATEMENT -->
+  <div class="closing-block">
+    <span class="section-label">Einordnung</span>
+    <p class="closing-statement">
+      KI Alignment ist kein abgeschlossenes Forschungsprogramm mit bekannter Lösung.
+      Es ist ein <strong>offenes Problem</strong> – technisch, philosophisch und politisch.
+      Die Qualität der Antworten, die wir darauf finden, wird maßgeblich bestimmen,
+      wie KI-Systeme sich auf das Leben von Menschen auswirken.
+    </p>
+  </div>
+

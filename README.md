@@ -10,6 +10,7 @@ Seite über GitHub Pages.
 inhalt/…/*.html   Texte der Seiten (je Seite eine Datei)
 vorlage/          Rahmen: Kopf, Menü, Fuß, Gestaltung (stil.css)
 seiten.json       Menü, Name, Mailadresse
+bausteine/        interaktive Bausteine (Fragen, Personen, Lernverfahren …)
 bilder/, schrift/ Bilder, Videos, Schrift Outfit
 bauen.js          setzt alles zu fertigen Seiten in _site/ zusammen
 ```
@@ -49,7 +50,8 @@ H2 42 px, H3 32 px, Text 18 px. Abweichende Größen stehen direkt am Element
 - `<div class="spalten"><div>…</div><div>…</div></div>` zwei Spalten nebeneinander
 - `<div class="karten"><div class="karte">…</div></div>` Kartenraster
 - `<p class="knopfzeile"><a class="knopf" href="…">TEXT</a></p>` Knopf
-- `<div class="baustein">…</div>` eingebettete interaktive Bausteine (bringen ihr eigenes CSS mit)
+- `<!--baustein name-->` setzt einen interaktiven Baustein aus `bausteine/name.html` ein
+  (bringt sein eigenes CSS und Skript mit; die Seite selbst bleibt dadurch kurz)
 
 Der Dateipfad ist die Adresse: `inhalt/ki-ani-agi-asi/alignment.html` wird zu
 `/ki-ani-agi-asi/alignment`, `inhalt/x/index.html` zu `/x/`.

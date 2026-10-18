@@ -82,6 +82,13 @@ function seiteBauen(s, artikel) {
     inhalt = `<div class="blogkopf"><a href="/inspiration-blog/">← Alle Beiträge</a><h1>${esc(s.kopf.titel)}</h1></div>\n` + inhalt;
   }
   if (inhalt.includes('<!--blogliste-->')) inhalt = inhalt.replace('<!--blogliste-->', blogliste(artikel));
+  // Interaktive Bausteine liegen in bausteine/<name>.html; in der Seite steht nur
+  // <!--baustein name-->. So bleibt die Seite für den Editor und für Neo kurz.
+  inhalt = inhalt.replace(/<!--baustein ([a-z0-9-]+)-->/g, (m, name) => {
+    const f = path.join(WURZEL, 'bausteine', name + '.html');
+    if (!fs.existsSync(f)) throw new Error(`${s.rel}: Baustein "${name}" fehlt (bausteine/${name}.html)`);
+    return `<div class="baustein">\n${fs.readFileSync(f, 'utf8').replace(/\n$/, '')}\n</div>`;
+  });
   const url = adresse(s.rel);
   const bild = s.kopf.bild || (s.kopf.blog && s.kopf.blog.bild);
   const werte = {
