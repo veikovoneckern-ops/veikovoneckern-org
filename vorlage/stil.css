@@ -159,3 +159,22 @@ h4 { font-size: 20px; }
   /* Aktiver Punkt auf dunklem Grund: helles Rot statt Dunkelrot (Kontrast) */
   .nav a:hover, .nav a[aria-current="page"] { color: #ff9b8f; }
 }
+
+/* ---------- Bildeffekte wie auf der früheren Seite ----------
+   aufdecken: das Bild steht still, der Inhalt gleitet darüber (wie
+   background-attachment:fixed). Umgesetzt mit einem festen Bild-Ebene in einem
+   per clip-path beschnittenen Band, weil background-attachment:fixed auf
+   iPhone und iPad nicht wirkt.
+   parallax: das Bild wandert langsamer als die Seite (--parallax setzt das
+   Skript in seite.html). */
+.band[data-effekt]::after {
+  content: ""; position: absolute; z-index: 0; pointer-events: none;
+  background-image: inherit; background-size: cover; background-position: center;
+}
+.band[data-effekt="aufdecken"] { clip-path: inset(0); }
+.band[data-effekt="aufdecken"]::after { position: fixed; inset: 0; }
+.band[data-effekt="parallax"]::after {
+  left: 0; right: 0; top: -40%; bottom: -40%;
+  transform: translate3d(0, var(--parallax, 0px), 0);
+  will-change: transform;
+}

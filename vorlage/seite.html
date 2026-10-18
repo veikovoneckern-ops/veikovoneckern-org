@@ -25,7 +25,6 @@
 {{inhalt}}
 </main>
 <footer class="fuss">
-  <p><a class="knopf knopf-dunkel" href="mailto:{{mail}}">Schreiben Sie mir eine E-Mail</a></p>
   <p>© {{jahr}} {{name}} · Alle Rechte vorbehalten</p>
 </footer>
 <script>
@@ -42,6 +41,28 @@
       b.setAttribute('aria-expanded', auf ? 'true' : 'false');
     });
   });
+})();
+
+// Parallax: das Bild eines Bands mit data-effekt="parallax" wandert langsamer
+// als die Seite. Nur sichtbare Bänder werden gerechnet, ein Bild je Frame.
+(function () {
+  var baender = [].slice.call(document.querySelectorAll('.band[data-effekt="parallax"]'));
+  if (!baender.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wartet = false;
+  function rechnen() {
+    wartet = false;
+    var h = innerHeight;
+    baender.forEach(function (b) {
+      var r = b.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > h) return;
+      // -1 (Band unten im Bild) … +1 (Band oben aus dem Bild)
+      var anteil = (h / 2 - (r.top + r.height / 2)) / (h / 2 + r.height / 2);
+      b.style.setProperty('--parallax', (anteil * r.height * 0.4).toFixed(1) + 'px');
+    });
+  }
+  addEventListener('scroll', function () { if (!wartet) { wartet = true; requestAnimationFrame(rechnen); } }, { passive: true });
+  addEventListener('resize', rechnen);
+  rechnen();
 })();
 </script>
 </body>
