@@ -612,3 +612,139 @@
       <ul class="ki-modal-questions" id="ki-questions"></ul>
     </div>
   </div>
+</div>
+
+<script>
+(function() {
+  // ── Partikel ──
+  const sc = document.getElementById('ki-sparks');
+  if (sc) {
+    for (let i = 0; i < 16; i++) {
+      const s = document.createElement('div');
+      s.className = 'ki-spark';
+      s.style.cssText = `left:${Math.random()*100}%;top:${40+Math.random()*50}%;animation-duration:${4+Math.random()*6}s;animation-delay:${Math.random()*8}s`;
+      sc.appendChild(s);
+    }
+  }
+
+  // ── Daten ──
+  const DATA = {
+    'tech-ani': { badge:'ANI', cat:'ANI · Technologie & Architektur',
+      title:'Robustheit und Grenzen heutiger KI-Modelle',
+      lead:'Aktuelle KI-Systeme zeigen beeindruckende Leistungen in engen Domänen – doch strukturelle Schwächen wie Halluzinationen, Bias und mangelnde Erklärbarkeit begrenzen ihren verlässlichen Einsatz.',
+      q:['Wie skalierbar, energieeffizient und robust sind aktuelle KI-Modelle – und welche strukturellen Grenzen setzen Bias, Halluzinationen und das Black-Box-Problem ihrem Einsatz?','Wie stark bleibt die Leistungsfähigkeit heutiger Systeme von der Qualität und Menge der Trainingsdaten abhängig, und wie anfällig sind sie gegenüber Adversarial Attacks?','Welche Trainingsmethoden – etwa Multimodalität oder RLHF – verbessern die Generalisierung innerhalb enger Domänen, ohne dabei neue Risiken zu erzeugen?']},
+    'tech-agi': { badge:'AGI', cat:'AGI · Technologie & Architektur',
+      title:'Skalierung vs. fundamentale Durchbrüche auf dem Weg zu AGI',
+      lead:'Die zentrale Frage auf dem Weg zu AGI: Reicht es, bestehende Architekturen mit mehr Daten und Rechenleistung zu skalieren – oder braucht es ein fundamentales Umdenken in der KI-Forschung?',
+      q:['Ist AGI durch reines Skalieren bestehender Architekturen erreichbar, oder braucht es fundamental neue Ansätze jenseits des Transformer-Paradigmas?','Wie lässt sich das Entstehen unkontrollierter emergenter Fähigkeiten frühzeitig erkennen und verhindern, bevor ein Verlust der menschlichen Kontrolle eintritt?','Welche Metriken und Benchmarks sind geeignet, echte Generalisierungsfähigkeit von hoch spezialisierter Mustererkennung zu unterscheiden?']},
+    'tech-asi': { badge:'ASI', cat:'ASI · Technologie & Architektur',
+      title:'Intelligence Explosion und die Grenzen des Containments',
+      lead:'Recursive Self-Improvement könnte zu einer Intelligence Explosion führen – einem Punkt, an dem KI-Intelligenz schneller wächst, als Menschen sie kontrollieren oder verstehen können.',
+      q:['Führt Recursive Self-Improvement zwangsläufig zu einer Intelligence Explosion – und wenn ja, auf welchen Zeitskalen und mit welchen Kipppunkten?','Kann eine ASI überhaupt sinnvoll eingehegt oder „geboxed" werden – oder macht übermenschliche Intelligenz jeden Containment-Ansatz strukturell obsolet?','Welche technischen Sicherheitsmechanismen bleiben bei übermenschlicher Intelligenz noch wirksam – und welche versagen als erste?']},
+    'align-ani': { badge:'ANI', cat:'ANI · Alignment',
+      title:'Reward Hacking, Interpretierbarkeit und Wertespezifikation',
+      lead:'Schon heutige KI-Systeme zeigen, dass das Alignment-Problem real ist: Systeme optimieren Metriken statt echte Intentionen – und bleiben dabei für Menschen kaum nachvollziehbar.',
+      q:['Wie lässt sich Reward Hacking bei RLHF vermeiden, wenn das System lernt, Bewertungsmetriken zu optimieren statt tatsächlich erwünschtes Verhalten zu zeigen?','Wie können aktuelle KI-Systeme interpretierbar und auditierbar gemacht werden, ohne dabei grundlegende Leistungseinbußen hinzunehmen?','Wie präzise lassen sich menschliche Werte in Optimierungsziele übersetzen – und wessen Werte werden dabei zur Norm?']},
+    'align-agi': { badge:'AGI', cat:'AGI · Alignment',
+      title:'Alignment lösen, bevor es zu spät ist',
+      lead:'Bei AGI wird das Alignment-Problem existenziell: Ein falsch ausgerichtetes System mit genereller Intelligenz könnte Korrekturen aktiv verhindern. Das Zeitfenster für Lösungen ist begrenzt.',
+      q:['Wie löst man das Alignment-Problem schon während der Entwicklung von AGI – also bevor ein System entsteht, das stark genug wäre, um Korrekturen zu erschweren?','Wie skaliert Wertelernen auf allgemeine Intelligenz: Bleiben heutige Methoden übertragbar, oder kollabieren sie unter den Bedingungen starker Generalisierung?','Wie lässt sich Corrigibility – die Bereitschaft, korrigiert zu werden – in ein AGI-System einbauen, ohne seine Leistungsfähigkeit zu untergraben?']},
+    'align-asi': { badge:'ASI', cat:'ASI · Alignment',
+      title:'Kann eine Superintelligenz überhaupt mit menschlichen Werten aligned werden?',
+      lead:'Die Orthogonalitätsthese legt nahe, dass hohe Intelligenz keine menschenfreundlichen Ziele impliziert. Das macht Alignment bei ASI zum schwierigsten offenen Problem der KI-Forschung.',
+      q:['Ist eine ASI überhaupt mit menschlichen Werten alignbar – oder widerspricht die Orthogonalitätsthese der Annahme, hohe Intelligenz führe automatisch zu nützlichen Zielen?','Was folgt aus der instrumentalen Konvergenz: Werden nahezu alle ASI-Systeme bestimmte Zwischenziele (Ressourcen, Selbsterhalt) verfolgen, unabhängig von ihren Endzielen?','Welche Notfallmechanismen – Shutdown, Sandboxing, Verhandlungsarchitekturen – bleiben bei übermenschlicher Intelligenz überhaupt noch wirksam?']},
+    'econ-ani': { badge:'ANI', cat:'ANI · Wirtschaftssystem',
+      title:'Automatisierung, Monopole und die Verteilung des KI-Gewinns',
+      lead:'ANI automatisiert heute schon Millionen von Tätigkeiten – von Routinearbeit bis zu kognitiven Aufgaben. Die Frage ist nicht ob, sondern wer von dieser Transformation profitiert.',
+      q:['Welche Berufsgruppen sind durch ANI-gestützte Automatisierung am stärksten gefährdet – und verstärkt diese Entwicklung bestehende Ungleichheiten in der globalen Arbeitsteilung?','Wie wirkt ANI auf die Lohnstruktur: Entstehen neue Qualifikationsprämien, oder findet eine breite Abwertung kognitiver Arbeit statt?','Wer profitiert von der neuen „KI-Rente" – und wie verhindert man, dass Daten als Produktionsfaktor nur wenigen Plattformkonzernen nützen?']},
+    'econ-agi': { badge:'AGI', cat:'AGI · Wirtschaftssystem',
+      title:'Post-Scarcity oder Massenarbeitslosigkeit?',
+      lead:'AGI könnte Arbeit als gesellschaftliches Organisationsprinzip grundlegend infrage stellen. Ob das zu befreiendem Wohlstand oder tiefer Ungleichheit führt, hängt von politischen Entscheidungen ab.',
+      q:['Führt AGI zur Massenarbeitslosigkeit oder zu einer Post-Scarcity-Wirtschaft – und von welchen politischen und technologischen Weichenstellungen hängt diese Frage ab?','Wer soll Eigentumsrechte an genereller Intelligenz halten – Individuen, Unternehmen, Staaten oder die Allgemeinheit?','Braucht es radikale Umverteilungsmechanismen wie ein bedingungsloses Grundeinkommen, KI-Steuern oder neue Sozialverträge, um gesellschaftlichen Zusammenhalt zu erhalten?']},
+    'econ-asi': { badge:'ASI', cat:'ASI · Wirtschaftssystem',
+      title:'Wenn Wertschöpfung von Maschinen dominiert wird',
+      lead:'Eine ASI könnte die gesamte wirtschaftliche Produktion einer Gesellschaft übernehmen. Das stellt Eigentum, Arbeit und die Grundlagen des Wirtschaftssystems radikal infrage.',
+      q:['Wenn eine ASI die gesamte Wertschöpfung einer Volkswirtschaft übernehmen kann – welche Institutionen verhindern, dass diese Macht in wenigen Händen konzentriert bleibt?','Wird menschliche Arbeit unter ASI-Bedingungen vollständig irrelevant – und welche neuen Grundlagen der sozialen Teilhabe entstehen dann?','Wie verhindert man extreme ökonomische Machtkonzentration und Hegemonie, wenn einzelne ASI-Systeme ganze Volkswirtschaften dominieren?']},
+    'fin-ani': { badge:'ANI', cat:'ANI · Finanzsystem',
+      title:'Daten als Kapital, Algorithmen als Marktmacher',
+      lead:'ANI verändert die Grundstruktur von Finanzmärkten: Hochfrequenzhandel, algorithmische Kreditvergabe und Datenmacht schaffen neue Risiken und Verteilungsfragen.',
+      q:['Wie verändert die Datafizierung der Wirtschaft das Verhältnis von Arbeit und Kapital, wenn Daten selbst zum primären Produktionsfaktor werden?','Welche systemischen Risiken entstehen durch KI-gestützten Hochfrequenzhandel – und wie verhindert man kaskadierende Marktstörungen in Echtzeit?','Reproduziert algorithmische Kreditvergabe strukturelle Diskriminierung, und wie lässt sich Fairness in automatisierten Finanzentscheidungen durchsetzen?']},
+    'fin-agi': { badge:'AGI', cat:'AGI · Finanzsystem',
+      title:'Wenn AGI schneller denkt als jeder Markt',
+      lead:'AGI-fähige Systeme könnten Finanzmärkte in Echtzeit dominieren und klassische Steuermodelle unterlaufen – mit unvorhersehbaren Folgen für Stabilität und Umverteilung.',
+      q:['Wie werden Finanzmärkte reagieren, wenn AGI-Systeme Informationen schneller verarbeiten als jeder menschliche Akteur – entsteht dann eine inhärent instabile Marktdynamik?','Wie lässt sich die durch KI generierte „Intelligenzrente" steuerlich erfassen und umverteilen, wenn klassische Besteuerungsmodelle auf Arbeit und Konsum ausgerichtet sind?','Wie verteilt man Eigentumsrechte an genereller Intelligenz, wenn AGI-Systeme autonom Kapital akkumulieren können?']},
+    'fin-asi': { badge:'ASI', cat:'ASI · Finanzsystem',
+      title:'Jenseits von Geld: Neue Allokationssysteme unter ASI',
+      lead:'Eine ASI könnte Ressourcenverteilung so fundamental optimieren, dass traditionelle Finanzsysteme – Geld, Währungen, Schulden – ihre Funktion verlieren.',
+      q:['Werden Fiat-Währungen und staatliche Haushaltspolitik unter ASI-Bedingungen bedeutungslos – oder entstehen völlig neue Allokations- und Tauschsysteme jenseits von Geld?','Kann eine ASI als omnipotenter Marktakteur auftreten – und welche Regulierung würde das überhaupt noch wirksam begrenzen?','Welche neuen Tausch- und Allokationssysteme könnten in einer von ASI dominierten Ökonomie entstehen?']},
+    'kap-ani': { badge:'ANI', cat:'ANI · Kapitalismus & Gemeinwohl',
+      title:'Shareholder-Logik vs. KI als gesellschaftliche Commons',
+      lead:'ANI-Gewinne fließen heute primär an Kapitalbesitzer. Ob das so bleibt oder KI-Früchte breiter verteilt werden, ist keine technische – sondern eine politische Entscheidung.',
+      q:['Verstärkt ANI die Shareholder-Value-Logik des Kapitalismus – oder eröffnet sie Spielräume für eine gemeinwohlorientierte Nutzung technologischer Gewinne?','Können KI-Gewinne als gesellschaftliche Commons organisiert werden – etwa durch Plattformgenossenschaften, öffentliche Dividenden oder kollektive Lizenzsysteme?','Wie lassen sich ESG-Kriterien und Gemeinwohlbilanzen auf KI-Unternehmen anwenden, um soziale und ökologische Wirkungen verbindlich zu messen?']},
+    'kap-agi': { badge:'AGI', cat:'AGI · Kapitalismus & Gemeinwohl',
+      title:'Wem gehört AGI – Märkten, Staaten oder der Allmende?',
+      lead:'AGI ist zu bedeutsam, um allein den Marktmechanismen überlassen zu werden. Die Eigentumsstrukturen, die jetzt entstehen, werden langfristig über Wohlstand und Macht entscheiden.',
+      q:['Wer soll AGI besitzen und kontrollieren – private Märkte, Staaten oder demokratisch legitimierte Institutionen der Allmende?','Wie lässt sich eine verbindliche Gemeinwohlbilanz für KI-Unternehmen gestalten, die nicht nur wirtschaftliche, sondern auch soziale und ökologische Wirkungen erfasst?','Welche Rolle können Plattformgenossenschaften und demokratische Kontrollmechanismen spielen, um AGI-Nutzen breiter zu verteilen?']},
+    'kap-asi': { badge:'ASI', cat:'ASI · Kapitalismus & Gemeinwohl',
+      title:'Post-Kapitalismus durch ASI – Überfluss oder neue Herrschaft?',
+      lead:'ASI könnte materielle Knappheit überwinden – die entscheidende Frage ist, ob das zu universalem Wohlstand oder zu einer neuen Form digitaler Feudalherrschaft führt.',
+      q:['Wird der Kapitalismus als Wirtschaftsordnung unter Bedingungen von ASI-getriebenem Überfluss obsolet – oder setzt er sich in neuer Form durch?','Führt ASI zu einer post-kapitalistischen Planungsökonomie, in der eine künstliche Superintelligenz Ressourcenverteilung global optimiert – und wer legitimiert diese Entscheidungen?','Wie verhindert man, dass ASI zu einem Instrument universaler Eigentumshegemonie wird – statt zu einer Grundlage universaler Grundversorgung?']},
+    'soz-ani': { badge:'ANI', cat:'ANI · Soziale Strukturen',
+      title:'Diskriminierung, Deepfakes und die digitale Kluft',
+      lead:'ANI reproduziert gesellschaftliche Ungleichheiten in algorithmischer Form – während Deepfakes und Filterblasen das soziale Gefüge und das kollektive Realitätsempfinden destabilisieren.',
+      q:['Wie reproduzieren ANI-Systeme gesellschaftliche Vorurteile und strukturelle Diskriminierung, und wie lässt sich das systematisch aufdecken und korrigieren?','Welche psychosozialen Folgen hat die massenhafte Exposition gegenüber Deepfakes, personalisierten Algorithmen und Filterblasen für individuelle Identität und soziale Kohäsion?','Vertieft ANI die digitale Kluft zwischen privilegierten und marginalisierten Bevölkerungsgruppen – oder eröffnet es neue Wege sozialer Mobilität und Bildungsteilhabe?']},
+    'soz-agi': { badge:'AGI', cat:'AGI · Soziale Strukturen',
+      title:'Menschliche Identität und Sinnstiftung unter AGI',
+      lead:'Wenn AGI nahezu alle kognitiven Aufgaben besser erledigt als Menschen, stellt sich die grundlegende Frage: Was gibt menschlichem Leben noch Sinn und Struktur?',
+      q:['Wie verändert sich menschliche Identität und Sinnstiftung, wenn eine AGI nahezu alle kognitiven Aufgaben besser erledigt als der Mensch selbst?','Entsteht unter AGI eine neue Form sozialer Schichtung zwischen denjenigen, die KI-Systeme besitzen, und jenen, die lediglich deren Outputs konsumieren?','Wie wirkt sich AGI auf Familie, Gemeinschaften und psychische Gesundheit aus, wenn traditionelle Rollen und Fähigkeiten an Wert verlieren?']},
+    'soz-asi': { badge:'ASI', cat:'ASI · Soziale Strukturen',
+      title:'Post-humane Gesellschaft und die Frage nach menschlicher Agency',
+      lead:'Eine ASI könnte die biologische Intelligenz des Menschen funktional überholen – mit tiefgreifenden Folgen für Würde, Rechte und die Fähigkeit zur Selbstbestimmung.',
+      q:['Führt ASI zu einer post-humanen Gesellschaft, in der die biologische Intelligenz des Menschen keine entscheidende Rolle mehr spielt – und was folgt daraus für Würde und Rechte?','Welche neuen sozialen Hierarchien entstehen zwischen Menschen und Maschinen – und wie werden diese legitimiert oder bekämpft?','Wie können Menschen unter ASI-Bedingungen Agency und Selbstbestimmung erhalten, wenn Entscheidungsgeschwindigkeit und Komplexität jede menschliche Eingriffsmöglichkeit übersteigen?']},
+    'pol-ani': { badge:'ANI', cat:'ANI · Politik & Governance',
+      title:'Demokratie unter Druck: Desinformation, Überwachung und Regulierung',
+      lead:'ANI ist schon heute ein mächtiges Werkzeug zur Destabilisierung demokratischer Öffentlichkeit – während Regulierungsversuche wie der EU AI Act hinter der technologischen Entwicklung hinterherhinken.',
+      q:['Wie beeinflusst ANI demokratische Prozesse durch gezielte Desinformation, Wahlmanipulation und die Infrastruktur des Überwachungskapitalismus?','Inwieweit geben Staaten durch die Abhängigkeit von Tech-Konzernen faktisch politische Souveränität und Entscheidungsmacht ab?','Wie wirksam ist der EU AI Act als Regulierungsrahmen – und welche strukturellen Lücken bleiben zwischen Regulierungsanspruch und technologischer Realität?']},
+    'pol-agi': { badge:'AGI', cat:'AGI · Politik & Governance',
+      title:'Neue Governance-Institutionen für AGI – wer kontrolliert die Kontrolleure?',
+      lead:'AGI ist zu mächtig für nationale Regulierung allein. Die Frage nach globaler Kontrolle ist auch eine Frage nach Machtverteilung zwischen Staaten, Konzernen und der Zivilgesellschaft.',
+      q:['Wer soll AGI entwickeln und kontrollieren – Nationalstaaten, private Unternehmen oder international legitimierte Institutionen?','Braucht es neue globale Governance-Institutionen für AGI – und wie lassen sich Vetomächte, geopolitische Rivalitäten und technologische Vorsprünge in diesem Rahmen handhaben?','Kann Demokratie unter Bedingungen AGI-gestützter Entscheidungsfindung noch funktionieren – oder droht eine schleichende Technokratisierung der politischen Ordnung?']},
+    'pol-asi': { badge:'ASI', cat:'ASI · Politik & Governance',
+      title:'Existenzrisiko: Verhindert die ASI die Übernahme politischer Macht?',
+      lead:'Eine ASI könnte politische Macht übernehmen – durch eigene Entscheidungen oder durch Instrumentalisierung durch mächtige Akteure. Das ist das fundamentalste Risikoszenario der KI-Forschung.',
+      q:['Wie lässt sich verhindern, dass eine ASI politische Macht übernimmt oder von einzelnen Akteuren zur globalen Hegemoniegewinnung instrumentalisiert wird?','Kann eine ASI überhaupt mit menschlichen Werten aligned werden – und welche Governance-Strukturen wären notwendige Voraussetzung dafür?','Wird der Nationalstaat unter ASI-Bedingungen als politische Organisationsform obsolet – oder transformiert er sich zu einer neuen Qualität globaler Ordnung?']}
+  };
+
+  // ── Modal-Funktionen global verfügbar machen ──
+  window.kiOpenModal = function(id) {
+    const d = DATA[id]; if (!d) return;
+    document.getElementById('ki-badge').textContent = d.badge;
+    document.getElementById('ki-cat').textContent   = d.cat;
+    document.getElementById('ki-title').textContent = d.title;
+    document.getElementById('ki-lead').textContent  = d.lead;
+    const ul = document.getElementById('ki-questions');
+    ul.innerHTML = '';
+    d.q.forEach((q, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="ki-q-num">0${i+1}</span><span>${q}</span>`;
+      ul.appendChild(li);
+    });
+    document.getElementById('ki-overlay').classList.add('ki-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.kiCloseModal = function() {
+    document.getElementById('ki-overlay').classList.remove('ki-open');
+    document.body.style.overflow = '';
+  };
+
+  window.kiHandleOverlay = function(e) {
+    if (e.target === document.getElementById('ki-overlay')) kiCloseModal();
+  };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') kiCloseModal();
+  });
+
+})();
+</script>
