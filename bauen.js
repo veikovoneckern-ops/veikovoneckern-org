@@ -13,7 +13,9 @@ const fs = require('fs');
 const path = require('path');
 
 const WURZEL = __dirname;
-const AUS = path.join(WURZEL, '_site');
+// AUSGABE: eigener Ordner für die Vorschau im Cockpit (WebSpace), damit sie
+// nicht mit einem Bau für die Veröffentlichung kollidiert.
+const AUS = path.join(WURZEL, process.env.AUSGABE || '_site');
 const cfg = JSON.parse(fs.readFileSync(path.join(WURZEL, 'seiten.json'), 'utf8'));
 const vorlage = fs.readFileSync(path.join(WURZEL, 'vorlage', 'seite.html'), 'utf8');
 const stand = Date.now().toString(36);
@@ -133,6 +135,12 @@ fs.writeFileSync(path.join(AUS, '.nojekyll'), '');
 const urls = seiten.map(s => `  <url><loc>${cfg.domain}${adresse(s.rel)}</loc></url>`).join('\n');
 fs.writeFileSync(path.join(AUS, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 fs.writeFileSync(path.join(AUS, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${cfg.domain}/sitemap.xml\n`);
+
+// Leerer Seitenrahmen für den Editor im Cockpit: Kopf, Menü, Fuß und Gestaltung
+// wie auf der echten Seite, an Stelle des Inhalts die Marke <!--EDITOR-->.
+if (process.env.EDITOR_RAHMEN) {
+  fs.writeFileSync(path.join(AUS, '_editor.html'), mitBasis(seiteBauen({ rel: '_editor.html', kopf: { titel: 'Editor' }, inhalt: '<!--EDITOR-->' }, artikel)));
+}
 
 // 404-Seite
 fs.writeFileSync(path.join(AUS, '404.html'), mitBasis(seiteBauen({ rel: '404.html', kopf: { titel: 'Seite nicht gefunden' },
