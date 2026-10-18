@@ -35,17 +35,7 @@
     },
     {
       "text": "HR Professionals",
-      "href": "/hr-professionals/",
-      "unter": [
-        {
-          "text": "Kompetenzmodell",
-          "href": "/hr-professionals/kompmodel"
-        },
-        {
-          "text": "SF-JobProfile-Builder",
-          "href": "/hr-professionals/sfjobprofilebuiler"
-        }
-      ]
+      "href": "/hr-professionals/"
     },
     {
       "text": "Performance",

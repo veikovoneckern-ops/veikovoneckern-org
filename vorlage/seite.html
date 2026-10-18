@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="/stil.css?v={{stand}}">
 </head>
 <body>
-<header class="kopf">
+<header class="kopf"><div class="kopf-innen">
   <a class="marke" href="/" aria-label="Startseite"><img src="/bilder/vveorg-logo-white-background.png" alt="VVEORG"></a>
   <button class="menuknopf" aria-label="Menü" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
   <nav id="nav" class="nav">
 {{navigation}}
   </nav>
-</header>
+</div></header>
 <main>
 {{inhalt}}
 </main>
@@ -43,21 +43,29 @@
   });
 })();
 
-// Parallax: das Bild eines Bands mit data-effekt="parallax" wandert langsamer
-// als die Seite. Nur sichtbare Bänder werden gerechnet, ein Bild je Frame.
+// Parallax wie im one.com-Original (dieselbe Rechnung): Das Bild ist 1,6-mal so
+// hoch wie das Band (CSS) und wird verschoben, während das Band durch das Fenster
+// läuft — von +Spielraum/2 (Band kommt unten herein) bis -Spielraum/2 (Band geht
+// oben hinaus). Nur am Rechner, wie im Original; die Bedingung ist dieselbe wie
+// im CSS.
 (function () {
-  var baender = [].slice.call(document.querySelectorAll('.band[data-effekt="parallax"]'));
-  if (!baender.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var rechner = matchMedia('(hover: hover) and (pointer: fine) and (min-width: 1024px)');
+  var bilder = [].slice.call(document.querySelectorAll('.band[data-effekt="parallax"] .band-bild'));
+  if (!bilder.length) return;
   var wartet = false;
   function rechnen() {
     wartet = false;
-    var h = innerHeight;
-    baender.forEach(function (b) {
-      var r = b.getBoundingClientRect();
-      if (r.bottom < 0 || r.top > h) return;
-      // -1 (Band unten im Bild) … +1 (Band oben aus dem Bild)
-      var anteil = (h / 2 - (r.top + r.height / 2)) / (h / 2 + r.height / 2);
-      b.style.setProperty('--parallax', (anteil * r.height * 0.4).toFixed(1) + 'px');
+    var vh = innerHeight;
+    bilder.forEach(function (bild) {
+      if (!rechner.matches) { bild.style.transform = ''; return; }
+      var band = bild.parentElement.getBoundingClientRect();
+      if (band.bottom < 0 || band.top > vh) return;
+      var bildHoehe = band.height * 1.6;
+      var spielraum = bildHoehe - band.height;
+      var bildOben = band.top - spielraum / 2;                 // ohne Verschiebung
+      var anteil = (vh - bildOben) / (vh + bildHoehe);         // 0 … 1
+      var y = spielraum / 2 - anteil * spielraum;
+      bild.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0)';
     });
   }
   addEventListener('scroll', function () { if (!wartet) { wartet = true; requestAnimationFrame(rechnen); } }, { passive: true });

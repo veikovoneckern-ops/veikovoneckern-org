@@ -29,11 +29,24 @@ Jede Datei unter `inhalt/` beginnt mit einem Kopf:
 -->
 ```
 
-Danach folgt normales HTML. Bausteine, die die Gestaltung kennt:
+Danach folgt normales HTML. Grundgrößen wie im früheren Original: H1 64 px,
+H2 42 px, H3 32 px, Text 18 px. Abweichende Größen stehen direkt am Element
+(`style="font-size:50px"`). Bausteine, die die Gestaltung kennt:
 
-- `<section class="band" style="background-image:url('/bilder/x.jpg')"><div class="band-innen">…</div></section>`
-  dunkles Band mit Bild und weißer Schrift
+- Band (dunkelgrauer Streifen mit Bild, weiße Schrift):
+  ```html
+  <section class="band" data-effekt="aufdecken" style="--h:430px">
+    <div class="band-bild" style="background-image:url('/bilder/x.jpg');opacity:0.4"></div>
+    <div class="band-innen"><h2>ÜBERSCHRIFT</h2></div>
+  </section>
+  ```
+  `--h` ist die Höhe, `opacity` die Deckkraft des Bildes (ohne Angabe: voll).
+  `data-effekt`: `aufdecken` (Bild steht still, Inhalt gleitet darüber),
+  `parallax` (Bild läuft beim Scrollen versetzt mit) oder weglassen. Beide
+  Effekte wirken wie im früheren Original nur am Rechner, nicht auf Telefon und Tablet.
 - `<div class="fliess">…</div>` Fließtext in Lesebreite
+- `<div class="balken"><h3>…</h3></div>` dunkler Balken mit Überschrift
+- `<div class="spalten"><div>…</div><div>…</div></div>` zwei Spalten nebeneinander
 - `<div class="karten"><div class="karte">…</div></div>` Kartenraster
 - `<p class="knopfzeile"><a class="knopf" href="…">TEXT</a></p>` Knopf
 - `<div class="baustein">…</div>` eingebettete interaktive Bausteine (bringen ihr eigenes CSS mit)
