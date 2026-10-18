@@ -1,0 +1,458 @@
+<!--seite
+{
+  "titel": "KompModel",
+  "beschreibung": ""
+}
+-->
+
+<section class="band" style="background-image:url('/bilder/unsplash-rf1goyjuxby.jpg')">
+  <div class="band-innen">
+    <h1>Kompetenz Model</h1>
+  </div>
+</section>
+
+<div class="baustein">
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kompetenzmodell Konzern 2026 — Interaktiver Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c1620;--body:#5c6770;--line:#e7eaed;--bg:#fff;--bg-2:#f4f6f8;
+    --slate:#0a1622;
+    --blue:#1a8fe3;--blue-g:#3fb0ff;
+    --teal:#10c2c9;--teal-g:#46e3e8;
+    --gold:#e8932a;--gold-g:#ffb347;
+    --viol:#7c5cff;--viol-g:#a48bff;
+    --maxw:1180px;--ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;height:62px;display:flex;align-items:center;
+    background:linear-gradient(120deg,#06101a 0%,#0b1d2e 55%,#0a1622 100%);
+    border-bottom:1px solid rgba(255,255,255,.06)}
+  header::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(120% 200% at 80% -40%,rgba(26,143,227,.25),transparent 60%)}
+  .hbar{display:flex;align-items:center;justify-content:space-between;width:100%;position:relative;z-index:2}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo .mark{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;
+    background:conic-gradient(from 200deg,var(--blue),var(--teal),var(--viol),var(--blue));
+    box-shadow:0 0 18px rgba(63,176,255,.45)}
+  .logo .mark svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+  .logo b{font-family:"Schibsted Grotesk";font-weight:800;letter-spacing:.04em;color:#fff;font-size:16px}
+  .logo b small{font-weight:500;opacity:.6;font-size:12px;letter-spacing:.12em}
+  nav{display:flex;gap:28px}
+  nav a{color:#c4d2dd;text-decoration:none;font-size:14.5px;font-weight:500;padding:6px 0;position:relative;transition:color .25s}
+  nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--teal-g);transition:width .3s var(--ease)}
+  nav a:hover{color:#fff}nav a:hover::after{width:100%}
+
+  .hero{padding:124px 0 18px}
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:"Schibsted Grotesk";font-weight:600;
+    font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(16,194,201,.22)}50%{box-shadow:0 0 0 8px rgba(16,194,201,0)}}
+  h1{font-family:"Schibsted Grotesk";font-weight:700;font-size:clamp(2.2rem,5vw,4rem);line-height:1.05;
+    letter-spacing:-.02em;max-width:18ch;margin-bottom:22px}
+  h1 .accent{color:var(--blue)}
+  .hero .lede{color:var(--body);font-size:16.5px;max-width:62ch;line-height:1.72}
+
+  .stats{margin-top:52px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:30px 22px;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat .num{font-family:"Schibsted Grotesk";font-weight:800;font-size:clamp(1.9rem,3.2vw,2.7rem);line-height:1;letter-spacing:-.02em}
+  .stat .num .suf{color:var(--blue)}
+  .stat .lab{margin-top:8px;color:var(--body);font-size:13.5px;font-weight:500}
+  @media(max-width:760px){.stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:0}}
+
+  .clusters-sec{padding:78px 0 20px}
+  .sec-head{margin-bottom:34px}
+  .sec-head h2{font-family:"Schibsted Grotesk";font-weight:700;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-.015em}
+  .sec-head p{color:var(--body);max-width:60ch;margin-top:8px}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:980px){.cards{grid-template-columns:1fr 1fr}}
+  @media(max-width:560px){.cards{grid-template-columns:1fr}}
+  .card{position:relative;border-radius:18px;overflow:hidden;min-height:300px;cursor:pointer;color:#fff;
+    display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate;border:0;text-align:left;
+    transform:translateY(24px);opacity:0;transition:transform .5s var(--ease),box-shadow .5s var(--ease);font-family:inherit}
+  .card.in{transform:none;opacity:1}
+  .card:hover{transform:translateY(-6px)!important;box-shadow:0 30px 60px -22px rgba(8,20,32,.55)}
+  .scene{position:absolute;inset:0;z-index:-2}
+  .scene::before{content:"";position:absolute;inset:0;opacity:.5;mix-blend-mode:screen;
+    background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 26px)}
+  .scene::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 26%,rgba(4,10,16,.6) 76%,rgba(4,10,16,.9) 100%)}
+  .c0 .scene{background:radial-gradient(130% 100% at 30% 18%,#1f6fb0,#0a2540 70%),linear-gradient(180deg,#0d3b66,#06182c)}
+  .c1 .scene{background:radial-gradient(130% 100% at 30% 18%,#c97a16,#3a1d05 70%),linear-gradient(180deg,#7a4209,#2a1604)}
+  .c2 .scene{background:radial-gradient(130% 100% at 30% 18%,#11a3b8,#06303c 70%),linear-gradient(180deg,#0a5563,#04222b)}
+  .c3 .scene{background:radial-gradient(130% 100% at 30% 18%,#6a4fd0,#1c1340 70%),linear-gradient(180deg,#3a2a8a,#140e2e)}
+  .ring{position:absolute;top:34px;left:50%;transform:translateX(-50%);width:104px;height:104px;border-radius:50%;
+    display:grid;place-items:center;border:1.5px solid rgba(255,255,255,.45);
+    background:radial-gradient(circle,rgba(255,255,255,.1),transparent 70%);transition:transform .55s var(--ease),box-shadow .55s var(--ease)}
+  .ring::before{content:"";position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
+  .c0 .ring{box-shadow:0 0 40px 4px rgba(63,176,255,.55),inset 0 0 26px rgba(63,176,255,.35)}
+  .c1 .ring{box-shadow:0 0 44px 5px rgba(255,179,71,.6),inset 0 0 26px rgba(255,179,71,.4)}
+  .c2 .ring{box-shadow:0 0 40px 4px rgba(70,227,232,.55),inset 0 0 26px rgba(70,227,232,.35)}
+  .c3 .ring{box-shadow:0 0 42px 5px rgba(164,139,255,.6),inset 0 0 26px rgba(164,139,255,.4)}
+  .card:hover .ring{transform:translateX(-50%) scale(1.08)}
+  .ring svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:1.6;filter:drop-shadow(0 0 6px rgba(255,255,255,.7))}
+  .card-body{position:relative;z-index:2;padding:22px 22px 24px}
+  .card .kick{font-family:"Schibsted Grotesk";font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:.85;margin-bottom:6px}
+  .c0 .kick{color:var(--blue-g)}.c1 .kick{color:var(--gold-g)}.c2 .kick{color:var(--teal-g)}.c3 .kick{color:var(--viol-g)}
+  .card h3{font-family:"Schibsted Grotesk";font-weight:700;font-size:1.18rem;line-height:1.16}
+  .card .cnt{margin-top:12px;font-size:13px;color:rgba(255,255,255,.75);display:flex;align-items:center;gap:7px}
+  .card .cnt svg{width:15px;height:15px;transition:transform .3s}
+  .card:hover .cnt svg{transform:translateX(5px)}
+
+  /* EXPLORER */
+  .explorer{padding:80px 0;background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:74px}
+  .ex-top{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:26px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--body);padding:8px 15px;border-radius:30px;
+    font-family:"Hanken Grotesk";font-weight:600;font-size:13.5px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:8px}
+  .chip .d{width:9px;height:9px;border-radius:50%;background:var(--blue)}
+  .chip[data-c="1"] .d{background:var(--gold)}.chip[data-c="2"] .d{background:var(--teal)}.chip[data-c="3"] .d{background:var(--viol)}
+  .chip.on{color:#fff;border-color:transparent;background:var(--ink)}
+  .search{position:relative}
+  .search input{border:1px solid var(--line);border-radius:30px;padding:10px 16px 10px 38px;font-family:inherit;
+    font-size:14px;width:240px;background:#fff;color:var(--ink);outline:none;transition:.2s}
+  .search input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,143,227,.15)}
+  .search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;stroke:var(--body);fill:none;stroke-width:2}
+
+  .ex-grid{display:grid;grid-template-columns:340px 1fr;gap:24px;align-items:start}
+  @media(max-width:880px){.ex-grid{grid-template-columns:1fr}}
+  .complist{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;max-height:620px;overflow-y:auto}
+  .ci{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .18s}
+  .ci:last-child{border-bottom:0}
+  .ci:hover{background:var(--bg-2)}
+  .ci.on{background:linear-gradient(90deg,rgba(26,143,227,.08),transparent)}
+  .ci .bar{width:4px;align-self:stretch;border-radius:4px;background:var(--blue);flex:0 0 auto}
+  .ci[data-c="1"] .bar{background:var(--gold)}.ci[data-c="2"] .bar{background:var(--teal)}.ci[data-c="3"] .bar{background:var(--viol)}
+  .ci .nm{font-weight:600;font-size:14.5px;line-height:1.3}
+  .ci .cl{font-size:11.5px;color:var(--body);margin-top:2px}
+  .ci.hide{display:none}
+
+  .detail{background:#fff;border:1px solid var(--line);border-radius:16px;padding:30px 32px;box-shadow:0 18px 40px -30px rgba(8,20,32,.3)}
+  .d-tag{display:inline-flex;align-items:center;gap:8px;font-family:"Schibsted Grotesk";font-weight:600;
+    font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  .d-tag .d{width:9px;height:9px;border-radius:50%;background:currentColor}
+  .detail h3{font-family:"Schibsted Grotesk";font-weight:700;font-size:clamp(1.4rem,2.6vw,1.95rem);letter-spacing:-.015em;line-height:1.12}
+  .d-def{color:var(--body);font-size:15.5px;margin-top:12px;line-height:1.66}
+
+  .lvlbox{margin-top:26px;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .lvlhead{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;background:var(--bg-2);border-bottom:1px solid var(--line)}
+  .lvlhead .lt{font-family:"Schibsted Grotesk";font-weight:700;font-size:15px}
+  .lvlhead .ll{font-size:12px;font-weight:600;padding:4px 11px;border-radius:20px;background:rgba(26,143,227,.12);color:var(--blue)}
+  .slider-row{padding:22px 18px 8px}
+  .ticks{display:flex;justify-content:space-between;margin-bottom:6px}
+  .ticks button{flex:1;background:none;border:0;cursor:pointer;font-family:"Schibsted Grotesk";font-weight:700;
+    font-size:13px;color:var(--body);padding:6px 0;transition:color .2s;position:relative}
+  .ticks button.act{color:var(--ink)}
+  .ticks button .seg{display:block;height:4px;border-radius:4px;margin-bottom:8px;background:var(--line);transition:.25s}
+  .ticks button.fill .seg{background:linear-gradient(90deg,var(--blue),var(--teal))}
+  .ticks button.act .seg{box-shadow:0 0 0 3px rgba(26,143,227,.18)}
+  .anchor{padding:6px 18px 22px}
+  .anchor .txt{font-size:16px;line-height:1.62;color:var(--ink);min-height:84px;transition:opacity .25s}
+  .hay{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){.hay{grid-template-columns:1fr}}
+  .hcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--bg-2)}
+  .hcard .hl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--body);margin-bottom:6px}
+  .hcard .hv{font-family:"Schibsted Grotesk";font-weight:700;font-size:15px}
+  .hcard .hv .hg{color:var(--blue);font-weight:800}
+  .hcard .hs{font-size:13px;color:var(--body);margin-top:5px;line-height:1.5}
+
+  .toggle-all{margin-top:20px;background:none;border:1px solid var(--line);border-radius:30px;padding:9px 18px;
+    font-family:inherit;font-weight:600;font-size:13.5px;cursor:pointer;color:var(--ink);transition:.2s}
+  .toggle-all:hover{border-color:var(--blue);color:var(--blue)}
+  .alllevels{margin-top:18px;display:none}
+  .alllevels.open{display:block}
+  .lvline{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--line)}
+  .lvline .n{font-family:"Schibsted Grotesk";font-weight:800;font-size:13px;color:var(--blue)}
+  .lvline .n small{display:block;font-weight:600;color:var(--body);font-size:10.5px;letter-spacing:.05em;margin-top:3px}
+  .lvline .a{font-size:14.5px;line-height:1.55}
+  .lvline.cur{background:linear-gradient(90deg,rgba(26,143,227,.07),transparent);border-radius:8px;margin:0 -8px;padding-left:8px;padding-right:8px}
+
+  /* HAY LADDER */
+  .ladder-sec{padding:90px 0}
+  .ladder{margin-top:34px;display:flex;flex-direction:column;gap:10px}
+  .rung{display:grid;grid-template-columns:84px 1fr auto;gap:18px;align-items:center;
+    border:1px solid var(--line);border-radius:14px;padding:16px 20px;background:#fff;
+    position:relative;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s}
+  .rung:hover{transform:translateX(6px);box-shadow:0 14px 30px -22px rgba(8,20,32,.4)}
+  .rung::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
+    background:linear-gradient(180deg,var(--blue),var(--teal))}
+  .rung .lvn{font-family:"Schibsted Grotesk";font-weight:800;font-size:1.5rem;letter-spacing:-.02em}
+  .rung .lvn small{display:block;font-size:10px;font-weight:600;letter-spacing:.14em;color:var(--body)}
+  .rung .mid .band{font-family:"Schibsted Grotesk";font-weight:700;font-size:15.5px}
+  .rung .mid .ctx{font-size:13px;color:var(--body);margin-top:3px}
+  .rung .hg{font-family:"Schibsted Grotesk";font-weight:800;font-size:14px;color:var(--blue);white-space:nowrap;
+    background:rgba(26,143,227,.1);padding:7px 13px;border-radius:24px}
+  @media(max-width:620px){.rung{grid-template-columns:60px 1fr}.rung .hg{grid-column:1/-1;justify-self:start}}
+
+  .note{margin-top:34px;background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:18px 22px;
+    color:var(--body);font-size:14px;display:flex;gap:12px;align-items:flex-start}
+  .note svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:2;flex:0 0 auto;margin-top:1px}
+
+  footer{background:var(--slate);color:#9fb1bf;padding:42px 0}
+  .fbar{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-size:13.5px}
+  footer b{color:#fff;font-family:"Schibsted Grotesk"}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  @media(max-width:820px){nav{display:none}.hero{padding-top:96px}}
+</style>
+</head>
+<body id="top">
+<header>
+  <div class="wrap hbar">
+    <a class="logo" href="#top">
+      <span class="mark"><svg viewBox="0 0 24 24"><path d="M4 19V9l8-5 8 5v10M4 19h16M9 19v-5h6v5" /></svg></span>
+      <b>Kompetenzmodell <small>2026</small></b>
+    </a>
+    <nav>
+      <a href="#cluster">Cluster</a>
+      <a href="#explorer">Explorer</a>
+      <a href="#ladder">Hay-Mapping</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow"><span class="dot"></span>Konzernweit · Shopfloor bis C-Level</span>
+      <h1>Ein Kompetenzmodell. <span class="accent">38 Kompetenzen</span>, acht Stufen, interaktiv erkundbar.</h1>
+      <p class="lede">Handlungsorientiert, beobachtbar und diagnostisch trennscharf: Jede Kompetenz ist über acht Level beschrieben — von der operativen Ausführung bis zur konzernweiten Steuerung. Wähle eine Kompetenz, schiebe durch die Level und sieh live, welcher Hay-Grade-Bereich dazu passt.</p>
+      <div class="stats">
+        <div class="stat"><div class="num"><span data-to="4">0</span></div><div class="lab">Cluster</div></div>
+        <div class="stat"><div class="num"><span data-to="38">0</span></div><div class="lab">Kompetenzen</div></div>
+        <div class="stat"><div class="num"><span data-to="8">0</span></div><div class="lab">Level je Kompetenz</div></div>
+        <div class="stat"><div class="num"><span data-to="304">0</span></div><div class="lab">Verhaltensanker</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="clusters-sec" id="cluster">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Vier Cluster</h2>
+        <p>Klick auf ein Cluster, um direkt zu seinen Kompetenzen im Explorer zu springen.</p>
+      </div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <section class="explorer" id="explorer">
+    <div class="wrap">
+      <div class="ex-top">
+        <div class="chips" id="chips"></div>
+        <div class="search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="M21 21l-4.3-4.3" /></svg>
+          <input id="search" type="text" placeholder="Kompetenz suchen…">
+        </div>
+      </div>
+      <div class="ex-grid">
+        <div class="complist" id="complist"></div>
+        <div class="detail" id="detail"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ladder-sec" id="ladder">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Level → Hay-Grade-Orientierung</h2>
+        <p>Die Progression folgt Komplexität, Urteils- und Steuerungslogik — nicht allein dem Umfang. Die Zuordnung ist eine Orientierung und muss intern mit der unternehmenseigenen Hay-Matrix kalibriert werden.</p>
+      </div>
+      <div class="ladder" id="ladder-list"></div>
+      <div class="note">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 8h.01M11 12h1v4h1" /></svg>
+        <span>Fach-Kompetenzen (z.&#160;B. Technologie, Finanzen) können auf Level&#160;5–6 bereits höhere Professional Grades treffen. Führungsrelevante Kompetenzen sind auf Level&#160;3–5 bewusst ohne formale Führungsverantwortung formuliert.</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fbar">
+    <span><b>Kompetenzmodell Konzern 2026 · V7</b> — interaktiver Explorer</span>
+    <span>4 Cluster · 38 Kompetenzen · 8 Level</span>
+  </div>
+</footer>
+
+<script id="model-data" type="application/json">{"clusters": ["Strategische Ausrichtung und Wertbeitrag", "Operative Umsetzung und Leistungssteuerung", "Führung und Zusammenarbeit", "Resilienz und Lernfähigkeit"], "data": {"Strategische Ausrichtung und Wertbeitrag": [{"name": "Strategisches Denken und Handeln", "def": "Die Fähigkeit, langfristige Entwicklungen und komplexe Zusammenhänge frühzeitig zu erkennen, zu analysieren und daraus konkrete, priorisierte Handlungsoptionen abzuleiten, die das Unternehmen voranbringen.", "levels": ["Erledigt zugewiesene Routineaufgaben zuverlässig und erkennt direkte Zusammenhänge im eigenen Aufgabenbereich.", "Analysiert regelmäßige Abläufe und schlägt auf Basis eigener Beobachtungen praxisnahe Verbesserungen vor.", "Identifiziert wiederkehrende Muster in Aufgaben, wählt passende Lösungsansätze aus und begründet die Auswahl nachvollziehbar.", "Plant mittelfristige Aktivitäten unter Berücksichtigung interner Abhängigkeiten und stimmt diese mit betroffenen Kolleginnen und Kollegen ab.", "Entwickelt für anspruchsvollere Vorhaben mehrere Szenarien, bewertet deren Auswirkungen und Risiken und leitet priorisierte Handlungsempfehlungen ab.", "Formuliert strategische Leitlinien für den eigenen Verantwortungsbereich, übersetzt diese in konkrete Umsetzungspläne mit klaren Meilensteinen und überprüft Fortschritt und Ergebnisse regelmäßig.", "Definiert unternehmensweite Prioritäten unter Einbeziehung globaler Trends und interner Gegebenheiten, legt Ziele und Ressourcenallokation fest und steuert die Umsetzung durch klare Vorgaben.", "Legt die langfristige strategische Richtung des Konzerns fest, analysiert systemische globale Entwicklungen und bringt fundierte Empfehlungen sowie Priorisierungen in die Entscheidungen des Vorstands ein."]}, {"name": "Branchen- und Marktdynamiken verstehen", "def": "Die Fähigkeit, relevante Entwicklungen in Märkten, Branchen und Wettbewerbsumfeldern frühzeitig zu erkennen, richtig einzuordnen und für die eigene Arbeit sowie das Unternehmen nutzbar zu machen.", "levels": ["Kennt die grundlegenden Produkte und Dienstleistungen des eigenen Bereichs und beantwortet einfache Kundenanfragen sachlich und vollständig.", "Beobachtet Veränderungen im direkten Marktumfeld und leitet relevante Beobachtungen strukturiert an Vorgesetzte weiter.", "Analysiert Kundenrückmeldungen und Wettbewerbsinformationen und leitet konkrete Verbesserungsvorschläge für das eigene Aufgabengebiet ab.", "Vergleicht die eigene Leistung mit Branchenstandards, identifiziert Lücken oder Chancen und bringt diese in Planungs- und Abstimmungsgespräche ein.", "Erstellt fundierte Markt- und Segmentanalysen für Projekte, berücksichtigt regionale und kulturelle Besonderheiten und gibt konkrete Handlungsempfehlungen.", "Entwickelt Marktpositionierungen für den eigenen Bereich auf Basis tiefergehender Analysen, berät Entscheidungsträger mit konkreten Handlungsoptionen und überprüft die Ergebnisse.", "Liefert unternehmensrelevante Markt- und Wettbewerbsanalysen, empfiehlt konkrete strategische Anpassungen und überprüft deren Umsetzung anhand messbarer Ergebnisse.", "Entscheidet über die marktstrategische Ausrichtung des Konzerns, leitet aus eigenen Analysen konkrete Positionierungsentscheidungen ab und überprüft deren Wirkung an Marktanteil und Wachstumskennzahlen."]}, {"name": "Globale und interkulturelle Perspektive einnehmen", "def": "Die Fähigkeit, weltweite Zusammenhänge, kulturelle Unterschiede und internationale Wechselwirkungen zu verstehen und bei Entscheidungen und Handlungen aktiv zu berücksichtigen.", "levels": ["Zeigt grundlegendes Verständnis für kulturelle Unterschiede im direkten Arbeitsumfeld und verhält sich respektvoll und aufmerksam.", "Passt die eigene Kommunikation und Arbeitsweise an kulturelle Erwartungen an und vermeidet Missverständnisse.", "Bezieht bei der Bearbeitung von Aufgaben unterschiedliche regionale und kulturelle Sichtweisen bewusst ein und integriert diese in Lösungsvorschläge.", "Bindet internationale oder kulturell unterschiedliche Perspektiven in Projekten gezielt ein und fördert ein gemeinsames Verständnis unter den Beteiligten.", "Steuert Projekte mit Beteiligten aus mehreren Ländern, erkennt kulturspezifische Spannungen frühzeitig, spricht diese an und sichert produktive Zusammenarbeit.", "Entwickelt Ansätze, die globale und lokale Anforderungen gleichermaßen berücksichtigen, benennt Zielkonflikte und überprüft die Wirksamkeit der Lösungen.", "Legt verbindliche Standards für internationale Zusammenarbeit fest, formuliert klare Verhaltenserwartungen und überprüft deren Einhaltung und Wirkung.", "Gestaltet die globale Positionierung des Konzerns aktiv mit, richtet Strategien an kultureller Intelligenz als Wettbewerbsvorteil aus und überprüft die Wirkung anhand von Geschäftsergebnissen."]}, {"name": "Innovationspotenziale erkennen und nutzen", "def": "Die Fähigkeit, neue Ideen, Technologien und Vorgehensweisen frühzeitig zu identifizieren, deren Potenzial realistisch einzuschätzen und aktiv dazu beizutragen, dass sie im Unternehmen wirksam werden.", "levels": ["Nimmt neue Ideen und Vorschläge im eigenen Arbeitsumfeld aufmerksam wahr und gibt sie an Vorgesetzte weiter.", "Testet im Rahmen der eigenen Aufgaben kleine Verbesserungen, dokumentiert die Ergebnisse und teilt positive Erfahrungen.", "Identifiziert Verbesserungspotenziale in bestehenden Abläufen, schlägt praxistaugliche Lösungen vor und unterstützt deren Umsetzung.", "Bringt neue Ideen in Besprechungen und Arbeitsgruppen ein, hinterfragt bestehende Abläufe kritisch und unterstützt die systematische Prüfung und Bewertung von Verbesserungsvorschlägen.", "Koordiniert Innovationsvorhaben im eigenen Verantwortungsbereich, sichert notwendige Ressourcen und treibt die Umsetzung konsequent voran.", "Richtet im eigenen Bereich einen festen Prozess für Ideenentwicklung und -bewertung ein, stellt Zeit und Mittel für Erprobungen bereit und misst den Erfolg an der Zahl umgesetzter Innovationen.", "Priorisiert Innovationsthemen auf Unternehmensebene, verteilt Ressourcen gezielt, entscheidet über Vorhaben mit hoher Reichweite und überprüft deren Umsetzung.", "Richtet die Innovationsstrategie des Konzerns an langfristigen Wachstumszielen aus, entscheidet über strategische Investitionen in neue Geschäftsfelder und bewertet die Wirkung anhand von Umsatz- und Effizienzzielen."]}, {"name": "Fundierte und nachhaltige Entscheidungen treffen", "def": "Die Fähigkeit, unter Berücksichtigung relevanter Informationen, Risiken und langfristiger Auswirkungen klare, begründete und verantwortungsvolle Entscheidungen zu treffen und deren Umsetzung sicherzustellen.", "levels": ["Trifft einfache, routinebasierte Entscheidungen innerhalb klarer Vorgaben und dokumentiert diese nachvollziehbar.", "Sammelt für wiederkehrende Entscheidungen die notwendigen Fakten, wägt Vor- und Nachteile ab und entscheidet begründet.", "Analysiert komplexere Sachverhalte, zieht relevante Beteiligte ein und trifft Entscheidungen mit nachvollziehbarer Begründung.", "Entscheidet in Situationen mit mehreren Optionen und mittlerer Unsicherheit, übernimmt die Verantwortung für die Folgen und kommuniziert die Entscheidungslogik offen.", "Trifft Entscheidungen, die unterschiedliche Perspektiven und Interessen berücksichtigen, dokumentiert die Abwägungen transparent und sichert die Umsetzung.", "Fällt Entscheidungen mit strategischer Relevanz für den eigenen Bereich, benennt langfristige Auswirkungen und Risiken, begründet Priorisierungen und steuert die Umsetzung.", "Trifft unternehmensweite Entscheidungen in hochkomplexen Situationen, gewichtet konkurrierende Interessen explizit, sorgt für konsequente Umsetzung und überprüft die Ergebnisse.", "Trifft richtungsweisende Entscheidungen auf Konzernebene, legt Priorisierungsregeln und Entscheidungslogiken für nachgeordnete Ebenen fest und überprüft die Wirkung durch regelmäßige Erfolgskontrollen."]}, {"name": "Finanzielle Zusammenhänge verstehen und wirtschaftlich handeln", "def": "Die Fähigkeit, finanzielle Zusammenhänge zu verstehen, wirtschaftliche Auswirkungen von Entscheidungen zu bewerten und ressourcenschonend zu handeln.", "levels": ["Kennt die grundlegenden Kosten- und Erlösfaktoren im eigenen Arbeitsbereich und geht sorgsam mit Ressourcen um.", "Berücksichtigt bei der Planung einfacher Aktivitäten die finanziellen Rahmenbedingungen und vermeidet unnötige Ausgaben.", "Analysiert Kosten-Nutzen-Verhältnisse bei Aufgaben mittlerer Komplexität und schlägt wirtschaftliche Alternativen vor.", "Plant Budgets für Teilprojekte, überwacht die Einhaltung und steuert bei Abweichungen gezielt gegen.", "Bewertet die finanziellen Auswirkungen von Vorhaben im eigenen Verantwortungsbereich, benennt Risiken und optimiert den Ressourceneinsatz.", "Entwickelt Finanzpläne für den eigenen Bereich, sorgt für eine tragfähige Balance zwischen Investitionen und Erträgen und berichtet über Abweichungen mit konkreten Gegenmaßnahmen.", "Steuert die Finanzplanung auf Unternehmensebene durch fundierte Analysen, priorisiert Investitionen, setzt klare Effizienzanforderungen und überwacht die Umsetzung.", "Legt die finanzielle Steuerungslogik des Konzerns fest, definiert verbindliche Allokationsregeln, führt regelmäßige Wirtschaftlichkeitsprüfungen durch und stellt sicher, dass wirtschaftliche Nachhaltigkeit in allen wesentlichen Entscheidungen berücksichtigt wird."]}, {"name": "Komplexe Sachverhalte strukturieren und steuern", "def": "Die Fähigkeit, vielschichtige, widersprüchliche oder unklare Situationen zu analysieren, zu strukturieren und zielgerichtet zu steuern.", "levels": ["Behält bei einfachen, klar strukturierten Aufgaben den Überblick und arbeitet diese systematisch ab.", "Zerlegt wiederkehrende komplexere Aufgaben in überschaubare Teilaspekte und bearbeitet diese geordnet.", "Strukturiert unklare oder widersprüchliche Anforderungen, entwickelt einen praktikablen Lösungsweg und benennt offene Fragen explizit.", "Koordiniert mehrere parallel laufende Aufgaben, benennt Prioritäten und behält trotz wechselnder Anforderungen den Gesamtüberblick.", "Steuert mehrdimensionale Vorhaben im eigenen Verantwortungsbereich, löst Konflikte zwischen Teilzielen und sichert den Fortschritt durch regelmäßige Überprüfung.", "Bewältigt Komplexität in einem größeren Verantwortungsbereich, legt Entscheidungsregeln und Verantwortlichkeiten fest und erhält die Handlungsfähigkeit auch in unsicheren Phasen.", "Bricht unternehmensweite Fragestellungen auf wenige steuerungsrelevante Größen herunter, definiert dafür Steuerungsmechanismen mit klaren Verantwortlichkeiten und überprüft deren Wirksamkeit regelmäßig.", "Gestaltet die organisationale Komplexitätsbewältigung auf Konzernebene durch standardisierte Entscheidungswege, klare Governance-Strukturen und regelmäßige Überprüfung der Handlungsfähigkeit."]}, {"name": "Technologische Entwicklungen nutzen und integrieren", "def": "Die Fähigkeit, neue Technologien und digitale Möglichkeiten zu verstehen, deren Nutzen realistisch einzuschätzen und aktiv in die eigene Arbeit sowie die Organisation zu integrieren.", "levels": ["Wendet die im eigenen Arbeitsbereich eingesetzten digitalen Werkzeuge sicher und effizient an.", "Erprobt neue digitale Funktionen im Rahmen der eigenen Aufgaben und teilt positive Erfahrungen mit Kolleginnen und Kollegen.", "Identifiziert technologische Verbesserungspotenziale im eigenen Bereich und unterstützt deren Einführung aktiv.", "Integriert neue Technologien in bestehende Prozesse, unterstützt Kolleginnen und Kollegen bei der Anwendung und gibt Rückmeldungen zu Problemen weiter.", "Koordiniert die Einführung digitaler Lösungen im eigenen Verantwortungsbereich, sichert nachhaltige Nutzung und bewertet den erzielten Nutzen.", "Entwickelt eine digitale Strategie für den eigenen Bereich, stellt sicher, dass Technologieinvestitionen geschäftlich wirksam werden, und berichtet über Ergebnisse.", "Legt die unternehmensweite digitale Ausrichtung fest, priorisiert Technologieinvestitionen anhand klarer Kriterien und überprüft den Beitrag zu Geschäftsergebnissen regelmäßig.", "Entscheidet über die strategische Technologieausrichtung des Konzerns, gibt Investitionen in zukunftsweisende Technologien frei und bewertet den erzielten Wettbewerbsvorteil an konkreten Geschäftskennzahlen."]}, {"name": "Kundenbedürfnisse in den Mittelpunkt stellen", "def": "Die Fähigkeit, die Perspektive und Bedürfnisse von Kunden – intern und extern – konsequent zu verstehen und bei Entscheidungen und Handlungen als zentrale Orientierung zu nutzen.", "levels": ["Behandelt Kundenanliegen freundlich, schnell und zuverlässig und sorgt für eine positive Grundstimmung.", "Erfragt aktiv die Erwartungen von Kunden, passt die eigene Leistung entsprechend an und gibt Rückmeldungen an Vorgesetzte weiter.", "Analysiert Kundenfeedback systematisch und leitet konkrete Verbesserungen für das eigene Aufgabengebiet ab.", "Berücksichtigt Kundenperspektiven bei der Gestaltung von Prozessen und Abläufen, benennt Lücken und schlägt Verbesserungen vor.", "Entwickelt kundenorientierte Lösungen für Vorhaben im eigenen Verantwortungsbereich und misst den Erfolg an klaren Qualitäts- und Zufriedenheitsindikatoren.", "Legt Standards für kundenorientiertes Handeln im eigenen Bereich fest, überprüft deren Einhaltung und leitet bei Abweichungen gezielte Maßnahmen ein.", "Legt unternehmensweit verbindliche Prozesse, Kennzahlen und Erwartungen für kundenorientiertes Handeln fest, setzt notwendige Anpassungen in der Organisation durch und überprüft deren Einhaltung.", "Richtet die Marktposition des Konzerns konsequent an Kundenbedürfnissen aus, legt konzernweite Standards fest und überprüft deren Wirkung in allen Märkten und Segmenten anhand messbarer Ergebnisse."]}], "Operative Umsetzung und Leistungssteuerung": [{"name": "Entschlossen handeln und Initiative ergreifen", "def": "Die Fähigkeit, auch bei Unklarheiten oder Widerständen zügig und zielgerichtet zu handeln, Verantwortung zu übernehmen und notwendige Schritte eigenständig einzuleiten.", "levels": ["Führt zugewiesene Aufgaben zügig und zuverlässig aus und meldet Hindernisse frühzeitig.", "Ergreift bei bekannten Problemen im eigenen Verantwortungsbereich selbstständig Maßnahmen und informiert Betroffene.", "Handelt bei unerwarteten Situationen entschlossen, sucht bei Bedarf Unterstützung und stellt sicher, dass Ziele weiterhin erreicht werden.", "Initiiert Verbesserungen in Prozessen oder Abläufen, begründet die Notwendigkeit gegenüber Beteiligten und übernimmt Verantwortung für die Umsetzung.", "Treibt Vorhaben im eigenen Verantwortungsbereich mit hoher Eigeninitiative voran, erkennt Widerstände frühzeitig und begegnet ihnen mit klarer Argumentation und konsequentem Handeln.", "Ergreift bei erkanntem Handlungsbedarf in einem größeren Bereich die Initiative, setzt notwendige Änderungen durch und überprüft die Wirksamkeit der Maßnahmen.", "Initiiert unternehmensweite Veränderungsprozesse, legt klare Erwartungen an die Umsetzungsgeschwindigkeit fest und überprüft den Fortschritt regelmäßig.", "Trifft richtungsweisende Entscheidungen zur Umsetzung strategischer Vorhaben, schafft kurze Entscheidungswege und stellt sicher, dass strategische Prioritäten zuverlässig in messbare Ergebnisse überführt werden."]}, {"name": "Aufgaben zielgerichtet delegieren und steuern", "def": "Die Fähigkeit, Aufgaben und Verantwortung klar zu verteilen, Fortschritte zu verfolgen und sicherzustellen, dass Ziele erreicht werden.", "levels": ["Führt zugewiesene Aufgaben selbstständig aus und berichtet regelmäßig über den Stand.", "Übernimmt Teilaufgaben von Kolleginnen und Kollegen und stellt deren termingerechte Erledigung sicher.", "Verteilt Aufgaben in der gemeinsamen Arbeit sinnvoll, formuliert klare Erwartungen und verfolgt den Fortschritt aktiv.", "Gibt Aufgaben mit klaren Zielen und Erwartungen ab, unterstützt bei Bedarf und behält die Gesamtverantwortung für das Ergebnis.", "Steuert die Aufgabenverteilung in anspruchsvolleren Vorhaben, klärt Verantwortlichkeiten, überprüft Fortschritte und greift bei Abweichungen gezielt ein.", "Definiert für einen größeren Bereich transparente Steuerungsmechanismen für Aufgaben und Verantwortung, legt Berichtswege für Ergebnisse fest und passt die Verteilung bei Abweichungen an.", "Legt unternehmensweite Prinzipien für Aufgabenverteilung und Verantwortungsübernahme fest, überprüft deren Anwendung und passt sie an veränderte Anforderungen an.", "Definiert die konzernweite Steuerungslogik für Delegation und Verantwortung, sichert Standards durch regelmäßige Überprüfungen und stellt sicher, dass klare Verantwortungsstrukturen auf allen Ebenen gelebt werden."]}, {"name": "Konsequent auf messbare Ergebnisse hinarbeiten", "def": "Die Fähigkeit, sich konsequent auf die Erreichung vereinbarter Ziele zu fokussieren, Fortschritte zu messen und bei Abweichungen rechtzeitig gegenzusteuern.", "levels": ["Arbeitet zugewiesene Aufgaben zuverlässig ab und stellt sicher, dass Qualitäts- und Terminziele eingehalten werden.", "Verfolgt eigene Ziele systematisch, berichtet über Fortschritte und Hindernisse und passt die Vorgehensweise bei Bedarf an.", "Definiert für Teilaufgaben klare Erfolgsmaßstäbe, überprüft die Zielerreichung regelmäßig und kommuniziert Abweichungen frühzeitig.", "Richtet Vorhaben konsequent auf vereinbarte Ziele aus, bindet beteiligte Personen ein und ergreift bei Abweichungen rechtzeitig Gegenmaßnahmen.", "Steuert Vorhaben im eigenen Verantwortungsbereich ergebnisorientiert, priorisiert Maßnahmen nach Wirkung und Aufwand und überprüft die Zielerreichung anhand klarer Kriterien.", "Führt im eigenen Bereich eine ergebnisorientierte Steuerung mit klaren Zielen und Fortschrittskennzahlen ein, berichtet regelmäßig über den Stand und benennt bei Abweichungen konkrete Gegenmaßnahmen.", "Definiert unternehmensweite Zielsysteme, steuert Ergebnisverantwortung auf mehreren Ebenen, überprüft Fortschritte regelmäßig und korrigiert Fehlentwicklungen konsequent.", "Definiert konzernweite Ziel- und Messsysteme, legt Ergebnisverantwortung als verbindlichen Steuerungsansatz fest und überprüft regelmäßig, dass strategische Ziele in messbare operative Erfolge überführt werden."]}, {"name": "Verantwortung klar definieren und einfordern", "def": "Die Fähigkeit, Verantwortlichkeiten eindeutig zu regeln, deren Einhaltung aktiv einzufordern und bei Nichteinhaltung konsequent zu handeln.", "levels": ["Übernimmt Verantwortung für die eigenen Aufgaben und hält Vereinbarungen zuverlässig ein.", "Definiert für Teilaufgaben klare Verantwortlichkeiten und unterstützt Kolleginnen und Kollegen dabei, ihre Zusagen einzuhalten.", "Fordert bei Abweichungen von Vereinbarungen konsequent Nachbesserung ein, benennt die Auswirkungen offen und unterstützt bei der Lösung.", "Klärt in Projekten und gemeinsamen Vorhaben Rollen und Verantwortlichkeiten, sorgt dafür, dass alle Beteiligten ihre Aufgaben kennen, und spricht bei Nichteinhaltung gezielt an.", "Schafft transparente Verantwortungsstrukturen im eigenen Verantwortungsbereich, greift bei Nichteinhaltung wirksam ein und dokumentiert Konsequenzen nachvollziehbar.", "Definiert Verantwortungsprinzipien für einen größeren Bereich, überprüft deren Anwendung regelmäßig und berichtet über Wirksamkeit.", "Legt unternehmensweit verbindliche Verantwortungsstrukturen fest, überprüft deren Einhaltung in regelmäßigen Abständen und zieht bei Nichteinhaltung klare Konsequenzen.", "Legt die konzernweite Steuerungslogik für Verantwortungsübernahme fest, überprüft deren Einhaltung durch regelmäßige Audits und stellt sicher, dass klare Rechenschaftspflicht auf allen Ebenen gilt."]}, {"name": "Arbeitsabläufe kontinuierlich verbessern", "def": "Die Fähigkeit, bestehende Prozesse kritisch zu hinterfragen, Verbesserungspotenziale zu identifizieren und diese systematisch umzusetzen.", "levels": ["Führt zugewiesene Abläufe sorgfältig aus und meldet offensichtliche Unstimmigkeiten.", "Schlägt auf Basis eigener Beobachtungen Verbesserungen vor und setzt diese nach Abstimmung um.", "Analysiert eigene Arbeitsprozesse gezielt, identifiziert Ineffizienzen und setzt spürbare Verbesserungen um.", "Optimiert Abläufe gemeinsam mit betroffenen Kolleginnen und Kollegen, misst die Wirkung der Änderungen und passt bei Bedarf nach.", "Koordiniert Prozessverbesserungen im eigenen Verantwortungsbereich, dokumentiert die Ergebnisse und sichert eine nachhaltige Umsetzung.", "Führt strukturierte Prozessoptimierung als verbindlichen Standard für einen größeren Bereich ein, weist erzielte Effizienzgewinne nach und misst deren Beitrag zur Gesamtleistung.", "Schreibt kontinuierliche Prozessverbesserung unternehmensweit verbindlich vor, gibt einheitliche Methoden und Standards vor und überprüft die Effizienzgewinne in regelmäßigen Abständen.", "Gestaltet die Prozesslandschaft des Konzerns durch standardisierte Optimierungsmethoden und konzernweite Benchmarks und stellt sicher, dass Prozessverbesserung zu messbaren Wettbewerbsvorteilen führt."]}, {"name": "Aktivitäten planen und auf übergeordnete Ziele ausrichten", "def": "Die Fähigkeit, Aktivitäten strukturiert zu planen, Prioritäten zu setzen und sicherzustellen, dass sie mit übergeordneten Zielen im Einklang stehen.", "levels": ["Plant die eigene Arbeit für den Tag oder die Woche und hält sich an Vorgaben.", "Plant Aufgaben für mehrere Tage oder Wochen und berücksichtigt dabei Abhängigkeiten.", "Erstellt detaillierte Pläne für komplexere Aufgaben, stimmt diese mit relevanten Beteiligten ab und passt bei Veränderungen an.", "Plant Teilprojekte mit Meilensteinen und Ressourcenbedarf, überwacht die Umsetzung und passt bei Veränderungen gezielt an.", "Entwickelt Pläne für Vorhaben im eigenen Verantwortungsbereich, richtet diese auf übergeordnete Ziele aus und steuert Abweichungen aktiv.", "Erarbeitet Jahres- und Mehrjahrespläne für einen größeren Verantwortungsbereich, sorgt für konsistente Umsetzung und berichtet regelmäßig über Fortschritt und Abweichungen.", "Definiert unternehmensweite Planungs- und Steuerungsprozesse, stellt die Verbindung zwischen operativer und strategischer Ebene her und überprüft die Wirksamkeit.", "Legt die konzernweiten Planungsprozesse und Priorisierungsregeln verbindlich fest und überprüft, dass alle wesentlichen Aktivitäten auf die langfristigen Konzernziele ausgerichtet sind."]}, {"name": "Kreative Lösungen für Ressourcenengpässe finden", "def": "Die Fähigkeit, auch bei begrenzten Ressourcen kreative, pragmatische Wege zu finden, um Ziele dennoch zu erreichen.", "levels": ["Geht sorgsam mit den zur Verfügung stehenden Mitteln um und vermeidet Verschwendung.", "Findet bei kleineren Engpässen alternative Wege, setzt diese selbstständig um und informiert Betroffene.", "Entwickelt für bekannte Ressourcenengpässe praktikable Lösungen und stimmt diese mit Betroffenen ab.", "Löst Ressourcenkonflikte durch Umverteilung oder Priorisierung, begründet die Lösung und dokumentiert sie nachvollziehbar.", "Entwickelt im eigenen Verantwortungsbereich Lösungen für Engpässe, bindet Beteiligte ein und überprüft die Wirkung der getroffenen Maßnahmen.", "Richtet für einen größeren Bereich flexible Mechanismen zur Ressourcenverteilung ein, weist Engpässe frühzeitig aus und steuert die Nutzung der verfügbaren Mittel gezielt.", "Entwickelt unternehmensweite Ansätze für den Umgang mit Ressourcenknappheit, trifft Priorisierungsentscheidungen unter Knappheitsbedingungen und überprüft die Effizienz der Lösungen.", "Legt die konzernweite Ressourcenstrategie fest, definiert verbindliche Allokationsmechanismen und stellt sicher, dass das Unternehmen auch unter schwierigen Bedingungen handlungsfähig bleibt."]}], "Führung und Zusammenarbeit": [{"name": "Talente erkennen und gezielt fördern", "def": "Die Fähigkeit, leistungsstarke und potenzialstarke Personen im eigenen Umfeld frühzeitig zu erkennen und aktiv in ihrer Entwicklung zu unterstützen.", "levels": ["Erkennt im eigenen Umfeld Stärken von Kolleginnen und Kollegen und spricht diese gezielt und wertschätzend an.", "Unterstützt neue Kolleginnen und Kollegen bei der Einarbeitung und gibt konstruktives Feedback auf konkrete Leistungen.", "Teilt eigenes Wissen und Erfahrungen aktiv, gibt entwicklungsorientiertes Feedback und empfiehlt bei Bedarf geeignete Lernangebote.", "Erkennt Potenziale und Entwicklungsfelder im direkten Umfeld, gibt regelmäßiges Feedback, schlägt gezielte Entwicklungsmaßnahmen vor und begleitet deren Umsetzung.", "Steuert Talentprozesse im eigenen Verantwortungsbereich, schafft gezielte Entwicklungsmöglichkeiten und überprüft den Fortschritt an klaren Ergebnissen.", "Führt strukturierte Talentprozesse für einen größeren Bereich ein, bewertet Potenziale systematisch und misst die Wirksamkeit an Entwicklungsfortschritt und Bindungsquote.", "Legt unternehmensweite Talentkriterien und Entwicklungsstandards fest, priorisiert Investitionen in Schlüsseltalente und überprüft die Wirkung auf Besetzungsqualität und Fluktuation.", "Richtet die konzernweite Talentstrategie an langfristigen Geschäftszielen aus, entscheidet über strategische Talentinvestitionen und sichert die Positionierung als attraktiver Arbeitgeber für Spitzenkräfte."]}, {"name": "Zusammenarbeit stärken und Teamleistung entwickeln", "def": "Die Fähigkeit, aktiv zu einer leistungsstarken Zusammenarbeit beizutragen, Stärken anderer zu erkennen, konstruktives Feedback zu geben und gemeinsam überdurchschnittliche Ergebnisse zu erzielen.", "levels": ["Arbeitet konstruktiv in bestehenden Teams und Arbeitsgruppen mit und bringt die eigenen Stärken in die gemeinsame Arbeit ein.", "Unterstützt neue Kolleginnen und Kollegen bei der Einarbeitung und trägt aktiv zu einer positiven Arbeitsatmosphäre bei.", "Erkennt Stärken und Entwicklungsfelder anderer, gibt konstruktives verhaltensbezogenes Feedback und hilft, gemeinsame Arbeitsprozesse zu verbessern.", "Strukturiert Beiträge in Arbeitsgruppen, klärt Rollen und nächste Schritte, bindet andere aktiv ein und sorgt dafür, dass gemeinsame Ergebnisse erreicht und nachher reflektiert werden.", "Koordiniert die Zusammenarbeit in anspruchsvolleren Projekten, klärt Schnittstellen, fördert die gegenseitige Stärkennutzung und benennt Entwicklungsbedarfe offen.", "Entwickelt Teamstrukturen und gibt Impulse für die Weiterentwicklung der Zusammenarbeit in einem größeren Bereich, legt Rollen fest und überprüft die Leistung anhand vereinbarter Ergebnisse.", "Legt unternehmensweite Standards für leistungsstarke Zusammenarbeit fest, gibt Impulse für Team-Entwicklungsprogramme und überprüft Ergebnisse anhand von Leistungskennzahlen.", "Richtet konzernweite Standards für die Zusammenarbeit an strategischen Zielen aus, entscheidet über konzernweite Entwicklungsinitiativen und bewertet den Erfolg an messbaren Team-Performance-Kennzahlen."]}, {"name": "Strategische Beziehungsnetzwerke aufbauen und pflegen", "def": "Die Fähigkeit, relevante interne und externe Beziehungen aufzubauen, zu pflegen und gezielt für die Erreichung von Zielen zu nutzen.", "levels": ["Pflegt gute Arbeitsbeziehungen zu direkten Kolleginnen und Kollegen und ist für Unterstützung erreichbar.", "Baut Kontakte zu relevanten Personen in benachbarten Bereichen auf und tauscht sich regelmäßig aus.", "Nutzt bestehende Netzwerke aktiv zur Lösung von Aufgaben und erweitert diese gezielt.", "Pflegt ein gezieltes internes Netzwerk, nutzt es für Abstimmungen und Vorhaben und hält die Beziehungen regelmäßig aktiv.", "Baut und nutzt interne und externe Netzwerke für Vorhaben im eigenen Verantwortungsbereich und überprüft deren Nutzen für die Zielerreichung.", "Richtet für einen größeren Verantwortungsbereich eine strukturierte Netzwerkpflege ein, sorgt dafür, dass Wissen und Unterstützung schnell verfügbar sind, und stößt deren strategische Nutzung gezielt an.", "Legt unternehmensweite Prinzipien für den Auf- und Ausbau von Netzwerken fest, pflegt strategisch wichtige Beziehungen gezielt und überprüft deren Beitrag zur Zielerreichung.", "Positioniert den Konzern durch gezielte externe und interne Vernetzung strategisch, entscheidet über Investitionen in Schlüsselpartnerschaften und misst den Beitrag zur Marktposition."]}, {"name": "Über Funktions- und Kulturgrenzen hinweg kooperieren", "def": "Die Fähigkeit, effektiv mit Personen aus unterschiedlichen Funktionen, Ländern und kulturellen Hintergründen zusammenzuarbeiten, um gemeinsame Ziele zu erreichen.", "levels": ["Arbeitet konstruktiv mit Kolleginnen und Kollegen aus anderen Bereichen zusammen und respektiert deren Perspektiven.", "Passt die eigene Arbeitsweise an die Bedürfnisse von Kooperationspartnern an und sucht aktiv den Austausch.", "Klärt in gemischten Arbeitsgruppen Erwartungen, schafft gemeinsames Verständnis und löst kleinere Kooperationsprobleme konstruktiv.", "Steuert die Zusammenarbeit in Projekten mit unterschiedlichen Beteiligten, richtet alle auf das gemeinsame Ziel aus und überprüft den Fortschritt.", "Entwickelt Kooperationsansätze für Vorhaben über Funktions- und Ländergrenzen hinweg, überprüft deren Wirksamkeit und passt bei Bedarf an.", "Legt Kooperationsstandards für einen größeren Verantwortungsbereich fest, vermittelt bei Schnittstellenkonflikten und berichtet über die Wirksamkeit.", "Setzt grenzüberschreitende Zusammenarbeit als unternehmensweiten Standard durch, legt klare Verhaltenserwartungen fest und überprüft deren Einhaltung.", "Legt die konzernweiten Regeln und Erwartungen für die bereichs- und länderübergreifende Zusammenarbeit fest, entscheidet über konzernweite Initiativen und bewertet den Erfolg an Projekt- und Geschäftsergebnissen."]}, {"name": "Klar und wirksam kommunizieren", "def": "Die Fähigkeit, Informationen, Ideen und Erwartungen so zu vermitteln, dass sie von unterschiedlichen Zielgruppen verstanden, akzeptiert und in Handlungen umgesetzt werden.", "levels": ["Formuliert klare Anweisungen für einfache Aufgaben und stellt durch Nachfragen das Verständnis sicher.", "Passt die Kommunikation an den Kenntnisstand des Gegenübers an und wählt verständliche Formulierungen und Beispiele.", "Strukturiert komplexere Sachverhalte logisch, geht auf Rückfragen ein und klärt Missverständnisse aktiv.", "Moderiert Gespräche und Besprechungen in Gruppen, fasst Ergebnisse zusammen und stellt sicher, dass alle ein gemeinsames Verständnis haben.", "Kommuniziert in Vorhaben mit unterschiedlichen Fachsprachen und Zielgruppen präzise, übersetzt Fachthemen verständlich und überprüft das Verständnis aktiv.", "Vermittelt strategische Inhalte an Führungskräfte und Mitarbeitende unterschiedlicher Ebenen verständlich und passt Botschaften gezielt an die jeweilige Zielgruppe an.", "Gestaltet die unternehmensweite Kommunikationsstrategie mit klaren Standards, sorgt für konsistente Botschaften in Veränderungsprozessen und überprüft Verständlichkeit und Wirkung.", "Repräsentiert das Unternehmen nach innen und außen in komplexen Situationen, schafft Akzeptanz durch klare, konsistente Botschaften und bewertet den Erfolg anhand von Akzeptanz- und Umsetzungsquoten."]}, {"name": "Andere in ihrer Entwicklung unterstützen und fördern", "def": "Die Fähigkeit, Potenziale in anderen zu erkennen, gezielt zu fördern und deren Entwicklung durch konkrete Unterstützung und Feedback aktiv voranzubringen.", "levels": ["Gibt Kolleginnen und Kollegen bei Bedarf hilfreiche Hinweise und unterstützt bei der Einarbeitung.", "Erkennt Stärken und Entwicklungsfelder im direkten Umfeld und gibt regelmäßig konstruktives Feedback.", "Plant mit direkt Betroffenen individuelle Entwicklungsschritte, empfiehlt geeignete Lernangebote und verfolgt die Umsetzung nach.", "Fördert Entwicklung gezielt durch Lernmöglichkeiten und delegiertes Arbeiten und überprüft dabei, ob Fortschritte eintreten.", "Koordiniert Entwicklungsmaßnahmen im eigenen Verantwortungsbereich, überprüft die Wirkung anhand konkreter Leistungsveränderungen und passt Maßnahmen bei Bedarf an.", "Führt strukturierte Entwicklungsprozesse für einen größeren Bereich ein, plant Nachfolge vorausschauend und misst den Erfolg an Entwicklungsfortschritt und Besetzungsqualität.", "Legt unternehmensweite Entwicklungsstandards fest, priorisiert Investitionen in Schlüsseltalente und überprüft die Wirkung auf Nachfolgequalität und Leistungsentwicklung.", "Richtet die konzernweite Lern- und Entwicklungsstrategie an langfristigen Geschäftszielen aus, entscheidet über konzernweite Initiativen und bewertet den Erfolg anhand von Nachfolgequalität und Gesamtleistungsentwicklung."]}, {"name": "Engagement und Einsatzbereitschaft im Umfeld stärken", "def": "Die Fähigkeit, ein Umfeld zu schaffen, in dem sich Menschen mit ihren Aufgaben identifizieren, engagiert mitarbeiten und ihr Bestes geben.", "levels": ["Zeigt selbst Einsatz und Begeisterung für die Arbeit und motiviert durch positives Beispiel.", "Erkennt Leistungen von Kolleginnen und Kollegen an und trägt zu einer konstruktiven Arbeitsatmosphäre bei.", "Identifiziert Hindernisse für engagiertes Arbeiten im direkten Umfeld und spricht diese offen an.", "Stärkt Commitment durch klare Ziele, Anerkennung von Beiträgen und aktive Einbindung in Entscheidungen.", "Entwickelt Ansätze zur Stärkung von Engagement für Vorhaben im eigenen Verantwortungsbereich, überprüft die Wirkung und passt an.", "Setzt für einen größeren Bereich gezielte Programme und Maßnahmen zur Steigerung von Motivation und Bindung um, überprüft die Ergebnisse regelmäßig und berichtet darüber.", "Steuert die unternehmensweite Engagement-Strategie durch klare Programme und Erwartungen und überprüft die Wirkung anhand von Engagement-Indizes.", "Richtet die konzernweite Identifikations- und Engagementstrategie an Unternehmenszielen aus, entscheidet über konzernweite Maßnahmen und bewertet den Erfolg anhand von Engagement- und Leistungskennzahlen."]}, {"name": "Visionen vermitteln und Sinn stiften", "def": "Die Fähigkeit, eine klare Vorstellung der Zukunft zu entwickeln und zu vermitteln, die Menschen Orientierung, Motivation und Sinn gibt.", "levels": ["Versteht die übergeordneten Ziele des eigenen Bereichs und kann diese einfach und verständlich erklären.", "Vermittelt die Bedeutung der eigenen Arbeit für das größere Ganze und schafft Verständnis für übergeordnete Ziele.", "Erklärt Veränderungen und neue Ziele so, dass sie von Betroffenen nachvollzogen und akzeptiert werden.", "Entwickelt für Vorhaben oder den eigenen Bereich eine klare Zielvorstellung und begeistert andere dafür.", "Übersetzt strategische Ziele in verständliche, handlungsorientierte Botschaften und überprüft deren Wirkung auf Ausrichtung und Motivation.", "Formuliert eine klare Zielvorstellung für den eigenen Bereich, gewinnt die Beteiligten dafür und überprüft, ob die Richtung im täglichen Handeln sichtbar wird.", "Entwickelt die unternehmensweite Vision mit klaren Kommunikationsformaten, sichert deren Verständnis auf allen Ebenen und überprüft die Identifikation regelmäßig.", "Legt die Sinn- und Zukunftsorientierung des Konzerns fest, kommuniziert sie in unterschiedlichen Formaten nach innen und außen und bewertet den Erfolg anhand von Identifikation und Engagement."]}, {"name": "Zwischenmenschliche Dynamiken geschickt navigieren", "def": "Die Fähigkeit, soziale Situationen, Beziehungen und unausgesprochene Erwartungen richtig einzuschätzen und sich darin wirksam zu bewegen.", "levels": ["Verhält sich im direkten Arbeitsumfeld höflich, aufmerksam und respektvoll.", "Erkennt grundlegende Stimmungen und Spannungen im direkten Umfeld und reagiert angemessen.", "Passt das eigene Verhalten flexibel an unterschiedliche Persönlichkeiten und Situationen an.", "Erkennt komplexere soziale Konstellationen, stellt das eigene Verhalten bewusst darauf ein und baut tragfähige Arbeitsbeziehungen auf.", "Löst zwischenmenschliche Spannungen in Projekten konstruktiv, adressiert unausgesprochene Erwartungen und sichert produktive Zusammenarbeit.", "Entwickelt für einen größeren Bereich klare Vorgehensweisen für den Umgang mit sozialen Spannungen und legt das eigene Vorgehen im Beziehungsaufbau für andere offen.", "Legt unternehmensweite Prinzipien für den Umgang mit sozialen Dynamiken fest und stellt sicher, dass soziale Kompetenz als relevante Führungsqualifikation gefördert wird.", "Richtet konzernweite Erwartungen an den Umgang miteinander an Werten und Geschäftszielen aus, entscheidet über entsprechende Programme und bewertet den Erfolg an der Qualität von Zusammenarbeit und Konfliktlösung."]}, {"name": "Konflikte konstruktiv lösen und vorbeugen", "def": "Die Fähigkeit, Konflikte frühzeitig zu erkennen, konstruktiv anzugehen und nachhaltige Lösungen zu finden, die die Zusammenarbeit stärken.", "levels": ["Vermeidet unnötige Konflikte und geht auf Meinungsverschiedenheiten sachlich ein.", "Erkennt aufkommende Spannungen im direkten Umfeld und spricht sie offen an.", "Vermittelt bei Konflikten zwischen Kolleginnen und Kollegen und findet für alle akzeptable Lösungen.", "Löst Konflikte in Arbeitsgruppen nachhaltig, benennt die Ursachen, klärt sie und sorgt dafür, dass die Zusammenarbeit danach besser funktioniert.", "Geht mit komplexeren Konflikten in Projekten um, schafft Lösungen, die von allen Beteiligten getragen werden, und überprüft die Nachhaltigkeit.", "Führt für einen größeren Bereich verbindliche Konfliktlösungsmechanismen ein, sorgt durch klare Regeln für einen konstruktiven Umgang mit Differenzen und berichtet über die Ergebnisse.", "Legt unternehmensweite Prinzipien für Konfliktprävention und -lösung fest und stellt sicher, dass Konflikte systematisch als Chance zur Weiterentwicklung genutzt werden.", "Richtet die konzernweiten Regeln zur Konfliktlösung an Unternehmenswerten aus, entscheidet über konzernweite Programme und bewertet den Erfolg an der Reduktion von Konfliktkosten und der Verbesserung der Zusammenarbeit."]}, {"name": "Organisationszusammenhänge verstehen und nutzen", "def": "Die Fähigkeit, formelle und informelle Strukturen, Entscheidungswege und Machtgefüge in der Organisation zu durchschauen und wirksam zu nutzen.", "levels": ["Kennt die grundlegenden Strukturen und Zuständigkeiten im eigenen Arbeitsumfeld.", "Versteht die wichtigsten Entscheidungswege und nutzt sie für die eigene Aufgabenerledigung.", "Identifiziert relevante Stakeholder und deren Interessen und berücksichtigt diese bei der eigenen Arbeit.", "Bewegt sich sicher in der Organisationsstruktur, setzt informelle Wege gezielt ein und klärt Zuständigkeiten, bevor Konflikte entstehen.", "Nutzt das Verständnis der Organisation, um Vorhaben wirksam voranzutreiben, benennt strukturelle Hürden und adressiert sie gezielt.", "Entwickelt Ansätze zur effektiven Navigation in der Organisation für einen größeren Bereich, schafft Transparenz über Entscheidungswege und optimiert die Nutzung vorhandener Strukturen.", "Steuert die Organisationsintelligenz auf Unternehmensebene durch Transparenzmechanismen und stellt sicher, dass Strukturen und Netzwerke optimal für Entscheidungen genutzt werden.", "Gestaltet die konzernweite Governance-Struktur aktiv, legt Entscheidungsprinzipien und Verantwortungsstrukturen fest und überprüft deren Beitrag zu besseren und schnelleren Entscheidungen."]}, {"name": "Andere überzeugen und für Ideen gewinnen", "def": "Die Fähigkeit, andere durch Argumente, Beispiele und Beziehungsaufbau für eigene Ideen und Vorschläge zu gewinnen und zu nachhaltigem Handeln zu bewegen.", "levels": ["Erklärt die eigenen Vorschläge klar und begründet sie sachlich.", "Passt die Argumentation an die Interessen und den Kenntnisstand des Gegenübers an.", "Überzeugt in Gruppen durch schlüssige Argumente, geht auf Einwände ein und schafft Unterstützung für Vorhaben.", "Gewinnt unterschiedliche Beteiligte für gemeinsame Ziele, adressiert unterschiedliche Interessen und setzt Ideen mit breiter Akzeptanz um.", "Entwickelt Überzeugungsstrategien für anspruchsvollere Vorhaben, setzt diese erfolgreich ein und überprüft die erzielte Akzeptanz.", "Bringt fundierte Argumente in Entscheidungen eines größeren Verantwortungsbereichs ein, gewinnt die maßgeblichen Beteiligten gezielt und berichtet über das Ergebnis.", "Legt unternehmensweite Prinzipien für konstruktive Einflussnahme fest und stellt sicher, dass gute Ideen Gehör finden und konsequent umgesetzt werden.", "Positioniert den Konzern intern und extern als überzeugende Stimme, richtet Kommunikationsstrategien auf strategische Ziele aus und bewertet den Erfolg anhand der Umsetzungsquote relevanter Ideen."]}, {"name": "Vielfalt anerkennen und als Stärke nutzen", "def": "Die Fähigkeit, Unterschiede in Hintergrund, Perspektive, Erfahrung und Denkweise wertzuschätzen und aktiv als Quelle von Innovation und besseren Lösungen zu nutzen.", "levels": ["Begegnet Kolleginnen und Kollegen mit unterschiedlichen Hintergründen respektvoll und aufgeschlossen.", "Berücksichtigt bei der Zusammenarbeit unterschiedliche Sichtweisen und integriert diese in gemeinsame Lösungen.", "Fördert in Arbeitsgruppen die Einbringung verschiedener Perspektiven und nutzt sie für bessere Ergebnisse.", "Schafft in Projekten ein Umfeld, in dem unterschiedliche Hintergründe aktiv einbezogen werden und alle Beiträge Gehör finden.", "Entwickelt Ansätze zur Förderung von Inklusion für Vorhaben im eigenen Verantwortungsbereich, misst deren Wirkung und passt an.", "Legt für einen größeren Bereich verbindliche Standards zum Umgang mit Vielfalt fest, sorgt durch konkrete Regeln für gleiche Beteiligungschancen und überprüft deren Wirkung.", "Legt die unternehmensweite Diversitäts- und Inklusionsstrategie fest, priorisiert entsprechende Maßnahmen und überprüft die Umsetzung.", "Richtet die konzernweite Diversitätsstrategie an Innovationszielen und Geschäftsanforderungen aus, entscheidet über strategische D&I-Initiativen und bewertet den Erfolg anhand von Innovations- und Leistungskennzahlen."]}, {"name": "Interessen unterschiedlicher Stakeholder ausbalancieren", "def": "Die Fähigkeit, die oft widersprüchlichen Interessen verschiedener interner und externer Stakeholder zu erkennen, zu gewichten und zu tragfähigen Lösungen zu führen.", "levels": ["Berücksichtigt bei der eigenen Arbeit die offensichtlichen Interessen direkt Betroffener.", "Erkennt bei Aufgaben mittlerer Komplexität unterschiedliche Stakeholder-Interessen und sucht aktiv nach Ausgleich.", "Führt bei Interessenkonflikten strukturierte Gespräche, benennt die wesentlichen Positionen und entwickelt praktikable Lösungsoptionen.", "Balanciert in Projekten die Interessen mehrerer Parteien, trifft abgestimmte Lösungen und schafft nachhaltige Akzeptanz.", "Entwickelt Stakeholder-Strategien für Vorhaben im eigenen Verantwortungsbereich, setzt diese um und überprüft die erzielte Akzeptanz.", "Führt für einen größeren Bereich feste Prozesse zum Stakeholder-Management ein, legt die unterschiedlichen Interessenslagen offen und löst Konflikte durch nachvollziehbare Abwägungen.", "Legt unternehmensweite Prinzipien für Stakeholder-Management fest und stellt sicher, dass Entscheidungen auch unter Interessensdruck breit getragen werden.", "Richtet die konzernweite Stakeholder-Strategie an Unternehmenswerten und Geschäftszielen aus, entscheidet über konzernweite Programme und bewertet Erfolg anhand von Akzeptanz und Nachhaltigkeit von Entscheidungen."]}], "Resilienz und Lernfähigkeit": [{"name": "Leistungsfähigkeit unter Druck aufrechterhalten", "def": "Die Fähigkeit, bei Rückschlägen, Druck oder Belastung die eigene Arbeitsfähigkeit zu stabilisieren, sich schnell zu erholen und handlungsfähig zu bleiben. Dieser Anker beschreibt nicht Anpassungsfähigkeit oder Lernverhalten, sondern die Stabilität der eigenen Leistung unter schwierigen Bedingungen.", "levels": ["Bleibt bei einfachen Störungen oder kleinen Rückschlägen konzentriert und sucht bei Bedarf Unterstützung.", "Hält auch bei erhöhtem Arbeitsaufkommen Qualitäts- und Terminziele ein und passt die Vorgehensweise pragmatisch an.", "Geht mit unvorhergesehenen Rückschlägen um, ohne dauerhaft an Leistung zu verlieren, benennt die Belastung offen und leitet Entlastungsschritte ein.", "Stabilisiert das eigene Arbeiten bei anhaltenden Belastungsphasen, behält den Überblick und unterstützt Kolleginnen und Kollegen, die unter Druck geraten.", "Hält in anspruchsvollen Vorhaben Leistung und Orientierung aufrecht, erkennt Überlastungssignale im direkten Umfeld und schlägt gezielt Entlastungsmaßnahmen vor.", "Hält den eigenen Bereich durch organisatorische Umbrüche und Krisenzeiten handlungsfähig, sorgt für Stabilität und Fokus und überprüft die Belastungssituation regelmäßig.", "Gibt in unternehmensweiten Veränderungsprozessen Orientierung, legt klare Prioritäten fest und steuert aktiv gegen Leistungsabfall und Überlastung.", "Steuert die Resilienzfähigkeit der Organisation durch klare Unterstützungsmechanismen, priorisiert Ressourcen zur Stabilisierung und sichert die Handlungsfähigkeit auch bei existenziellen Herausforderungen."]}, {"name": "Klare Haltung zeigen und für Grundsätze eintreten", "def": "Die Fähigkeit, in schwierigen Situationen für Werte und Standards einzustehen, Missstände klar zu benennen und auch dann konsequent zu handeln, wenn Widerstand entsteht.", "levels": ["Benennt eigene Fehler offen und korrigiert sie, ohne diese zu vertuschen oder auf andere zu schieben.", "Spricht bei Unstimmigkeiten oder Regelverstößen im eigenen Verantwortungsbereich die relevante Person direkt an, auch wenn dies unangenehm ist.", "Bezieht klar Stellung, wenn Qualitätsstandards oder vereinbarte Prinzipien gefährdet sind, und benennt konkrete Auswirkungen.", "Übernimmt Verantwortung für Entscheidungen, die Widerstand erzeugen, begründet sie nachvollziehbar und steht für die Konsequenzen ein.", "Verteidigt in Diskussionen ethische und fachliche Standards, benennt Zielkonflikte klar und schlägt lösungsorientierte Alternativen vor.", "Benennt auf Bereichsebene Fehlentwicklungen, Interessenkonflikte oder problematische Entscheidungen offen, leitet Korrekturen ein und dokumentiert die Ergebnisse.", "Setzt unternehmensweite Standards für integres Handeln fest, überprüft deren Einhaltung, greift bei Verstößen konsequent ein und kommuniziert Erwartungen klar.", "Legt die konzernweiten Verhaltensgrundsätze fest, überprüft deren Einhaltung durch regelmäßige Überprüfungsmechanismen und stellt sicher, dass Integrität und klares Eintreten für Werte auch in schwierigen Situationen sichtbar bleiben."]}, {"name": "Das eigene Verhalten reflektieren und weiterentwickeln", "def": "Die Fähigkeit, das eigene Verhalten, die eigene Wirkung auf andere und eigene Reaktionsmuster realistisch wahrzunehmen und gezielt zu verändern.", "levels": ["Erkennt eigene Fehler und lernt daraus, ohne diese zu rechtfertigen oder auf Umstände zu schieben.", "Bittet aktiv um Feedback, nimmt es ernst und setzt konkrete Rückmeldungen in der nächsten Situation um.", "Beobachtet das eigene Verhalten in herausfordernden Situationen bewusst, benennt wiederkehrende Muster und leitet gezielte Veränderungsschritte ab.", "Kennt die eigene Wirkung auf andere in unterschiedlichen Kontexten und passt das Verhalten situativ an, ohne die eigene Haltung aufzugeben.", "Nutzt strukturiertes Feedback (z. B. von Kolleginnen und Kollegen, aus Projektnachbesprechungen), identifiziert blinde Flecken und arbeitet systematisch daran.", "Sorgt in einem größeren Verantwortungsbereich für regelmäßige Gelegenheiten zu offenem Feedback und zum Lernen aus Fehlern und legt das eigene Lernen aus Fehlern für andere offen.", "Führt auf Unternehmensebene konkrete Instrumente für offene Selbstreflexion ein, bewertet anhand dieser die Entwicklung von Führungskräften und steuert mit gezielten Maßnahmen nach.", "Legt Selbstreflexion und kontinuierliche Verhaltensweiterentwicklung als verbindliche Erwartung an alle Führungskräfte des Konzerns fest, überprüft die Umsetzung und zieht bei Bedarf Konsequenzen."]}, {"name": "Vertrauen durch konsistentes Handeln aufbauen", "def": "Die Fähigkeit, durch vorhersehbares, ehrliches und zuverlässiges Verhalten bei anderen Vertrauen zu schaffen und dauerhaft zu erhalten.", "levels": ["Hält Vereinbarungen ein und verhält sich zuverlässig gegenüber Kolleginnen und Kollegen.", "Kommuniziert die eigenen Absichten und Überlegungen offen und schafft dadurch Verlässlichkeit.", "Geht offen mit eigenen Fehlern und Grenzen um und baut dadurch glaubwürdiges Vertrauen auf.", "Schafft in Projekten ein Klima, in dem offene Kommunikation möglich ist, indem eigene Verlässlichkeit konsequent vorgelebt wird.", "Entwickelt Vertrauensbeziehungen über Bereichsgrenzen hinweg, hält Zusagen auch unter Druck ein und gibt Rechenschaft über eigene Entscheidungen.", "Legt für einen größeren Bereich klare Prinzipien für verlässliches Handeln fest, hält sich sichtbar selbst daran und überprüft das Vertrauensniveau über direkte Rückmeldungen.", "Legt unternehmensweite Prinzipien für vertrauensbasiertes Handeln fest, überprüft deren Einhaltung und steuert bei systematischen Vertrauensbrüchen aktiv gegen.", "Legt konzernweite Standards für verlässliches und transparentes Handeln fest, entscheidet über Maßnahmen bei systembedingten Vertrauensschäden und bewertet die Wirkung am Vertrauensniveau und an der Qualität der Zusammenarbeit."]}, {"name": "Mit Unsicherheit und Mehrdeutigkeit souverän umgehen", "def": "Die Fähigkeit, bei unvollständigen Informationen, widersprüchlichen Anforderungen oder fehlenden Vorgaben handlungsfähig zu bleiben und begründete Entscheidungen zu treffen. Dieser Anker bezieht sich nicht auf Belastungsresistenz (Resilienz) oder Verhaltensveränderung (Anpassungsfähigkeit), sondern auf Urteils- und Entscheidungsfähigkeit unter Informationsdefizit.", "levels": ["Bleibt bei kleineren Unklarheiten ruhig, sucht aktiv nach den notwendigen Informationen und fragt gezielt nach.", "Arbeitet auch bei unvollständigen Vorgaben zielorientiert weiter und holt bei relevanten Unsicherheiten rechtzeitig Klärung ein.", "Strukturiert mehrdeutige Aufgaben, benennt offen, was unklar ist, und entwickelt pragmatische Lösungsvorschläge unter Vorbehalt.", "Trifft begründete Entscheidungen in Situationen mit mittlerer Unsicherheit, benennt die Grenzen der verfügbaren Informationen und übernimmt Verantwortung für die Folgen.", "Steuert Vorhaben mit hoher Ambiguität, schafft durch strukturiertes Vorgehen Orientierung für Beteiligte und überprüft Entscheidungen, sobald neue Informationen vorliegen.", "Entwickelt Entscheidungsrahmen für einen größeren Bereich, die auch bei Informationsdefizit Handlungsfähigkeit sichern, und vermittelt Klarheit trotz unvollständiger Informationslage.", "Legt unternehmensweite Entscheidungslogiken für den Umgang mit Ambiguität fest und stellt sicher, dass Unsicherheit zu strukturiertem Vorgehen statt zu Blockaden führt.", "Richtet die konzernweite Entscheidungsfähigkeit auch in volatilen Situationen aus, definiert Eskalations- und Priorisierungsregeln für Krisen und bewertet die Anpassungsgeschwindigkeit der Organisation."]}, {"name": "Neues Wissen aufnehmen und anwenden", "def": "Die Fähigkeit, in neuen oder sich schnell verändernden Situationen relevantes Wissen gezielt aufzunehmen, zu verarbeiten und praktisch einzusetzen. Dieser Anker fokussiert auf Lerngeschwindigkeit und Wissensintegration – nicht auf geplante Selbstentwicklung (Eigenverantwortliche Weiterentwicklung) oder Verhaltensanpassung (Anpassungsfähigkeit).", "levels": ["Lernt neue Verfahren oder Werkzeuge zuverlässig und wendet sie sicher an.", "Eignet sich neues Wissen im Rahmen eigener Aufgaben an und setzt es unmittelbar um.", "Verarbeitet neue, auch komplexere Informationen schnell, ordnet sie ein und leitet konkrete Handlungsschritte ab.", "Lernt in neuen Projekten oder Aufgabenfeldern rasch die relevanten Zusammenhänge, stellt gezielte Fragen und wird schnell produktiv.", "Nimmt in Vorhaben neues Fachwissen auf, integriert es in die eigene Arbeit und gibt Erkenntnisse aktiv an andere weiter.", "Entwickelt Lernprozesse für einen größeren Bereich, um den Umgang mit neuen Themen zu beschleunigen, und überprüft die Geschwindigkeit der Wissensaneignung.", "Legt unternehmensweite Lernstandards und -strukturen fest und stellt sicher, dass die Organisation relevantes Wissen schnell aufnimmt und in Handlung überführt.", "Richtet die konzernweite Lernfähigkeit an strategischen Anforderungen aus, entscheidet über Lerninvestitionen und bewertet die Anpassungsgeschwindigkeit und Innovationsrate der Organisation."]}, {"name": "Eigenverantwortlich an der persönlichen Weiterentwicklung arbeiten", "def": "Die Fähigkeit, die eigene Entwicklung aktiv zu steuern, Lernmöglichkeiten gezielt zu nutzen und kontinuierlich an der eigenen Wirksamkeit zu arbeiten. Dieser Anker fokussiert auf selbstgesteuerte Entwicklungsplanung – nicht auf spontane Wissensaufnahme (Lernfähigkeit) oder Verhaltensreflexion (Selbstreflexion).", "levels": ["Nimmt Feedback an und setzt es in konkreten, kleinen Schritten um.", "Plant die eigene Weiterentwicklung für das nächste Jahr, benennt konkrete Ziele und nutzt verfügbare Angebote.", "Identifiziert gezielt eigene Entwicklungsfelder, sucht aktiv nach Lerngelegenheiten und holt regelmäßig Feedback ein.", "Verfolgt einen strukturierten Entwicklungsplan, überprüft den Fortschritt anhand konkreter Verhaltensveränderungen und passt die Ziele bei Bedarf an.", "Nutzt vielfältige Lernangebote und externe Impulse, integriert neue Erkenntnisse in die eigene Arbeit und teilt relevante Erkenntnisse mit anderen.", "Fordert in einem größeren Verantwortungsbereich eigenverantwortliche Entwicklung aktiv ein, stellt Lernmöglichkeiten bereit und misst die Beteiligung.", "Legt unternehmensweite Erwartungen an eigenverantwortliche Entwicklung fest, stellt entsprechende Strukturen und Angebote bereit und überprüft die Wirkung.", "Legt kontinuierliche Selbstentwicklung als verbindliche konzernweite Erwartung fest, entscheidet über Investitionen in Entwicklungsprogramme und bewertet den Erfolg an Leistungsentwicklung und Entwicklungsaktivität."]}, {"name": "Arbeitsweise an veränderte Rahmenbedingungen anpassen", "def": "Die Fähigkeit, die eigene Arbeitsweise, Prioritäten und Vorgehensweisen aktiv und wirksam an neue Situationen und Anforderungen anzupassen. Dieser Anker beschreibt die aktive Veränderung des eigenen Handelns bei neuen Rahmenbedingungen – nicht die Wissensaufnahme (Lernfähigkeit) oder die Belastbarkeit (Resilienz).", "levels": ["Passt die eigene Vorgehensweise bei kleineren Veränderungen an und bleibt handlungsfähig.", "Reagiert auf veränderte Vorgaben oder Prioritäten flexibel und ohne Widerstand.", "Erkennt bei mittleren Veränderungen den Anpassungsbedarf frühzeitig, ändert die eigene Vorgehensweise und unterstützt Kolleginnen und Kollegen dabei.", "Steuert das eigene Vorgehen bewusst durch Veränderungsprozesse, priorisiert neu, wenn sich Rahmenbedingungen ändern, und gibt anderen Orientierung.", "Entwickelt für Vorhaben mit veränderten Rahmenbedingungen Anpassungsstrategien, setzt diese um und überprüft deren Wirksamkeit.", "Setzt Flexibilität und Anpassungsbereitschaft als verbindlichen Standard in einem größeren Bereich durch und richtet Strukturen ein, die schnelle Reaktionen auf Veränderungen ermöglichen.", "Legt unternehmensweite Prozesse für den Umgang mit veränderten Rahmenbedingungen fest und stellt sicher, dass die Organisation auf Veränderungen schnell und konsequent reagiert.", "Richtet die konzernweite Anpassungsfähigkeit an strategischen Anforderungen aus, entscheidet über strukturelle Anpassungen als Reaktion auf externe Entwicklungen und bewertet die Reaktionsgeschwindigkeit anhand messbarer Indikatoren."]}]}}</script>
+<script id="hay-data" type="application/json">[{"band": "Einstiegsgrade", "hg": "ca. HG 1–8", "ctx": "Ausführungs- und Einstiegspositionen, Shopfloor-nahe Rollen", "logic": "Routineaufgaben, enge Vorgaben, begrenzte Eigenständigkeit"}, {"band": "Einstiegsgrade", "hg": "ca. HG 1–8", "ctx": "Ausführungs- und Einstiegspositionen, Shopfloor-nahe Rollen", "logic": "Routineaufgaben, enge Vorgaben, begrenzte Eigenständigkeit"}, {"band": "Mittlere Professional Grade", "hg": "ca. HG 9–13", "ctx": "Erfahrene Mitarbeitende, Fachkräfte, Projektteammitglieder", "logic": "Eigenständige Problemlösung, erste Koordination"}, {"band": "Mittlere Professional Grade", "hg": "ca. HG 9–13", "ctx": "Erfahrene Mitarbeitende, Fachkräfte, Projektteammitglieder", "logic": "Eigenständige Problemlösung, erste Koordination"}, {"band": "Senior Professional / Einstieg Management", "hg": "ca. HG 14–17", "ctx": "Senior-Mitarbeitende, Projektleitungen, Einstiegsführung", "logic": "Eigenständige Steuerung anspruchsvollerer Themen"}, {"band": "Management Grade", "hg": "ca. HG 18–21", "ctx": "Projekt-/Funktionsleitung, mittleres Management, Senior-Expert:innen", "logic": "Komplexere Steuerung in größerem Verantwortungsbereich"}, {"band": "Executive Grade", "hg": "ca. HG 22–25", "ctx": "Senior Management, Bereichs-/Regionalleitung, C-1-Rollen", "logic": "Unternehmensweite Priorisierung, Ressourcen, Governance"}, {"band": "Top Executive Grade", "hg": "ca. HG 26+", "ctx": "Vorstand, C-Level, Konzernleitung", "logic": "Konzernweite strategische Richtung, systemische Wirkung"}]</script>
+<script>
+const MODEL = JSON.parse(document.getElementById('model-data').textContent);
+const HAY   = JSON.parse(document.getElementById('hay-data').textContent);
+
+const META = [
+  {kick:'Strategie & Wertbeitrag', icon:'<path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/><circle cx="12" cy="12" r="4"/>'},
+  {kick:'Umsetzung & Steuerung',    icon:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>'},
+  {kick:'Führung & Zusammenarbeit',  icon:'<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.4"/><path d="M15 20a5 5 0 0 1 7-4.6"/>'},
+  {kick:'Resilienz & Lernfähigkeit', icon:'<path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/>'},
+];
+const LOGIC = ['Operativ','Operativ','Breit anschlussfähig','Breit anschlussfähig','Breit anschlussfähig','Komplexe Steuerung','Executive','Executive'];
+
+let state = {cluster:0, comp:0, level:1, search:''};
+
+/* ---- build flat index ---- */
+const FLAT = [];
+MODEL.clusters.forEach((cl,ci)=>{
+  MODEL.data[cl].forEach((c)=>FLAT.push({...c, ci, cl}));
+});
+
+/* ---- cluster cards ---- */
+const cardsEl = document.getElementById('cards');
+MODEL.clusters.forEach((cl,ci)=>{
+  const n = MODEL.data[cl].length;
+  const b = document.createElement('button');
+  b.className = `card c${ci} reveal`;
+  b.innerHTML = `<div class="scene"></div>
+    <div class="ring"><svg viewBox="0 0 24 24">${META[ci].icon}</svg></div>
+    <div class="card-body">
+      <div class="kick">0${ci+1} · ${META[ci].kick}</div>
+      <h3>${cl}</h3>
+      <div class="cnt">${n} Kompetenzen <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    </div>`;
+  b.addEventListener('click',()=>{ state.cluster=ci; state.search=''; document.getElementById('search').value='';
+    setChip(ci); renderList(); selectFirst(); document.getElementById('explorer').scrollIntoView({behavior:'smooth'}); });
+  cardsEl.appendChild(b);
+});
+
+/* ---- chips ---- */
+const chipsEl = document.getElementById('chips');
+const allChip = document.createElement('button');
+allChip.className='chip'; allChip.dataset.c='all'; allChip.textContent='Alle Cluster';
+allChip.addEventListener('click',()=>{state.cluster='all';setChip('all');renderList();selectFirst();});
+chipsEl.appendChild(allChip);
+MODEL.clusters.forEach((cl,ci)=>{
+  const ch=document.createElement('button');
+  ch.className='chip'; ch.dataset.c=ci;
+  ch.innerHTML=`<span class="d"></span>${cl.split(' und ')[0].split(' ').slice(0,2).join(' ')}…`;
+  ch.title=cl;
+  ch.addEventListener('click',()=>{state.cluster=ci;setChip(ci);renderList();selectFirst();});
+  chipsEl.appendChild(ch);
+});
+function setChip(c){ [...chipsEl.children].forEach(ch=>ch.classList.toggle('on', String(ch.dataset.c)===String(c))); }
+
+/* ---- competency list ---- */
+const listEl = document.getElementById('complist');
+function visibleComps(){
+  let arr = state.cluster==='all' ? FLAT.slice() : FLAT.filter(c=>c.ci===state.cluster);
+  if(state.search){ const q=state.search.toLowerCase();
+    arr = (state.cluster==='all'?FLAT:arr).filter(c=>c.name.toLowerCase().includes(q)||c.def.toLowerCase().includes(q)); }
+  return arr;
+}
+function renderList(){
+  const arr = visibleComps();
+  listEl.innerHTML = arr.map((c)=>{
+    const idx = FLAT.indexOf(c);
+    return `<div class="ci" data-c="${c.ci}" data-idx="${idx}">
+      <span class="bar"></span>
+      <div><div class="nm">${c.name}</div><div class="cl">${MODEL.clusters[c.ci]}</div></div></div>`;
+  }).join('') || '<div style="padding:24px;color:var(--body);font-size:14px">Keine Treffer.</div>';
+  [...listEl.querySelectorAll('.ci')].forEach(el=>el.addEventListener('click',()=>{
+    state.comp = +el.dataset.idx; state.level=1; renderDetail(); markActive();
+  }));
+  markActive();
+}
+function markActive(){ [...listEl.querySelectorAll('.ci')].forEach(el=>el.classList.toggle('on',+el.dataset.idx===state.comp)); }
+function selectFirst(){ const arr=visibleComps(); if(arr.length){ state.comp=FLAT.indexOf(arr[0]); state.level=1; renderDetail(); markActive(); } else { document.getElementById('detail').innerHTML='<p style="color:var(--body)">Keine Kompetenz ausgewählt.</p>'; } }
+
+/* ---- detail panel ---- */
+const detailEl = document.getElementById('detail');
+function renderDetail(){
+  const c = FLAT[state.comp]; if(!c) return;
+  const colorVar = ['--blue','--gold','--teal','--viol'][c.ci];
+  detailEl.style.setProperty('--ac',`var(${colorVar})`);
+  detailEl.innerHTML = `
+    <div class="d-tag" style="color:var(${colorVar})"><span class="d"></span>${MODEL.clusters[c.ci]}</div>
+    <h3>${c.name}</h3>
+    <p class="d-def">${c.def}</p>
+    <div class="lvlbox">
+      <div class="lvlhead"><span class="lt">Verhaltensanker je Level</span><span class="ll" id="logiclab"></span></div>
+      <div class="slider-row"><div class="ticks" id="ticks"></div></div>
+      <div class="anchor"><div class="txt" id="anchortxt"></div></div>
+    </div>
+    <div class="hay" id="haybox"></div>
+    <button class="toggle-all" id="toggleAll">Alle 8 Level anzeigen ↓</button>
+    <div class="alllevels" id="alllevels"></div>`;
+  // ticks
+  const ticks = document.getElementById('ticks');
+  ticks.innerHTML = c.levels.map((_,i)=>`<button data-l="${i+1}"><span class="seg"></span>L${i+1}</button>`).join('');
+  [...ticks.children].forEach(b=>b.addEventListener('click',()=>{state.level=+b.dataset.l;renderLevel();}));
+  document.getElementById('toggleAll').addEventListener('click',(e)=>{
+    const box=document.getElementById('alllevels'); box.classList.toggle('open');
+    e.target.textContent = box.classList.contains('open')?'Alle 8 Level ausblenden ↑':'Alle 8 Level anzeigen ↓';
+    if(box.classList.contains('open')) renderAll();
+  });
+  renderLevel();
+}
+function renderLevel(){
+  const c = FLAT[state.comp]; const L = state.level;
+  const colorVar = ['--blue','--gold','--teal','--viol'][c.ci];
+  const txt = document.getElementById('anchortxt');
+  txt.style.opacity=0;
+  setTimeout(()=>{ txt.textContent = c.levels[L-1] || '—'; txt.style.opacity=1; },120);
+  document.getElementById('logiclab').textContent = `Level ${L} · ${LOGIC[L-1]}`;
+  [...document.querySelectorAll('#ticks button')].forEach(b=>{
+    const l=+b.dataset.l; b.classList.toggle('act',l===L); b.classList.toggle('fill',l<=L);
+  });
+  const h = HAY[L-1];
+  document.getElementById('haybox').innerHTML = `
+    <div class="hcard"><div class="hl">Hay-Grade-Orientierung</div>
+      <div class="hv">${h.band} <span class="hg">${h.hg}</span></div>
+      <div class="hs">${h.logic}</div></div>
+    <div class="hcard"><div class="hl">Typischer Rollenkontext</div>
+      <div class="hv" style="font-size:14px;font-weight:600">${h.ctx}</div>
+      <div class="hs">Stufenlogik: ${LOGIC[L-1]}</div></div>`;
+  const box=document.getElementById('alllevels'); if(box.classList.contains('open')) renderAll();
+}
+function renderAll(){
+  const c = FLAT[state.comp];
+  document.getElementById('alllevels').innerHTML = c.levels.map((t,i)=>`
+    <div class="lvline ${i+1===state.level?'cur':''}">
+      <div class="n">L${i+1}<small>${LOGIC[i].toUpperCase()}</small></div>
+      <div class="a">${t}</div></div>`).join('');
+}
+
+/* ---- search ---- */
+document.getElementById('search').addEventListener('input',(e)=>{
+  state.search=e.target.value.trim(); renderList();
+  const arr=visibleComps(); if(arr.length){ if(!arr.some(c=>FLAT.indexOf(c)===state.comp)){ selectFirst(); } }
+});
+
+/* ---- hay ladder ---- */
+document.getElementById('ladder-list').innerHTML = HAY.map((h,i)=>`
+  <div class="rung reveal">
+    <div class="lvn">${i+1}<small>LEVEL</small></div>
+    <div class="mid"><div class="band">${h.band}</div><div class="ctx">${h.ctx} · ${h.logic}</div></div>
+    <div class="hg">${h.hg}</div>
+  </div>`).join('');
+
+/* ---- counters + reveal ---- */
+function counter(el){const to=+el.dataset.to,d=1300,t0=performance.now();
+  (function t(n){const p=Math.min((n-t0)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(to*e);if(p<1)requestAnimationFrame(t);})(t0);}
+new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('.num [data-to]').forEach(counter);o.disconnect();}})},{threshold:.4}).observe(document.querySelector('.stats'));
+const ro=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}}),{threshold:.15});
+function obsReveal(){document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));}
+
+const head=document.querySelector('header');
+addEventListener('scroll',()=>{head.style.background=scrollY>40
+  ?'linear-gradient(120deg,#04090f,#091826 60%,#070f18)':'linear-gradient(120deg,#06101a,#0b1d2e 55%,#0a1622)';});
+
+/* ---- init ---- */
+setChip(0); renderList(); selectFirst(); obsReveal();
+</script>
+</body>
+</html>
+</div>

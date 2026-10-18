@@ -1,0 +1,1079 @@
+<!--seite
+{
+  "titel": "KI LERNVERFAHREN",
+  "beschreibung": ""
+}
+-->
+
+<section class="band" style="background-image:url('/bilder/agi-video.png')">
+  <div class="band-innen">
+    <h2>Welche KI Lernverfahren gibt es?</h2>
+  </div>
+</section>
+
+<div class="baustein">
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KI-Lernverfahren · Interaktive Baumstruktur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --bg:         #090f1a;
+  --surface-1:  #131720;
+  --surface-2:  #1a1f2e;
+  --border:     rgba(80,140,190,0.22);
+  --border-hi:  rgba(100,180,220,0.55);
+  --text:       #dde2ee;
+  --text-dim:   #8a94aa;
+  --text-mute:  #5a6478;
+  --accent:     #5ab0cc;
+  --accent2:    #70c8e0;
+  --root-fill:  #0f2240;
+  --l2-fill:    #122030;
+  --l3-fill:    #0e1828;
+  --mono:  'Share Tech Mono', monospace;
+  --head:  'Rajdhani', sans-serif;
+  --body:  'Inter', sans-serif;
+
+  /* fluid spacing */
+  --gap:    clamp(8px, 1.4vw, 16px);
+  --radius: 6px;
+  --pad-x:  clamp(14px, 3vw, 32px);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ── background effects ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(80,120,200,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(80,120,200,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none; z-index: 0;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(30,50,120,0.2) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+.scanlines {
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.025) 3px, rgba(0,0,0,0.025) 4px);
+  pointer-events: none; z-index: 1;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.page {
+  position: relative; z-index: 2;
+  max-width: 1300px; margin: 0 auto;
+  padding: 0 var(--pad-x) clamp(60px,10vh,100px);
+}
+
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+header {
+  text-align: center;
+  padding: clamp(32px,6vh,64px) 0 clamp(28px,5vh,52px);
+}
+.header-eyebrow {
+  font-family: var(--mono);
+  font-size: clamp(9px,1.5vw,11px);
+  letter-spacing: 0.22em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+}
+.header-eyebrow::before, .header-eyebrow::after {
+  content: ''; height: 1px; width: clamp(24px,5vw,48px);
+  background: linear-gradient(90deg, transparent, var(--border-hi));
+}
+.header-eyebrow::after { background: linear-gradient(90deg, var(--border-hi), transparent); }
+
+h1 {
+  font-family: var(--head);
+  font-size: clamp(28px, 5.5vw, 62px);
+  font-weight: 700; letter-spacing: 0.04em;
+  color: #fff; line-height: 1.06;
+  margin-bottom: 12px;
+  text-shadow: 0 0 80px rgba(74,158,255,0.18);
+}
+h1 em { color: hsl(210, 72%, 32%); font-style: normal; text-shadow: 0 0 40px hsl(210,60%,22%); }
+h1 .ki { color: hsl(215, 8%, 42%); }
+
+.header-sub {
+  font-family: var(--mono);
+  font-size: clamp(9px,1.4vw,11px);
+  letter-spacing: 0.14em; color: var(--text-mute);
+  text-transform: uppercase; margin-bottom: 14px;
+}
+.header-hint {
+  font-size: clamp(12px,1.6vw,14px);
+  color: var(--text-dim); font-style: italic;
+}
+
+/* ═══════════════════════════════════════════
+   ── SHARED NODE STYLES ──
+═══════════════════════════════════════════ */
+.node {
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: box-shadow .2s, border-color .2s, background .2s;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.node:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.node-label {
+  font-family: var(--head);
+  font-weight: 700; text-transform: uppercase;
+  line-height: 1.25;
+}
+.node-sub {
+  font-family: var(--mono);
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-mute);
+}
+.badge {
+  display: inline-block;
+  font-family: var(--mono);
+  color: var(--accent2);
+  border: 1px solid rgba(0,212,170,0.32);
+  border-radius: 2px;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════
+   ── DESKTOP / TABLET TREE (≥ 640px) ──
+═══════════════════════════════════════════ */
+.tree-wrap { display: block; }
+.mob-wrap  { display: none; }
+
+/* ─ root ─ */
+.t-root {
+  background: var(--root-fill);
+  border: 2px solid hsl(202, 68%, 56%);
+  box-shadow: 0 0 0 1px hsl(202,52%,34%),
+              0 0 32px hsl(202,65%,40%,0.30),
+              inset 0 1px 0 hsl(202,70%,65%,0.15);
+  padding: clamp(12px,2vh,18px) clamp(24px,4vw,52px);
+  text-align: center;
+}
+.t-root:hover {
+  border-color: hsl(202, 72%, 64%);
+  box-shadow: 0 0 0 1px hsl(202,56%,40%),
+              0 0 44px hsl(202,68%,48%,0.42),
+              inset 0 1px 0 hsl(202,72%,70%,0.2);
+}
+.t-root .node-label { font-size: clamp(14px,2.2vw,22px); color: #fff; }
+.t-root .node-sub   { font-size: clamp(8px,1vw,10px); color: hsl(202,68%,68%); margin-top: 4px; display:block; }
+
+/* ─ vertical stem from root ─ */
+.t-stem {
+  width: 1px; height: clamp(20px,3vh,32px); margin: 0 auto;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--border-hi) 100%);
+}
+
+/* ─ horizontal crossbar ─ */
+.t-bar-wrap {
+  position: relative; width: 100%;
+  display: flex; align-items: flex-start;
+  justify-content: center;
+  gap: clamp(6px, 1.2vw, 14px);
+}
+.t-bar-wrap::before {
+  content: '';
+  position: absolute; top: 0;
+  left: calc(var(--pad-x) / 2 + var(--gap));
+  right: calc(var(--pad-x) / 2 + var(--gap));
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--border-hi) 8%, var(--border-hi) 92%, transparent 100%);
+}
+
+/* ─ L2 column ─ */
+.t-col {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1; min-width: 0;
+}
+.t-col-stem {
+  width: 1px; height: clamp(16px,2.5vh,26px);
+  background: var(--border-hi); flex-shrink: 0;
+}
+
+/* ─ L2 node — Lernparadigma: border oben 3px + alle Seiten 1px sichtbar ─ */
+.t-l2 {
+  width: 100%;
+  background: var(--l2-fill);
+  border: 1px solid hsl(210,30%,28%);
+  border-top: 3px solid hsl(210,60%,52%);
+  padding: clamp(10px,1.5vh,14px) clamp(6px,1vw,10px);
+  text-align: center; overflow: hidden;
+}
+.t-l2:hover, .t-l2.active {
+  background: #1a2240;
+  box-shadow: 0 0 18px rgba(74,158,255,0.14);
+}
+.t-l2 .node-label { font-size: clamp(9px,1.1vw,13px); color: #fff; }
+.t-l2 .node-sub   { font-size: clamp(7px,.85vw,9px); margin-top: 3px; display: block; }
+.t-l2 .badge      { font-size: clamp(6px,.8vw,8px); padding: 1px 4px; margin-top: 4px; display: inline-block; }
+
+/* ─ L3 area ─ */
+.t-l3-wrap {
+  display: flex; flex-direction: column; align-items: center; width: 100%;
+}
+.t-l3-stem {
+  width: 1px; height: clamp(12px,1.8vh,18px);
+  background: var(--border); flex-shrink: 0;
+}
+.t-l3-stack { display: flex; flex-direction: column; gap: clamp(3px,.5vh,5px); width: 100%; }
+
+/* ─ L3 node — Unterverfahren: nur linker Rand farbig (klar schwächer als L2) ─ */
+.t-l3 {
+  width: 100%;
+  background: var(--l3-fill);
+  border: 1px solid hsl(210,20%,22%);
+  border-left: 3px solid hsl(210,50%,44%);
+  border-radius: 3px;
+  padding: clamp(6px,1vh,10px) clamp(5px,.8vw,8px);
+  text-align: center;
+}
+.t-l3:hover, .t-l3.active {
+  background: #121e28;
+  box-shadow: 0 0 10px rgba(80,160,210,0.12);
+}
+.t-l3 .node-label { font-size: clamp(8px,1vw,11px); color: var(--text); }
+.t-l3 .badge      { font-size: clamp(6px,.75vw,8px); padding: 1px 3px; margin-left: 3px; vertical-align: middle; }
+
+/* ═══════════════════════════════════════════
+   ── MOBILE ACCORDION (< 640px) ──
+═══════════════════════════════════════════ */
+.mob-root {
+  background: var(--root-fill);
+  border: 2px solid hsl(202,68%,56%);
+  box-shadow: 0 0 0 1px hsl(202,52%,34%), 0 0 28px hsl(202,65%,40%,0.28);
+  border-radius: 8px;
+  padding: 18px 20px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+.mob-root:active { box-shadow: 0 0 24px rgba(74,158,255,0.2); }
+.mob-root .node-label { font-size: 20px; color: #fff; }
+.mob-root .node-sub   { font-size: 9px; color: var(--accent); margin-top: 5px; display: block; letter-spacing: 0.15em; text-transform: uppercase; font-family: var(--mono); }
+
+.mob-divider {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.mob-divider::before, .mob-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: var(--border-hi); opacity: 0.45;
+}
+.mob-divider span {
+  font-family: var(--mono); font-size: 8px; letter-spacing: 0.22em;
+  color: var(--text-mute); text-transform: uppercase; white-space: nowrap;
+}
+
+/* ─ accordion card ─ */
+.acc-card {
+  border: 1px solid hsl(210,28%,26%);
+  border-top: 3px solid hsl(210,60%,52%);
+  border-radius: 6px; margin-bottom: 7px;
+  overflow: hidden; background: var(--l2-fill);
+}
+.acc-head {
+  display: flex; align-items: center;
+  padding: 15px 15px; gap: 10px; cursor: pointer;
+  min-height: 62px;
+}
+.acc-head:active { background: rgba(74,158,255,0.05); }
+.acc-text { flex: 1; }
+.acc-text .node-label { font-size: 16px; color: #fff; }
+.acc-text .node-sub   { font-size: 9px; margin-top: 3px; display: block; }
+.acc-text .badge      { font-size: 8px; padding: 2px 5px; margin-top: 5px; display: inline-block; }
+.acc-info {
+  background: none; border: 1px solid var(--border); border-radius: 4px;
+  color: var(--accent); font-family: var(--mono); font-size: 10px;
+  padding: 8px 12px; cursor: pointer; flex-shrink: 0; min-height: 36px;
+}
+.acc-info:active { background: rgba(74,158,255,0.1); border-color: var(--accent); }
+.acc-arrow {
+  font-family: var(--mono); font-size: 13px;
+  color: var(--text-mute); transition: transform 0.25s; flex-shrink: 0; width: 18px; text-align: center;
+}
+.acc-card.open .acc-arrow { transform: rotate(90deg); }
+
+/* ─ children list ─ */
+.acc-body {
+  display: none; flex-direction: column; gap: 5px;
+  padding: 4px 12px 12px; background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.acc-card.open .acc-body { display: flex; }
+
+.acc-child {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 14px; min-height: 50px;
+  background: var(--l3-fill);
+  border: 1px solid hsl(210,18%,20%);
+  border-left: 3px solid hsl(210,50%,44%);
+  border-radius: 4px; cursor: pointer;
+}
+.acc-child:active { background: #121e28; }
+.acc-child-label {
+  flex: 1; font-family: var(--head); font-size: 14px; font-weight: 600;
+  letter-spacing: 0.07em; color: var(--text); text-transform: uppercase;
+}
+.acc-child-label .badge { font-size: 8px; padding: 1px 4px; margin-left: 6px; vertical-align: middle; }
+.acc-child-arrow { font-family: var(--mono); font-size: 12px; color: var(--text-mute); }
+
+/* ─ direct-link cards (no children) ─ */
+.acc-card.direct .acc-head { cursor: pointer; }
+
+/* ═══════════════════════════════════════════
+   BRANCH COLOR SYSTEM — aus Bildpixeln extrahiert
+   Hue-Quelle: Bild mit KI-Gehirn/Cyan-Atmosphäre
+   Hues 196–217°, Sät. 22–75 %
+   1–5: leuchtendes Blau-Cyan (heller werdend)
+   6–7: gedämpftes Blaugrau (heller werdend)
+═══════════════════════════════════════════ */
+
+/* 1 · Zone 1 — tiefes Marineblau  #305479-Familie */
+[data-branch="1"] {
+  --bf:  hsl(210, 55%, 18%);
+  --bfh: hsl(210, 62%, 25%);
+  --bt:  hsl(204, 60%, 52%);
+  --bb:  hsl(208, 42%, 30%);
+  --bl:  hsl(204, 56%, 48%);
+  --bgl: rgba(48, 112, 172, 0.30);
+}
+/* 2 · Zone 2 — mittleres Blau  #386e99-Familie */
+[data-branch="2"] {
+  --bf:  hsl(207, 52%, 21%);
+  --bfh: hsl(207, 60%, 28%);
+  --bt:  hsl(198, 68%, 58%);
+  --bb:  hsl(204, 38%, 34%);
+  --bl:  hsl(198, 62%, 54%);
+  --bgl: rgba(60, 144, 196, 0.28);
+}
+/* 3 · Zone 3 — helles Cyan-Blau  #7dbfd6-Familie */
+[data-branch="3"] {
+  --bf:  hsl(203, 50%, 24%);
+  --bfh: hsl(203, 58%, 31%);
+  --bt:  hsl(196, 70%, 64%);
+  --bb:  hsl(200, 34%, 38%);
+  --bl:  hsl(196, 66%, 60%);
+  --bgl: rgba(74, 168, 212, 0.27);
+}
+/* 4 · Zone 4 — hellstes Cyan  Peak-Glow #a0d0e1-Familie */
+[data-branch="4"] {
+  --bf:  hsl(199, 46%, 27%);
+  --bfh: hsl(199, 54%, 34%);
+  --bt:  hsl(196, 75%, 72%);
+  --bb:  hsl(198, 30%, 42%);
+  --bl:  hsl(196, 72%, 67%);
+  --bgl: rgba(88, 188, 228, 0.25);
+}
+/* 5 · Zone 5 — kühleres Cyan  #6babcc-Familie */
+[data-branch="5"] {
+  --bf:  hsl(200, 44%, 25%);
+  --bfh: hsl(200, 52%, 32%);
+  --bt:  hsl(200, 65%, 66%);
+  --bb:  hsl(200, 28%, 40%);
+  --bl:  hsl(200, 60%, 62%);
+  --bgl: rgba(80, 172, 214, 0.26);
+}
+/* 6 · Zone 6 — gedämpftes Blaugrau  #263143-Familie */
+[data-branch="6"] {
+  --bf:  hsl(216, 24%, 20%);
+  --bfh: hsl(216, 30%, 27%);
+  --bt:  hsl(207, 44%, 58%);
+  --bb:  hsl(212, 18%, 36%);
+  --bl:  hsl(207, 40%, 54%);
+  --bgl: rgba(100, 132, 160, 0.22);
+}
+/* 7 · Zone 7 — helles Blaugrau  #243952-Familie */
+[data-branch="7"] {
+  --bf:  hsl(213, 22%, 25%);
+  --bfh: hsl(213, 28%, 32%);
+  --bt:  hsl(210, 34%, 68%);
+  --bb:  hsl(212, 16%, 42%);
+  --bl:  hsl(210, 30%, 63%);
+  --bgl: rgba(122, 150, 174, 0.20);
+}
+
+/* ── Gemeinsame Regeln ────────────────── */
+[data-branch] .t-l2 {
+  background:        var(--bf);
+  border-color:      var(--bb);          /* alle 4 Seiten sichtbar */
+  border-top:        3px solid var(--bt); /* oben dicker & heller  */
+}
+[data-branch] .t-l2:hover,
+[data-branch] .t-l2.active {
+  background:   var(--bfh);
+  border-color: var(--bt);
+  box-shadow:   0 0 26px var(--bgl);
+}
+[data-branch] .t-col-stem { background: var(--bt); opacity: 0.68; }
+[data-branch] .t-l3-stem  { background: var(--bl); opacity: 0.52; }
+
+[data-branch] .t-l3 {
+  background:        var(--bf);
+  border-color:      hsl(210,20%,22%);   /* sehr dezent, fast unsichtbar */
+  border-left:       3px solid var(--bl); /* nur links farbig             */
+  filter: brightness(0.84);
+}
+[data-branch] .t-l3:hover,
+[data-branch] .t-l3.active {
+  background:        var(--bfh);
+  border-left-color: var(--bt);
+  box-shadow:        0 0 14px var(--bgl);
+  filter: brightness(1);
+}
+
+/* ── Mobile Accordion ─────────────────── */
+.acc-card[data-branch] {
+  background:    var(--bf);
+  border-color:  var(--bb);         /* alle 4 Seiten sichtbar */
+  border-top:    3px solid var(--bt); /* oben dicker           */
+}
+.acc-card[data-branch] .acc-body {
+  background:  var(--bf);
+  filter:      brightness(0.78);
+  border-top-color: var(--bb);
+}
+.acc-card[data-branch] .acc-head:active { background: var(--bfh); }
+.acc-card[data-branch] .acc-info {
+  color:        var(--bt);
+  border-color: var(--bl);
+}
+.acc-card[data-branch] .acc-info:active {
+  background:   var(--bfh);
+  border-color: var(--bt);
+}
+.acc-card[data-branch] .acc-child {
+  background:   var(--bf);
+  border-color: hsl(210,18%,20%);    /* dezente Ränder       */
+  border-left:  3px solid var(--bl); /* nur links farbig     */
+  filter: brightness(0.82);
+}
+.acc-card[data-branch] .acc-child:active {
+  background:        var(--bfh);
+  border-left-color: var(--bt);
+  filter: brightness(1);
+}
+/* ═══════════════════════════════════════════
+   ── DETAIL PANEL (desktop side) ──
+═══════════════════════════════════════════ */
+#side-panel {
+  position: fixed; top: 0; right: 0;
+  width: clamp(340px, 32vw, 480px); height: 100vh;
+  background: #0e1422;
+  border-left: 1px solid var(--border-hi);
+  z-index: 300;
+  transform: translateX(100%);
+  transition: transform .36s cubic-bezier(.22,1,.36,1);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+#side-panel.open { transform: translateX(0); }
+
+/* ─ bottom sheet (mobile) ─ */
+#bottom-sheet {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 86vh;
+  background: #0b0f1c;
+  border-top: 2px solid var(--accent);
+  border-radius: 14px 14px 0 0;
+  z-index: 300;
+  transform: translateY(100%);
+  transition: transform .38s cubic-bezier(.22,1,.36,1);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+#bottom-sheet.open { transform: translateY(0); }
+
+.sheet-drag {
+  flex-shrink: 0; display: flex; justify-content: center;
+  padding: 10px 0 2px;
+}
+.sheet-drag-bar {
+  width: 38px; height: 4px; border-radius: 2px; background: var(--border-hi);
+}
+
+/* ─ shared panel inner ─ */
+.panel-hd {
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--border); flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(74,158,255,0.05) 0%, transparent 100%);
+  position: relative;
+}
+.panel-close {
+  position: absolute; top: 14px; right: 14px;
+  width: 30px; height: 30px;
+  background: none; border: 1px solid var(--border); border-radius: 4px;
+  color: var(--text-dim); cursor: pointer;
+  font-size: 14px; font-family: var(--mono);
+  display: flex; align-items: center; justify-content: center;
+}
+.panel-close:hover, .panel-close:active { border-color: var(--accent); color: var(--accent); }
+.panel-type {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em;
+  color: var(--text-mute); text-transform: uppercase; margin-bottom: 7px;
+}
+.panel-title {
+  font-family: var(--head); font-size: clamp(18px,2.5vw,24px); font-weight: 700;
+  letter-spacing: 0.06em; color: #fff; text-transform: uppercase;
+  line-height: 1.15; padding-right: 40px;
+}
+.panel-body {
+  padding: 20px; overflow-y: auto; flex: 1;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+.panel-body::-webkit-scrollbar { width: 3px; }
+.panel-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+/* ─ panel content ─ */
+.sec-head {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.22em;
+  color: var(--accent); text-transform: uppercase;
+  margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sec-head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.p-desc { font-size: 14px; line-height: 1.78; color: var(--text); margin-bottom: 22px; }
+.p-example {
+  background: rgba(0,212,170,0.04); border: 1px solid rgba(0,212,170,0.17);
+  border-radius: 5px; padding: 14px 16px; margin-bottom: 20px;
+}
+.p-example p { font-size: 13.5px; line-height: 1.72; color: var(--text); }
+.p-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; margin-bottom: 20px; }
+.p-tag {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.05em;
+  color: var(--accent); border: 1px solid rgba(74,158,255,0.24);
+  border-radius: 2px; padding: 4px 8px; background: rgba(74,158,255,0.06);
+}
+.p-apps { display: flex; flex-direction: column; gap: 6px; margin-top: 10px; padding-bottom: 8px; }
+.p-app {
+  font-size: 13px; color: var(--text-dim);
+  padding-left: 14px; position: relative; line-height: 1.5;
+}
+.p-app::before { content: '→'; position: absolute; left: 0; color: var(--accent2); font-family: var(--mono); font-size: 11px; }
+
+/* ═══════════════════════════════════════════
+   OVERLAY
+═══════════════════════════════════════════ */
+#overlay {
+  position: fixed; inset: 0; z-index: 299;
+  background: rgba(0,0,0,0.52); opacity: 0; pointer-events: none;
+  transition: opacity .28s;
+}
+#overlay.on { opacity: 1; pointer-events: all; }
+
+/* ═══════════════════════════════════════════
+   LEGEND
+═══════════════════════════════════════════ */
+.legend {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 14px;
+  padding: clamp(20px,3vh,28px) 0 0;
+  font-family: var(--mono); font-size: clamp(9px,1.2vw,10px); letter-spacing: 0.1em; color: var(--text-mute);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+.ld-r { background: #1c2445; border: 1px solid #4a9eff; }
+.ld-2 { background: #131a2c; border: 1px solid rgba(74,158,255,0.4); }
+.ld-3 { background: #0f1420; border-left: 2px solid rgba(0,212,170,0.5); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  position: relative; z-index: 2; text-align: center;
+  padding: 26px 20px; border-top: 1px solid var(--border);
+  font-family: var(--mono); font-size: 10px;
+  letter-spacing: 0.14em; color: var(--text-mute); text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════ */
+
+/* ── mid tablet tweak ── */
+@media (max-width: 900px) {
+  .t-l2 .node-label { font-size: clamp(8px,1.3vw,11px); }
+  .t-l3 .node-label { font-size: clamp(7px,1.1vw,10px); }
+  #side-panel { width: min(400px, 48vw); }
+}
+
+/* ── switch to accordion below 640px ── */
+@media (max-width: 639px) {
+  .tree-wrap { display: none; }
+  .mob-wrap  { display: block; }
+  #side-panel { display: none !important; }
+  .page { padding-bottom: 90px; }
+}
+</style>
+</head>
+<body>
+<div class="scanlines"></div>
+<div id="overlay"></div>
+
+<!-- ══ DESKTOP SIDE PANEL ══ -->
+<div id="side-panel" role="dialog" aria-modal="true" aria-label="Verfahren-Details">
+  <div class="panel-hd">
+    <div class="panel-type" id="sp-type"></div>
+    <div class="panel-title" id="sp-title"></div>
+    <button class="panel-close" onclick="closeAll()" aria-label="Schließen">✕</button>
+  </div>
+  <div class="panel-body" id="sp-body"></div>
+</div>
+
+<!-- ══ MOBILE BOTTOM SHEET ══ -->
+<div id="bottom-sheet" role="dialog" aria-modal="true" aria-label="Verfahren-Details">
+  <div class="sheet-drag"><div class="sheet-drag-bar"></div></div>
+  <div class="panel-hd">
+    <div class="panel-type" id="bs-type"></div>
+    <div class="panel-title" id="bs-title"></div>
+    <button class="panel-close" onclick="closeAll()" aria-label="Schließen">✕</button>
+  </div>
+  <div class="panel-body" id="bs-body"></div>
+</div>
+
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <div class="header-eyebrow">Künstliche Intelligenz · Systemanalyse</div>
+    <h1><span class="ki">KI-</span><em>Lernverfahren</em></h1>
+    <div class="header-sub">Interaktive Baumstruktur · Alle Paradigmen &amp; Unterverfahren</div>
+    <div class="header-hint">Auf einen Knoten klicken für Beschreibung &amp; Beispiel</div>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       DESKTOP / TABLET TREE
+  ══════════════════════════════════════ -->
+  <div class="tree-wrap" id="tree">
+
+    <!-- ROOT -->
+    <div style="display:flex;justify-content:center">
+      <div class="node t-root" onclick="show('root')" tabindex="0">
+        <div class="node-label">AI Learning Methods</div>
+        <div class="node-sub">Übersicht aller Lernparadigmen</div>
+      </div>
+    </div>
+
+    <div class="t-stem"></div>
+
+    <!-- L2 ROW -->
+    <div class="t-bar-wrap" id="l2-row">
+
+      <!-- 1 Supervised -->
+      <div class="t-col" data-branch="1">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('supervised')" tabindex="0">
+          <div class="node-label">Supervised<br>Learning</div>
+        </div>
+        <div class="t-l3-wrap">
+          <div class="t-l3-stem"></div>
+          <div class="t-l3-stack">
+            <div class="node t-l3" onclick="show('classification')" tabindex="0"><div class="node-label">Classification</div></div>
+            <div class="node t-l3" onclick="show('regression')" tabindex="0"><div class="node-label">Regression</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 Unsupervised -->
+      <div class="t-col" data-branch="2">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('unsupervised')" tabindex="0">
+          <div class="node-label">Unsupervised<br>Learning</div>
+        </div>
+        <div class="t-l3-wrap">
+          <div class="t-l3-stem"></div>
+          <div class="t-l3-stack">
+            <div class="node t-l3" onclick="show('clustering')" tabindex="0"><div class="node-label">Clustering</div></div>
+            <div class="node t-l3" onclick="show('dimreduction')" tabindex="0"><div class="node-label">Dimensionality<br>Reduction</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Reinforcement -->
+      <div class="t-col" data-branch="3">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('reinforcement')" tabindex="0">
+          <div class="node-label">Reinforcement<br>Learning</div>
+        </div>
+        <div class="t-l3-wrap">
+          <div class="t-l3-stem"></div>
+          <div class="t-l3-stack">
+            <div class="node t-l3" onclick="show('valuebased')" tabindex="0"><div class="node-label">Value-based<br>(Q-Learning)</div></div>
+            <div class="node t-l3" onclick="show('policybased')" tabindex="0"><div class="node-label">Policy-based<br>(PPO)</div></div>
+            <div class="node t-l3" onclick="show('actorcritic')" tabindex="0"><div class="node-label">Actor-Critic</div></div>
+            <div class="node t-l3" onclick="show('rlhf')" tabindex="0"><div class="node-label">RLHF</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Self-Supervised -->
+      <div class="t-col" data-branch="4">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('selfsupervised')" tabindex="0">
+          <div class="node-label">Self-Supervised<br>Learning</div>
+        </div>
+        <div class="t-l3-wrap">
+          <div class="t-l3-stem"></div>
+          <div class="t-l3-stack">
+            <div class="node t-l3" onclick="show('contrastive')" tabindex="0"><div class="node-label">Contrastive<br>Learning</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Semi-Supervised -->
+      <div class="t-col" data-branch="5">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('semisupervised')" tabindex="0">
+          <div class="node-label">Semi-Supervised<br>Learning</div>
+        </div>
+      </div>
+
+      <!-- 6 Transfer -->
+      <div class="t-col" data-branch="6">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('transfer')" tabindex="0">
+          <div class="node-label">Transfer<br>Learning</div>
+        </div>
+      </div>
+
+      <!-- 7 Recursive -->
+      <div class="t-col" data-branch="7">
+        <div class="t-col-stem"></div>
+        <div class="node t-l2" onclick="show('recursive')" tabindex="0">
+          <div class="node-label">Recursive<br>Learning</div>
+          <div class="node-sub" style="font-size:clamp(6px,.75vw,8px);margin-top:3px">/ Iterative Self-Training</div>
+        </div>
+      </div>
+
+    </div><!-- /l2-row -->
+  </div><!-- /tree-wrap -->
+
+
+  <!-- ══════════════════════════════════════
+       MOBILE ACCORDION
+  ══════════════════════════════════════ -->
+  <div class="mob-wrap">
+
+    <div class="node mob-root" onclick="show('root')">
+      <div class="node-label">AI Learning Methods</div>
+      <div class="node-sub">Antippen für Gesamtübersicht</div>
+    </div>
+
+    <div class="mob-divider"><span>Lernparadigmen</span></div>
+
+    <!-- Supervised -->
+    <div class="acc-card" data-branch="1" id="acc-sup">
+      <div class="acc-head" onclick="toggleAcc('acc-sup')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Supervised Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">Mit beschrifteten Daten</div>
+        </div>
+        <button class="acc-info" onclick="event.stopPropagation();show('supervised')">Info</button>
+        <div class="acc-arrow">▶</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-child" onclick="show('classification')"><div class="acc-child-label">Classification</div><div class="acc-child-arrow">→</div></div>
+        <div class="acc-child" onclick="show('regression')"><div class="acc-child-label">Regression</div><div class="acc-child-arrow">→</div></div>
+      </div>
+    </div>
+
+    <!-- Unsupervised -->
+    <div class="acc-card" data-branch="2" id="acc-uns">
+      <div class="acc-head" onclick="toggleAcc('acc-uns')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Unsupervised Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">Ohne Labels – Muster finden</div>
+        </div>
+        <button class="acc-info" onclick="event.stopPropagation();show('unsupervised')">Info</button>
+        <div class="acc-arrow">▶</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-child" onclick="show('clustering')"><div class="acc-child-label">Clustering</div><div class="acc-child-arrow">→</div></div>
+        <div class="acc-child" onclick="show('dimreduction')"><div class="acc-child-label">Dimensionality Reduction</div><div class="acc-child-arrow">→</div></div>
+      </div>
+    </div>
+
+    <!-- Reinforcement -->
+    <div class="acc-card" data-branch="3" id="acc-rl">
+      <div class="acc-head" onclick="toggleAcc('acc-rl')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Reinforcement Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">Belohnung &amp; Bestrafung</div>
+        </div>
+        <button class="acc-info" onclick="event.stopPropagation();show('reinforcement')">Info</button>
+        <div class="acc-arrow">▶</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-child" onclick="show('valuebased')"><div class="acc-child-label">Value-based (Q-Learning)</div><div class="acc-child-arrow">→</div></div>
+        <div class="acc-child" onclick="show('policybased')"><div class="acc-child-label">Policy-based (PPO)</div><div class="acc-child-arrow">→</div></div>
+        <div class="acc-child" onclick="show('actorcritic')"><div class="acc-child-label">Actor-Critic</div><div class="acc-child-arrow">→</div></div>
+        <div class="acc-child" onclick="show('rlhf')"><div class="acc-child-label">RLHF</div><div class="acc-child-arrow">→</div></div>
+      </div>
+    </div>
+
+    <!-- Self-Supervised -->
+    <div class="acc-card" data-branch="4" id="acc-ss">
+      <div class="acc-head" onclick="toggleAcc('acc-ss')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Self-Supervised Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">Eigene Labels erzeugen</div>
+        </div>
+        <button class="acc-info" onclick="event.stopPropagation();show('selfsupervised')">Info</button>
+        <div class="acc-arrow">▶</div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-child" onclick="show('contrastive')"><div class="acc-child-label">Contrastive Learning</div><div class="acc-child-arrow">→</div></div>
+      </div>
+    </div>
+
+    <!-- Semi-Supervised (direct) -->
+    <div class="acc-card direct" data-branch="5" id="acc-semi">
+      <div class="acc-head" onclick="show('semisupervised')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Semi-Supervised Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">Wenig Labels + viel ungelabelt</div>
+        </div>
+        <div class="acc-arrow" style="transform:none">→</div>
+      </div>
+    </div>
+
+    <!-- Transfer (direct) -->
+    <div class="acc-card direct" data-branch="6" id="acc-tr">
+      <div class="acc-head" onclick="show('transfer')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Transfer Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">Vorwissen übertragen</div>
+        </div>
+        <div class="acc-arrow" style="transform:none">→</div>
+      </div>
+    </div>
+
+    <!-- Recursive (direct) -->
+    <div class="acc-card direct" data-branch="7" id="acc-rec">
+      <div class="acc-head" onclick="show('recursive')">
+        <div class="acc-text">
+          <div class="node-label" style="font-size:16px;color:#fff">Recursive Learning</div>
+          <div class="node-sub" style="font-size:9px;margin-top:3px">/ Iterative Self-Training</div>
+        </div>
+        <div class="acc-arrow" style="transform:none">→</div>
+      </div>
+    </div>
+
+  </div><!-- /mob-wrap -->
+
+  <!-- ── LEGEND ── -->
+  <div class="legend">
+    <div class="legend-item"><div class="leg-dot ld-r"></div><span>Root</span></div>
+    <div class="legend-item"><div class="leg-dot ld-2"></div><span>Lernparadigma</span></div>
+    <div class="legend-item"><div class="leg-dot ld-3"></div><span>Unterverfahren</span></div>
+  </div>
+
+</div><!-- /page -->
+<footer>KI-Singularität · Systemanalyse &#160;·&#160; veikovoneckern.org</footer>
+
+<!-- ══════════════════════════════════════════
+     DATA + LOGIC
+══════════════════════════════════════════ -->
+<script>
+const D = {
+
+  root: { type:'Übersicht', title:'AI Learning Methods',
+    desc:`KI-Systeme lernen auf grundlegend verschiedene Arten. Die zentrale Frage, die alle Paradigmen voneinander trennt, lautet: <em>Woher kommt das Lernsignal?</em><br><br>Bei <strong>Supervised Learning</strong> liefern Menschen beschriftete Beispiele – das Modell weiß bei jedem Trainingsfall, was richtig ist. Bei <strong>Unsupervised Learning</strong> gibt es keine Beschriftungen: Das Modell muss selbst Strukturen, Cluster und Muster in den Rohdaten entdecken. Bei <strong>Reinforcement Learning</strong> erzeugt die Umgebung Belohnungen oder Strafen – das Modell lernt durch Trial &amp; Error, keine menschlichen Labels nötig. Bei <strong>Self-Supervised Learning</strong> erzeugt das Modell sein eigenes Lernsignal, indem es Teile der Eingabe versteckt und vorhersagt.<br><br>Dazu kommen Hybridformen: <strong>Semi-Supervised Learning</strong> kombiniert wenige Labels mit vielen unlabelierten Daten. <strong>Transfer Learning</strong> überträgt Wissen aus einem vortrainierten Modell auf neue Aufgaben. <strong>Recursive Learning</strong> (Iterative Self-Training) lässt Modelle sich iterativ auf ihren eigenen Ausgaben verbessern.<br><br>Diese Seite erklärt alle sieben Hauptparadigmen und ihre wichtigsten Unterverfahren – mit Alltagsbeispielen, die keine Vorkenntnisse erfordern.`,
+    ex:`Stell dir verschiedene Schulformen vor. <strong>Supervised Learning</strong> ist wie ein klassischer Unterricht mit Lehrer: Für jede Aufgabe gibt es eine Musterlösung. <strong>Unsupervised Learning</strong> ist wie das freie Erkunden einer riesigen Bibliothek – du findest selbst heraus, welche Bücher zusammengehören, ohne dass dir jemand ein Schema vorgibt. <strong>Reinforcement Learning</strong> ist wie ein Videospiel: Du lernst ausschließlich durch Ausprobieren, Punkte sammeln und Fehler machen. <strong>Self-Supervised Learning</strong> schließlich ist wie Selbststudium mit einem Lehrbuch, dessen Seiten durcheinander geraten sind – du musst die fehlenden Teile selbst erschließen.`,
+    al:[], ap:[] },
+
+  supervised: { type:'Lernparadigma', title:'Supervised Learning',
+    desc:`Supervised Learning ist das am weitesten verbreitete Paradigma im maschinellen Lernen. Das Grundprinzip: Jedes Trainingsbeispiel besteht aus einer <em>Eingabe</em> (z. B. ein Bild, ein Text, eine Tabelle) und einer <em>bekannten, korrekten Ausgabe</em> – dem Label. Das Modell lernt, die Beziehung zwischen Eingabe und Label zu erlernen, bis es bei neuen, unbekannten Daten selbstständig präzise Vorhersagen machen kann.<br><br>Der Trainingsprozess läuft iterativ: Das Modell macht eine Vorhersage, vergleicht sie mit dem tatsächlichen Label, berechnet den Fehler (Loss) und passt seine internen Parameter so an, dass der Fehler beim nächsten Versuch kleiner ist. Diesen Vorgang wiederholt es Millionen Mal.<br><br>Supervised Learning funktioniert besonders gut, wenn große Mengen qualitativ hochwertiger, beschrifteter Daten vorhanden sind. Die Hauptlimitierung: Das manuelle Beschriften von Daten (Labeling) ist teuer, zeitaufwändig und erfordert oft Expertenwissen.`,
+    ex:`Stell dir vor, ein Unternehmen möchte Kreditanfragen automatisch bewerten. Dazu sammelt es historische Daten von 200.000 Kreditnehmern: Einkommen, Beschäftigung, Schuldenstand, Alter der Konten – und ob sie ihren Kredit zurückgezahlt haben oder nicht (das Label: „gut" oder „schlecht"). Das Modell lernt, welche Kombinationen dieser Merkmale typisch für zahlungsunfähige Kunden sind. Nach dem Training bewertet es neue Anträge in Millisekunden: „Diese Person hat 87% Wahrscheinlichkeit, den Kredit zurückzuzahlen." Kein Bankmitarbeiter muss mehr jeden Fall manuell prüfen.`,
+    al:['Logistic Regression','Random Forest','Support Vector Machine (SVM)','Gradient Boosting (XGBoost)','Neural Networks / Deep Learning'],
+    ap:['Spam- und Phishing-Erkennung','Medizinische Bilddiagnose (Röntgen, MRT)','Sprachübersetzung','Kreditwürdigkeitsprüfung','Betrugserkennung bei Zahlungen'] },
+
+  classification: { type:'Unterverfahren · Supervised Learning', title:'Classification',
+    desc:`Classification ist eine spezielle Form des Supervised Learning, bei der die Ausgabe keine Zahl, sondern eine <em>diskrete Kategorie</em> ist. Das Modell lernt, Eingaben einer von mehreren vordefinierten Klassen zuzuordnen.<br><br>Man unterscheidet zwischen <strong>binärer Klassifikation</strong> (genau zwei Klassen: Spam / kein Spam, krank / gesund) und <strong>Multi-Class-Klassifikation</strong> (viele Klassen: Hund / Katze / Vogel / Fisch). Bei der <strong>Multi-Label-Klassifikation</strong> kann eine Eingabe gleichzeitig mehreren Klassen angehören – z. B. ein Artikel kann gleichzeitig „Technologie" und „Wirtschaft" sein.<br><br>Intern erzeugt das Modell meist Wahrscheinlichkeiten für jede Klasse und wählt die wahrscheinlichste. Damit lässt sich auch eine Unsicherheit ausdrücken: „70% Hund, 25% Fuchs, 5% Wolf."`,
+    ex:`Ein Krankenhaus möchte Hautkrebs auf Fotos erkennen. Dermatologen beschriften 50.000 Bilder als „gutartig" oder „bösartig". Das Klassifikationsmodell lernt, welche Muster – Asymmetrie, Farbe, Randstruktur – auf Malignität hinweisen. Nach dem Training erkennt es bösartige Muttermale mit einer Genauigkeit, die erfahrene Fachärzte im Durchschnitt erreichen oder sogar übertrifft. In der Praxis dient das System als zweite Meinung: Wenn Modell und Arzt übereinstimmen, steigt die Diagnosesicherheit erheblich.`,
+    al:['Logistic Regression','Decision Tree / Random Forest','Support Vector Machine (SVM)','k-Nearest Neighbors (k-NN)','Convolutional Neural Network (CNN)'],
+    ap:['Hautkrebs-Erkennung auf Fotos','Spam- und Phishing-Klassifikation','Stimmungsanalyse (positiv/negativ/neutral)','Handschriftenerkennung (MNIST)','Betrugserkennung bei Kreditkartentransaktionen'] },
+
+  regression: { type:'Unterverfahren · Supervised Learning', title:'Regression',
+    desc:`Regression ist wie Classification ebenfalls Supervised Learning – aber die Ausgabe ist eine <em>kontinuierliche Zahl</em>, keine Kategorie. Das Modell lernt mathematische Zusammenhänge zwischen Eingabevariablen (Features) und einem numerischen Zielwert, um zukünftige Werte präzise schätzen zu können.<br><br><strong>Lineare Regression</strong> nimmt an, dass der Zusammenhang zwischen Features und Zielwert annähernd linear ist – eine Gerade (oder Hyperebene in höheren Dimensionen) wird durch die Datenpunkte gelegt. <strong>Nicht-lineare Regression</strong> (z. B. Gradient Boosting, neuronale Netze) kann auch komplexe, verschlungene Zusammenhänge erfassen.<br><br>Ein entscheidendes Konzept ist die Unterscheidung zwischen <em>Interpolation</em> (Vorhersage innerhalb des Trainingsbereichs, zuverlässiger) und <em>Extrapolation</em> (Vorhersage außerhalb, risikobehafteter).`,
+    ex:`Ein Algorithmus für Immobilienpreise bekommt Trainingsdaten von 50.000 verkauften Wohnungen: Größe in m², Stockwerk, Baujahr, Entfernung zum Stadtzentrum, Lärmbelastung, durchschnittliches Haushaltseinkommen im Viertel – und den tatsächlichen Verkaufspreis. Das Modell lernt: Jeder zusätzliche Quadratmeter erhöht den Preis um etwa 2.800 €, aber nur wenn das Viertel bestimmte Merkmale hat; ein Aufzug im Haus steigert den Wert um ca. 4%, Lärm über 60 dB senkt ihn um 7%. Das Ergebnis: Für eine neue Wohnung mit bekannten Merkmalen schätzt das Modell den Marktwert auf den Euro genau.`,
+    al:['Linear Regression','Polynomial Regression','Ridge / Lasso Regression','XGBoost / Gradient Boosting','Neuronale Netze (Deep Regression)'],
+    ap:['Immobilien-Preisvorhersage','Energieverbrauchsprognosen (Strom, Gas)','Aktienkurs- und Umsatzprognosen','Wettertemperaturvorhersage','Schätzung von Lieferzeiten im E-Commerce'] },
+
+  unsupervised: { type:'Lernparadigma', title:'Unsupervised Learning',
+    desc:`Unsupervised Learning arbeitet vollständig <em>ohne Labels</em>. Das Modell erhält nur rohe Eingabedaten und muss selbstständig verborgene Strukturen, Muster, Gruppen oder Anomalien entdecken – ohne dass jemand vorgibt, was „richtig" oder „falsch" ist.<br><br>Das macht Unsupervised Learning besonders wertvoll in zwei Situationen: Erstens, wenn man gar nicht weiß, welche Strukturen in den Daten stecken (explorative Analyse). Zweitens, wenn das Beschriften von Daten schlicht unmöglich oder unbezahlbar wäre – z. B. bei Petabytes von Web-Traffic oder Genomdaten.<br><br>Die zwei wichtigsten Aufgabenklassen sind <strong>Clustering</strong> (ähnliche Datenpunkte gruppieren) und <strong>Dimensionality Reduction</strong> (viele Features auf wenige aussagekräftige Dimensionen verdichten). Unsupervised Learning wird auch als Vorstufe für Supervised Learning eingesetzt: Es kann automatisch nützliche Repräsentationen der Daten lernen, die dann beim Klassifizieren helfen.`,
+    ex:`Ein Streamingdienst hat 80 Millionen Nutzer, aber keine Beschriftungen, wie die Nutzungstypen aussehen. Er gibt alle Hörgewohnheiten (Tageszeit, Genres, Skips, Playlists, Hördauer) in ein Clustering-Modell. Dieses findet automatisch sieben verschiedene Hörertypen: „Büro-Hintergrundmusik-Nutzer", „Lauf-Podcast-Hörer", „Wochenend-Vinyl-Nostalgiker", „Teenager-Charts-Konsumenten" und mehr. Kein Mensch hat diese Kategorien vorher definiert. Der Dienst nutzt sie anschließend für maßgeschneiderte Empfehlungen.`,
+    al:['K-Means Clustering','DBSCAN','PCA (Principal Component Analysis)','Autoencoder','UMAP','Gaussian Mixture Models'],
+    ap:['Kundensegmentierung ohne vorherige Hypothesen','Anomalieerkennung (Netzwerkangriffe, Maschinenfehler)','Datenkompression und Vorverarbeitung','Themenmodellierung in Textkorpora','Genexpressionsmuster in der Bioinformatik'] },
+
+  clustering: { type:'Unterverfahren · Unsupervised Learning', title:'Clustering',
+    desc:`Clustering teilt eine Menge von Datenpunkten in <em>Gruppen (Cluster)</em> ein, sodass Punkte innerhalb eines Clusters möglichst ähnlich sind und Punkte aus verschiedenen Clustern möglichst unterschiedlich.<br><br><strong>K-Means</strong>: Der bekannteste Algorithmus. Man gibt die Anzahl k der gewünschten Cluster vor. Der Algorithmus platziert k zufällige Mittelpunkte (Centroids), weist jedem Datenpunkt den nächsten Centroid zu, berechnet neue Centroids als Mittelwert der zugewiesenen Punkte und wiederholt das, bis keine Änderungen mehr auftreten. Schnell, aber sensibel gegenüber Ausreißern und runder Cluster-Formen.<br><br><strong>DBSCAN</strong>: Findet Cluster beliebiger Form und markiert Ausreißer explizit als Rauschen – ideal, wenn die Cluster-Anzahl unbekannt ist und die Daten viele Anomalien enthalten.<br><br><strong>Hierarchisches Clustering</strong>: Baut einen Baum (Dendrogram) von Ähnlichkeiten auf – man kann nachträglich entscheiden, wie viele Cluster man haben möchte, ohne neu zu trainieren.`,
+    ex:`Ein Stadtplanungsamt analysiert Mobilitätsdaten von 2 Millionen Fahrten im ÖPNV. Ohne jede Vorgabe findet Clustering: Cluster 1 – kurze Pendlerfahrten 7–9 Uhr und 16–18 Uhr zwischen Wohnvierteln und Bürozentrum; Cluster 2 – lange Freizeitfahrten am Wochenende zu Parks und Einkaufszentren; Cluster 3 – Nachtfahrten zwischen Ausgehvierteln; Cluster 4 – auffällig langsame Fahrten, die auf chronische Verspätungen einer bestimmten Linie hindeuten. Das Amt nutzt die Erkenntnisse für Linienoptimierung und Taktfrequenz.`,
+    al:['K-Means','K-Medoids','DBSCAN','HDBSCAN','Agglomerative Hierarchical Clustering','Gaussian Mixture Models (GMM)'],
+    ap:['Kundensegmentierung im Marketing','Anomalieerkennung bei Netzwerkangriffen','Dokumenten- und Nachrichtengruppierung','Bildkompression (Farbreduktion)','Genexpressions-Cluster in der Krebsforschung'] },
+
+  dimreduction: { type:'Unterverfahren · Unsupervised Learning', title:'Dimensionality Reduction',
+    desc:`Viele reale Datensätze bestehen aus Hunderten oder Tausenden von Merkmalen (Dimensionen). Dimensionality Reduction komprimiert diese auf wenige <em>aussagekräftige Dimensionen</em>, ohne dabei entscheidende Informationen zu verlieren.<br><br><strong>PCA (Principal Component Analysis)</strong> ist der klassische lineare Ansatz: Es werden neue Achsen (Hauptkomponenten) gesucht, entlang derer die Datenvarianz maximal ist. Die erste Hauptkomponente erklärt die meiste Varianz, die zweite die nächstgrößte usw. Für Visualisierung wählt man die ersten 2–3 Hauptkomponenten.<br><br><strong>t-SNE und UMAP</strong> sind nicht-lineare Methoden, die besonders gut für Visualisierung hochdimensionaler Daten in 2D oder 3D geeignet sind. Sie erhalten lokale Nachbarschaften – ähnliche Punkte bleiben nah beieinander.<br><br><strong>Autoencoder</strong> sind neuronale Netze, die durch einen engen Flaschenhals (Bottleneck) gezwungen werden, kompakte Repräsentationen zu lernen – und können anschließend die Originaldaten daraus rekonstruieren.`,
+    ex:`Ein Pharmaunternehmen analysiert Genexpressionsprofile von Krebspatienten: 20.000 Gene pro Patient, 1.500 Patienten. Direkt arbeiten kann man mit 20.000 Dimensionen kaum – jede Visualisierung ist unmöglich, jedes Modell träge. PCA reduziert die 20.000 Gene auf 15 Hauptkomponenten, die zusammen 78% der Varianz erklären. Auf diesen 15 Werten kann man Patienten clustern, Überlebenszeitprognosen trainieren und auf einem 2D-Plot erkennen, dass es drei biologisch unterschiedliche Tumor-Subtypen gibt – was zu gezielteren Therapien führt.`,
+    al:['PCA (Principal Component Analysis)','t-SNE','UMAP','Autoencoder (neuronale Netze)','LDA (Linear Discriminant Analysis)','Factor Analysis'],
+    ap:['Visualisierung hochdimensionaler Genomdaten','Vorverarbeitung vor Supervised-Learning-Modellen','Bildkompression und Rauschreduktion','Gesichtserkennung (Eigenfaces)','Sprachmerkmale in der Sprachverarbeitung'] },
+
+  reinforcement: { type:'Lernparadigma', title:'Reinforcement Learning',
+    desc:`Reinforcement Learning (RL) ist grundlegend anders als alle anderen Lernparadigmen: Hier gibt es weder Labels noch vorgefertigte Daten. Ein <em>Agent</em> interagiert direkt mit einer <em>Umgebung</em>: Er wählt eine <em>Aktion</em>, die Umgebung wechselt in einen neuen <em>Zustand</em> und gibt dem Agenten ein <em>Reward-Signal</em> (positiv oder negativ). Das Ziel des Agenten ist es, eine <em>Policy</em> (Strategie) zu lernen, die den kumulierten Reward über die Zeit maximiert.<br><br>Die größte Herausforderung im RL ist das sogenannte <em>Credit-Assignment-Problem</em>: Wenn eine Aktion erst Sekunden oder Minuten später einen Reward erzeugt, ist unklar, welche der vielen Zwischenaktionen dafür verantwortlich war. Ein weiteres Problem ist das <em>Exploration-Exploitation-Dilemma</em>: Der Agent muss entscheiden, ob er bekannte gute Strategien weiter nutzt (Exploitation) oder neue, möglicherweise bessere Strategien ausprobiert (Exploration).<br><br>RL hat spektakuläre Erfolge erzielt: AlphaGo schlug den weltbesten Go-Spieler. OpenAI Five gewann gegen professionelle Dota-2-Teams. AlphaFold löste das Proteinfaltungsproblem.`,
+    ex:`DeepMinds AlphaGo wurde mit Reinforcement Learning trainiert, Go zu spielen – einem Spiel, das als zu komplex galt, um von KI je gemeistert zu werden. Das Board hat mehr mögliche Positionen als Atome im Universum, klassische Suche versagt. AlphaGo spielte Millionen von Partien gegen sich selbst: Gewinnen → positiver Reward, Verlieren → negativer Reward. Die KI entdeckte dabei Zugfolgen, die menschliche Spieler seit Jahrhunderten nie gesehen hatten – sogenannte „Creative Moves". Im März 2016 besiegte AlphaGo den 18-fachen Weltmeister Lee Sedol 4:1 – ein historischer Moment in der KI-Geschichte.`,
+    al:['Q-Learning / Deep Q-Network (DQN)','Proximal Policy Optimization (PPO)','Soft Actor-Critic (SAC)','Actor-Critic (A2C, A3C)','Monte Carlo Tree Search (MCTS)'],
+    ap:['Spielende KI (AlphaGo, AlphaStar, OpenAI Five)','Robotersteuerung und Greifaufgaben','Autonomes Fahren (Simulation)','Alignment großer Sprachmodelle (RLHF)','Optimierung von Rechenzentrum-Kühlsystemen'] },
+
+  valuebased: { type:'Unterverfahren · Reinforcement Learning', title:'Value-based (Q-Learning)',
+    desc:`Value-based Methoden lösen das RL-Problem, indem sie für jeden möglichen Zustand und jede mögliche Aktion den <em>erwarteten zukünftigen Reward (Q-Value)</em> berechnen und in einer Tabelle oder einem Modell speichern. Der Agent schaut dann bei jeder Entscheidung nach: „Welche Aktion hat in diesem Zustand den höchsten Q-Value?" und führt diese aus.<br><br><strong>Q-Learning</strong> ist der grundlegende modell-freie Algorithmus. Er aktualisiert Q-Werte nach jeder Aktion mit der sogenannten Bellman-Gleichung: Der neue Q-Wert ist der aktuelle Reward plus das diskontierte Maximum der Q-Werte im Folgezustand. Über viele Episoden konvergiert die Q-Tabelle zu optimalen Werten.<br><br><strong>Deep Q-Network (DQN)</strong> – entwickelt von DeepMind 2013 – ersetzt die Q-Tabelle (die bei großen Zustandsräumen unpraktikabel wird) durch ein neuronales Netz. DQN nutzt zwei Tricks für stabile Training: einen <em>Replay Buffer</em> (frühere Erfahrungen werden zufällig wiederholt) und ein <em>Target Network</em> (ein zweites Netz stabilisiert die Lernziele). Mit diesen Techniken lernte DQN, 49 Atari-Spiele zu spielen – besser als ein menschlicher Profi, allein aus Pixeln und dem Spielstand als Reward.`,
+    ex:`Ein autonomes Lagersystem (Roboter, der Pakete sortiert) muss lernen, welche Route von Regal A zu Regal B am schnellsten ist – ohne vorprogrammierte Karte. Die Q-Tabelle speichert für jeden Kreuzungspunkt im Lager und jede mögliche Bewegungsrichtung (links, rechts, geradeaus, warten) einen Wert. Zunächst sind alle Werte 0. Der Roboter fährt los, stößt gegen ein Regal: –10 Punkte. Er findet einen freien Weg: +1 Punkt pro Sekunde gespart. Er liefert das Paket korrekt ab: +100 Punkte. Nach 10.000 Fahrten hat die Q-Tabelle gelernt, welche Richtungen in welchen Situationen optimal sind – ohne jemals eine Karte des Lagers zu sehen.`,
+    al:['Q-Learning (tabellarisch)','Deep Q-Network (DQN)','Double DQN (verhindert Q-Wert-Überschätzung)','Dueling DQN (trennt Zustands- und Aktionswert)','Rainbow (Kombination aller DQN-Varianten)'],
+    ap:['Atari-Spiele (DQN, menschliches Niveau aus Pixeln)','Labyrinthlösung und Wegfindung','Schach und Brettspiele (diskrete Aktionsräume)','Ressourcenplanung in Rechenzentren','Netzwerk-Routing-Optimierung'] },
+
+  policybased: { type:'Unterverfahren · Reinforcement Learning', title:'Policy-based (PPO)',
+    desc:`Policy-based Methoden optimieren die <em>Strategie (Policy) direkt</em> – ohne den Umweg über Q-Werte. Die Policy ist eine Funktion, die für jeden Zustand eine Wahrscheinlichkeitsverteilung über mögliche Aktionen ausgibt. Durch Gradient Ascent wird die Policy so verändert, dass die Wahrscheinlichkeit von Aktionen steigt, die zu hohem Reward geführt haben.<br><br>Der große Vorteil: Policy-Gradienten funktionieren auch bei <em>kontinuierlichen Aktionsräumen</em> – z. B. wenn ein Roboterarm einen Winkel zwischen 0° und 360° in beliebiger Präzision einstellen muss. Value-based Methoden versagen hier, weil man unmöglich alle kontinuierlichen Werte in eine Tabelle eintragen kann.<br><br><strong>PPO (Proximal Policy Optimization)</strong>, entwickelt von OpenAI, ist aktuell der bevorzugte Algorithmus. Es löst ein fundamentales Problem der frühen Policy-Gradienten: Zu große Updates destabilisieren das Training komplett. PPO erzwingt, dass jede Parameteränderung den Reward nicht allzu stark verändert – durch ein „Clipping" der Update-Größe. Das Ergebnis: stabiles, effizientes Training auch in komplexen Umgebungen. PPO wurde verwendet, um Dota 2 auf Weltklasse-Niveau zu trainieren.`,
+    ex:`OpenAIs System „OpenAI Five" spielte Dota 2 – ein Team-Strategiespiel mit fünf Charakteren pro Seite, Tausenden möglicher Aktionen pro Sekunde und Spielen, die 45 Minuten dauern können. Das Training lief 180 Tage lang, wobei das System täglich die Erfahrung von 180 Jahren menschlichen Spiels sammelte. PPO sorgte dafür, dass die Policy stabil lernte, ohne nach einem schlechten Update alles vergessen zu haben. Im April 2019 besiegte OpenAI Five das aktuelle Weltmeister-Team OG in einem öffentlichen Showmatch 2:0 – und führte dabei Strategien aus, die menschliche Spieler als „irrational kreativ" bezeichneten.`,
+    al:['REINFORCE (einfachster Policy-Gradient)','Trust Region Policy Optimization (TRPO)','Proximal Policy Optimization (PPO)','Group Relative Policy Optimization (GRPO)','Soft Actor-Critic (SAC, kombiniert Policy + Value)'],
+    ap:['Dota 2 / StarCraft II auf Profiniveau','Roboter-Feinmotorik (Schrauben drehen, Nähen)','Helikopter-Akrobatik in der Simulation','LLM-Alignment via RLHF (PPO für GPT, Claude)','Optimierung chemischer Synthesepfade'] },
+
+  actorcritic: { type:'Unterverfahren · Reinforcement Learning', title:'Actor-Critic',
+    desc:`Actor-Critic-Methoden kombinieren das Beste aus Value-based und Policy-based zu einem einzigen System – und lösen damit Schwächen beider Ansätze.<br><br>Das System besteht aus zwei Komponenten: Der <strong>Actor</strong> repräsentiert die Policy – er entscheidet, welche Aktion in einem gegebenen Zustand ausgeführt wird. Der <strong>Critic</strong> schätzt den Wert des aktuellen Zustands (State Value V(s)) oder den Q-Wert einer Aktion und gibt dem Actor unmittelbares Feedback, ohne auf das Ende einer Episode warten zu müssen.<br><br>Das entscheidende Konzept ist der <em>Advantage</em>: Statt dem rohen Reward bewertet der Critic, ob eine Aktion <em>besser oder schlechter als erwartet</em> war (Advantage = Q(s,a) − V(s)). Das reduziert die Varianz im Training drastisch und macht Actor-Critic effizienter als reine Policy-Gradienten.<br><br><strong>SAC (Soft Actor-Critic)</strong> fügt einen Entropie-Term hinzu, der den Agenten belohnt, möglichst vielfältige Aktionen zu explorieren – das macht SAC besonders robust und stabil für Robotikaufgaben.`,
+    ex:`Ein Roboterarm in einer Montagelinie soll Schrauben in Gewinde eindrehen – eine Aufgabe, die präzise Kraftdosierung, Winkelkontrolle und Taktile-Feedback-Verarbeitung erfordert. Reines Q-Learning scheitert, weil der Aktionsraum kontinuierlich ist. Reines Policy-Gradient-Training ist instabil. Mit SAC (Soft Actor-Critic): Der Actor lernt, bei jedem Schritt den Drehmoment und Winkel anzupassen. Der Critic bewertet sofort nach jeder Millisekunde, ob die Kraftdosierung sinnvoll war. Die Entropie-Belohnung sorgt dafür, dass der Agent auch unbekannte Schraubentypen exploriert. Nach 4 Stunden Simulationstraining dreht der reale Roboter 98,7% der Schrauben korrekt ein – ohne je einen menschlichen Beispiel-Bewegungsablauf gesehen zu haben.`,
+    al:['Advantage Actor-Critic (A2C)','Asynchronous Advantage Actor-Critic (A3C)','Soft Actor-Critic (SAC)','Twin Delayed DDPG (TD3)','PPO (enthält Actor-Critic-Elemente)'],
+    ap:['Roboterarm-Feinmotorik (Greifen, Schrauben, Löten)','Kontinuierliche Steuerungsaufgaben (Drohnen, Fahrzeuge)','Optimierung von Energienetzen','Autonomes Fahren in der Simulation','Komplexe Echtzeit-Strategiespiele'] },
+
+  rlhf: { type:'Unterverfahren · Reinforcement Learning', title:'RLHF',
+    desc:`<strong>Reinforcement Learning from Human Feedback (RLHF)</strong> ist das Verfahren, das aus leistungsfähigen Sprachmodellen wie GPT-4, Claude oder Gemini nützliche, sichere Assistenten macht. Es löst ein fundamentales Problem: Wie sagt man einem KI-Modell, was eine „gute" Antwort ist?<br><br>Eine feste Belohnungsfunktion zu schreiben ist unmöglich – Qualität ist zu nuanciert, zu kontextabhängig, zu menschlich. RLHF löst das in drei Schritten:<br><br><strong>Schritt 1 – Supervised Fine-Tuning:</strong> Das Basismodell wird zunächst auf menschlich geschriebenen Beispiel-Antworten feinjustiert, um ein grundlegendes Instruktionsverständnis zu entwickeln.<br><br><strong>Schritt 2 – Reward-Modell trainieren:</strong> Menschen bewerten Paare von Modellantworten (A vs. B: Welche ist besser?). Ein separates Reward-Modell lernt, menschliche Präferenzen vorherzusagen – es wird zur Formalisierung menschlicher Qualitätsurteile.<br><br><strong>Schritt 3 – RL-Optimierung:</strong> Das Sprachmodell wird mit PPO so trainiert, dass es auf dem Reward-Modell hohe Werte erzielt. Millionen solcher Iterationen formen ein Modell, das hilfreich, harmlos und ehrlich antwortet (Anthropics „Helpful, Harmless, Honest"-Prinzip).`,
+    ex:`Stell dir vor, du trainierst einen Sprachassistenten für medizinische Fragen. Nach dem Pretraining auf Milliarden Texten ist das Modell zwar faktisch kompetent, aber unhöflich, überkonfident und gibt manchmal gefährlichen Rat. Im RLHF-Schritt bewerten Ärzte Paare von Antworten: Version A erklärt Risiken klar und empfiehlt den Arztbesuch, Version B ist präziser, aber verwirrend formuliert – Ärzte wählen A. Das Reward-Modell lernt: verständliche Sprache + Risikotransparenz + konservative Empfehlungen = hoher Reward. Nach PPO-Training antwortet das Modell präzise, verständlich und rät in Zweifelsfällen immer zum Arzt – ohne dass ein Mensch Millionen von Antworten manuell korrigiert hat.`,
+    al:['PPO (Proximal Policy Optimization für LLMs)','Direct Preference Optimization (DPO, effizienter als PPO)','Constitutional AI (Anthropics Ansatz)','Reinforcement Learning from AI Feedback (RLAIF)','KTO (Kahneman-Tversky Optimization)'],
+    ap:['ChatGPT / GPT-4 (OpenAI)','Claude (Anthropic)','Gemini (Google DeepMind)','Llama-Instruct-Varianten (Meta)','Medizinische und rechtliche KI-Assistenten'] },
+
+  selfsupervised: { type:'Lernparadigma', title:'Self-Supervised Learning',
+    desc:`Self-Supervised Learning ist ein eleganter Trick, der die Abhängigkeit von menschlichen Labels fast vollständig aufhebt: Das Modell <em>erzeugt sein eigenes Lernsignal</em> aus den Rohdaten, indem es Teile der Eingabe versteckt und lernt, sie vorherzusagen.<br><br>Das Schlüsselkonzept heißt <em>Pretext Task</em>: eine selbst erzeugte Trainingsaufgabe, deren Lösung das Modell zwingt, tiefes Verständnis von Struktur und Bedeutung zu entwickeln. Beispiele: bei Text ein zufälliges Wort maskieren und vorhersagen (BERT); bei Bildern einen Ausschnitt verstecken und rekonstruieren (Masked Autoencoder); die nächste Token-Sequenz vorhersagen (GPT).<br><br>Der entscheidende Vorteil: Man kann <em>beliebig große Datenmengen</em> nutzen, ohne einen einzigen Menschen für Labeling zu bezahlen. Das Internet, alle Bücher der Welt, alle Bilder – alles wird direkt zum Trainingsmaterial. Das ist der Grund, warum moderne Foundation Models wie GPT-4, LLaMA 3 oder Claude auf Billionen von Token trainiert wurden.<br><br>Self-Supervised Learning erzeugt sogenannte <em>Repräsentationen</em> – kompakte Vektoren, die die Bedeutung eines Textes, Bildes oder Audioclips kodieren. Diese Repräsentationen können dann für viele nachgelagerte Aufgaben genutzt werden.`,
+    ex:`Das Modell BERT (von Google, 2018) wurde auf 3,3 Milliarden Wörtern aus Wikipedia und Büchern trainiert – ausschließlich durch Self-Supervised Learning. Die Trainingsaufgabe: 15% aller Wörter werden zufällig durch [MASK] ersetzt, das Modell muss die Originale vorhersagen. „Der Hund [MASK] laut auf der Straße." – Antwort: „bellt". Durch Milliarden solcher Aufgaben lernt BERT, was Wörter bedeuten, wie Sätze grammatikalisch strukturiert sind, welche Wörter in welchen Kontexten vorkommen und sogar einfache Schlussfolgerungen zu ziehen – ohne je eine einzige menschliche Annotation gesehen zu haben. Nach diesem Pretraining kann BERT durch Fine-Tuning auf winzige Mengen beschrifteter Daten State-of-the-Art-Ergebnisse in Dutzenden von NLP-Aufgaben erzielen.`,
+    al:['Masked Language Modeling (BERT, RoBERTa)','Next-Token-Prediction (GPT-Familie)','Masked Autoencoder (MAE, für Bilder)','Contrastive Self-Supervised Learning (SimCLR, CLIP)','DINO / DINOv2 (Vision Transformers)'],
+    ap:['Pretraining aller modernen LLMs (GPT-4, Claude, Gemini, LLaMA)','Bildverständnis ohne Annotationen (ViT, DINOv2)','Spracherkennung (Wav2Vec 2.0)','Code-Generierung (Codex, GitHub Copilot)','Protein-Struktur-Vorhersage (ESMFold)'] },
+
+  contrastive: { type:'Unterverfahren · Self-Supervised Learning', title:'Contrastive Learning',
+    desc:`Contrastive Learning ist ein spezifischer Ansatz innerhalb des Self-Supervised Learning, der auf einem einfachen, aber mächtigen Prinzip basiert: Das Modell soll lernen, <em>ähnliche Dinge nah beieinander und unähnliche weit voneinander entfernt</em> in einem hochdimensionalen Repräsentationsraum zu platzieren.<br><br>Dazu braucht man <em>Positive Paare</em> (zwei Darstellungen derselben Sache: dasselbe Bild mit leicht unterschiedlicher Zuschneidung, Helligkeit oder Rotation; oder ein Bild zusammen mit seiner Textbeschreibung) und <em>Negative Paare</em> (Darstellungen verschiedener Dinge). Der Verlust (Contrastive Loss) zieht positive Paare zusammen und stößt negative auseinander.<br><br><strong>CLIP (Contrastive Language-Image Pretraining)</strong> von OpenAI trainiert auf 400 Millionen Bild-Text-Paaren aus dem Internet. Es lernt, Bilder und ihre Textbeschreibungen in denselben Repräsentationsraum zu projizieren. Das Resultat ist bemerkenswert: CLIP kann neue Bilder klassifizieren, indem es nur Textbeschreibungen der Kategorien bekommt – ohne je ein beschriftetes Beispiel gesehen zu haben (Zero-Shot-Klassifikation). CLIP ist die Grundlage für Bildgeneratoren wie DALL-E und Stable Diffusion.`,
+    ex:`Stell dir einen Antiquitätenhändler vor, der eine riesige Datenbank von Möbelfotos ohne Beschriftungen hat. Contrastive Learning trainiert auf Paaren: Zwei Fotos desselben Stuhls aus verschiedenen Winkeln sind ein positives Paar – ihre Repräsentationen werden zusammengezogen. Ein Stuhl und ein Schrank sind ein negatives Paar – ihre Repräsentationen werden auseinandergedrückt. Nach dem Training hat das Modell einen Repräsentationsraum, in dem alle Stühle nah beieinanderliegen, alle Schränke in einer anderen Region, Lampen in einer weiteren. Der Händler kann jetzt ein neues unbekanntes Möbelstück fotografieren und sofort die ähnlichsten Stücke in der Datenbank finden – ohne je ein Möbelstück manuell beschriftet zu haben.`,
+    al:['SimCLR (Simple Contrastive Learning, Google)','MoCo (Momentum Contrast, Meta)','CLIP (Contrastive Language-Image Pretraining, OpenAI)','DINO / DINOv2 (Self-Distillation, Meta)','BYOL (Bootstrap Your Own Latent, kein negativer Paare nötig)'],
+    ap:['Zero-Shot-Bildklassifikation (CLIP)','Grundlage für Bildgeneratoren (DALL-E, Stable Diffusion)','Visuelle Ähnlichkeitssuche in E-Commerce','Bild-Text-Alignierung für multimodale Modelle','Medizinische Bildgebung ohne Annotationen'] },
+
+  semisupervised: { type:'Lernparadigma', title:'Semi-Supervised Learning',
+    desc:`Semi-Supervised Learning adressiert ein sehr praktisches Problem: Beschriftete Daten sind teuer und selten, unbeschriftete Daten sind billig und massenhaft vorhanden. Das Paradigma kombiniert eine <em>kleine Menge beschrifteter Daten</em> mit einer <em>großen Menge unbeschrifteter Daten</em>, um bessere Modelle zu trainieren, als es mit den beschrifteten Daten allein möglich wäre.<br><br>Die Grundannahme ist die sogenannte <em>Semi-Supervised Smoothness Assumption</em>: Datenpunkte, die im Eingaberaum nah beieinanderliegen, teilen wahrscheinlich dasselbe Label. Das Modell nutzt die unlabelierten Daten, um die Struktur des Datensatzes zu verstehen – und diese Strukturkenntnis verbessert die Generalisierung für die gelabelten Klassen.<br><br>Ein wichtiger Ansatz ist <strong>Pseudo-Labeling</strong>: Das Modell wird zunächst auf den wenigen gelabelten Daten trainiert, macht dann Vorhersagen für die unlabelierten Daten und nutzt die zuversichtlichen Vorhersagen als neue „Pseudo-Labels" für weiteres Training. <strong>Consistency Regularization</strong> (z. B. FixMatch) erzwingt, dass das Modell für leicht veränderte Versionen desselben unlabelierten Bildes dieselbe Vorhersage macht.`,
+    ex:`Ein Pathologielabor möchte eine KI für die Diagnose von Lungenkrebs-Biopsien entwickeln. Das Problem: Jede Biopsie muss von einem erfahrenen Pathologen beschriftet werden – ein zeitaufwändiger, teurer Prozess. Das Labor hat 800 beschriftete Biopsien (krebsig / nicht krebsig) und 50.000 unbeschriftete. Mit reinem Supervised Learning auf den 800 Beispielen erreicht das Modell 74% Genauigkeit – zu wenig für klinischen Einsatz. Mit Semi-Supervised Learning: Das Modell lernt zunächst die 800 Labels, dann nutzt es die 50.000 unbeschrifteten Bilder, um die visuelle Struktur von Lungenzellen zu verstehen – welche Muster in gesundem und krankem Gewebe typisch vorkommen. Ergebnis: 89% Genauigkeit, ohne einen einzigen zusätzlichen Pathologen einzusetzen.`,
+    al:['Self-Training / Pseudo-Labeling','FixMatch (Consistency Regularization)','Mean Teacher (exponential moving average)','Label Propagation (Graph-basiert)','MixMatch und ReMixMatch'],
+    ap:['Medizinische Bildanalyse (Krebs, Radiologie)','Web-Content-Klassifikation mit wenigen Labels','Spracherkennung in Sprachen mit wenig Trainingsdaten','Qualitätssicherung in der Fertigung','Sentiment-Analyse in neuen Domänen'] },
+
+  transfer: { type:'Lernparadigma', title:'Transfer Learning',
+    desc:`Transfer Learning basiert auf der Erkenntnis, dass Wissen, das ein Modell für eine Aufgabe gelernt hat, oft auch für andere Aufgaben nützlich ist. Statt jedes Modell von Grund auf neu zu trainieren, nimmt man ein <em>vortrainiertes Modell</em> (Foundation Model) und passt es an die spezifische Zielaufgabe an.<br><br>Das Vorgehen hat zwei Phasen: <strong>Pretraining</strong> auf riesigen, generischen Datensätzen (Millionen Bilder, Billionen Wörter) gibt dem Modell ein breites Weltverständnis – es lernt allgemeine Muster wie Kanten in Bildern oder Grammatik in Texten. <strong>Fine-Tuning</strong> auf einem kleineren, domänenspezifischen Datensatz spezialisiert das Modell auf die konkrete Aufgabe.<br><br>Moderne Varianten wie <strong>LoRA (Low-Rank Adaptation)</strong> machen Fine-Tuning extrem effizient: Statt alle Milliarden Parameter des Modells zu aktualisieren, werden nur wenige zusätzliche Adapter-Schichten trainiert – das reduziert den Rechenaufwand um den Faktor 1.000, bei vergleichbarer Qualität. Das ermöglicht es auch kleinen Teams, leistungsfähige, domänenspezifische Modelle ohne riesige GPU-Cluster zu erstellen.`,
+    ex:`Ein mittelständisches Pharmaunternehmen möchte eine KI entwickeln, die aus Patientenakten automatisch Nebenwirkungen extrahiert. Das Problem: Sie haben 3.000 annotierte Sätze aus Patientenakten – viel zu wenig, um ein gutes NLP-Modell von Grund auf zu trainieren. Mit Transfer Learning: Sie nehmen LLaMA 3 (70 Milliarden Parameter, vortrainiert auf Billionen von Wörtern inklusive medizinischer Literatur) und fine-tunen es mit LoRA auf ihre 3.000 Beispiele. LoRA fügt nur 0,1% der Gesamtparameter hinzu, die trainiert werden. Das Ergebnis: Ein Modell, das medizinische Fachsprache perfekt versteht, Nebenwirkungen mit 93% F1-Score extrahiert und auf einem einzelnen Laptop in einer Woche trainiert werden kann. Ohne Transfer Learning wären Monate, Millionen von Trainingsbeispielen und ein Supercomputer-Cluster nötig.`,
+    al:['Feature Extraction (Einfrieren der vortrainierten Schichten)','Full Fine-Tuning (alle Parameter aktualisieren)','LoRA (Low-Rank Adaptation, effizientes Fine-Tuning)','Adapter-Layers (kleine einsteckbare Module)','Prompt Tuning und Prefix Tuning'],
+    ap:['Domänenspezifische LLMs (Medizin, Recht, Finanzen)','Bildklassifikation mit wenigen Daten (Few-Shot)','Mehrsprachige Modelle aus englischen Basismodellen','Code-Assistenten (GitHub Copilot auf Codex-Basis)','Sentimentanalyse in spezifischen Branchen'] },
+
+  recursive: { type:'Lernparadigma · Iterative Self-Training', title:'Recursive Learning',
+    desc:`<strong>Begriffliche Einordnung:</strong> „Recursive Learning" ist kein allgemein etablierter Standardbegriff in der ML-Forschung. Das dahinterstehende Konzept wird in der Literatur als <em>Iterative Self-Training</em>, <em>Recursive Self-Improvement (RSI)</em> oder <em>Self-Rewarding Language Models</em> bezeichnet. Der Begriff wird hier als anschaulicher Oberbegriff verwendet.<br><br>Das Grundprinzip: Ein Modell generiert eigene Ausgaben, bewertet diese selbst (oder lässt sie von einem anderen Modell bewerten) und trainiert auf den besten Ausgaben erneut – in iterativen Schleifen. Jede Iteration verbessert den Ausgangspunkt für die nächste. Das Ziel ist kontinuierliche Selbstverbesserung ohne neue menschliche Daten.<br><br>Die technische Umsetzung variiert: <strong>STaR (Self-Taught Reasoner)</strong> lässt das Modell Zwischenschritte beim Lösen von Aufgaben generieren, behält nur die, die zum richtigen Ergebnis führen, und trainiert darauf. <strong>Self-Rewarding Language Models</strong> (Meta, 2024) erzeugen und bewerten gleichzeitig eigene Antworten in einer einzigen Trainingsschleife.<br><br><strong>Kritisches Risiko – Recursive Drift:</strong> Ohne externe Verifikation (z. B. symbolische Prüfung der Ausgaben, menschliche Kontrolle) können sich Fehler über Iterationen akkumulieren. Das Modell kann sich in eine lokale Qualitätsnische optimieren, die aus menschlicher Sicht suboptimal ist – ein Phänomen, das auch als „Model Collapse" bekannt ist.`,
+    ex:`OpenAIs o1- und o3-Modelle nutzen Varianten von Recursive Learning für mathematisches Schlussfolgern: Das Modell generiert Beweisversuche für mathematische Probleme. Korrekte Beweise werden durch automatische Verifikation (Computer-Algebra-Systeme prüfen das Ergebnis) bestätigt. Diese verifizierten Beispiele werden als neue Trainingsdaten verwendet. In der nächsten Iteration ist das Modell besser im Lösen schwerer Probleme, generiert qualitativ hochwertigere Beweisversuche, und der Zyklus beginnt von vorn. Mit diesem Verfahren erreichte o3 auf dem schwierigen Mathematik-Benchmark ARC-AGI Werte, die menschliche Experten übertrafen – ein Ergebnis, das ohne Recursive Self-Improvement nicht möglich gewesen wäre.`,
+    al:['STaR (Self-Taught Reasoner, Stanford/Google)','Self-Rewarding Language Models (Meta, 2024)','STOP (Self-Taught Optimiser, Meta AI)','AlphaEvolve (Google DeepMind, 2025)','RISE (Recursive Introspection for LLMs)'],
+    ap:['Mathematisches Schlussfolgern (o1, o3)','Automatische Code-Generierung und Selbstkorrektur','Wissenschaftliche Hypothesenentwicklung (AlphaEvolve)','LLM-Selbstverbesserung ohne menschliche Annotationen','KI-Sicherheitsforschung (Verhalten bei RSI)'] }
+};
+
+/* ── panel rendering ── */
+function buildHTML(d) {
+  let h = `<div class="sec-head">Beschreibung</div><div class="p-desc">${d.desc}</div>`;
+  h += `<div class="sec-head">Alltagsbeispiel</div><div class="p-example"><p>${d.ex}</p></div>`;
+  if (d.al && d.al.length) {
+    h += `<div class="sec-head">Algorithmen &amp; Varianten</div><div class="p-tags">`;
+    d.al.forEach(a => h += `<span class="p-tag">${a}</span>`);
+    h += `</div>`;
+  }
+  if (d.ap && d.ap.length) {
+    h += `<div class="sec-head">Anwendungen</div><div class="p-apps">`;
+    d.ap.forEach(a => h += `<div class="p-app">${a}</div>`);
+    h += `</div>`;
+  }
+  return h;
+}
+
+function isMobile() { return window.innerWidth < 640; }
+
+function show(id) {
+  const d = D[id]; if (!d) return;
+  const html = buildHTML(d);
+  if (isMobile()) {
+    document.getElementById('bs-type').textContent  = d.type;
+    document.getElementById('bs-title').textContent = d.title;
+    const b = document.getElementById('bs-body');
+    b.innerHTML = html; b.scrollTop = 0;
+    document.getElementById('bottom-sheet').classList.add('open');
+  } else {
+    document.getElementById('sp-type').textContent  = d.type;
+    document.getElementById('sp-title').textContent = d.title;
+    const b = document.getElementById('sp-body');
+    b.innerHTML = html; b.scrollTop = 0;
+    document.getElementById('side-panel').classList.add('open');
+  }
+  document.getElementById('overlay').classList.add('on');
+}
+
+function closeAll() {
+  document.getElementById('side-panel').classList.remove('open');
+  document.getElementById('bottom-sheet').classList.remove('open');
+  document.getElementById('overlay').classList.remove('on');
+}
+
+function toggleAcc(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+/* keyboard nav */
+document.querySelectorAll('[tabindex="0"]').forEach(el => {
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+});
+
+/* swipe down to close bottom sheet */
+let tsY = 0;
+const bs = document.getElementById('bottom-sheet');
+bs.addEventListener('touchstart', e => { tsY = e.touches[0].clientY; }, { passive: true });
+bs.addEventListener('touchmove',  e => { if (e.touches[0].clientY - tsY > 72) closeAll(); }, { passive: true });
+
+document.getElementById('overlay').addEventListener('click', closeAll);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+</script>
+</body>
+</html>
+</div>

@@ -1,0 +1,22 @@
+{
+  "name": "Veiko von Eckern",
+  "domain": "https://veikovoneckern.org",
+  "mail": "info@veikovoneckern.org",
+  "navigation": [
+    { "text": "Home", "href": "/" },
+    { "text": "Künstliche Intelligenz", "href": "/ki-ani-agi-asi/", "unter": [
+      { "text": "ANI AGI ASI", "href": "/ki-ani-agi-asi/ani-agi-asi" },
+      { "text": "Zentrale Fragen", "href": "/ki-ani-agi-asi/zentrale-fragen-interaktiv" },
+      { "text": "KI Lernverfahren", "href": "/ki-ani-agi-asi/ki-lernverfahren" },
+      { "text": "Personen hinter der KI", "href": "/ki-ani-agi-asi/personen-hinter-der-ki" },
+      { "text": "Alignment", "href": "/ki-ani-agi-asi/alignment" }
+    ]},
+    { "text": "HR Professionals", "href": "/hr-professionals/", "unter": [
+      { "text": "Kompetenzmodell", "href": "/hr-professionals/kompmodel" },
+      { "text": "SF-JobProfile-Builder", "href": "/hr-professionals/sfjobprofilebuiler" }
+    ]},
+    { "text": "Performance", "href": "/boostyourperformance" },
+    { "text": "Inspiration", "href": "/inspiration-blog/" },
+    { "text": "Kontakt", "href": "/contact" }
+  ]
+}

@@ -1,0 +1,632 @@
+<!--seite
+{
+  "titel": "SF-JobProfile-Build",
+  "beschreibung": ""
+}
+-->
+
+<section class="band" style="background-image:url('/bilder/unsplash-rf1goyjuxby.jpg')">
+  <div class="band-innen">
+    <h1>JobProfileBuilder for SF</h1>
+  </div>
+</section>
+
+<div class="baustein">
+
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job-Profil-Builder · Kompetenzmodell 2026 → SAP SuccessFactors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c1620;--body:#5c6770;--line:#e7eaed;--bg:#fff;--bg-2:#f4f6f8;--slate:#0a1622;
+    --blue:#1a8fe3;--blue-g:#3fb0ff;--teal:#10c2c9;--teal-g:#46e3e8;--gold:#e8932a;--gold-g:#ffb347;--viol:#7c5cff;--viol-g:#a48bff;
+    --ok:#1ca672;--ease:cubic-bezier(.2,.7,.2,1);--maxw:1240px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hanken Grotesk",sans-serif;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;line-height:1.55}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  header{position:sticky;top:0;z-index:50;height:60px;display:flex;align-items:center;
+    background:linear-gradient(120deg,#06101a,#0b1d2e 55%,#0a1622);border-bottom:1px solid rgba(255,255,255,.06)}
+  header::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 200% at 82% -40%,rgba(26,143,227,.25),transparent 60%)}
+  .hbar{display:flex;align-items:center;justify-content:space-between;width:100%;position:relative;z-index:2}
+  .logo{display:flex;align-items:center;gap:10px;min-width:0}
+  .logo .mark{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto;
+    background:conic-gradient(from 200deg,var(--blue),var(--teal),var(--viol),var(--blue));box-shadow:0 0 18px rgba(63,176,255,.45)}
+  .logo .mark svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+  .logo b{font-family:"Schibsted Grotesk";font-weight:800;color:#fff;font-size:15px;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .logo b small{font-weight:500;opacity:.6;font-size:11.5px;letter-spacing:.1em;margin-left:2px}
+  .htools{display:flex;gap:9px;align-items:center;flex:0 0 auto}
+  .hbtn{background:rgba(255,255,255,.08);color:#dce8f1;border:1px solid rgba(255,255,255,.14);border-radius:22px;
+    padding:7px 14px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:7px;white-space:nowrap}
+  .hbtn:hover{background:rgba(255,255,255,.16);color:#fff}
+  .hbtn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+  .hbtn.prim{background:linear-gradient(100deg,var(--blue),var(--teal));border-color:transparent;color:#fff;box-shadow:0 5px 16px rgba(20,143,227,.4)}
+  .hbtn.mercer{background:linear-gradient(100deg,var(--viol),var(--gold));border-color:transparent;color:#fff}
+  @media(max-width:720px){.hbtn .lbl{display:none}.hbtn{padding:8px}}
+
+  .intro{padding:28px 0 8px}
+  .intro h1{font-family:"Schibsted Grotesk";font-weight:700;font-size:clamp(1.5rem,3vw,2.1rem);letter-spacing:-.015em;line-height:1.1}
+  .intro p{color:var(--body);max-width:76ch;margin-top:8px;font-size:15px}
+  .steps3{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+  .s3{display:flex;align-items:center;gap:9px;background:var(--bg-2);border:1px solid var(--line);border-radius:30px;padding:7px 14px;font-size:13px;font-weight:600;color:var(--body)}
+  .s3 .n{width:20px;height:20px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:11px;font-family:"Schibsted Grotesk";font-weight:800}
+
+  .app{display:grid;grid-template-columns:280px 1fr 360px;gap:18px;padding:22px 0 60px;align-items:start}
+  @media(max-width:1100px){.app{grid-template-columns:1fr}}
+  .col{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .colhead{padding:15px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:var(--bg-2)}
+  .colhead h2{font-family:"Schibsted Grotesk";font-weight:700;font-size:14px;letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+  .colhead h2 svg{width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:2}
+  .mini{background:var(--ink);color:#fff;border:0;border-radius:20px;padding:6px 12px;font-family:inherit;font-weight:600;font-size:12px;cursor:pointer;transition:.2s;display:flex;align-items:center;gap:6px}
+  .mini:hover{background:var(--blue)}
+  .mini svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2.4}
+
+  .joblist{max-height:600px;overflow-y:auto}
+  .job{padding:13px 16px 13px 16px;border-bottom:1px solid var(--line);cursor:pointer;transition:.18s;position:relative}
+  .job:hover{background:var(--bg-2)}
+  .job.on{background:linear-gradient(90deg,rgba(26,143,227,.09),transparent)}
+  .job.on::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--blue),var(--teal))}
+  .job .jtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+  .job .jr{font-weight:700;font-size:14.5px;line-height:1.25}
+  .job .jf{font-size:12px;color:var(--body);margin-top:2px}
+  .job .jdel{background:none;border:0;cursor:pointer;color:#c2ccd4;font-size:16px;line-height:1;padding:0 2px;flex:0 0 auto;transition:.2s}
+  .job .jdel:hover{color:#e2574c}
+  .job .jmeta{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .tagpill{font-size:11px;font-weight:600;padding:3px 9px;border-radius:14px;background:var(--bg-2);border:1px solid var(--line);color:var(--body)}
+  .tagpill.cmp{background:rgba(26,143,227,.1);border-color:transparent;color:var(--blue)}
+  .tagpill.str{background:rgba(124,92,255,.1);border-color:transparent;color:var(--viol)}
+  .empty{padding:26px 18px;color:var(--body);font-size:13.5px;text-align:center}
+
+  .ctr-head{padding:18px 20px;border-bottom:1px solid var(--line)}
+  .ctr-head .lab{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .editrow{display:grid;grid-template-columns:1fr 1fr 120px;gap:10px;margin-top:10px}
+  @media(max-width:560px){.editrow{grid-template-columns:1fr}}
+  .fld label{display:block;font-size:11px;font-weight:600;color:var(--body);margin-bottom:4px;letter-spacing:.02em}
+  .fld input,.fld textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-family:inherit;font-size:14px;color:var(--ink);outline:none;transition:.2s;resize:vertical}
+  .fld input:focus,.fld textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(26,143,227,.13)}
+
+  .mercerbox{margin-top:12px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .mercerbox summary{list-style:none;cursor:pointer;padding:11px 14px;background:linear-gradient(90deg,rgba(124,92,255,.07),transparent);
+    font-family:"Schibsted Grotesk";font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;color:var(--ink)}
+  .mercerbox summary::-webkit-details-marker{display:none}
+  .mercerbox summary .chev{margin-left:auto;transition:.2s;color:var(--body)}
+  .mercerbox[open] summary .chev{transform:rotate(90deg)}
+  .mercerbox summary .badge{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--viol);background:rgba(124,92,255,.12);padding:2px 8px;border-radius:12px}
+  .mercer-in{padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:560px){.mercer-in{grid-template-columns:1fr}}
+  .mercer-in .full{grid-column:1/-1}
+
+  .picker{padding:16px 20px;border-bottom:1px solid var(--line);border-top:1px solid var(--line)}
+  .pickrow{display:flex;gap:10px;align-items:center}
+  .pickrow select{flex:1;border:1px solid var(--line);border-radius:9px;padding:9px 11px;font-family:inherit;font-size:13.5px;background:#fff;color:var(--ink);outline:none}
+  .pickrow select:focus{border-color:var(--blue)}
+  .addbtn{background:linear-gradient(100deg,var(--blue),var(--teal));color:#fff;border:0;border-radius:9px;padding:9px 16px;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;transition:.2s}
+  .addbtn:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(20,143,227,.35)}
+  .addbtn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+
+  .items{padding:6px 20px 20px}
+  .item{border:1px solid var(--line);border-radius:12px;margin-top:12px;overflow:hidden}
+  .item .ih{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg-2)}
+  .item .dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
+  .c0d{background:var(--blue)}.c1d{background:var(--gold)}.c2d{background:var(--teal)}.c3d{background:var(--viol)}
+  .item .nm{font-weight:700;font-size:14px;flex:1;line-height:1.25}
+  .item .code{font-family:"Schibsted Grotesk";font-size:11px;font-weight:700;color:var(--body);background:#fff;border:1px solid var(--line);border-radius:6px;padding:2px 7px}
+  .item .rm{background:none;border:0;cursor:pointer;color:#b0bcc6;font-size:18px;line-height:1;padding:2px 4px;transition:.2s}
+  .item .rm:hover{color:#e2574c}
+  .lvlpick{padding:13px 14px}
+  .lvlpick .ll{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;gap:8px}
+  .lvlpick .ll .t{font-size:12px;font-weight:600;color:var(--body)}
+  .lvlpick .ll .b{font-family:"Schibsted Grotesk";font-weight:800;font-size:12.5px;color:var(--blue);background:rgba(26,143,227,.1);padding:3px 11px;border-radius:16px;text-align:right}
+  .segs{display:flex;gap:4px}
+  .segs button{flex:1;height:30px;border:1px solid var(--line);background:#fff;border-radius:7px;cursor:pointer;font-family:"Schibsted Grotesk";font-weight:700;font-size:12px;color:var(--body);transition:.15s}
+  .segs button:hover{border-color:var(--blue);color:var(--blue)}
+  .segs button.on{background:linear-gradient(120deg,var(--blue),var(--teal));border-color:transparent;color:#fff;box-shadow:0 4px 10px rgba(20,143,227,.3)}
+  .anchor{margin-top:11px;font-size:13.5px;line-height:1.55;color:var(--ink);border-left:3px solid var(--blue);padding:10px 13px;border-radius:0 8px 8px 0;background:linear-gradient(90deg,rgba(26,143,227,.05),transparent)}
+  .anchor .al{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:4px}
+
+  .pv{padding:18px 20px}
+  .pv h3{font-family:"Schibsted Grotesk";font-weight:700;font-size:16px}
+  .pv .sub{color:var(--body);font-size:12.5px;margin-top:2px}
+  .pvjob{margin-top:14px;border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--bg-2)}
+  .pvjob .role{font-family:"Schibsted Grotesk";font-weight:800;font-size:15px}
+  .pvjob .fam{font-size:12.5px;color:var(--body);margin-top:2px}
+  .pvjob .strrow{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .pvjob .purpose{font-size:12.5px;color:var(--ink);margin-top:10px;line-height:1.5;border-top:1px dashed var(--line);padding-top:9px}
+  .pvjob .resp{font-size:12px;color:var(--body);margin-top:8px}
+  .pvjob .resp li{margin-left:16px}
+  .pvsep{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--body);margin-top:11px;border-top:1px dashed var(--line);padding-top:9px}
+  .pvrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-top:1px dashed var(--line);font-size:13px}
+  .pvrow .pn{font-weight:600}
+  .pvrow .pc{font-family:"Schibsted Grotesk";font-size:10.5px;color:var(--body)}
+  .pvrow .pl{font-family:"Schibsted Grotesk";font-weight:800;color:var(--blue);white-space:nowrap}
+  .expbox{margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+  .expbox h4{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--body);margin-bottom:10px}
+  .expbtn{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:11px;padding:12px 14px;cursor:pointer;margin-bottom:9px;transition:.2s;font-family:inherit}
+  .expbtn:hover{border-color:var(--blue);box-shadow:0 6px 16px -8px rgba(20,143,227,.4);transform:translateY(-1px)}
+  .expbtn .ei{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:0 0 auto;color:#fff}
+  .expbtn .ei svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:2}
+  .ei.b1{background:linear-gradient(135deg,var(--blue),var(--blue-g))}
+  .ei.b2{background:linear-gradient(135deg,var(--teal),var(--teal-g))}
+  .ei.b3{background:linear-gradient(135deg,var(--viol),var(--viol-g))}
+  .ei.b4{background:linear-gradient(135deg,var(--gold),var(--gold-g))}
+  .ei.b5{background:linear-gradient(135deg,#5c6770,#9aa6af)}
+  .ei.b6{background:linear-gradient(135deg,var(--viol),var(--gold))}
+  .expbtn .et{flex:1}
+  .expbtn .et .tt{font-weight:700;font-size:13.5px}
+  .expbtn .et .td{font-size:11.5px;color:var(--body);margin-top:1px;line-height:1.35}
+  .scope{display:flex;gap:6px;margin-bottom:12px}
+  .scope button{flex:1;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px;font-family:inherit;font-weight:600;font-size:12px;color:var(--body);cursor:pointer;transition:.2s}
+  .scope button.on{background:var(--ink);color:#fff;border-color:transparent}
+
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
+    padding:12px 20px;border-radius:30px;font-size:13.5px;font-weight:600;opacity:0;pointer-events:none;transition:.3s var(--ease);z-index:200;box-shadow:0 12px 30px rgba(8,20,32,.4);display:flex;align-items:center;gap:9px;max-width:90vw}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast svg{width:16px;height:16px;stroke:var(--teal-g);fill:none;stroke-width:2.4;flex:0 0 auto}
+
+  .note{margin:0 0 8px;background:rgba(232,147,42,.08);border:1px solid rgba(232,147,42,.3);border-radius:10px;padding:11px 13px;font-size:12px;color:#8a5a14;display:flex;gap:9px;align-items:flex-start}
+  .note svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;flex:0 0 auto;margin-top:1px}
+  input[type=file]{display:none}
+
+  /* MODAL */
+  .ov{position:fixed;inset:0;background:rgba(8,18,28,.55);backdrop-filter:blur(3px);z-index:150;display:none;align-items:center;justify-content:center;padding:20px}
+  .ov.show{display:flex}
+  .modal{background:#fff;border-radius:18px;max-width:560px;width:100%;max-height:88vh;overflow-y:auto;box-shadow:0 30px 70px rgba(8,20,32,.5)}
+  .modal .mh{padding:22px 24px 16px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:13px}
+  .modal .mh .mi{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;flex:0 0 auto;color:#fff;background:linear-gradient(135deg,var(--viol),var(--gold))}
+  .modal .mh .mi svg{width:21px;height:21px;stroke:#fff;fill:none;stroke-width:2}
+  .modal .mh h3{font-family:"Schibsted Grotesk";font-weight:800;font-size:18px;letter-spacing:-.01em}
+  .modal .mh p{color:var(--body);font-size:13px;margin-top:3px;line-height:1.5}
+  .modal .mh .x{margin-left:auto;background:none;border:0;font-size:22px;color:var(--body);cursor:pointer;line-height:1}
+  .mb{padding:20px 24px 24px}
+  .mb .schema{background:var(--bg-2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;font-size:12.5px;color:var(--body);margin-bottom:16px}
+  .mb .schema code{font-family:"Schibsted Grotesk";font-weight:700;color:var(--ink);font-size:11.5px}
+  .mb .schema ul{margin:8px 0 0 18px;line-height:1.7}
+  .mactions{display:flex;gap:10px;flex-wrap:wrap}
+  .mactions button{flex:1;min-width:180px;border-radius:11px;padding:13px;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--ink);transition:.2s;display:flex;align-items:center;justify-content:center;gap:9px}
+  .mactions button svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2}
+  .mactions .dl:hover{border-color:var(--viol);color:var(--viol)}
+  .mactions .up{background:linear-gradient(100deg,var(--viol),var(--gold));border-color:transparent;color:#fff}
+  .mactions .up:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(124,92,255,.35)}
+  .replace{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:13px;color:var(--body)}
+  .replace input{width:16px;height:16px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hbar">
+    <div class="logo"><span class="mark"><svg viewBox="0 0 24 24"><path d="M4 19V9l8-5 8 5v10M4 19h16M9 19v-5h6v5" /></svg></span>
+      <b>Job-Profil-Builder <small>Kompetenzmodell 2026</small></b></div>
+    <div class="htools">
+      <button class="hbtn mercer" id="importBtn"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg><span class="lbl">Mercer-Import</span></button>
+      <button class="hbtn" id="loadBtn"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9M3 5v4h4" /></svg><span class="lbl">Laden</span></button>
+      <button class="hbtn" id="saveBtn"><svg viewBox="0 0 24 24"><path d="M5 3h11l3 3v15H5zM8 3v6h7" /></svg><span class="lbl">Speichern</span></button>
+      <button class="hbtn prim" id="exportAllBtn"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg><span class="lbl">Alle CSV</span></button>
+      <input type="file" id="fileInput" accept="application/json">
+      <input type="file" id="mercerInput" accept=".csv,text/csv">
+    </div>
+  </div>
+</header>
+
+<div class="wrap intro">
+  <h1>Job-Profile zusammenbauen — Verhaltensanker ziehen sich automatisch.</h1>
+  <p>Lege Jobs aus deiner Architektur an (oder importiere sie im Mercer-Format), weise Kompetenzen mit Ziel-Level zu und exportiere die CSV-Dateien für Talent Intelligence Hub &amp; Job Profile Builder. „Speichern/Laden" sichert deinen Arbeitsstand als JSON.</p>
+  <div class="steps3">
+    <div class="s3"><span class="n">1</span> Job anlegen oder Mercer-CSV importieren</div>
+    <div class="s3"><span class="n">2</span> Kompetenz + Level wählen</div>
+    <div class="s3"><span class="n">3</span> CSVs exportieren → SuccessFactors</div>
+  </div>
+</div>
+
+<div class="wrap app">
+  <div class="col">
+    <div class="colhead"><h2><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>Jobs</h2>
+      <button class="mini" id="addJob"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>Neu</button></div>
+    <div class="joblist" id="joblist"></div>
+  </div>
+
+  <div class="col">
+    <div class="ctr-head">
+      <span class="lab">Job bearbeiten</span>
+      <div class="editrow">
+        <div class="fld"><label>Job Family</label><input id="jf" placeholder="z. B. Produktion"></div>
+        <div class="fld"><label>Job Role / Title</label><input id="jr" placeholder="z. B. Schichtleiter:in"></div>
+        <div class="fld"><label>Grade / Band</label><input id="jg" placeholder="z. B. HG 18"></div>
+      </div>
+      <details class="mercerbox" id="mercerDetails">
+        <summary><svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:var(--viol);fill:none;stroke-width:2"><path d="M4 19V9l8-5 8 5v10M4 19h16" /></svg>
+          Mercer-Profilstruktur <span class="badge">optional</span>
+          <svg class="chev" viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2"><path d="M9 6l6 6-6 6" /></svg></summary>
+        <div class="mercer-in">
+          <div class="fld"><label>Job Code</label><input id="mCode" placeholder="z. B. PRD-SHL-03"></div>
+          <div class="fld"><label>Sub-Family</label><input id="mSub" placeholder="z. B. Fertigung"></div>
+          <div class="fld"><label>Career Stream</label><input id="mStream" list="streams" placeholder="Professional / Management …"></div>
+          <div class="fld"><label>Career Level</label><input id="mLevel" list="levels" placeholder="P3 / M2 / E1 …"></div>
+          <div class="fld full"><label>Job Purpose / Mission</label><textarea id="mPurpose" rows="2" placeholder="Kurzer Zweck der Rolle…"></textarea></div>
+          <div class="fld full"><label>Key Responsibilities (eine pro Zeile)</label><textarea id="mResp" rows="3" placeholder="Verantwortet …
+Steuert …
+Berichtet …"></textarea></div>
+        </div>
+      </details>
+    </div>
+    <div class="picker">
+      <div class="pickrow">
+        <select id="compSel"></select>
+        <button class="addbtn" id="addComp">+ Hinzufügen</button>
+      </div>
+    </div>
+    <div class="items" id="items"></div>
+  </div>
+
+  <div class="col">
+    <div class="pv">
+      <h3>Profil-Vorschau</h3>
+      <div class="sub" id="pvsub">Kein Job ausgewählt</div>
+      <div id="pvjob"></div>
+
+      <div class="expbox">
+        <h4>Export</h4>
+        <div class="scope">
+          <button id="scopeJob" class="on">Nur dieser Job</button>
+          <button id="scopeAll">Alle Jobs</button>
+        </div>
+        <div class="note"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" /></svg>
+          <span>Spaltennamen ggf. an die .icd-Vorlagen eures Mandanten anpassen. 8-stufige Proficiency-Skala in TIH vorausgesetzt.</span></div>
+        <button class="expbtn" id="exA"><span class="ei b1"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" /></svg></span>
+          <span class="et"><span class="tt">TIH · Attribute (Kompetenzen)</span><span class="td">externalCode · name · description · type · tags</span></span></button>
+        <button class="expbtn" id="exB"><span class="ei b2"><svg viewBox="0 0 24 24"><path d="M3 18l5-5 4 4 8-8M14 4h6v6" /></svg></span>
+          <span class="et"><span class="tt">TIH · Proficiency-Level-Texte</span><span class="td">8 Verhaltensanker je Kompetenz · de_DE</span></span></button>
+        <button class="expbtn" id="exC"><span class="ei b3"><svg viewBox="0 0 24 24"><path d="M3 7h7l2 2h9v9H3zM3 7V5h5l2 2" /></svg></span>
+          <span class="et"><span class="tt">JPB · Job-Rolle ↔ Kompetenz</span><span class="td">family · role · grade · code · ziel-level</span></span></button>
+        <button class="expbtn" id="exF"><span class="ei b6"><svg viewBox="0 0 24 24"><path d="M4 19V9l8-5 8 5v10M4 19h16" /></svg></span>
+          <span class="et"><span class="tt">Mercer · Jobprofil-Struktur</span><span class="td">code · family · stream · level · purpose · responsibilities</span></span></button>
+        <button class="expbtn" id="exD"><span class="ei b4"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" /></svg></span>
+          <span class="et"><span class="tt">TIH · Tags (Cluster)</span><span class="td">tagExternalCode · name</span></span></button>
+        <button class="expbtn" id="exE"><span class="ei b5"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6zM14 2v6h6M9 13h6M9 17h6" /></svg></span>
+          <span class="et"><span class="tt">Lesbares Profil (CSV)</span><span class="td">Für Review &amp; Freigabe durch Fachbereich</span></span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<datalist id="streams"><option value="Executive"></option><option value="Management"></option><option value="Professional"></option><option value="Para-Professional / Support"></option></datalist>
+<datalist id="levels"><option value="E1"></option><option value="E2"></option><option value="E3"></option><option value="M1"></option><option value="M2"></option><option value="M3"></option><option value="M4"></option><option value="M5"></option><option value="P1"></option><option value="P2"></option><option value="P3"></option><option value="P4"></option><option value="P5"></option><option value="P6"></option><option value="S1"></option><option value="S2"></option><option value="S3"></option><option value="S4"></option></datalist>
+
+<!-- MERCER IMPORT MODAL -->
+<div class="ov" id="ov">
+  <div class="modal">
+    <div class="mh">
+      <span class="mi"><svg viewBox="0 0 24 24"><path d="M4 19V9l8-5 8 5v10M4 19h16M9 19v-5h6v5" /></svg></span>
+      <div><h3>Jobprofil-Import (Mercer-Struktur)</h3>
+        <p>Importiere Jobprofile als CSV. Die Struktur folgt der Aufbaulogik von Mercer-Jobprofilen: Family · Sub-Family · Career Stream · Career Level · Purpose · Key Responsibilities.</p></div>
+      <button class="x" id="ovX">×</button>
+    </div>
+    <div class="mb">
+      <div class="schema">
+        <code>jobCode, jobTitle, jobFamily, subFamily, careerStream, careerLevel, grade, jobPurpose, keyResponsibilities, competencies</code>
+        <ul>
+          <li><b>keyResponsibilities</b>: mit „ | " getrennt (z. B. <code>Verantwortet X | Steuert Y</code>)</li>
+          <li><b>competencies</b>: <code>CODE@LEVEL</code>, mit „;" getrennt (z. B. <code>KM-F01@7; KM-O01@6</code>)</li>
+          <li>Vorhandene Jobs mit gleichem <b>jobCode</b> werden aktualisiert.</li>
+        </ul>
+      </div>
+      <div class="mactions">
+        <button class="dl" id="tplBtn"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14" /></svg>Mercer-Vorlage (CSV)</button>
+        <button class="up" id="pickCsv"><svg viewBox="0 0 24 24"><path d="M12 21V9M7 14l5-5 5 5M5 3h14" /></svg>CSV importieren</button>
+      </div>
+      <label class="replace"><input type="checkbox" id="replaceChk"> Bestehende Jobs vorher ersetzen (sonst werden importierte Jobs ergänzt)</label>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg><span id="toastmsg"></span></div>
+
+<script id="model-data" type="application/json">{"clusters": ["Strategische Ausrichtung und Wertbeitrag", "Operative Umsetzung und Leistungssteuerung", "Führung und Zusammenarbeit", "Resilienz und Lernfähigkeit"], "data": {"Strategische Ausrichtung und Wertbeitrag": [{"name": "Strategisches Denken und Handeln", "def": "Die Fähigkeit, langfristige Entwicklungen und komplexe Zusammenhänge frühzeitig zu erkennen, zu analysieren und daraus konkrete, priorisierte Handlungsoptionen abzuleiten, die das Unternehmen voranbringen.", "levels": ["Erledigt zugewiesene Routineaufgaben zuverlässig und erkennt direkte Zusammenhänge im eigenen Aufgabenbereich.", "Analysiert regelmäßige Abläufe und schlägt auf Basis eigener Beobachtungen praxisnahe Verbesserungen vor.", "Identifiziert wiederkehrende Muster in Aufgaben, wählt passende Lösungsansätze aus und begründet die Auswahl nachvollziehbar.", "Plant mittelfristige Aktivitäten unter Berücksichtigung interner Abhängigkeiten und stimmt diese mit betroffenen Kolleginnen und Kollegen ab.", "Entwickelt für anspruchsvollere Vorhaben mehrere Szenarien, bewertet deren Auswirkungen und Risiken und leitet priorisierte Handlungsempfehlungen ab.", "Formuliert strategische Leitlinien für den eigenen Verantwortungsbereich, übersetzt diese in konkrete Umsetzungspläne mit klaren Meilensteinen und überprüft Fortschritt und Ergebnisse regelmäßig.", "Definiert unternehmensweite Prioritäten unter Einbeziehung globaler Trends und interner Gegebenheiten, legt Ziele und Ressourcenallokation fest und steuert die Umsetzung durch klare Vorgaben.", "Legt die langfristige strategische Richtung des Konzerns fest, analysiert systemische globale Entwicklungen und bringt fundierte Empfehlungen sowie Priorisierungen in die Entscheidungen des Vorstands ein."], "code": "KM-S01"}, {"name": "Branchen- und Marktdynamiken verstehen", "def": "Die Fähigkeit, relevante Entwicklungen in Märkten, Branchen und Wettbewerbsumfeldern frühzeitig zu erkennen, richtig einzuordnen und für die eigene Arbeit sowie das Unternehmen nutzbar zu machen.", "levels": ["Kennt die grundlegenden Produkte und Dienstleistungen des eigenen Bereichs und beantwortet einfache Kundenanfragen sachlich und vollständig.", "Beobachtet Veränderungen im direkten Marktumfeld und leitet relevante Beobachtungen strukturiert an Vorgesetzte weiter.", "Analysiert Kundenrückmeldungen und Wettbewerbsinformationen und leitet konkrete Verbesserungsvorschläge für das eigene Aufgabengebiet ab.", "Vergleicht die eigene Leistung mit Branchenstandards, identifiziert Lücken oder Chancen und bringt diese in Planungs- und Abstimmungsgespräche ein.", "Erstellt fundierte Markt- und Segmentanalysen für Projekte, berücksichtigt regionale und kulturelle Besonderheiten und gibt konkrete Handlungsempfehlungen.", "Entwickelt Marktpositionierungen für den eigenen Bereich auf Basis tiefergehender Analysen, berät Entscheidungsträger mit konkreten Handlungsoptionen und überprüft die Ergebnisse.", "Liefert unternehmensrelevante Markt- und Wettbewerbsanalysen, empfiehlt konkrete strategische Anpassungen und überprüft deren Umsetzung anhand messbarer Ergebnisse.", "Entscheidet über die marktstrategische Ausrichtung des Konzerns, leitet aus eigenen Analysen konkrete Positionierungsentscheidungen ab und überprüft deren Wirkung an Marktanteil und Wachstumskennzahlen."], "code": "KM-S02"}, {"name": "Globale und interkulturelle Perspektive einnehmen", "def": "Die Fähigkeit, weltweite Zusammenhänge, kulturelle Unterschiede und internationale Wechselwirkungen zu verstehen und bei Entscheidungen und Handlungen aktiv zu berücksichtigen.", "levels": ["Zeigt grundlegendes Verständnis für kulturelle Unterschiede im direkten Arbeitsumfeld und verhält sich respektvoll und aufmerksam.", "Passt die eigene Kommunikation und Arbeitsweise an kulturelle Erwartungen an und vermeidet Missverständnisse.", "Bezieht bei der Bearbeitung von Aufgaben unterschiedliche regionale und kulturelle Sichtweisen bewusst ein und integriert diese in Lösungsvorschläge.", "Bindet internationale oder kulturell unterschiedliche Perspektiven in Projekten gezielt ein und fördert ein gemeinsames Verständnis unter den Beteiligten.", "Steuert Projekte mit Beteiligten aus mehreren Ländern, erkennt kulturspezifische Spannungen frühzeitig, spricht diese an und sichert produktive Zusammenarbeit.", "Entwickelt Ansätze, die globale und lokale Anforderungen gleichermaßen berücksichtigen, benennt Zielkonflikte und überprüft die Wirksamkeit der Lösungen.", "Legt verbindliche Standards für internationale Zusammenarbeit fest, formuliert klare Verhaltenserwartungen und überprüft deren Einhaltung und Wirkung.", "Gestaltet die globale Positionierung des Konzerns aktiv mit, richtet Strategien an kultureller Intelligenz als Wettbewerbsvorteil aus und überprüft die Wirkung anhand von Geschäftsergebnissen."], "code": "KM-S03"}, {"name": "Innovationspotenziale erkennen und nutzen", "def": "Die Fähigkeit, neue Ideen, Technologien und Vorgehensweisen frühzeitig zu identifizieren, deren Potenzial realistisch einzuschätzen und aktiv dazu beizutragen, dass sie im Unternehmen wirksam werden.", "levels": ["Nimmt neue Ideen und Vorschläge im eigenen Arbeitsumfeld aufmerksam wahr und gibt sie an Vorgesetzte weiter.", "Testet im Rahmen der eigenen Aufgaben kleine Verbesserungen, dokumentiert die Ergebnisse und teilt positive Erfahrungen.", "Identifiziert Verbesserungspotenziale in bestehenden Abläufen, schlägt praxistaugliche Lösungen vor und unterstützt deren Umsetzung.", "Bringt neue Ideen in Besprechungen und Arbeitsgruppen ein, hinterfragt bestehende Abläufe kritisch und unterstützt die systematische Prüfung und Bewertung von Verbesserungsvorschlägen.", "Koordiniert Innovationsvorhaben im eigenen Verantwortungsbereich, sichert notwendige Ressourcen und treibt die Umsetzung konsequent voran.", "Richtet im eigenen Bereich einen festen Prozess für Ideenentwicklung und -bewertung ein, stellt Zeit und Mittel für Erprobungen bereit und misst den Erfolg an der Zahl umgesetzter Innovationen.", "Priorisiert Innovationsthemen auf Unternehmensebene, verteilt Ressourcen gezielt, entscheidet über Vorhaben mit hoher Reichweite und überprüft deren Umsetzung.", "Richtet die Innovationsstrategie des Konzerns an langfristigen Wachstumszielen aus, entscheidet über strategische Investitionen in neue Geschäftsfelder und bewertet die Wirkung anhand von Umsatz- und Effizienzzielen."], "code": "KM-S04"}, {"name": "Fundierte und nachhaltige Entscheidungen treffen", "def": "Die Fähigkeit, unter Berücksichtigung relevanter Informationen, Risiken und langfristiger Auswirkungen klare, begründete und verantwortungsvolle Entscheidungen zu treffen und deren Umsetzung sicherzustellen.", "levels": ["Trifft einfache, routinebasierte Entscheidungen innerhalb klarer Vorgaben und dokumentiert diese nachvollziehbar.", "Sammelt für wiederkehrende Entscheidungen die notwendigen Fakten, wägt Vor- und Nachteile ab und entscheidet begründet.", "Analysiert komplexere Sachverhalte, zieht relevante Beteiligte ein und trifft Entscheidungen mit nachvollziehbarer Begründung.", "Entscheidet in Situationen mit mehreren Optionen und mittlerer Unsicherheit, übernimmt die Verantwortung für die Folgen und kommuniziert die Entscheidungslogik offen.", "Trifft Entscheidungen, die unterschiedliche Perspektiven und Interessen berücksichtigen, dokumentiert die Abwägungen transparent und sichert die Umsetzung.", "Fällt Entscheidungen mit strategischer Relevanz für den eigenen Bereich, benennt langfristige Auswirkungen und Risiken, begründet Priorisierungen und steuert die Umsetzung.", "Trifft unternehmensweite Entscheidungen in hochkomplexen Situationen, gewichtet konkurrierende Interessen explizit, sorgt für konsequente Umsetzung und überprüft die Ergebnisse.", "Trifft richtungsweisende Entscheidungen auf Konzernebene, legt Priorisierungsregeln und Entscheidungslogiken für nachgeordnete Ebenen fest und überprüft die Wirkung durch regelmäßige Erfolgskontrollen."], "code": "KM-S05"}, {"name": "Finanzielle Zusammenhänge verstehen und wirtschaftlich handeln", "def": "Die Fähigkeit, finanzielle Zusammenhänge zu verstehen, wirtschaftliche Auswirkungen von Entscheidungen zu bewerten und ressourcenschonend zu handeln.", "levels": ["Kennt die grundlegenden Kosten- und Erlösfaktoren im eigenen Arbeitsbereich und geht sorgsam mit Ressourcen um.", "Berücksichtigt bei der Planung einfacher Aktivitäten die finanziellen Rahmenbedingungen und vermeidet unnötige Ausgaben.", "Analysiert Kosten-Nutzen-Verhältnisse bei Aufgaben mittlerer Komplexität und schlägt wirtschaftliche Alternativen vor.", "Plant Budgets für Teilprojekte, überwacht die Einhaltung und steuert bei Abweichungen gezielt gegen.", "Bewertet die finanziellen Auswirkungen von Vorhaben im eigenen Verantwortungsbereich, benennt Risiken und optimiert den Ressourceneinsatz.", "Entwickelt Finanzpläne für den eigenen Bereich, sorgt für eine tragfähige Balance zwischen Investitionen und Erträgen und berichtet über Abweichungen mit konkreten Gegenmaßnahmen.", "Steuert die Finanzplanung auf Unternehmensebene durch fundierte Analysen, priorisiert Investitionen, setzt klare Effizienzanforderungen und überwacht die Umsetzung.", "Legt die finanzielle Steuerungslogik des Konzerns fest, definiert verbindliche Allokationsregeln, führt regelmäßige Wirtschaftlichkeitsprüfungen durch und stellt sicher, dass wirtschaftliche Nachhaltigkeit in allen wesentlichen Entscheidungen berücksichtigt wird."], "code": "KM-S06"}, {"name": "Komplexe Sachverhalte strukturieren und steuern", "def": "Die Fähigkeit, vielschichtige, widersprüchliche oder unklare Situationen zu analysieren, zu strukturieren und zielgerichtet zu steuern.", "levels": ["Behält bei einfachen, klar strukturierten Aufgaben den Überblick und arbeitet diese systematisch ab.", "Zerlegt wiederkehrende komplexere Aufgaben in überschaubare Teilaspekte und bearbeitet diese geordnet.", "Strukturiert unklare oder widersprüchliche Anforderungen, entwickelt einen praktikablen Lösungsweg und benennt offene Fragen explizit.", "Koordiniert mehrere parallel laufende Aufgaben, benennt Prioritäten und behält trotz wechselnder Anforderungen den Gesamtüberblick.", "Steuert mehrdimensionale Vorhaben im eigenen Verantwortungsbereich, löst Konflikte zwischen Teilzielen und sichert den Fortschritt durch regelmäßige Überprüfung.", "Bewältigt Komplexität in einem größeren Verantwortungsbereich, legt Entscheidungsregeln und Verantwortlichkeiten fest und erhält die Handlungsfähigkeit auch in unsicheren Phasen.", "Bricht unternehmensweite Fragestellungen auf wenige steuerungsrelevante Größen herunter, definiert dafür Steuerungsmechanismen mit klaren Verantwortlichkeiten und überprüft deren Wirksamkeit regelmäßig.", "Gestaltet die organisationale Komplexitätsbewältigung auf Konzernebene durch standardisierte Entscheidungswege, klare Governance-Strukturen und regelmäßige Überprüfung der Handlungsfähigkeit."], "code": "KM-S07"}, {"name": "Technologische Entwicklungen nutzen und integrieren", "def": "Die Fähigkeit, neue Technologien und digitale Möglichkeiten zu verstehen, deren Nutzen realistisch einzuschätzen und aktiv in die eigene Arbeit sowie die Organisation zu integrieren.", "levels": ["Wendet die im eigenen Arbeitsbereich eingesetzten digitalen Werkzeuge sicher und effizient an.", "Erprobt neue digitale Funktionen im Rahmen der eigenen Aufgaben und teilt positive Erfahrungen mit Kolleginnen und Kollegen.", "Identifiziert technologische Verbesserungspotenziale im eigenen Bereich und unterstützt deren Einführung aktiv.", "Integriert neue Technologien in bestehende Prozesse, unterstützt Kolleginnen und Kollegen bei der Anwendung und gibt Rückmeldungen zu Problemen weiter.", "Koordiniert die Einführung digitaler Lösungen im eigenen Verantwortungsbereich, sichert nachhaltige Nutzung und bewertet den erzielten Nutzen.", "Entwickelt eine digitale Strategie für den eigenen Bereich, stellt sicher, dass Technologieinvestitionen geschäftlich wirksam werden, und berichtet über Ergebnisse.", "Legt die unternehmensweite digitale Ausrichtung fest, priorisiert Technologieinvestitionen anhand klarer Kriterien und überprüft den Beitrag zu Geschäftsergebnissen regelmäßig.", "Entscheidet über die strategische Technologieausrichtung des Konzerns, gibt Investitionen in zukunftsweisende Technologien frei und bewertet den erzielten Wettbewerbsvorteil an konkreten Geschäftskennzahlen."], "code": "KM-S08"}, {"name": "Kundenbedürfnisse in den Mittelpunkt stellen", "def": "Die Fähigkeit, die Perspektive und Bedürfnisse von Kunden – intern und extern – konsequent zu verstehen und bei Entscheidungen und Handlungen als zentrale Orientierung zu nutzen.", "levels": ["Behandelt Kundenanliegen freundlich, schnell und zuverlässig und sorgt für eine positive Grundstimmung.", "Erfragt aktiv die Erwartungen von Kunden, passt die eigene Leistung entsprechend an und gibt Rückmeldungen an Vorgesetzte weiter.", "Analysiert Kundenfeedback systematisch und leitet konkrete Verbesserungen für das eigene Aufgabengebiet ab.", "Berücksichtigt Kundenperspektiven bei der Gestaltung von Prozessen und Abläufen, benennt Lücken und schlägt Verbesserungen vor.", "Entwickelt kundenorientierte Lösungen für Vorhaben im eigenen Verantwortungsbereich und misst den Erfolg an klaren Qualitäts- und Zufriedenheitsindikatoren.", "Legt Standards für kundenorientiertes Handeln im eigenen Bereich fest, überprüft deren Einhaltung und leitet bei Abweichungen gezielte Maßnahmen ein.", "Legt unternehmensweit verbindliche Prozesse, Kennzahlen und Erwartungen für kundenorientiertes Handeln fest, setzt notwendige Anpassungen in der Organisation durch und überprüft deren Einhaltung.", "Richtet die Marktposition des Konzerns konsequent an Kundenbedürfnissen aus, legt konzernweite Standards fest und überprüft deren Wirkung in allen Märkten und Segmenten anhand messbarer Ergebnisse."], "code": "KM-S09"}], "Operative Umsetzung und Leistungssteuerung": [{"name": "Entschlossen handeln und Initiative ergreifen", "def": "Die Fähigkeit, auch bei Unklarheiten oder Widerständen zügig und zielgerichtet zu handeln, Verantwortung zu übernehmen und notwendige Schritte eigenständig einzuleiten.", "levels": ["Führt zugewiesene Aufgaben zügig und zuverlässig aus und meldet Hindernisse frühzeitig.", "Ergreift bei bekannten Problemen im eigenen Verantwortungsbereich selbstständig Maßnahmen und informiert Betroffene.", "Handelt bei unerwarteten Situationen entschlossen, sucht bei Bedarf Unterstützung und stellt sicher, dass Ziele weiterhin erreicht werden.", "Initiiert Verbesserungen in Prozessen oder Abläufen, begründet die Notwendigkeit gegenüber Beteiligten und übernimmt Verantwortung für die Umsetzung.", "Treibt Vorhaben im eigenen Verantwortungsbereich mit hoher Eigeninitiative voran, erkennt Widerstände frühzeitig und begegnet ihnen mit klarer Argumentation und konsequentem Handeln.", "Ergreift bei erkanntem Handlungsbedarf in einem größeren Bereich die Initiative, setzt notwendige Änderungen durch und überprüft die Wirksamkeit der Maßnahmen.", "Initiiert unternehmensweite Veränderungsprozesse, legt klare Erwartungen an die Umsetzungsgeschwindigkeit fest und überprüft den Fortschritt regelmäßig.", "Trifft richtungsweisende Entscheidungen zur Umsetzung strategischer Vorhaben, schafft kurze Entscheidungswege und stellt sicher, dass strategische Prioritäten zuverlässig in messbare Ergebnisse überführt werden."], "code": "KM-O01"}, {"name": "Aufgaben zielgerichtet delegieren und steuern", "def": "Die Fähigkeit, Aufgaben und Verantwortung klar zu verteilen, Fortschritte zu verfolgen und sicherzustellen, dass Ziele erreicht werden.", "levels": ["Führt zugewiesene Aufgaben selbstständig aus und berichtet regelmäßig über den Stand.", "Übernimmt Teilaufgaben von Kolleginnen und Kollegen und stellt deren termingerechte Erledigung sicher.", "Verteilt Aufgaben in der gemeinsamen Arbeit sinnvoll, formuliert klare Erwartungen und verfolgt den Fortschritt aktiv.", "Gibt Aufgaben mit klaren Zielen und Erwartungen ab, unterstützt bei Bedarf und behält die Gesamtverantwortung für das Ergebnis.", "Steuert die Aufgabenverteilung in anspruchsvolleren Vorhaben, klärt Verantwortlichkeiten, überprüft Fortschritte und greift bei Abweichungen gezielt ein.", "Definiert für einen größeren Bereich transparente Steuerungsmechanismen für Aufgaben und Verantwortung, legt Berichtswege für Ergebnisse fest und passt die Verteilung bei Abweichungen an.", "Legt unternehmensweite Prinzipien für Aufgabenverteilung und Verantwortungsübernahme fest, überprüft deren Anwendung und passt sie an veränderte Anforderungen an.", "Definiert die konzernweite Steuerungslogik für Delegation und Verantwortung, sichert Standards durch regelmäßige Überprüfungen und stellt sicher, dass klare Verantwortungsstrukturen auf allen Ebenen gelebt werden."], "code": "KM-O02"}, {"name": "Konsequent auf messbare Ergebnisse hinarbeiten", "def": "Die Fähigkeit, sich konsequent auf die Erreichung vereinbarter Ziele zu fokussieren, Fortschritte zu messen und bei Abweichungen rechtzeitig gegenzusteuern.", "levels": ["Arbeitet zugewiesene Aufgaben zuverlässig ab und stellt sicher, dass Qualitäts- und Terminziele eingehalten werden.", "Verfolgt eigene Ziele systematisch, berichtet über Fortschritte und Hindernisse und passt die Vorgehensweise bei Bedarf an.", "Definiert für Teilaufgaben klare Erfolgsmaßstäbe, überprüft die Zielerreichung regelmäßig und kommuniziert Abweichungen frühzeitig.", "Richtet Vorhaben konsequent auf vereinbarte Ziele aus, bindet beteiligte Personen ein und ergreift bei Abweichungen rechtzeitig Gegenmaßnahmen.", "Steuert Vorhaben im eigenen Verantwortungsbereich ergebnisorientiert, priorisiert Maßnahmen nach Wirkung und Aufwand und überprüft die Zielerreichung anhand klarer Kriterien.", "Führt im eigenen Bereich eine ergebnisorientierte Steuerung mit klaren Zielen und Fortschrittskennzahlen ein, berichtet regelmäßig über den Stand und benennt bei Abweichungen konkrete Gegenmaßnahmen.", "Definiert unternehmensweite Zielsysteme, steuert Ergebnisverantwortung auf mehreren Ebenen, überprüft Fortschritte regelmäßig und korrigiert Fehlentwicklungen konsequent.", "Definiert konzernweite Ziel- und Messsysteme, legt Ergebnisverantwortung als verbindlichen Steuerungsansatz fest und überprüft regelmäßig, dass strategische Ziele in messbare operative Erfolge überführt werden."], "code": "KM-O03"}, {"name": "Verantwortung klar definieren und einfordern", "def": "Die Fähigkeit, Verantwortlichkeiten eindeutig zu regeln, deren Einhaltung aktiv einzufordern und bei Nichteinhaltung konsequent zu handeln.", "levels": ["Übernimmt Verantwortung für die eigenen Aufgaben und hält Vereinbarungen zuverlässig ein.", "Definiert für Teilaufgaben klare Verantwortlichkeiten und unterstützt Kolleginnen und Kollegen dabei, ihre Zusagen einzuhalten.", "Fordert bei Abweichungen von Vereinbarungen konsequent Nachbesserung ein, benennt die Auswirkungen offen und unterstützt bei der Lösung.", "Klärt in Projekten und gemeinsamen Vorhaben Rollen und Verantwortlichkeiten, sorgt dafür, dass alle Beteiligten ihre Aufgaben kennen, und spricht bei Nichteinhaltung gezielt an.", "Schafft transparente Verantwortungsstrukturen im eigenen Verantwortungsbereich, greift bei Nichteinhaltung wirksam ein und dokumentiert Konsequenzen nachvollziehbar.", "Definiert Verantwortungsprinzipien für einen größeren Bereich, überprüft deren Anwendung regelmäßig und berichtet über Wirksamkeit.", "Legt unternehmensweit verbindliche Verantwortungsstrukturen fest, überprüft deren Einhaltung in regelmäßigen Abständen und zieht bei Nichteinhaltung klare Konsequenzen.", "Legt die konzernweite Steuerungslogik für Verantwortungsübernahme fest, überprüft deren Einhaltung durch regelmäßige Audits und stellt sicher, dass klare Rechenschaftspflicht auf allen Ebenen gilt."], "code": "KM-O04"}, {"name": "Arbeitsabläufe kontinuierlich verbessern", "def": "Die Fähigkeit, bestehende Prozesse kritisch zu hinterfragen, Verbesserungspotenziale zu identifizieren und diese systematisch umzusetzen.", "levels": ["Führt zugewiesene Abläufe sorgfältig aus und meldet offensichtliche Unstimmigkeiten.", "Schlägt auf Basis eigener Beobachtungen Verbesserungen vor und setzt diese nach Abstimmung um.", "Analysiert eigene Arbeitsprozesse gezielt, identifiziert Ineffizienzen und setzt spürbare Verbesserungen um.", "Optimiert Abläufe gemeinsam mit betroffenen Kolleginnen und Kollegen, misst die Wirkung der Änderungen und passt bei Bedarf nach.", "Koordiniert Prozessverbesserungen im eigenen Verantwortungsbereich, dokumentiert die Ergebnisse und sichert eine nachhaltige Umsetzung.", "Führt strukturierte Prozessoptimierung als verbindlichen Standard für einen größeren Bereich ein, weist erzielte Effizienzgewinne nach und misst deren Beitrag zur Gesamtleistung.", "Schreibt kontinuierliche Prozessverbesserung unternehmensweit verbindlich vor, gibt einheitliche Methoden und Standards vor und überprüft die Effizienzgewinne in regelmäßigen Abständen.", "Gestaltet die Prozesslandschaft des Konzerns durch standardisierte Optimierungsmethoden und konzernweite Benchmarks und stellt sicher, dass Prozessverbesserung zu messbaren Wettbewerbsvorteilen führt."], "code": "KM-O05"}, {"name": "Aktivitäten planen und auf übergeordnete Ziele ausrichten", "def": "Die Fähigkeit, Aktivitäten strukturiert zu planen, Prioritäten zu setzen und sicherzustellen, dass sie mit übergeordneten Zielen im Einklang stehen.", "levels": ["Plant die eigene Arbeit für den Tag oder die Woche und hält sich an Vorgaben.", "Plant Aufgaben für mehrere Tage oder Wochen und berücksichtigt dabei Abhängigkeiten.", "Erstellt detaillierte Pläne für komplexere Aufgaben, stimmt diese mit relevanten Beteiligten ab und passt bei Veränderungen an.", "Plant Teilprojekte mit Meilensteinen und Ressourcenbedarf, überwacht die Umsetzung und passt bei Veränderungen gezielt an.", "Entwickelt Pläne für Vorhaben im eigenen Verantwortungsbereich, richtet diese auf übergeordnete Ziele aus und steuert Abweichungen aktiv.", "Erarbeitet Jahres- und Mehrjahrespläne für einen größeren Verantwortungsbereich, sorgt für konsistente Umsetzung und berichtet regelmäßig über Fortschritt und Abweichungen.", "Definiert unternehmensweite Planungs- und Steuerungsprozesse, stellt die Verbindung zwischen operativer und strategischer Ebene her und überprüft die Wirksamkeit.", "Legt die konzernweiten Planungsprozesse und Priorisierungsregeln verbindlich fest und überprüft, dass alle wesentlichen Aktivitäten auf die langfristigen Konzernziele ausgerichtet sind."], "code": "KM-O06"}, {"name": "Kreative Lösungen für Ressourcenengpässe finden", "def": "Die Fähigkeit, auch bei begrenzten Ressourcen kreative, pragmatische Wege zu finden, um Ziele dennoch zu erreichen.", "levels": ["Geht sorgsam mit den zur Verfügung stehenden Mitteln um und vermeidet Verschwendung.", "Findet bei kleineren Engpässen alternative Wege, setzt diese selbstständig um und informiert Betroffene.", "Entwickelt für bekannte Ressourcenengpässe praktikable Lösungen und stimmt diese mit Betroffenen ab.", "Löst Ressourcenkonflikte durch Umverteilung oder Priorisierung, begründet die Lösung und dokumentiert sie nachvollziehbar.", "Entwickelt im eigenen Verantwortungsbereich Lösungen für Engpässe, bindet Beteiligte ein und überprüft die Wirkung der getroffenen Maßnahmen.", "Richtet für einen größeren Bereich flexible Mechanismen zur Ressourcenverteilung ein, weist Engpässe frühzeitig aus und steuert die Nutzung der verfügbaren Mittel gezielt.", "Entwickelt unternehmensweite Ansätze für den Umgang mit Ressourcenknappheit, trifft Priorisierungsentscheidungen unter Knappheitsbedingungen und überprüft die Effizienz der Lösungen.", "Legt die konzernweite Ressourcenstrategie fest, definiert verbindliche Allokationsmechanismen und stellt sicher, dass das Unternehmen auch unter schwierigen Bedingungen handlungsfähig bleibt."], "code": "KM-O07"}], "Führung und Zusammenarbeit": [{"name": "Talente erkennen und gezielt fördern", "def": "Die Fähigkeit, leistungsstarke und potenzialstarke Personen im eigenen Umfeld frühzeitig zu erkennen und aktiv in ihrer Entwicklung zu unterstützen.", "levels": ["Erkennt im eigenen Umfeld Stärken von Kolleginnen und Kollegen und spricht diese gezielt und wertschätzend an.", "Unterstützt neue Kolleginnen und Kollegen bei der Einarbeitung und gibt konstruktives Feedback auf konkrete Leistungen.", "Teilt eigenes Wissen und Erfahrungen aktiv, gibt entwicklungsorientiertes Feedback und empfiehlt bei Bedarf geeignete Lernangebote.", "Erkennt Potenziale und Entwicklungsfelder im direkten Umfeld, gibt regelmäßiges Feedback, schlägt gezielte Entwicklungsmaßnahmen vor und begleitet deren Umsetzung.", "Steuert Talentprozesse im eigenen Verantwortungsbereich, schafft gezielte Entwicklungsmöglichkeiten und überprüft den Fortschritt an klaren Ergebnissen.", "Führt strukturierte Talentprozesse für einen größeren Bereich ein, bewertet Potenziale systematisch und misst die Wirksamkeit an Entwicklungsfortschritt und Bindungsquote.", "Legt unternehmensweite Talentkriterien und Entwicklungsstandards fest, priorisiert Investitionen in Schlüsseltalente und überprüft die Wirkung auf Besetzungsqualität und Fluktuation.", "Richtet die konzernweite Talentstrategie an langfristigen Geschäftszielen aus, entscheidet über strategische Talentinvestitionen und sichert die Positionierung als attraktiver Arbeitgeber für Spitzenkräfte."], "code": "KM-F01"}, {"name": "Zusammenarbeit stärken und Teamleistung entwickeln", "def": "Die Fähigkeit, aktiv zu einer leistungsstarken Zusammenarbeit beizutragen, Stärken anderer zu erkennen, konstruktives Feedback zu geben und gemeinsam überdurchschnittliche Ergebnisse zu erzielen.", "levels": ["Arbeitet konstruktiv in bestehenden Teams und Arbeitsgruppen mit und bringt die eigenen Stärken in die gemeinsame Arbeit ein.", "Unterstützt neue Kolleginnen und Kollegen bei der Einarbeitung und trägt aktiv zu einer positiven Arbeitsatmosphäre bei.", "Erkennt Stärken und Entwicklungsfelder anderer, gibt konstruktives verhaltensbezogenes Feedback und hilft, gemeinsame Arbeitsprozesse zu verbessern.", "Strukturiert Beiträge in Arbeitsgruppen, klärt Rollen und nächste Schritte, bindet andere aktiv ein und sorgt dafür, dass gemeinsame Ergebnisse erreicht und nachher reflektiert werden.", "Koordiniert die Zusammenarbeit in anspruchsvolleren Projekten, klärt Schnittstellen, fördert die gegenseitige Stärkennutzung und benennt Entwicklungsbedarfe offen.", "Entwickelt Teamstrukturen und gibt Impulse für die Weiterentwicklung der Zusammenarbeit in einem größeren Bereich, legt Rollen fest und überprüft die Leistung anhand vereinbarter Ergebnisse.", "Legt unternehmensweite Standards für leistungsstarke Zusammenarbeit fest, gibt Impulse für Team-Entwicklungsprogramme und überprüft Ergebnisse anhand von Leistungskennzahlen.", "Richtet konzernweite Standards für die Zusammenarbeit an strategischen Zielen aus, entscheidet über konzernweite Entwicklungsinitiativen und bewertet den Erfolg an messbaren Team-Performance-Kennzahlen."], "code": "KM-F02"}, {"name": "Strategische Beziehungsnetzwerke aufbauen und pflegen", "def": "Die Fähigkeit, relevante interne und externe Beziehungen aufzubauen, zu pflegen und gezielt für die Erreichung von Zielen zu nutzen.", "levels": ["Pflegt gute Arbeitsbeziehungen zu direkten Kolleginnen und Kollegen und ist für Unterstützung erreichbar.", "Baut Kontakte zu relevanten Personen in benachbarten Bereichen auf und tauscht sich regelmäßig aus.", "Nutzt bestehende Netzwerke aktiv zur Lösung von Aufgaben und erweitert diese gezielt.", "Pflegt ein gezieltes internes Netzwerk, nutzt es für Abstimmungen und Vorhaben und hält die Beziehungen regelmäßig aktiv.", "Baut und nutzt interne und externe Netzwerke für Vorhaben im eigenen Verantwortungsbereich und überprüft deren Nutzen für die Zielerreichung.", "Richtet für einen größeren Verantwortungsbereich eine strukturierte Netzwerkpflege ein, sorgt dafür, dass Wissen und Unterstützung schnell verfügbar sind, und stößt deren strategische Nutzung gezielt an.", "Legt unternehmensweite Prinzipien für den Auf- und Ausbau von Netzwerken fest, pflegt strategisch wichtige Beziehungen gezielt und überprüft deren Beitrag zur Zielerreichung.", "Positioniert den Konzern durch gezielte externe und interne Vernetzung strategisch, entscheidet über Investitionen in Schlüsselpartnerschaften und misst den Beitrag zur Marktposition."], "code": "KM-F03"}, {"name": "Über Funktions- und Kulturgrenzen hinweg kooperieren", "def": "Die Fähigkeit, effektiv mit Personen aus unterschiedlichen Funktionen, Ländern und kulturellen Hintergründen zusammenzuarbeiten, um gemeinsame Ziele zu erreichen.", "levels": ["Arbeitet konstruktiv mit Kolleginnen und Kollegen aus anderen Bereichen zusammen und respektiert deren Perspektiven.", "Passt die eigene Arbeitsweise an die Bedürfnisse von Kooperationspartnern an und sucht aktiv den Austausch.", "Klärt in gemischten Arbeitsgruppen Erwartungen, schafft gemeinsames Verständnis und löst kleinere Kooperationsprobleme konstruktiv.", "Steuert die Zusammenarbeit in Projekten mit unterschiedlichen Beteiligten, richtet alle auf das gemeinsame Ziel aus und überprüft den Fortschritt.", "Entwickelt Kooperationsansätze für Vorhaben über Funktions- und Ländergrenzen hinweg, überprüft deren Wirksamkeit und passt bei Bedarf an.", "Legt Kooperationsstandards für einen größeren Verantwortungsbereich fest, vermittelt bei Schnittstellenkonflikten und berichtet über die Wirksamkeit.", "Setzt grenzüberschreitende Zusammenarbeit als unternehmensweiten Standard durch, legt klare Verhaltenserwartungen fest und überprüft deren Einhaltung.", "Legt die konzernweiten Regeln und Erwartungen für die bereichs- und länderübergreifende Zusammenarbeit fest, entscheidet über konzernweite Initiativen und bewertet den Erfolg an Projekt- und Geschäftsergebnissen."], "code": "KM-F04"}, {"name": "Klar und wirksam kommunizieren", "def": "Die Fähigkeit, Informationen, Ideen und Erwartungen so zu vermitteln, dass sie von unterschiedlichen Zielgruppen verstanden, akzeptiert und in Handlungen umgesetzt werden.", "levels": ["Formuliert klare Anweisungen für einfache Aufgaben und stellt durch Nachfragen das Verständnis sicher.", "Passt die Kommunikation an den Kenntnisstand des Gegenübers an und wählt verständliche Formulierungen und Beispiele.", "Strukturiert komplexere Sachverhalte logisch, geht auf Rückfragen ein und klärt Missverständnisse aktiv.", "Moderiert Gespräche und Besprechungen in Gruppen, fasst Ergebnisse zusammen und stellt sicher, dass alle ein gemeinsames Verständnis haben.", "Kommuniziert in Vorhaben mit unterschiedlichen Fachsprachen und Zielgruppen präzise, übersetzt Fachthemen verständlich und überprüft das Verständnis aktiv.", "Vermittelt strategische Inhalte an Führungskräfte und Mitarbeitende unterschiedlicher Ebenen verständlich und passt Botschaften gezielt an die jeweilige Zielgruppe an.", "Gestaltet die unternehmensweite Kommunikationsstrategie mit klaren Standards, sorgt für konsistente Botschaften in Veränderungsprozessen und überprüft Verständlichkeit und Wirkung.", "Repräsentiert das Unternehmen nach innen und außen in komplexen Situationen, schafft Akzeptanz durch klare, konsistente Botschaften und bewertet den Erfolg anhand von Akzeptanz- und Umsetzungsquoten."], "code": "KM-F05"}, {"name": "Andere in ihrer Entwicklung unterstützen und fördern", "def": "Die Fähigkeit, Potenziale in anderen zu erkennen, gezielt zu fördern und deren Entwicklung durch konkrete Unterstützung und Feedback aktiv voranzubringen.", "levels": ["Gibt Kolleginnen und Kollegen bei Bedarf hilfreiche Hinweise und unterstützt bei der Einarbeitung.", "Erkennt Stärken und Entwicklungsfelder im direkten Umfeld und gibt regelmäßig konstruktives Feedback.", "Plant mit direkt Betroffenen individuelle Entwicklungsschritte, empfiehlt geeignete Lernangebote und verfolgt die Umsetzung nach.", "Fördert Entwicklung gezielt durch Lernmöglichkeiten und delegiertes Arbeiten und überprüft dabei, ob Fortschritte eintreten.", "Koordiniert Entwicklungsmaßnahmen im eigenen Verantwortungsbereich, überprüft die Wirkung anhand konkreter Leistungsveränderungen und passt Maßnahmen bei Bedarf an.", "Führt strukturierte Entwicklungsprozesse für einen größeren Bereich ein, plant Nachfolge vorausschauend und misst den Erfolg an Entwicklungsfortschritt und Besetzungsqualität.", "Legt unternehmensweite Entwicklungsstandards fest, priorisiert Investitionen in Schlüsseltalente und überprüft die Wirkung auf Nachfolgequalität und Leistungsentwicklung.", "Richtet die konzernweite Lern- und Entwicklungsstrategie an langfristigen Geschäftszielen aus, entscheidet über konzernweite Initiativen und bewertet den Erfolg anhand von Nachfolgequalität und Gesamtleistungsentwicklung."], "code": "KM-F06"}, {"name": "Engagement und Einsatzbereitschaft im Umfeld stärken", "def": "Die Fähigkeit, ein Umfeld zu schaffen, in dem sich Menschen mit ihren Aufgaben identifizieren, engagiert mitarbeiten und ihr Bestes geben.", "levels": ["Zeigt selbst Einsatz und Begeisterung für die Arbeit und motiviert durch positives Beispiel.", "Erkennt Leistungen von Kolleginnen und Kollegen an und trägt zu einer konstruktiven Arbeitsatmosphäre bei.", "Identifiziert Hindernisse für engagiertes Arbeiten im direkten Umfeld und spricht diese offen an.", "Stärkt Commitment durch klare Ziele, Anerkennung von Beiträgen und aktive Einbindung in Entscheidungen.", "Entwickelt Ansätze zur Stärkung von Engagement für Vorhaben im eigenen Verantwortungsbereich, überprüft die Wirkung und passt an.", "Setzt für einen größeren Bereich gezielte Programme und Maßnahmen zur Steigerung von Motivation und Bindung um, überprüft die Ergebnisse regelmäßig und berichtet darüber.", "Steuert die unternehmensweite Engagement-Strategie durch klare Programme und Erwartungen und überprüft die Wirkung anhand von Engagement-Indizes.", "Richtet die konzernweite Identifikations- und Engagementstrategie an Unternehmenszielen aus, entscheidet über konzernweite Maßnahmen und bewertet den Erfolg anhand von Engagement- und Leistungskennzahlen."], "code": "KM-F07"}, {"name": "Visionen vermitteln und Sinn stiften", "def": "Die Fähigkeit, eine klare Vorstellung der Zukunft zu entwickeln und zu vermitteln, die Menschen Orientierung, Motivation und Sinn gibt.", "levels": ["Versteht die übergeordneten Ziele des eigenen Bereichs und kann diese einfach und verständlich erklären.", "Vermittelt die Bedeutung der eigenen Arbeit für das größere Ganze und schafft Verständnis für übergeordnete Ziele.", "Erklärt Veränderungen und neue Ziele so, dass sie von Betroffenen nachvollzogen und akzeptiert werden.", "Entwickelt für Vorhaben oder den eigenen Bereich eine klare Zielvorstellung und begeistert andere dafür.", "Übersetzt strategische Ziele in verständliche, handlungsorientierte Botschaften und überprüft deren Wirkung auf Ausrichtung und Motivation.", "Formuliert eine klare Zielvorstellung für den eigenen Bereich, gewinnt die Beteiligten dafür und überprüft, ob die Richtung im täglichen Handeln sichtbar wird.", "Entwickelt die unternehmensweite Vision mit klaren Kommunikationsformaten, sichert deren Verständnis auf allen Ebenen und überprüft die Identifikation regelmäßig.", "Legt die Sinn- und Zukunftsorientierung des Konzerns fest, kommuniziert sie in unterschiedlichen Formaten nach innen und außen und bewertet den Erfolg anhand von Identifikation und Engagement."], "code": "KM-F08"}, {"name": "Zwischenmenschliche Dynamiken geschickt navigieren", "def": "Die Fähigkeit, soziale Situationen, Beziehungen und unausgesprochene Erwartungen richtig einzuschätzen und sich darin wirksam zu bewegen.", "levels": ["Verhält sich im direkten Arbeitsumfeld höflich, aufmerksam und respektvoll.", "Erkennt grundlegende Stimmungen und Spannungen im direkten Umfeld und reagiert angemessen.", "Passt das eigene Verhalten flexibel an unterschiedliche Persönlichkeiten und Situationen an.", "Erkennt komplexere soziale Konstellationen, stellt das eigene Verhalten bewusst darauf ein und baut tragfähige Arbeitsbeziehungen auf.", "Löst zwischenmenschliche Spannungen in Projekten konstruktiv, adressiert unausgesprochene Erwartungen und sichert produktive Zusammenarbeit.", "Entwickelt für einen größeren Bereich klare Vorgehensweisen für den Umgang mit sozialen Spannungen und legt das eigene Vorgehen im Beziehungsaufbau für andere offen.", "Legt unternehmensweite Prinzipien für den Umgang mit sozialen Dynamiken fest und stellt sicher, dass soziale Kompetenz als relevante Führungsqualifikation gefördert wird.", "Richtet konzernweite Erwartungen an den Umgang miteinander an Werten und Geschäftszielen aus, entscheidet über entsprechende Programme und bewertet den Erfolg an der Qualität von Zusammenarbeit und Konfliktlösung."], "code": "KM-F09"}, {"name": "Konflikte konstruktiv lösen und vorbeugen", "def": "Die Fähigkeit, Konflikte frühzeitig zu erkennen, konstruktiv anzugehen und nachhaltige Lösungen zu finden, die die Zusammenarbeit stärken.", "levels": ["Vermeidet unnötige Konflikte und geht auf Meinungsverschiedenheiten sachlich ein.", "Erkennt aufkommende Spannungen im direkten Umfeld und spricht sie offen an.", "Vermittelt bei Konflikten zwischen Kolleginnen und Kollegen und findet für alle akzeptable Lösungen.", "Löst Konflikte in Arbeitsgruppen nachhaltig, benennt die Ursachen, klärt sie und sorgt dafür, dass die Zusammenarbeit danach besser funktioniert.", "Geht mit komplexeren Konflikten in Projekten um, schafft Lösungen, die von allen Beteiligten getragen werden, und überprüft die Nachhaltigkeit.", "Führt für einen größeren Bereich verbindliche Konfliktlösungsmechanismen ein, sorgt durch klare Regeln für einen konstruktiven Umgang mit Differenzen und berichtet über die Ergebnisse.", "Legt unternehmensweite Prinzipien für Konfliktprävention und -lösung fest und stellt sicher, dass Konflikte systematisch als Chance zur Weiterentwicklung genutzt werden.", "Richtet die konzernweiten Regeln zur Konfliktlösung an Unternehmenswerten aus, entscheidet über konzernweite Programme und bewertet den Erfolg an der Reduktion von Konfliktkosten und der Verbesserung der Zusammenarbeit."], "code": "KM-F10"}, {"name": "Organisationszusammenhänge verstehen und nutzen", "def": "Die Fähigkeit, formelle und informelle Strukturen, Entscheidungswege und Machtgefüge in der Organisation zu durchschauen und wirksam zu nutzen.", "levels": ["Kennt die grundlegenden Strukturen und Zuständigkeiten im eigenen Arbeitsumfeld.", "Versteht die wichtigsten Entscheidungswege und nutzt sie für die eigene Aufgabenerledigung.", "Identifiziert relevante Stakeholder und deren Interessen und berücksichtigt diese bei der eigenen Arbeit.", "Bewegt sich sicher in der Organisationsstruktur, setzt informelle Wege gezielt ein und klärt Zuständigkeiten, bevor Konflikte entstehen.", "Nutzt das Verständnis der Organisation, um Vorhaben wirksam voranzutreiben, benennt strukturelle Hürden und adressiert sie gezielt.", "Entwickelt Ansätze zur effektiven Navigation in der Organisation für einen größeren Bereich, schafft Transparenz über Entscheidungswege und optimiert die Nutzung vorhandener Strukturen.", "Steuert die Organisationsintelligenz auf Unternehmensebene durch Transparenzmechanismen und stellt sicher, dass Strukturen und Netzwerke optimal für Entscheidungen genutzt werden.", "Gestaltet die konzernweite Governance-Struktur aktiv, legt Entscheidungsprinzipien und Verantwortungsstrukturen fest und überprüft deren Beitrag zu besseren und schnelleren Entscheidungen."], "code": "KM-F11"}, {"name": "Andere überzeugen und für Ideen gewinnen", "def": "Die Fähigkeit, andere durch Argumente, Beispiele und Beziehungsaufbau für eigene Ideen und Vorschläge zu gewinnen und zu nachhaltigem Handeln zu bewegen.", "levels": ["Erklärt die eigenen Vorschläge klar und begründet sie sachlich.", "Passt die Argumentation an die Interessen und den Kenntnisstand des Gegenübers an.", "Überzeugt in Gruppen durch schlüssige Argumente, geht auf Einwände ein und schafft Unterstützung für Vorhaben.", "Gewinnt unterschiedliche Beteiligte für gemeinsame Ziele, adressiert unterschiedliche Interessen und setzt Ideen mit breiter Akzeptanz um.", "Entwickelt Überzeugungsstrategien für anspruchsvollere Vorhaben, setzt diese erfolgreich ein und überprüft die erzielte Akzeptanz.", "Bringt fundierte Argumente in Entscheidungen eines größeren Verantwortungsbereichs ein, gewinnt die maßgeblichen Beteiligten gezielt und berichtet über das Ergebnis.", "Legt unternehmensweite Prinzipien für konstruktive Einflussnahme fest und stellt sicher, dass gute Ideen Gehör finden und konsequent umgesetzt werden.", "Positioniert den Konzern intern und extern als überzeugende Stimme, richtet Kommunikationsstrategien auf strategische Ziele aus und bewertet den Erfolg anhand der Umsetzungsquote relevanter Ideen."], "code": "KM-F12"}, {"name": "Vielfalt anerkennen und als Stärke nutzen", "def": "Die Fähigkeit, Unterschiede in Hintergrund, Perspektive, Erfahrung und Denkweise wertzuschätzen und aktiv als Quelle von Innovation und besseren Lösungen zu nutzen.", "levels": ["Begegnet Kolleginnen und Kollegen mit unterschiedlichen Hintergründen respektvoll und aufgeschlossen.", "Berücksichtigt bei der Zusammenarbeit unterschiedliche Sichtweisen und integriert diese in gemeinsame Lösungen.", "Fördert in Arbeitsgruppen die Einbringung verschiedener Perspektiven und nutzt sie für bessere Ergebnisse.", "Schafft in Projekten ein Umfeld, in dem unterschiedliche Hintergründe aktiv einbezogen werden und alle Beiträge Gehör finden.", "Entwickelt Ansätze zur Förderung von Inklusion für Vorhaben im eigenen Verantwortungsbereich, misst deren Wirkung und passt an.", "Legt für einen größeren Bereich verbindliche Standards zum Umgang mit Vielfalt fest, sorgt durch konkrete Regeln für gleiche Beteiligungschancen und überprüft deren Wirkung.", "Legt die unternehmensweite Diversitäts- und Inklusionsstrategie fest, priorisiert entsprechende Maßnahmen und überprüft die Umsetzung.", "Richtet die konzernweite Diversitätsstrategie an Innovationszielen und Geschäftsanforderungen aus, entscheidet über strategische D&I-Initiativen und bewertet den Erfolg anhand von Innovations- und Leistungskennzahlen."], "code": "KM-F13"}, {"name": "Interessen unterschiedlicher Stakeholder ausbalancieren", "def": "Die Fähigkeit, die oft widersprüchlichen Interessen verschiedener interner und externer Stakeholder zu erkennen, zu gewichten und zu tragfähigen Lösungen zu führen.", "levels": ["Berücksichtigt bei der eigenen Arbeit die offensichtlichen Interessen direkt Betroffener.", "Erkennt bei Aufgaben mittlerer Komplexität unterschiedliche Stakeholder-Interessen und sucht aktiv nach Ausgleich.", "Führt bei Interessenkonflikten strukturierte Gespräche, benennt die wesentlichen Positionen und entwickelt praktikable Lösungsoptionen.", "Balanciert in Projekten die Interessen mehrerer Parteien, trifft abgestimmte Lösungen und schafft nachhaltige Akzeptanz.", "Entwickelt Stakeholder-Strategien für Vorhaben im eigenen Verantwortungsbereich, setzt diese um und überprüft die erzielte Akzeptanz.", "Führt für einen größeren Bereich feste Prozesse zum Stakeholder-Management ein, legt die unterschiedlichen Interessenslagen offen und löst Konflikte durch nachvollziehbare Abwägungen.", "Legt unternehmensweite Prinzipien für Stakeholder-Management fest und stellt sicher, dass Entscheidungen auch unter Interessensdruck breit getragen werden.", "Richtet die konzernweite Stakeholder-Strategie an Unternehmenswerten und Geschäftszielen aus, entscheidet über konzernweite Programme und bewertet Erfolg anhand von Akzeptanz und Nachhaltigkeit von Entscheidungen."], "code": "KM-F14"}], "Resilienz und Lernfähigkeit": [{"name": "Leistungsfähigkeit unter Druck aufrechterhalten", "def": "Die Fähigkeit, bei Rückschlägen, Druck oder Belastung die eigene Arbeitsfähigkeit zu stabilisieren, sich schnell zu erholen und handlungsfähig zu bleiben. Dieser Anker beschreibt nicht Anpassungsfähigkeit oder Lernverhalten, sondern die Stabilität der eigenen Leistung unter schwierigen Bedingungen.", "levels": ["Bleibt bei einfachen Störungen oder kleinen Rückschlägen konzentriert und sucht bei Bedarf Unterstützung.", "Hält auch bei erhöhtem Arbeitsaufkommen Qualitäts- und Terminziele ein und passt die Vorgehensweise pragmatisch an.", "Geht mit unvorhergesehenen Rückschlägen um, ohne dauerhaft an Leistung zu verlieren, benennt die Belastung offen und leitet Entlastungsschritte ein.", "Stabilisiert das eigene Arbeiten bei anhaltenden Belastungsphasen, behält den Überblick und unterstützt Kolleginnen und Kollegen, die unter Druck geraten.", "Hält in anspruchsvollen Vorhaben Leistung und Orientierung aufrecht, erkennt Überlastungssignale im direkten Umfeld und schlägt gezielt Entlastungsmaßnahmen vor.", "Hält den eigenen Bereich durch organisatorische Umbrüche und Krisenzeiten handlungsfähig, sorgt für Stabilität und Fokus und überprüft die Belastungssituation regelmäßig.", "Gibt in unternehmensweiten Veränderungsprozessen Orientierung, legt klare Prioritäten fest und steuert aktiv gegen Leistungsabfall und Überlastung.", "Steuert die Resilienzfähigkeit der Organisation durch klare Unterstützungsmechanismen, priorisiert Ressourcen zur Stabilisierung und sichert die Handlungsfähigkeit auch bei existenziellen Herausforderungen."], "code": "KM-R01"}, {"name": "Klare Haltung zeigen und für Grundsätze eintreten", "def": "Die Fähigkeit, in schwierigen Situationen für Werte und Standards einzustehen, Missstände klar zu benennen und auch dann konsequent zu handeln, wenn Widerstand entsteht.", "levels": ["Benennt eigene Fehler offen und korrigiert sie, ohne diese zu vertuschen oder auf andere zu schieben.", "Spricht bei Unstimmigkeiten oder Regelverstößen im eigenen Verantwortungsbereich die relevante Person direkt an, auch wenn dies unangenehm ist.", "Bezieht klar Stellung, wenn Qualitätsstandards oder vereinbarte Prinzipien gefährdet sind, und benennt konkrete Auswirkungen.", "Übernimmt Verantwortung für Entscheidungen, die Widerstand erzeugen, begründet sie nachvollziehbar und steht für die Konsequenzen ein.", "Verteidigt in Diskussionen ethische und fachliche Standards, benennt Zielkonflikte klar und schlägt lösungsorientierte Alternativen vor.", "Benennt auf Bereichsebene Fehlentwicklungen, Interessenkonflikte oder problematische Entscheidungen offen, leitet Korrekturen ein und dokumentiert die Ergebnisse.", "Setzt unternehmensweite Standards für integres Handeln fest, überprüft deren Einhaltung, greift bei Verstößen konsequent ein und kommuniziert Erwartungen klar.", "Legt die konzernweiten Verhaltensgrundsätze fest, überprüft deren Einhaltung durch regelmäßige Überprüfungsmechanismen und stellt sicher, dass Integrität und klares Eintreten für Werte auch in schwierigen Situationen sichtbar bleiben."], "code": "KM-R02"}, {"name": "Das eigene Verhalten reflektieren und weiterentwickeln", "def": "Die Fähigkeit, das eigene Verhalten, die eigene Wirkung auf andere und eigene Reaktionsmuster realistisch wahrzunehmen und gezielt zu verändern.", "levels": ["Erkennt eigene Fehler und lernt daraus, ohne diese zu rechtfertigen oder auf Umstände zu schieben.", "Bittet aktiv um Feedback, nimmt es ernst und setzt konkrete Rückmeldungen in der nächsten Situation um.", "Beobachtet das eigene Verhalten in herausfordernden Situationen bewusst, benennt wiederkehrende Muster und leitet gezielte Veränderungsschritte ab.", "Kennt die eigene Wirkung auf andere in unterschiedlichen Kontexten und passt das Verhalten situativ an, ohne die eigene Haltung aufzugeben.", "Nutzt strukturiertes Feedback (z. B. von Kolleginnen und Kollegen, aus Projektnachbesprechungen), identifiziert blinde Flecken und arbeitet systematisch daran.", "Sorgt in einem größeren Verantwortungsbereich für regelmäßige Gelegenheiten zu offenem Feedback und zum Lernen aus Fehlern und legt das eigene Lernen aus Fehlern für andere offen.", "Führt auf Unternehmensebene konkrete Instrumente für offene Selbstreflexion ein, bewertet anhand dieser die Entwicklung von Führungskräften und steuert mit gezielten Maßnahmen nach.", "Legt Selbstreflexion und kontinuierliche Verhaltensweiterentwicklung als verbindliche Erwartung an alle Führungskräfte des Konzerns fest, überprüft die Umsetzung und zieht bei Bedarf Konsequenzen."], "code": "KM-R03"}, {"name": "Vertrauen durch konsistentes Handeln aufbauen", "def": "Die Fähigkeit, durch vorhersehbares, ehrliches und zuverlässiges Verhalten bei anderen Vertrauen zu schaffen und dauerhaft zu erhalten.", "levels": ["Hält Vereinbarungen ein und verhält sich zuverlässig gegenüber Kolleginnen und Kollegen.", "Kommuniziert die eigenen Absichten und Überlegungen offen und schafft dadurch Verlässlichkeit.", "Geht offen mit eigenen Fehlern und Grenzen um und baut dadurch glaubwürdiges Vertrauen auf.", "Schafft in Projekten ein Klima, in dem offene Kommunikation möglich ist, indem eigene Verlässlichkeit konsequent vorgelebt wird.", "Entwickelt Vertrauensbeziehungen über Bereichsgrenzen hinweg, hält Zusagen auch unter Druck ein und gibt Rechenschaft über eigene Entscheidungen.", "Legt für einen größeren Bereich klare Prinzipien für verlässliches Handeln fest, hält sich sichtbar selbst daran und überprüft das Vertrauensniveau über direkte Rückmeldungen.", "Legt unternehmensweite Prinzipien für vertrauensbasiertes Handeln fest, überprüft deren Einhaltung und steuert bei systematischen Vertrauensbrüchen aktiv gegen.", "Legt konzernweite Standards für verlässliches und transparentes Handeln fest, entscheidet über Maßnahmen bei systembedingten Vertrauensschäden und bewertet die Wirkung am Vertrauensniveau und an der Qualität der Zusammenarbeit."], "code": "KM-R04"}, {"name": "Mit Unsicherheit und Mehrdeutigkeit souverän umgehen", "def": "Die Fähigkeit, bei unvollständigen Informationen, widersprüchlichen Anforderungen oder fehlenden Vorgaben handlungsfähig zu bleiben und begründete Entscheidungen zu treffen. Dieser Anker bezieht sich nicht auf Belastungsresistenz (Resilienz) oder Verhaltensveränderung (Anpassungsfähigkeit), sondern auf Urteils- und Entscheidungsfähigkeit unter Informationsdefizit.", "levels": ["Bleibt bei kleineren Unklarheiten ruhig, sucht aktiv nach den notwendigen Informationen und fragt gezielt nach.", "Arbeitet auch bei unvollständigen Vorgaben zielorientiert weiter und holt bei relevanten Unsicherheiten rechtzeitig Klärung ein.", "Strukturiert mehrdeutige Aufgaben, benennt offen, was unklar ist, und entwickelt pragmatische Lösungsvorschläge unter Vorbehalt.", "Trifft begründete Entscheidungen in Situationen mit mittlerer Unsicherheit, benennt die Grenzen der verfügbaren Informationen und übernimmt Verantwortung für die Folgen.", "Steuert Vorhaben mit hoher Ambiguität, schafft durch strukturiertes Vorgehen Orientierung für Beteiligte und überprüft Entscheidungen, sobald neue Informationen vorliegen.", "Entwickelt Entscheidungsrahmen für einen größeren Bereich, die auch bei Informationsdefizit Handlungsfähigkeit sichern, und vermittelt Klarheit trotz unvollständiger Informationslage.", "Legt unternehmensweite Entscheidungslogiken für den Umgang mit Ambiguität fest und stellt sicher, dass Unsicherheit zu strukturiertem Vorgehen statt zu Blockaden führt.", "Richtet die konzernweite Entscheidungsfähigkeit auch in volatilen Situationen aus, definiert Eskalations- und Priorisierungsregeln für Krisen und bewertet die Anpassungsgeschwindigkeit der Organisation."], "code": "KM-R05"}, {"name": "Neues Wissen aufnehmen und anwenden", "def": "Die Fähigkeit, in neuen oder sich schnell verändernden Situationen relevantes Wissen gezielt aufzunehmen, zu verarbeiten und praktisch einzusetzen. Dieser Anker fokussiert auf Lerngeschwindigkeit und Wissensintegration – nicht auf geplante Selbstentwicklung (Eigenverantwortliche Weiterentwicklung) oder Verhaltensanpassung (Anpassungsfähigkeit).", "levels": ["Lernt neue Verfahren oder Werkzeuge zuverlässig und wendet sie sicher an.", "Eignet sich neues Wissen im Rahmen eigener Aufgaben an und setzt es unmittelbar um.", "Verarbeitet neue, auch komplexere Informationen schnell, ordnet sie ein und leitet konkrete Handlungsschritte ab.", "Lernt in neuen Projekten oder Aufgabenfeldern rasch die relevanten Zusammenhänge, stellt gezielte Fragen und wird schnell produktiv.", "Nimmt in Vorhaben neues Fachwissen auf, integriert es in die eigene Arbeit und gibt Erkenntnisse aktiv an andere weiter.", "Entwickelt Lernprozesse für einen größeren Bereich, um den Umgang mit neuen Themen zu beschleunigen, und überprüft die Geschwindigkeit der Wissensaneignung.", "Legt unternehmensweite Lernstandards und -strukturen fest und stellt sicher, dass die Organisation relevantes Wissen schnell aufnimmt und in Handlung überführt.", "Richtet die konzernweite Lernfähigkeit an strategischen Anforderungen aus, entscheidet über Lerninvestitionen und bewertet die Anpassungsgeschwindigkeit und Innovationsrate der Organisation."], "code": "KM-R06"}, {"name": "Eigenverantwortlich an der persönlichen Weiterentwicklung arbeiten", "def": "Die Fähigkeit, die eigene Entwicklung aktiv zu steuern, Lernmöglichkeiten gezielt zu nutzen und kontinuierlich an der eigenen Wirksamkeit zu arbeiten. Dieser Anker fokussiert auf selbstgesteuerte Entwicklungsplanung – nicht auf spontane Wissensaufnahme (Lernfähigkeit) oder Verhaltensreflexion (Selbstreflexion).", "levels": ["Nimmt Feedback an und setzt es in konkreten, kleinen Schritten um.", "Plant die eigene Weiterentwicklung für das nächste Jahr, benennt konkrete Ziele und nutzt verfügbare Angebote.", "Identifiziert gezielt eigene Entwicklungsfelder, sucht aktiv nach Lerngelegenheiten und holt regelmäßig Feedback ein.", "Verfolgt einen strukturierten Entwicklungsplan, überprüft den Fortschritt anhand konkreter Verhaltensveränderungen und passt die Ziele bei Bedarf an.", "Nutzt vielfältige Lernangebote und externe Impulse, integriert neue Erkenntnisse in die eigene Arbeit und teilt relevante Erkenntnisse mit anderen.", "Fordert in einem größeren Verantwortungsbereich eigenverantwortliche Entwicklung aktiv ein, stellt Lernmöglichkeiten bereit und misst die Beteiligung.", "Legt unternehmensweite Erwartungen an eigenverantwortliche Entwicklung fest, stellt entsprechende Strukturen und Angebote bereit und überprüft die Wirkung.", "Legt kontinuierliche Selbstentwicklung als verbindliche konzernweite Erwartung fest, entscheidet über Investitionen in Entwicklungsprogramme und bewertet den Erfolg an Leistungsentwicklung und Entwicklungsaktivität."], "code": "KM-R07"}, {"name": "Arbeitsweise an veränderte Rahmenbedingungen anpassen", "def": "Die Fähigkeit, die eigene Arbeitsweise, Prioritäten und Vorgehensweisen aktiv und wirksam an neue Situationen und Anforderungen anzupassen. Dieser Anker beschreibt die aktive Veränderung des eigenen Handelns bei neuen Rahmenbedingungen – nicht die Wissensaufnahme (Lernfähigkeit) oder die Belastbarkeit (Resilienz).", "levels": ["Passt die eigene Vorgehensweise bei kleineren Veränderungen an und bleibt handlungsfähig.", "Reagiert auf veränderte Vorgaben oder Prioritäten flexibel und ohne Widerstand.", "Erkennt bei mittleren Veränderungen den Anpassungsbedarf frühzeitig, ändert die eigene Vorgehensweise und unterstützt Kolleginnen und Kollegen dabei.", "Steuert das eigene Vorgehen bewusst durch Veränderungsprozesse, priorisiert neu, wenn sich Rahmenbedingungen ändern, und gibt anderen Orientierung.", "Entwickelt für Vorhaben mit veränderten Rahmenbedingungen Anpassungsstrategien, setzt diese um und überprüft deren Wirksamkeit.", "Setzt Flexibilität und Anpassungsbereitschaft als verbindlichen Standard in einem größeren Bereich durch und richtet Strukturen ein, die schnelle Reaktionen auf Veränderungen ermöglichen.", "Legt unternehmensweite Prozesse für den Umgang mit veränderten Rahmenbedingungen fest und stellt sicher, dass die Organisation auf Veränderungen schnell und konsequent reagiert.", "Richtet die konzernweite Anpassungsfähigkeit an strategischen Anforderungen aus, entscheidet über strukturelle Anpassungen als Reaktion auf externe Entwicklungen und bewertet die Reaktionsgeschwindigkeit anhand messbarer Indikatoren."], "code": "KM-R08"}]}}</script>
+<script>
+const MODEL = JSON.parse(document.getElementById('model-data').textContent);
+const CLUSTERS = MODEL.clusters;
+const CLUSTER_TAGCODE = {0:'KM-CL-STRAT',1:'KM-CL-OPS',2:'KM-CL-LEAD',3:'KM-CL-RESIL'};
+const LOGIC = ['Operativ','Operativ','Breit anschlussfähig','Breit anschlussfähig','Breit anschlussfähig','Komplexe Steuerung','Executive','Executive'];
+const HAYG = ['ca. HG 1–8','ca. HG 1–8','ca. HG 9–13','ca. HG 9–13','ca. HG 14–17','ca. HG 18–21','ca. HG 22–25','ca. HG 26+'];
+
+const FLAT=[]; CLUSTERS.forEach((cl,ci)=>MODEL.data[cl].forEach(c=>FLAT.push(Object.assign({},c,{ci:ci,cl:cl}))));
+const BY_CODE={}; FLAT.forEach(c=>BY_CODE[c.code]=c);
+
+let jobs=[], active=null, scope='job';
+
+function uid(){return 'J'+Math.random().toString(36).slice(2,8);}
+function newJob(o){o=o||{};return {id:o.id||uid(),fam:o.fam||'',role:o.role||'',grade:o.grade||'',
+  code:o.code||'',sub:o.sub||'',stream:o.stream||'',level:o.level||'',purpose:o.purpose||'',resp:o.resp||[],
+  items:(o.items||[]).filter(function(i){return BY_CODE[i.code];}).map(function(i){return {code:i.code,lvl:Math.min(8,Math.max(1,i.lvl||4))};})};}
+
+function seed(){
+  jobs=[
+    newJob({fam:'Produktion',role:'Produktionsmitarbeiter:in',grade:'HG 6',code:'PRD-OP-01',sub:'Fertigung',stream:'Para-Professional / Support',level:'S2',
+      purpose:'Führt zugewiesene Fertigungsaufgaben zuverlässig und qualitätsgerecht aus.',resp:['Bedient Anlagen nach Vorgabe','Meldet Abweichungen umgehend'],
+      items:[{code:'KM-O02',lvl:2},{code:'KM-R01',lvl:2}]}),
+    newJob({fam:'Produktion',role:'Schichtleiter:in',grade:'HG 18',code:'PRD-SHL-03',sub:'Fertigung',stream:'Management',level:'M2',
+      purpose:'Steuert den Schichtbetrieb und führt das Schichtteam zur Erreichung der Produktionsziele.',resp:['Steuert Schichtablauf und Ressourcen','Führt und entwickelt das Schichtteam','Verantwortet Schicht-Kennzahlen'],
+      items:[{code:'KM-F01',lvl:6},{code:'KM-O01',lvl:6},{code:'KM-R01',lvl:5}]}),
+    newJob({fam:'Management',role:'Bereichsleiter:in',grade:'HG 23',code:'MGT-BL-01',sub:'Operations',stream:'Executive',level:'E1',
+      purpose:'Verantwortet die strategische und operative Steuerung des Bereichs.',resp:['Setzt Bereichsstrategie um','Verantwortet Budget und Ergebnis'],
+      items:[{code:'KM-S01',lvl:7},{code:'KM-F01',lvl:7}]}),
+  ];
+  active=jobs[0].id;
+}
+
+const compSel=document.getElementById('compSel');
+function fillSelect(){
+  compSel.innerHTML='';
+  CLUSTERS.forEach(function(cl,ci){
+    const og=document.createElement('optgroup'); og.label=cl;
+    MODEL.data[cl].forEach(function(c){
+      const o=document.createElement('option'); o.value=c.code; o.textContent=c.code+' · '+c.name; og.appendChild(o);
+    });
+    compSel.appendChild(og);
+  });
+}
+function curJob(){return jobs.find(function(j){return j.id===active;});}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function renderJobs(){
+  const el=document.getElementById('joblist');
+  if(!jobs.length){el.innerHTML='<div class="empty">Noch keine Jobs. Klick auf „Neu" oder importiere eine Mercer-CSV.</div>';return;}
+  el.innerHTML=jobs.map(function(j){
+    const stream=j.stream?('<span class="tagpill str">'+esc(j.stream)+(j.level?' · '+esc(j.level):'')+'</span>'):'';
+    return '<div class="job '+(j.id===active?'on':'')+'" data-id="'+j.id+'">'+
+      '<div class="jtop"><div><div class="jr">'+(esc(j.role)||'<em>Unbenannt</em>')+'</div>'+
+      '<div class="jf">'+(esc(j.fam)||'—')+(j.grade?' · '+esc(j.grade):'')+(j.code?' · '+esc(j.code):'')+'</div></div>'+
+      '<button class="jdel" data-del="'+j.id+'" title="Job löschen">&times;</button></div>'+
+      '<div class="jmeta"><span class="tagpill cmp">'+j.items.length+' Kompetenzen</span>'+stream+'</div></div>';
+  }).join('');
+  Array.prototype.forEach.call(el.querySelectorAll('.job'),function(d){
+    d.addEventListener('click',function(e){if(e.target.dataset.del)return;active=d.dataset.id;renderAll();});});
+  Array.prototype.forEach.call(el.querySelectorAll('.jdel'),function(b){
+    b.addEventListener('click',function(e){e.stopPropagation();
+      const id=b.dataset.del; const j=jobs.find(function(x){return x.id===id;});
+      if(j && j.items.length && !confirm('Job „'+(j.role||'Unbenannt')+'" mit '+j.items.length+' Kompetenzen löschen?'))return;
+      jobs=jobs.filter(function(x){return x.id!==id;});
+      if(active===id)active=jobs[0]?jobs[0].id:null; renderAll();});});
+}
+
+function renderEditor(){
+  const j=curJob(); const dis=!j;
+  ['jf','jr','jg','mCode','mSub','mStream','mLevel','mPurpose','mResp'].forEach(function(id){document.getElementById(id).disabled=dis;});
+  document.getElementById('addComp').disabled=dis;
+  const set=function(id,v){document.getElementById(id).value=v||'';};
+  if(!j){set('jf');set('jr');set('jg');set('mCode');set('mSub');set('mStream');set('mLevel');set('mPurpose');set('mResp');
+    document.getElementById('items').innerHTML='<div class="empty">Wähle links einen Job oder lege einen neuen an.</div>';return;}
+  set('jf',j.fam);set('jr',j.role);set('jg',j.grade);set('mCode',j.code);set('mSub',j.sub);
+  set('mStream',j.stream);set('mLevel',j.level);set('mPurpose',j.purpose);set('mResp',(j.resp||[]).join('\n'));
+  const items=document.getElementById('items');
+  if(!j.items.length){items.innerHTML='<div class="empty">Noch keine Kompetenzen. Oben auswählen und hinzufügen.</div>';return;}
+  items.innerHTML=j.items.map(function(it,k){
+    const c=BY_CODE[it.code]; const anchor=c.levels[it.lvl-1]||'—';
+    const segs=[1,2,3,4,5,6,7,8].map(function(n){return '<button class="'+(n===it.lvl?'on':'')+'" data-k="'+k+'" data-l="'+n+'">'+n+'</button>';}).join('');
+    return '<div class="item"><div class="ih"><span class="dot c'+c.ci+'d"></span><span class="nm">'+esc(c.name)+'</span>'+
+      '<span class="code">'+c.code+'</span><button class="rm" data-k="'+k+'" title="Entfernen">&times;</button></div>'+
+      '<div class="lvlpick"><div class="ll"><span class="t">Ziel-Level</span>'+
+      '<span class="b">Level '+it.lvl+' · '+LOGIC[it.lvl-1]+' · '+HAYG[it.lvl-1]+'</span></div>'+
+      '<div class="segs">'+segs+'</div>'+
+      '<div class="anchor"><span class="al">Verhaltensanker · Level '+it.lvl+'</span>'+esc(anchor)+'</div></div></div>';
+  }).join('');
+  Array.prototype.forEach.call(items.querySelectorAll('.rm'),function(b){
+    b.addEventListener('click',function(){j.items.splice(+b.dataset.k,1);renderAll();});});
+  Array.prototype.forEach.call(items.querySelectorAll('.segs button'),function(b){
+    b.addEventListener('click',function(){j.items[+b.dataset.k].lvl=+b.dataset.l;renderAll();});});
+}
+
+function renderPreview(){
+  const j=curJob();
+  const sub=document.getElementById('pvsub'), box=document.getElementById('pvjob');
+  if(!j){sub.textContent='Kein Job ausgewählt';box.innerHTML='';return;}
+  sub.textContent=j.items.length+' Kompetenzen zugewiesen';
+  let h='<div class="pvjob"><div class="role">'+(esc(j.role)||'Unbenannt')+'</div>'+
+    '<div class="fam">'+(esc(j.fam)||'—')+(j.grade?' · '+esc(j.grade):'')+(j.code?' · '+esc(j.code):'')+'</div>';
+  if(j.stream||j.level||j.sub){
+    h+='<div class="strrow">';
+    if(j.stream)h+='<span class="tagpill str">'+esc(j.stream)+'</span>';
+    if(j.level)h+='<span class="tagpill str">'+esc(j.level)+'</span>';
+    if(j.sub)h+='<span class="tagpill">'+esc(j.sub)+'</span>';
+    h+='</div>';
+  }
+  if(j.purpose)h+='<div class="purpose">'+esc(j.purpose)+'</div>';
+  if(j.resp&&j.resp.length)h+='<ul class="resp">'+j.resp.map(function(r){return '<li>'+esc(r)+'</li>';}).join('')+'</ul>';
+  h+='<div class="pvsep">Kompetenzen</div>';
+  if(j.items.length){
+    h+=j.items.map(function(it){const c=BY_CODE[it.code];
+      return '<div class="pvrow"><span class="pn">'+esc(c.name)+'<br><span class="pc">'+c.code+' · '+esc(c.cl)+'</span></span>'+
+        '<span class="pl">L'+it.lvl+'</span></div>';}).join('');
+  } else { h+='<div class="pvrow" style="color:var(--body)">Keine Kompetenzen</div>'; }
+  h+='</div>';
+  box.innerHTML=h;
+}
+
+function renderAll(){renderJobs();renderEditor();renderPreview();}
+
+// editor inputs
+const inMap={jf:'fam',jr:'role',jg:'grade',mCode:'code',mSub:'sub',mStream:'stream',mLevel:'level',mPurpose:'purpose'};
+Object.keys(inMap).forEach(function(id){
+  document.getElementById(id).addEventListener('input',function(e){
+    const j=curJob(); if(!j)return; j[inMap[id]]=e.target.value; renderJobs(); renderPreview();});});
+document.getElementById('mResp').addEventListener('input',function(e){
+  const j=curJob(); if(!j)return; j.resp=e.target.value.split('\n').map(function(s){return s.trim();}).filter(Boolean); renderPreview();});
+
+document.getElementById('addComp').addEventListener('click',function(){
+  const j=curJob(); if(!j)return; const code=compSel.value;
+  if(j.items.some(function(i){return i.code===code;})){toast('Kompetenz ist bereits zugewiesen');return;}
+  j.items.push({code:code,lvl:4}); renderAll();});
+document.getElementById('addJob').addEventListener('click',function(){
+  const j=newJob({}); jobs.push(j); active=j.id; renderAll(); document.getElementById('jr').focus();});
+
+// ---- CSV helpers ----
+function csvCell(v){v=(v==null?'':String(v));return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;}
+function toCSV(rows){return rows.map(function(r){return r.map(csvCell).join(',');}).join('\r\n');}
+function dl(name,content){const b=new Blob(['\ufeff'+content],{type:'text/csv;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;a.click();URL.revokeObjectURL(u);}
+
+// robust CSV parser -> array of row arrays
+function parseCSV(text){
+  text=text.replace(/^\ufeff/,'');
+  const rows=[]; let row=[], cell='', i=0, q=false;
+  while(i<text.length){
+    const ch=text[i];
+    if(q){
+      if(ch==='"'){ if(text[i+1]==='"'){cell+='"';i+=2;continue;} q=false;i++;continue; }
+      cell+=ch;i++;continue;
+    }
+    if(ch==='"'){q=true;i++;continue;}
+    if(ch===','){row.push(cell);cell='';i++;continue;}
+    if(ch==='\r'){i++;continue;}
+    if(ch==='\n'){row.push(cell);rows.push(row);row=[];cell='';i++;continue;}
+    cell+=ch;i++;
+  }
+  if(cell.length||row.length){row.push(cell);rows.push(row);}
+  return rows.filter(function(r){return r.some(function(c){return c!=='';});});
+}
+
+function scopedJobs(){return scope==='all'?jobs:[curJob()].filter(Boolean);}
+function usedCodes(){const s=[]; scopedJobs().forEach(function(j){j.items.forEach(function(i){if(s.indexOf(i.code)<0)s.push(i.code);});});return s;}
+
+function expAttributes(){
+  const rows=[['externalCode','name','description','attributeType','status','tags']];
+  usedCodes().forEach(function(code){const c=BY_CODE[code];rows.push([c.code,c.name,c.def,'Competency','ACTIVE',CLUSTER_TAGCODE[c.ci]]);});
+  dl('TIH_01_Attribute.csv',toCSV(rows)); toast('Attribute exportiert ('+(rows.length-1)+')');
+}
+function expProficiency(){
+  const rows=[['attributeExternalCode','proficiencyLevel','localeCode','description']];
+  usedCodes().forEach(function(code){const c=BY_CODE[code];c.levels.forEach(function(t,i){rows.push([c.code,i+1,'de_DE',t]);});});
+  dl('TIH_02_ProficiencyLevelText.csv',toCSV(rows)); toast('Proficiency-Texte exportiert ('+(rows.length-1)+' Zeilen)');
+}
+function expMapping(){
+  const rows=[['jobCode','jobFamily','jobRole','grade','attributeExternalCode','competencyName','targetProficiencyLevel']];
+  scopedJobs().forEach(function(j){j.items.forEach(function(it){const c=BY_CODE[it.code];
+    rows.push([j.code,j.fam,j.role,j.grade,c.code,c.name,it.lvl]);});});
+  dl('JPB_03_Rolle-Kompetenz-Mapping.csv',toCSV(rows)); toast('Job-Mapping exportiert ('+(rows.length-1)+' Zeilen)');
+}
+function expMercer(){
+  const rows=[['jobCode','jobTitle','jobFamily','subFamily','careerStream','careerLevel','grade','jobPurpose','keyResponsibilities','competencies']];
+  scopedJobs().forEach(function(j){
+    const comps=j.items.map(function(it){return it.code+'@'+it.lvl;}).join('; ');
+    rows.push([j.code,j.role,j.fam,j.sub,j.stream,j.level,j.grade,j.purpose,(j.resp||[]).join(' | '),comps]);});
+  dl('Mercer_Jobprofile.csv',toCSV(rows)); toast('Mercer-Jobprofile exportiert ('+(rows.length-1)+')');
+}
+function expTags(){
+  const used=[]; usedCodes().forEach(function(code){const ci=BY_CODE[code].ci; if(used.indexOf(ci)<0)used.push(ci);});
+  const rows=[['tagExternalCode','name','standardTag']];
+  used.sort().forEach(function(ci){rows.push([CLUSTER_TAGCODE[ci],CLUSTERS[ci],'Core']);});
+  dl('TIH_04_Tags.csv',toCSV(rows)); toast('Tags exportiert ('+(rows.length-1)+')');
+}
+function expReadable(){
+  const rows=[['Job Code','Job Family','Job Role','Sub-Family','Career Stream','Career Level','Grade','Job Purpose','Kompetenz','Code','Cluster','Ziel-Level','Stufenlogik','Hay-Orientierung','Verhaltensanker (Ziel-Level)']];
+  scopedJobs().forEach(function(j){
+    if(!j.items.length){rows.push([j.code,j.fam,j.role,j.sub,j.stream,j.level,j.grade,j.purpose,'—','','','','','','']);return;}
+    j.items.forEach(function(it){const c=BY_CODE[it.code];
+      rows.push([j.code,j.fam,j.role,j.sub,j.stream,j.level,j.grade,j.purpose,c.name,c.code,c.cl,'Level '+it.lvl,LOGIC[it.lvl-1],HAYG[it.lvl-1],c.levels[it.lvl-1]]);});});
+  dl('Jobprofile_lesbar.csv',toCSV(rows)); toast('Lesbares Profil exportiert');
+}
+document.getElementById('exA').onclick=expAttributes;
+document.getElementById('exB').onclick=expProficiency;
+document.getElementById('exC').onclick=expMapping;
+document.getElementById('exF').onclick=expMercer;
+document.getElementById('exD').onclick=expTags;
+document.getElementById('exE').onclick=expReadable;
+document.getElementById('exportAllBtn').onclick=function(){
+  if(!scopedJobs().length){toast('Keine Jobs im Export-Umfang');return;}
+  expAttributes();setTimeout(expProficiency,150);setTimeout(expTags,300);setTimeout(expMapping,450);setTimeout(expMercer,600);setTimeout(expReadable,750);
+};
+
+document.getElementById('scopeJob').onclick=function(){scope='job';setScope();};
+document.getElementById('scopeAll').onclick=function(){scope='all';setScope();};
+function setScope(){document.getElementById('scopeJob').classList.toggle('on',scope==='job');
+  document.getElementById('scopeAll').classList.toggle('on',scope==='all');}
+
+// ---- Mercer import modal ----
+const ov=document.getElementById('ov');
+document.getElementById('importBtn').onclick=function(){ov.classList.add('show');};
+document.getElementById('ovX').onclick=function(){ov.classList.remove('show');};
+ov.addEventListener('click',function(e){if(e.target===ov)ov.classList.remove('show');});
+
+document.getElementById('tplBtn').onclick=function(){
+  const rows=[['jobCode','jobTitle','jobFamily','subFamily','careerStream','careerLevel','grade','jobPurpose','keyResponsibilities','competencies']];
+  jobs.slice(0,3).forEach(function(j){
+    rows.push([j.code,j.role,j.fam,j.sub,j.stream,j.level,j.grade,j.purpose,(j.resp||[]).join(' | '),
+      j.items.map(function(it){return it.code+'@'+it.lvl;}).join('; ')]);});
+  if(rows.length===1){rows.push(['PRD-SHL-03','Schichtleiter:in','Produktion','Fertigung','Management','M2','HG 18',
+    'Steuert den Schichtbetrieb und führt das Team.','Steuert Schichtablauf | Führt Team','KM-F01@6; KM-O01@6']);}
+  dl('Mercer_Import_Vorlage.csv',toCSV(rows)); toast('Mercer-Vorlage heruntergeladen');
+};
+
+document.getElementById('pickCsv').onclick=function(){document.getElementById('mercerInput').click();};
+document.getElementById('mercerInput').onchange=function(e){
+  const f=e.target.files[0]; if(!f)return;
+  const r=new FileReader();
+  r.onload=function(){
+    try{
+      const rows=parseCSV(r.result);
+      if(rows.length<2){toast('CSV enthält keine Datenzeilen');return;}
+      const head=rows[0].map(function(h){return h.trim().toLowerCase();});
+      const col=function(name){return head.indexOf(name.toLowerCase());};
+      const ci={code:col('jobCode'),title:col('jobTitle'),fam:col('jobFamily'),sub:col('subFamily'),
+        stream:col('careerStream'),level:col('careerLevel'),grade:col('grade'),purpose:col('jobPurpose'),
+        resp:col('keyResponsibilities'),comp:col('competencies')};
+      if(ci.title<0 && ci.code<0){toast('Spalten nicht erkannt – bitte Vorlage nutzen');return;}
+      if(document.getElementById('replaceChk').checked){jobs=[];active=null;}
+      let added=0,updated=0,skippedComp=0;
+      const get=function(arr,idx){return idx>=0&&idx<arr.length?String(arr[idx]).trim():'';};
+      for(let r2=1;r2<rows.length;r2++){
+        const row=rows[r2]; if(!row.length)continue;
+        const code=get(row,ci.code);
+        const resp=get(row,ci.resp).split('|').map(function(s){return s.trim();}).filter(Boolean);
+        const items=[];
+        get(row,ci.comp).split(';').forEach(function(tok){
+          tok=tok.trim(); if(!tok)return;
+          const parts=tok.split('@'); const cc=parts[0].trim(); let lv=parseInt(parts[1],10);
+          if(!BY_CODE[cc]){skippedComp++;return;}
+          if(isNaN(lv)||lv<1||lv>8)lv=4;
+          items.push({code:cc,lvl:lv});
+        });
+        const data={code:code,role:get(row,ci.title),fam:get(row,ci.fam),sub:get(row,ci.sub),
+          stream:get(row,ci.stream),level:get(row,ci.level),grade:get(row,ci.grade),
+          purpose:get(row,ci.purpose),resp:resp,items:items};
+        let existing=code?jobs.find(function(j){return j.code&&j.code===code;}):null;
+        if(existing){Object.assign(existing,newJob(Object.assign({id:existing.id},data)));updated++;}
+        else{jobs.push(newJob(data));added++;}
+      }
+      active=jobs.length?jobs[jobs.length-1].id:null;
+      ov.classList.remove('show'); renderAll();
+      let msg='Import: '+added+' neu, '+updated+' aktualisiert';
+      if(skippedComp)msg+=' · '+skippedComp+' unbekannte Kompetenz-Codes übersprungen';
+      toast(msg);
+    }catch(err){toast('Fehler beim Import: '+err.message);}
+  };
+  r.readAsText(f); e.target.value='';
+};
+
+// save / load JSON state
+document.getElementById('saveBtn').onclick=function(){
+  const b=new Blob([JSON.stringify({version:'v7-jpb-2',jobs:jobs},null,2)],{type:'application/json'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='Jobprofile_Stand.json';a.click();URL.revokeObjectURL(u);
+  toast('Stand gespeichert');
+};
+document.getElementById('loadBtn').onclick=function(){document.getElementById('fileInput').click();};
+document.getElementById('fileInput').onchange=function(e){const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();r.onload=function(){try{const d=JSON.parse(r.result);
+    if(Array.isArray(d.jobs)){jobs=d.jobs.map(function(j){return newJob(j);});active=jobs[0]?jobs[0].id:null;renderAll();toast('Stand geladen ('+jobs.length+' Jobs)');}
+    else toast('Datei nicht erkannt');}catch(err){toast('Fehler beim Laden');}};
+  r.readAsText(f);e.target.value='';};
+
+let tt;function toast(m){const el=document.getElementById('toast');document.getElementById('toastmsg').textContent=m;
+  el.classList.add('show');clearTimeout(tt);tt=setTimeout(function(){el.classList.remove('show');},2600);}
+
+// init
+fillSelect();seed();setScope();renderAll();
+</script>
+</body>
+</html>
+</div>

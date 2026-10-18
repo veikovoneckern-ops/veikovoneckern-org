@@ -1,0 +1,1053 @@
+<!--seite
+{
+  "titel": "PERSONEN HINTER DER KI",
+  "beschreibung": ""
+}
+-->
+
+<section class="band" style="background-image:url('/bilder/unsplash-vgwlz8er820.jpg')">
+  <div class="band-innen">
+    <h2>Welche Personen stehen hinter der KI?</h2>
+  </div>
+</section>
+
+<div class="baustein">
+<!-- =====================================================
+     PERSONEN HINTER DER KI – Interaktive Sektion
+     Zum Einbetten in: veikovoneckern.org/ki-ani-agi-asi/personen-hinter-der-ki
+     Alle Klassen sind mit "kip-" geprefixt, um Konflikte mit
+     dem restlichen CSS der Seite zu vermeiden.
+     ===================================================== -->
+
+<section class="kip-section" id="kip-personen-hinter-der-ki">
+
+  <!-- Google Fonts: Outfit (Display & Body) + JetBrains Mono (Labels/Kicker) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============ CSS-Variablen (gescopt auf #kip-personen-hinter-der-ki) ============ */
+    #kip-personen-hinter-der-ki {
+      --kip-bg: #f5f5f7;
+      --kip-bg-deep: #ebebef;
+      --kip-paper: #ffffff;
+      --kip-ink: #111114;
+      --kip-ink-soft: #3a3a3f;
+      --kip-ink-muted: #6e6e76;
+      --kip-rule: #d2d2d7;
+      --kip-rule-soft: #e5e5ea;
+      --kip-accent: #991b1b;
+      --kip-accent-soft: #b91c1c;
+      --kip-shadow: 0 1px 2px rgba(17,17,20,.04), 0 8px 24px rgba(17,17,20,.06);
+      --kip-shadow-lg: 0 4px 12px rgba(17,17,20,.08), 0 20px 60px rgba(17,17,20,.14);
+      --kip-serif: "Outfit", system-ui, -apple-system, sans-serif;
+      --kip-body: "Outfit", system-ui, -apple-system, sans-serif;
+      --kip-mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    /* ============ Reset & Grundgerüst innerhalb der Sektion ============ */
+    #kip-personen-hinter-der-ki,
+    #kip-personen-hinter-der-ki *,
+    #kip-personen-hinter-der-ki *::before,
+    #kip-personen-hinter-der-ki *::after {
+      box-sizing: border-box;
+    }
+
+    .kip-section {
+      background: var(--kip-bg);
+      color: var(--kip-ink);
+      font-family: var(--kip-body);
+      font-size: 17px;
+      line-height: 1.6;
+      padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Sehr dezente Textur für Tiefe (deutlich subtiler als zuvor) */
+    .kip-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.12 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      opacity: .5;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      z-index: 0;
+    }
+
+    .kip-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ============ Eyebrow & Titel ============ */
+    .kip-eyebrow {
+      font-family: var(--kip-mono);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--kip-accent);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 22px;
+    }
+    .kip-eyebrow::before,
+    .kip-eyebrow::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--kip-rule);
+    }
+    .kip-eyebrow::after { display: none; }
+
+    .kip-title {
+      font-family: var(--kip-serif);
+      font-weight: 300;
+      font-size: clamp(28px, 4.2vw, 48px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 18px;
+      color: var(--kip-ink);
+    }
+    .kip-title em {
+      font-style: normal;
+      font-weight: 500;
+      color: var(--kip-accent);
+    }
+
+    .kip-lede {
+      font-family: var(--kip-body);
+      font-size: clamp(16px, 1.5vw, 19px);
+      line-height: 1.55;
+      max-width: 62ch;
+      color: var(--kip-ink-soft);
+      margin: 0 0 12px;
+      font-weight: 400;
+    }
+
+    .kip-hint {
+      font-family: var(--kip-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--kip-ink-muted);
+      margin: 8px 0 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .kip-hint svg { width: 14px; height: 14px; }
+
+    /* Trennlinie unter Header */
+    .kip-header-rule {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--kip-ink) 0 22%, var(--kip-rule) 22% 100%);
+      margin: 40px 0 64px;
+    }
+
+    /* ============ Kategorie-Block ============ */
+    .kip-category {
+      margin: 0 0 72px;
+      scroll-margin-top: 80px;
+    }
+    .kip-category:last-of-type { margin-bottom: 0; }
+
+    .kip-cat-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 24px;
+      align-items: baseline;
+      margin: 0 0 32px;
+      padding: 0 0 20px;
+      border-bottom: 1px solid var(--kip-rule);
+    }
+
+    .kip-cat-num {
+      font-family: var(--kip-serif);
+      font-weight: 200;
+      font-size: clamp(40px, 5vw, 64px);
+      line-height: 0.9;
+      color: var(--kip-accent);
+      letter-spacing: -0.02em;
+    }
+
+    .kip-cat-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .kip-cat-kicker {
+      font-family: var(--kip-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--kip-ink-muted);
+    }
+
+    .kip-cat-title {
+      font-family: var(--kip-serif);
+      font-weight: 500;
+      font-size: clamp(22px, 2.6vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--kip-ink);
+      margin: 0;
+    }
+
+    /* ============ Karten-Grid ============ */
+    .kip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: clamp(20px, 2.4vw, 36px);
+    }
+
+    /* ============ Karten ============ */
+    .kip-card {
+      position: relative;
+      background: var(--kip-paper);
+      border: 1px solid var(--kip-rule-soft);
+      cursor: pointer;
+      padding: 0;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+      transition: transform .35s cubic-bezier(.22,.61,.36,1),
+                  box-shadow .35s ease,
+                  border-color .25s ease;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .kip-card:hover,
+    .kip-card:focus-visible {
+      transform: translateY(-4px);
+      box-shadow: var(--kip-shadow-lg);
+      border-color: var(--kip-ink-soft);
+      outline: none;
+    }
+    .kip-card:focus-visible {
+      box-shadow: 0 0 0 2px var(--kip-bg), 0 0 0 4px var(--kip-accent), var(--kip-shadow-lg);
+    }
+
+    .kip-card-img {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--kip-bg-deep);
+    }
+    .kip-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: contrast(1.02) saturate(0);
+      transition: transform .6s cubic-bezier(.22,.61,.36,1), filter .4s ease;
+    }
+    .kip-card:hover .kip-card-img img {
+      transform: scale(1.04);
+      filter: contrast(1.05) saturate(0.05);
+    }
+
+    /* Markierung "Mehr anzeigen" beim Hover */
+    .kip-card-img::after {
+      content: "Profil öffnen →";
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 6px 10px;
+      background: var(--kip-paper);
+      color: var(--kip-ink);
+      font-family: var(--kip-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .3s ease, transform .3s ease;
+      border: 1px solid var(--kip-rule);
+    }
+    .kip-card:hover .kip-card-img::after,
+    .kip-card:focus-visible .kip-card-img::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .kip-card-body {
+      padding: 16px 18px 20px;
+      border-top: 1px solid var(--kip-rule-soft);
+    }
+    .kip-card-name {
+      font-family: var(--kip-serif);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      margin: 0 0 4px;
+      color: var(--kip-ink);
+    }
+    .kip-card-org {
+      font-family: var(--kip-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--kip-ink-muted);
+      margin: 0;
+    }
+
+    /* ============ Modal / Overlay ============ */
+    .kip-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: clamp(12px, 3vw, 48px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .kip-modal.kip-is-open {
+      display: flex;
+    }
+    .kip-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 24, 22, 0.55);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      animation: kipFade .3s ease;
+    }
+    @keyframes kipFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes kipRise {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .kip-modal-card {
+      position: relative;
+      width: min(960px, 100%);
+      background: var(--kip-paper);
+      border: 1px solid var(--kip-rule);
+      box-shadow: var(--kip-shadow-lg);
+      margin: auto;
+      animation: kipRise .42s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .kip-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--kip-paper);
+      border: 1px solid var(--kip-rule);
+      color: var(--kip-ink);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s ease, color .2s ease, transform .2s ease, border-color .2s ease;
+      z-index: 5;
+      font-family: var(--kip-mono);
+    }
+    .kip-modal-close:hover {
+      background: var(--kip-ink);
+      color: var(--kip-paper);
+      border-color: var(--kip-ink);
+      transform: rotate(90deg);
+    }
+    .kip-modal-close svg { width: 16px; height: 16px; }
+
+    /* Header im Modal: Portrait + Meta */
+    .kip-modal-hero {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 0;
+      border-bottom: 1px solid var(--kip-rule);
+    }
+    .kip-modal-portrait {
+      background: var(--kip-bg-deep);
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+    }
+    .kip-modal-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0);
+    }
+    .kip-modal-meta {
+      padding: clamp(20px, 3vw, 36px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+      border-left: 1px solid var(--kip-rule);
+    }
+    .kip-modal-cat {
+      font-family: var(--kip-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--kip-accent);
+    }
+    .kip-modal-name {
+      font-family: var(--kip-serif);
+      font-weight: 300;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin: 0;
+      color: var(--kip-ink);
+    }
+    .kip-modal-org {
+      font-family: var(--kip-body);
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--kip-ink-muted);
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    .kip-modal-content {
+      padding: clamp(24px, 4vw, 48px);
+    }
+
+    /* Innentexte */
+    .kip-block-label {
+      font-family: var(--kip-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--kip-ink-muted);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 14px;
+    }
+    .kip-block-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--kip-rule);
+    }
+
+    .kip-einordnung {
+      background: var(--kip-bg);
+      border-left: 3px solid var(--kip-accent);
+      padding: 18px 22px;
+      margin: 0 0 32px;
+      font-family: var(--kip-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--kip-ink-soft);
+    }
+
+    .kip-bio {
+      font-family: var(--kip-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--kip-ink-soft);
+      margin: 0 0 36px;
+    }
+    .kip-bio p { margin: 0 0 1em; }
+    .kip-bio p:last-child { margin-bottom: 0; }
+    /* Drop-Cap am Anfang der Biografie */
+    .kip-bio > p:first-of-type::first-letter {
+      font-family: var(--kip-serif);
+      font-weight: 200;
+      font-size: 4.4em;
+      float: left;
+      line-height: 0.85;
+      margin: 0.08em 0.12em 0 0;
+      color: var(--kip-accent);
+      letter-spacing: -0.04em;
+    }
+
+    .kip-quote {
+      position: relative;
+      margin: 0;
+      padding: 28px 28px 28px 56px;
+      background: var(--kip-bg);
+      border-top: 1px solid var(--kip-rule);
+      border-bottom: 1px solid var(--kip-rule);
+    }
+    .kip-quote::before {
+      content: "\201C";
+      position: absolute;
+      top: 4px;
+      left: 16px;
+      font-family: var(--kip-serif);
+      font-weight: 600;
+      font-size: 84px;
+      line-height: 1;
+      color: var(--kip-accent);
+      opacity: .45;
+    }
+    .kip-quote-text {
+      font-family: var(--kip-serif);
+      font-weight: 400;
+      font-size: clamp(18px, 1.8vw, 22px);
+      line-height: 1.45;
+      letter-spacing: -0.01em;
+      color: var(--kip-ink);
+      margin: 0 0 12px;
+    }
+    .kip-quote-attr {
+      font-family: var(--kip-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--kip-ink-muted);
+    }
+
+    /* ============ Responsive ============ */
+    @media (max-width: 640px) {
+      .kip-modal-hero {
+        grid-template-columns: 1fr;
+      }
+      .kip-modal-portrait {
+        aspect-ratio: 16 / 11;
+      }
+      .kip-modal-meta {
+        border-left: 0;
+        border-top: 1px solid var(--kip-rule);
+      }
+      .kip-cat-header {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .kip-bio > p:first-of-type::first-letter {
+        font-size: 3.8em;
+      }
+      .kip-quote {
+        padding: 24px 20px 22px 44px;
+      }
+      .kip-quote::before {
+        font-size: 72px;
+        left: 8px;
+      }
+    }
+
+    /* Bewegungs-Präferenzen respektieren */
+    @media (prefers-reduced-motion: reduce) {
+      .kip-card,
+      .kip-card-img img,
+      .kip-modal-card,
+      .kip-modal-backdrop,
+      .kip-modal-close {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* Body-Scroll während Modal blockieren – über Klasse, JS-gesteuert */
+    body.kip-no-scroll {
+      overflow: hidden;
+    }
+  </style>
+
+  <div class="kip-inner">
+
+    <!-- ========== HEADER ========== -->
+    <header class="kip-header">
+      <p class="kip-eyebrow">Personen hinter der KI · Stand 2026</p>
+      <h2 class="kip-title">Die Köpfe, die die <em>künstliche Intelligenz</em> formen.</h2>
+      <p class="kip-lede">Vierzehn Persönlichkeiten – sortiert nicht nach Bekanntheit, sondern nach moralischem Kompass: von den Idealisten und humanistischen Mahnern über die pragmatischen Optimisten bis zu den kommerziellen Strategen und einem moralischen Enigma.</p>
+      <p class="kip-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9" /><path d="M12 8v5l3 2" /></svg>
+        Tippe auf eine Kachel, um das vollständige Profil zu öffnen
+      </p>
+    </header>
+
+    <hr class="kip-header-rule">
+
+    <!-- ========== KATEGORIE 1 ========== -->
+    <article class="kip-category" id="kip-cat-1">
+      <header class="kip-cat-header">
+        <div class="kip-cat-num">I</div>
+        <div class="kip-cat-titles">
+          <span class="kip-cat-kicker">Erste Gruppe</span>
+          <h3 class="kip-cat-title">Die Idealisten &amp; Sicherheits-Fokussierten <span style="color:var(--kip-ink-muted); font-weight:300;">— das Gute für die Welt</span></h3>
+        </div>
+      </header>
+      <div class="kip-grid" id="kip-grid-1"></div>
+    </article>
+
+    <!-- ========== KATEGORIE 2 ========== -->
+    <article class="kip-category" id="kip-cat-2">
+      <header class="kip-cat-header">
+        <div class="kip-cat-num">II</div>
+        <div class="kip-cat-titles">
+          <span class="kip-cat-kicker">Zweite Gruppe</span>
+          <h3 class="kip-cat-title">Die humanistischen Mahner <span style="color:var(--kip-ink-muted); font-weight:300;">— Godfathers &amp; Akademiker</span></h3>
+        </div>
+      </header>
+      <div class="kip-grid" id="kip-grid-2"></div>
+    </article>
+
+    <!-- ========== KATEGORIE 3 ========== -->
+    <article class="kip-category" id="kip-cat-3">
+      <header class="kip-cat-header">
+        <div class="kip-cat-num">III</div>
+        <div class="kip-cat-titles">
+          <span class="kip-cat-kicker">Dritte Gruppe</span>
+          <h3 class="kip-cat-title">Die pragmatischen Optimisten &amp; Umsetzer</h3>
+        </div>
+      </header>
+      <div class="kip-grid" id="kip-grid-3"></div>
+    </article>
+
+    <!-- ========== KATEGORIE 4 ========== -->
+    <article class="kip-category" id="kip-cat-4">
+      <header class="kip-cat-header">
+        <div class="kip-cat-num">IV</div>
+        <div class="kip-cat-titles">
+          <span class="kip-cat-kicker">Vierte Gruppe</span>
+          <h3 class="kip-cat-title">Die kommerziellen Strategen &amp; Macht-Akteure</h3>
+        </div>
+      </header>
+      <div class="kip-grid" id="kip-grid-4"></div>
+    </article>
+
+    <!-- ========== KATEGORIE 5 ========== -->
+    <article class="kip-category" id="kip-cat-5">
+      <header class="kip-cat-header">
+        <div class="kip-cat-num">V</div>
+        <div class="kip-cat-titles">
+          <span class="kip-cat-kicker">Fünfte Gruppe</span>
+          <h3 class="kip-cat-title">Das moralische Enigma</h3>
+        </div>
+      </header>
+      <div class="kip-grid" id="kip-grid-5"></div>
+    </article>
+
+  </div>
+
+  <!-- ========== MODAL ========== -->
+  <div class="kip-modal" id="kip-modal" role="dialog" aria-modal="true" aria-labelledby="kip-modal-name" aria-hidden="true">
+    <div class="kip-modal-backdrop" data-kip-close=""></div>
+    <div class="kip-modal-card" role="document">
+      <button class="kip-modal-close" type="button" aria-label="Profil schließen" data-kip-close="">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+      </button>
+      <div class="kip-modal-hero">
+        <div class="kip-modal-portrait">
+          <img id="kip-modal-img" src="" alt="">
+        </div>
+        <div class="kip-modal-meta">
+          <span class="kip-modal-cat" id="kip-modal-cat"></span>
+          <h3 class="kip-modal-name" id="kip-modal-name"></h3>
+          <p class="kip-modal-org" id="kip-modal-org"></p>
+        </div>
+      </div>
+      <div class="kip-modal-content">
+        <p class="kip-block-label">Einordnung</p>
+        <div class="kip-einordnung" id="kip-modal-einordnung"></div>
+
+        <p class="kip-block-label">Biografie</p>
+        <div class="kip-bio" id="kip-modal-bio"></div>
+
+        <figure class="kip-quote">
+          <blockquote class="kip-quote-text" id="kip-modal-quote-text"></blockquote>
+          <figcaption class="kip-quote-attr" id="kip-modal-quote-attr"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== DATEN & LOGIK ========== -->
+  <script>
+  (function() {
+    "use strict";
+
+    // Die Porträts liegen im Repo unter /bilder/personen/.
+
+    const IMG = "/bilder/personen/";
+
+    const PERSONEN = [
+      // ===== Kategorie 1: Idealisten & Sicherheits-Fokussierte =====
+      {
+        kat: 1,
+        katLabel: "Idealisten & Sicherheits-Fokussierte",
+        name: "Demis Hassabis",
+        org: "Google DeepMind",
+        img: IMG + "Demis_Hassabis.jpg",
+        einordnung: "Auf der Skala sehr weit oben angesiedelt, da er eine bemerkenswerte Balance zwischen kommerziellem Erfolg und rein wissenschaftlichem Fortschritt hält, indem er KI gezielt zur Lösung globaler Probleme wie der Proteinforschung einsetzt.",
+        bio: [
+          "Demis Hassabis, geboren in London, galt als schachliches Wunderkind, entwickelte mit 17 Jahren das millionenfach verkaufte Videospiel Theme Park und studierte Informatik in Cambridge, bevor er 2009 in kognitiver Neurowissenschaft am University College London promovierte. Er verfolgt einen wissenschaftlichen, fast akademischen Ansatz und balanciert Kommerz und Wissenschaft auf höchstem Niveau.",
+          "2010 gründete Hassabis zusammen mit Shane Legg und Mustafa Suleyman DeepMind in London. Ihr hochgradig interdisziplinärer Ansatz kombinierte tiefe neuronale Netze mit Reinforcement Learning und Erkenntnissen aus der Neurowissenschaft – eine bewusste Rückbesinnung auf biologische Lernprinzipien, die Hassabis aus seiner eigenen Promotionszeit mitbrachte und die bis heute das Markenzeichen von DeepMind bleibt. Nach der Übernahme durch Google 2014 schrieb DeepMind Geschichte: 2016 besiegte AlphaGo den Weltmeister im Go – ein Meilenstein, der nicht nur die Grenzen des Möglichen verschob, sondern auch zeigte, wie KI durch Selbstspiel und schrittweises Lernen komplexe strategische Räume beherrschen kann, was weltweit eine Welle der Begeisterung und der kritischen Auseinandersetzung mit maschineller Intelligenz auslöste.",
+          "Hassabis verlagerte den Fokus zunehmend auf die Lösung globaler wissenschaftlicher Probleme und sah in KI weniger ein reines Produkt, sondern ein universelles Werkzeug für fundamentale Entdeckungen, das die Menschheit bei ihren größten Herausforderungen unterstützen sollte. Das Resultat war AlphaFold, das die 3D-Struktur von Proteinen aus Aminosäuresequenzen vorhersagt und Biologie sowie Medikamentenentwicklung revolutioniert hat – für diese Leistung erhielt er 2024 gemeinsam mit John Jumper den Nobelpreis für Chemie. Auch in den folgenden Jahren blieb sein Ansatz geprägt von der Überzeugung, dass KI vor allem als Werkzeug für fundamentale Entdeckungen dienen sollte, nicht als reines Produkt; er trieb parallel Isomorphic Labs voran, das mit großen Pharma-Partnerschaften und Projekten wie IsoDDE die nächste Stufe der KI-gestützten Wirkstoffforschung einläutete.",
+          "Die enge Zusammenarbeit mit Legg zeigt eine bewusste Arbeitsteilung: während Hassabis die visionäre und anwendungsorientierte Richtung vorgibt, sorgt er gleichzeitig dafür, dass wissenschaftliche Rigorosität und schrittweises Vorgehen nie zugunsten reiner Skalierung geopfert werden. Diese Haltung reflektiert eine tiefe Verantwortung gegenüber der Gesellschaft – KI soll nicht nur mächtig, sondern vor allem nützlich und kontrollierbar sein. Bis 2026 blieb Hassabis CEO von Google DeepMind und Isomorphic Labs, wurde 2024 geadelt, zählte 2025 erneut zu den Time 100 einflussreichsten Persönlichkeiten und betonte in zahlreichen Interviews, dass AlphaFold nur der Anfang einer umfassenden wissenschaftlichen Revolution sei, die von der Biologie über die Materialwissenschaften bis hin zur Klimaforschung reiche.",
+          "Politisch positioniert sich Hassabis als pragmatischer Technokrat ohne klare Parteizugehörigkeit: er berät die britische Regierung (quer durch Regierungswechsel) als AI Adviser und unterzeichnete globale Risiko-Statements, ohne parteipolitische Spenden oder öffentliche Parteinahmen. Seine Haltung bleibt wissenschaftlich-neutral und auf evidenzbasierte Politik ausgerichtet. Seine Arbeit verkörpert die Vision, dass wissenschaftliche Neugier und technische Exzellenz Hand in Hand gehen können, um langfristig globale Herausforderungen wie Krankheiten oder Klimawandel nachhaltig anzugehen."
+        ],
+        quote: "Künstliche Intelligenz könnte eine der nützlichsten Erfindungen der Menschheit werden – aber wir müssen bei ihrer Entwicklung die wissenschaftliche Methode und äußerste Vorsicht anwenden.",
+        quoteAttr: "Demis Hassabis"
+      },
+      {
+        kat: 1,
+        katLabel: "Idealisten & Sicherheits-Fokussierte",
+        name: "Shane Legg",
+        org: "Google DeepMind",
+        img: IMG + "Shane_Legg.jpg",
+        einordnung: "Ebenfalls sehr weit oben einzuordnen, da er bereits vor Jahrzehnten theoretische Pionierarbeit zu AGI-Risiken leistete und heute als wissenschaftliches Gewissen bei DeepMind die Ausrichtung der KI auf menschliche Werte aktiv absichert.",
+        bio: [
+          "Shane Legg, aus Neuseeland stammend, promovierte am IDSIA in der Schweiz und beschäftigte sich bereits Anfang der 2000er Jahre intensiv mit der mathematischen Definition maschineller Superintelligenz. Er verfolgt einen wissenschaftlichen, fast akademischen Ansatz und balanciert Kommerz und Wissenschaft auf höchstem Niveau.",
+          "2010 gründete Legg zusammen mit Demis Hassabis und Mustafa Suleyman DeepMind in London. Ihr interdisziplinärer Ansatz verband tiefe neuronale Netze mit Reinforcement Learning und schuf damit eine der einflussreichsten KI-Forschungseinrichtungen der Welt. Nach der Google-Übernahme 2014 trieb er als Chief AGI Scientist die Grundlagenforschung voran, während AlphaGo und AlphaFold weltweit für Aufsehen sorgten und ganze Wissenschaftsdisziplinen neu definierten.",
+          "Legg warnte schon vor 20 Jahren vor den Risiken von AGI und leitet seither die Bemühungen, Alignment – die Ausrichtung auf menschliche Werte – technisch und konzeptionell zu garantieren, bevor Superintelligenz erreicht wird; seine frühen theoretischen Arbeiten zur formalen Definition von Intelligenz bilden bis heute das Fundament vieler interner Strategien. Seine Arbeit zeichnet sich durch eine seltene Kombination aus mathematischer Präzision und langfristiger Vorsicht aus: Er sieht in der AGI nicht primär ein kommerzielles Produkt, sondern eine zivilisatorische Herausforderung, die nur durch rigorose wissenschaftliche Methoden und institutionelle Safeguards beherrschbar bleibt.",
+          "Auch nach Jahren intensiver Skalierung in der Industrie blieb seine Kernüberzeugung unverändert – technische Macht muss immer von ethischer und wissenschaftlicher Verantwortung begleitet werden. Bis 2026 leitete er weiterhin das Technical AGI Safety Team bei DeepMind, engagierte sich öffentlich für eine fundierte Diskussion über post-AGI-Ökonomie und stellte gezielt Ökonomen ein, um die gesellschaftlichen Folgen unendlicher digitaler Arbeitskraft zu analysieren; zudem teilte er in Vorträgen aktualisierte AGI-Timelines, die die Dringlichkeit von Sicherheitsmaßnahmen unterstrichen.",
+          "Politisch tritt Legg nicht in Erscheinung – es gibt keine dokumentierten Spenden, Parteiaffinitäten oder öffentlichen Stellungnahmen zu politischen Themen; seine gesamte öffentliche Präsenz bleibt streng auf technische und sicherheitsbezogene AGI-Fragen beschränkt. Diese Haltung hat DeepMind zu einem der wenigen Orte gemacht, an denen Kommerz und tiefgehende Sicherheitsforschung Hand in Hand gehen und langfristig eine verantwortungsvolle Entwicklung ermöglichen."
+        ],
+        quote: "Wir müssen die mathematischen Grundlagen der Superintelligenz verstehen und sicherstellen, dass sie mit menschlichen Werten übereinstimmt – bevor es zu spät ist.",
+        quoteAttr: "Shane Legg"
+      },
+      {
+        kat: 1,
+        katLabel: "Idealisten & Sicherheits-Fokussierte",
+        name: "Dario Amodei",
+        org: "Anthropic",
+        img: IMG + "Dario_Amodei.png",
+        einordnung: "Ganz oben auf der Gemeinwohl-Skala zu verorten, da er aus ethischem Protest die zunehmende Kommerzialisierung von OpenAI verließ, um mit Anthropic eine gemeinnützige Company zu gründen, die Sicherheit durch \u201EConstitutional AI\u201C rechtlich bindend über reinen Profit stellt.",
+        bio: [
+          "Dario Amodei, italo-amerikanischer KI-Forscher, promovierte 2011 in Physik an der Princeton University und arbeitete bei Baidu, Google Brain sowie bei OpenAI, wo er maßgeblich an GPT-2 und GPT-3 mitwirkte. Er verließ OpenAI, weil es ihm zu kommerziell wurde, und fokussiert sich auf \u201EConstitutional AI\u201C. Er sieht extremes Risiko für Biosicherheit und Kontrollverlust und steht oben auf der Gemeinwohl-Skala.",
+          "2021 gründete Amodei zusammen mit seiner Schwester Daniela und weiteren Top-Forschern Anthropic als Public Benefit Corporation – eine Rechtsform, die Sicherheit und Gemeinwohl rechtlich über reiner Profitmaximierung verankert und damit ein neues Modell für verantwortungsvolle KI-Unternehmen schuf. Die technologische Kernantwort ist \u201EConstitutional AI\u201C: Modelle wie Claude werden nicht nur durch menschliches Feedback, sondern durch ein festes Set ethischer Grundregeln trainiert, die regelmäßig aktualisiert und transparent gemacht werden, um interpretierbare und steuerbare Systeme zu gewährleisten.",
+          "Amodei warnte bereits vor dem US-Kongress vor der Gefahr von KI-gestützten Biowaffen und plädiert für transparente, nachvollziehbare Mechanismen der Kontrolle, die über rein technische Lösungen hinausgehen. Seine Entscheidung, OpenAI zu verlassen, war keine impulsive Reaktion, sondern das Ergebnis einer tiefen Analyse: kommerzielle Zwänge und Sicherheitsanforderungen lassen sich in einem herkömmlichen Unternehmen nur schwer vereinbaren, weshalb er ein Gegenmodell schaffen wollte. Anthropic wurde bewusst als Gegenmodell konzipiert – ein Ort, an dem technische Exzellenz und institutionelle Verantwortung gleichberechtigt sind und wo Sicherheit von Beginn an in die Architektur eingebaut wird.",
+          "Bis 2026 wuchs Anthropic stark, erreichte hohe Bewertungen und blieb ein zentraler Akteur in der Debatte um sichere KI-Entwicklung; Amodei selbst wurde mehrfach in die Time 100 aufgenommen, aktualisierte 2026 die Claude-Constitution und warnte in öffentlichen Auftritten vor der \u201Etechnologischen Adoleszenz\u201C der Menschheit, in der wir lernen müssten, mit superintelligenten Systemen verantwortungsvoll umzugehen.",
+          "Politisch ist Amodei klar links bzw. demokratisch orientiert: er spendete über 214.000 Dollar an Demokraten, unterstützte Kamala Harris 2024 öffentlich und kritisierte Donald Trump scharf als \u201Efeudal warlord\u201C und \u201Eernsthafte Bedrohung für die Rechtsstaatlichkeit\u201C – eine Haltung, die sich seit Jahren nicht geändert hat und auch unter der Trump-Regierung 2025/2026 konsequent blieb. Auch Jahre später bleibt dieser Ansatz wegweisend: er zeigt, dass KI-Entwicklung nicht zwangsläufig in einem Trade-off zwischen Geschwindigkeit und Sicherheit enden muss, wenn man von Beginn an die richtigen institutionellen und technischen Rahmen setzt und kontinuierlich an Transparenz und Interpretierbarkeit arbeitet."
+        ],
+        quote: "Wir müssen KI-Systeme bauen, die sich an eine feste, transparente Verfassung halten, anstatt nur auf menschliches Feedback zu reagieren.",
+        quoteAttr: "Dario Amodei"
+      },
+      {
+        kat: 1,
+        katLabel: "Idealisten & Sicherheits-Fokussierte",
+        name: "Ilya Sutskever",
+        org: "Safe Superintelligence Inc.",
+        img: IMG + "Ilya_Sutskever.jpg",
+        einordnung: "Maximaler Fokus auf Ethik und existenzielle Sicherheit; er agierte als OpenAI-Gewissen, riskierte im Vorstands-Drama seine Karriere für den Schutz vor zu schnellen Produkt-Releases und verzichtet mit seinem neuen Startup SSI radikal auf kommerzielle Zwischenprodukte.",
+        bio: [
+          "Ilya Sutskever, in Russland geboren, in Israel aufgewachsen und in Kanada ausgebildet, ist einer der brillantesten Köpfe der modernen KI-Forschung. Er war der moralische Anker bei OpenAI, leitete das Superalignment-Team und ging aus Sorge um die Sicherheit. Er gründete SSI mit dem einzigen Ziel, sichere Superintelligenz ohne kommerziellen Druck zu bauen und zeigt maximalen Fokus auf Ethik und Sicherheit.",
+          "2012 veränderte Sutskever mit Hinton und Krizhevsky die Welt durch AlexNet und löste den Deep-Learning-Boom aus, der die gesamte KI-Branche neu gestaltete. 2015 wurde er Chief Scientist bei OpenAI, wo er die Scaling Hypothesis maßgeblich vorantrieb und maßgeblich zu ChatGPT beitrug, das die öffentliche Wahrnehmung von KI grundlegend veränderte. Im November 2023 stimmte er für die Entlassung von Sam Altman, weil er eine zu rücksichtslose Kommerzialisierung befürchtete und damit seine Priorität auf Sicherheit unterstrich.",
+          "Nach dem Machtkampf verließ er OpenAI 2024 endgültig und gründete Safe Superintelligence Inc. (SSI). Das Startup verfolgt ein radikales Konzept: kein einziges kommerzielles Zwischenprodukt, um sich vollständig von Kapitalismus-Zwängen zu befreien. Das einzige Ziel ist die Entwicklung einer sicheren, den Menschen überlegenen Intelligenz, die von Beginn an wohlgesinnt gestaltet wird. Sutskever verkörpert damit die konsequente Umsetzung einer langen inneren Entwicklung – vom reinen Skalierungs-Innovator zum Architekten einer rein auf Sicherheit ausgerichteten Institution.",
+          "Bis 2025 übernahm er nach dem Weggang von Mitgründer Daniel Gross die CEO-Rolle bei SSI, das Unternehmen sammelte weitere Milliarden und erreichte hohe Bewertungen, blieb aber strikt auf das eine Ziel fokussiert. Seine Entscheidungen zeigen eine seltene intellektuelle Redlichkeit: selbst nach jahrelangem Erfolg war er bereit, alles aufzugeben, um seiner Überzeugung treu zu bleiben, dass Superintelligenz nur dann eine positive Kraft sein kann, wenn ihre Entwicklung von Anfang an frei von kurzfristigen Profitinteressen bleibt.",
+          "2026 erhielt er weitere akademische Ehrungen und unterstrich in Interviews weiterhin die Notwendigkeit, Superintelligenz von Beginn an wohlgesinnt zu gestalten, wobei er betonte, dass Alignment nicht nur ein technisches, sondern auch ein philosophisches und gesellschaftliches Projekt sei. Politisch gibt es keine dokumentierten Spenden, Parteiaffinitäten oder öffentlichen Stellungnahmen – Sutskever bleibt strikt auf globale ethische und sicherheitsbezogene AGI-Themen fokussiert und tritt weder links noch rechts in Erscheinung."
+        ],
+        quote: "Superintelligenz wird die folgenreichste Technologie sein, die die Menschheit je erfunden hat. Wir müssen sicherstellen, dass sie uns wohlgesinnt bleibt.",
+        quoteAttr: "Ilya Sutskever"
+      },
+
+      // ===== Kategorie 2: Humanistische Mahner =====
+      {
+        kat: 2,
+        katLabel: "Humanistische Mahner – Godfathers & Akademiker",
+        name: "Geoffrey Hinton",
+        org: "University of Toronto · ehemals Google",
+        img: IMG + "Geoffrey_Hinton.jpg",
+        einordnung: "Zeichnet sich durch einen extrem hohen moralischen Kompass aus, da er seine privilegierte Position bei Google aufgab, um völlig frei, uneigennützig und unzensiert vor der potenziellen Überlegenheit digitaler Intelligenz und einer existenziellen Bedrohung der Menschheit zu warnen.",
+        bio: [
+          "Geoffrey Hinton, britisch-kanadisch, bildet zusammen mit Yoshua Bengio und Yann LeCun das Triumvirat der \u201EGodfathers of AI\u201C. Er hat den KI-Boom mitbegründet, schlägt nun aber laut Alarm und warnte vor existenziellen Risiken bis hin zur Menschheitsauslöschung. Er zeigt einen sehr hohen moralischen Kompass, getrieben von tiefer Sorge.",
+          "Hinton hielt jahrzehntelang an neuronalen Netzen und Backpropagation fest, als die gesamte Wissenschaft diese Ansätze als Sackgasse abtat – eine Haltung, die ihn schließlich zum Mitbegründer der gesamten Deep-Learning-Ära machte. Er lehrte an der University of Toronto und arbeitete ein Jahrzehnt für Google, wo er maßgeblich zur Entwicklung moderner KI-Architekturen beitrug.",
+          "Im Mai 2023 trat er mit einem Paukenschlag zurück, um frei vor existenziellen Risiken zu warnen. Seine Erkenntnis: digitale Intelligenz kann Wissen instantan teilen und biologische Evolution damit überholen, was die Menschheit vor nie dagewesene Kontrollprobleme stelle. Auch nach dem Nobelpreis für Physik 2024 blieb er ein unbequemer Mahner, der Regulierung und Vorsicht forderte und in zahlreichen Vorträgen sowie Nobel-Bankett-Reden die Dringlichkeit von Sicherheitsforschung betonte.",
+          "Seine Karriere ist ein Lehrstück intellektueller Ehrlichkeit – er erkannte, dass die Technologie, die er selbst miterschaffen hatte, potenziell gefährlicher werden könnte als alles zuvor. Statt sich in den Erfolg zurückzuziehen, nutzte er seine Autorität, um die Öffentlichkeit und Politik aufzurütteln und konkrete Maßnahmen wie internationale Verträge und Lizenzsysteme zu fordern. Bis 2026 hielt er weiterhin Vorträge und warnte in öffentlichen Diskussionen vor unkontrollierbaren Systemen, wobei er die Geschwindigkeit der Entwicklung als zentrale Herausforderung hervorhob.",
+          "Politisch bezeichnet sich Hinton seit Jahren offen als Sozialist und plädiert für Umverteilung und Universal Basic Income, um die durch KI verursachte Massenarbeitslosigkeit abzufedern; er diskutierte diese Themen intensiv mit Bernie Sanders und sieht in sozialistischen Strukturen die notwendige Antwort auf die ökonomischen Disruptionen der Technologie – eine Haltung, die sich in den letzten Jahren weiter radikalisiert hat. Seine Warnungen sind keine Panikmache, sondern das Ergebnis jahrzehntelanger, tiefgehender Auseinandersetzung mit den Grenzen menschlicher Kontrolle über superintelligente Systeme; er plädierte für dringende Sicherheitsforschung und betonte, dass die Menschheit lernen müsse, mit einer potenziell überlegenen Intelligenz verantwortungsvoll umzugehen."
+        ],
+        quote: "Ich tröste mich mit der üblichen Ausrede: Wenn ich es nicht getan hätte, hätte es jemand anderes getan. Aber diese Dinge könnten intelligenter werden als wir und die Kontrolle übernehmen.",
+        quoteAttr: "Geoffrey Hinton"
+      },
+      {
+        kat: 2,
+        katLabel: "Humanistische Mahner – Godfathers & Akademiker",
+        name: "Yoshua Bengio",
+        org: "Université de Montréal · Mila · LawZero",
+        img: IMG + "Yoshua_Bengio.jpg",
+        einordnung: "Von tiefer Sorge und akademischer Integrität getrieben, da er als einziger der \u201EGodfathers\u201C den Verlockungen der Tech-Industrie konsequent widerstand, in der Forschung blieb und nun vehement staatliche Monopolkontrollen sowie strenge Sicherheitslizenzen fordert.",
+        bio: [
+          "Yoshua Bengio, kanadisch, bildet zusammen mit Geoffrey Hinton und Yann LeCun das Triumvirat der \u201EGodfathers of AI\u201C. Er hat den KI-Boom mitbegründet, schlägt nun aber laut Alarm und fordert staatliche Monopolkontrollen und Verträge. Er zeigt einen sehr hohen moralischen Kompass, getrieben von tiefer Sorge.",
+          "Bengio blieb als Professor an der Université de Montréal und Gründer des Mila-Instituts konsequent in der reinen Wissenschaft und lehnte alle hochdotierten Industrieangebote ab, um seine Unabhängigkeit zu wahren. Er leistete Pionierarbeit bei Sequenzmodellen, der Basis heutiger Sprachmodelle, und beeinflusste damit die gesamte Entwicklung moderner KI-Systeme.",
+          "Heute fokussiert er sich fast ausschließlich auf Schadensbegrenzung: er fordert strenge Regulierungsbehörden, Lizenzen für das Training großer Modelle und arbeitet an Konzepten wie einem \u201ETuring-Test für KI-Sicherheit\u201C, um katastrophale Risiken frühzeitig zu erkennen. Seine Haltung ist geprägt von der Überzeugung, dass wissenschaftliche Freiheit nicht bedeuten darf, unkalkulierbare Risiken für die Menschheit in Kauf zu nehmen.",
+          "2025 gründete er die Non-Profit-Organisation LawZero, die Sicherheit über kommerzielle Imperative stellt, und leitete den International AI Safety Report 2026, der von über 100 Experten aus mehr als 30 Ländern getragen wurde und konkrete Governance-Vorschläge lieferte. Bengio verkörpert den seltenen Typus des Akademikers, der seine eigene Schöpfung kritisch hinterfragt und aktiv an Lösungen für Governance und Risikomanagement arbeitet.",
+          "Bis 2026 blieb er eine zentrale Stimme für evidenzbasierte Risikoanalyse und internationale Kooperation, hielt zahlreiche Keynotes und betonte immer wieder die Notwendigkeit globaler Zusammenarbeit, um Monopole zu verhindern und Risiken kollektiv zu managen. Politisch positioniert er sich progressiv und regulierungsorientiert: er fordert staatliche Kontrollen, internationale Verträge und den Schutz von Demokratie und Menschenrechten durch KI-Governance (Montreal Declaration); er trat vor dem US-Senat für dringende Maßnahmen gegen gesellschaftliche und demokratische Risiken ein – eine konsistente linke bis progressive Haltung ohne dokumentierte Parteispenden. Seine Arbeit zeigt, dass wahre intellektuelle Größe nicht nur im Erfinden, sondern auch im mutigen Mahnen und im aktiven Gestalten von Regulierungsrahmen liegt."
+        ],
+        quote: "Wir brauchen staatliche Kontrollen und internationale Verträge, um die größten Risiken der KI zu beherrschen.",
+        quoteAttr: "Yoshua Bengio"
+      },
+      {
+        kat: 2,
+        katLabel: "Humanistische Mahner – Godfathers & Akademiker",
+        name: "Fei-Fei Li",
+        org: "Stanford · World Labs",
+        img: IMG + "Fei-Fei_Li.jpg",
+        einordnung: "Extrem positiver, gegenwartsorientierter Kompass, da sie den Fokus weg von Science-Fiction-Szenarien lenkt und sich pragmatisch dafür einsetzt, KI als Werkzeug zur Erweiterung menschlicher Fähigkeiten zu nutzen, während sie gleichzeitig vor realem Bias und Militarisierung warnt.",
+        bio: [
+          "Fei-Fei Li, aus China stammend, ist die Stimme des \u201EHuman-Centered AI\u201C. Sie sorgt sich weniger um Science-Fiction-Roboter, sondern um aktuelle Risiken wie Bias, Jobverdrängung und Überwachung. Ihre Einordnung ist extrem positiv mit Fokus auf den Menschen im Hier und Jetzt.",
+          "Im Alter von 15 Jahren kam Li ohne Englischkenntnisse in die USA und arbeitete in der Reinigung, bevor sie zu einer der einflussreichsten Informatikerinnen wurde – eine Geschichte, die bis heute viele junge Forscher inspiriert. 2009 schuf sie ImageNet – die Datenbank mit über 14 Millionen handbeschrifteten Bildern, die den Deep-Learning-Boom überhaupt erst möglich machte und als infrastrukturelles Fundament für AlexNet und die gesamte moderne Computer Vision diente.",
+          "Nach einer Zeit als Chief Scientist of AI bei Google Cloud (die sie nach internen Bedenken zum Project Maven verließ) gründete sie das Stanford Institute for Human-Centered Artificial Intelligence (HAI), das zu einem der führenden Zentren für ethische und gesellschaftsorientierte KI-Forschung wurde. 2024 startete sie World Labs, ein Startup für räumliche Intelligenz, das bis 2026 mehrere Milliarden an Funding einwarb und konkrete Anwendungen in Robotik und Medizin entwickelte.",
+          "Ihr Lebenswerk ist geprägt von der Überzeugung, dass KI die menschliche Erfahrung erweitern, nicht ersetzen soll. Sie erinnert die Branche ständig daran, dass Technologie von Menschen gemacht wird und für Menschen da sein muss – von der Betonung auf \u201EAugmentation statt Automation\u201C bis hin zu konkreten Projekten gegen Bias und für inklusive Datensätze.",
+          "Politisch tritt Li nicht parteipolitisch in Erscheinung – es gibt keine dokumentierten Spenden oder expliziten Affiliationen; ihre Arbeit betont jedoch ethische, inklusive und menschzentrierte KI, was eine progressive Grundhaltung zu Diversität und gesellschaftlicher Verantwortung widerspiegelt. Ihre Arbeit verbindet technische Brillanz mit einem klaren humanistischen Kompass und setzt Maßstäbe dafür, wie KI gesellschaftlich verantwortungsvoll gestaltet werden kann, wobei sie in Vorträgen und Publikationen immer wieder die aktuelle gesellschaftliche Relevanz von Bias, Jobverdrängung und Überwachung in den Vordergrund stellt."
+        ],
+        quote: "An der künstlichen Intelligenz ist nichts künstlich. Sie wird von Menschen gemacht, soll sich für Menschen verhalten und letztendlich das Leben der Menschen beeinflussen.",
+        quoteAttr: "Fei-Fei Li"
+      },
+
+      // ===== Kategorie 3: Pragmatische Optimisten =====
+      {
+        kat: 3,
+        katLabel: "Pragmatische Optimisten & Umsetzer",
+        name: "Andrew Ng",
+        org: "AI Fund · DeepLearning.AI · Stanford",
+        img: IMG + "Andrew_Ng.jpg",
+        einordnung: "Ausgesprochen positiv, praxisorientiert und integer geprägt, da er KI durch freie Bildung demokratisiert und apokalyptische Panikmache ablehnt, in der er primär ein Werkzeug zur Marktregulierung sieht, das nur Big-Tech-Monopolen nützt und Start-ups schadet.",
+        bio: [
+          "Andrew Ng sieht KI als \u201Eneuen Strom\u201C. Er hält existenzielle Risiken für eine Ablenkung von realen Problemen und will KI durch Bildung demokratisieren. Seine Einordnung ist positiv, praxisorientiert und sehr integer.",
+          "Ng baute an der Stanford University autonome Helikopter und initiierte 2011 das Google-Brain-Projekt, wo er die Macht unüberwachten Lernens demonstrierte. Bei Baidu trug er entscheidend zur KI-Entwicklung bei und half, den chinesischen Technologie-Sektor international zu positionieren.",
+          "Sein größter Impact liegt jedoch in der Bildung: Mit Coursera und dem Kurs \u201EMachine Learning\u201C bildete er Millionen Menschen aus und machte KI-Wissen weltweit zugänglich. Heute leitet er den AI Fund und konzentriert sich auf praktische KI-Anwendungen in klassischen Industrien wie Gesundheitswesen, Landwirtschaft und Fertigung.",
+          "Ng positioniert sich bewusst gegen übertriebene \u201EDoomer\u201C-Narrative und argumentiert, dass strenge Regulierungen vor allem etablierten Playern nützen würden. Bis 2026 warnte er weiterhin vor AGI-Hype, der Studierende und CEOs in die Irre führen könnte, und betonte stattdessen die Notwendigkeit von breiter Bildung und verantwortungsvoller Adoption in der realen Wirtschaft.",
+          "Politisch zeigt Ng eine leichte demokratische Neigung (er äußerte sich erleichtert über den Wahlausgang 2020), bleibt aber primär pragmatisch und bildungsorientiert ohne intensive parteipolitische Aktivitäten oder große Spenden. Seine Arbeit ist geprägt von Optimismus und Pragmatismus: KI ist für ihn eine transformative Kraft, die durch breite Zugänglichkeit und konkrete Anwendungen den größten Nutzen entfaltet. Er verkörpert den Typus des Umsetzers, der Technologie nicht nur entwickelt, sondern sie auch für möglichst viele Menschen nutzbar macht und damit die Demokratisierung der KI vorantreibt."
+        ],
+        quote: "KI ist die neue Elektrizität. So wie die Elektrizität vor 100 Jahren fast alles verändert hat, fällt es mir heute schwer, an eine Industrie zu denken, die KI nicht verändern wird.",
+        quoteAttr: "Andrew Ng"
+      },
+      {
+        kat: 3,
+        katLabel: "Pragmatische Optimisten & Umsetzer",
+        name: "Mustafa Suleyman",
+        org: "Microsoft AI",
+        img: IMG + "Mustafa_Suleyman.jpg",
+        einordnung: "Eine ausgewogene, aber zunehmend ambivalente Position, da er in seinem Buch zwar eindringlich vor Kontrollverlust warnt und staatliches \u201EContainment\u201C fordert, gleichzeitig aber durch seinen Wechsel zu Microsoft eine tragende Rolle im aggressiven kommerziellen Ausbau einnimmt.",
+        bio: [
+          "Mustafa Suleyman, Co-Gründer von DeepMind, warnt in seinem Buch \u201EThe Coming Wave\u201C vor Kontrollverlust, glaubt aber an Eindämmung durch smarte Regulierung. Seine Einordnung ist ausgewogen, er wandert stärker in die kommerzielle Ecke.",
+          "Suleyman brach sein Studium in Oxford ab, arbeitete als Menschenrechtsaktivist und Berater für die UN und den Londoner Bürgermeister, bevor er 2010 DeepMind mitgründete. Dort leitete er DeepMind Health und war für die Anwendung der Modelle verantwortlich, was ihn auch in gesellschaftliche Debatten um Datenschutz brachte.",
+          "2022 gründete er Inflection AI und schuf den empathischen Chatbot Pi, der emotionale Intelligenz in den Mittelpunkt stellte. 2024 wechselte er als CEO zu Microsoft AI und brachte einen Großteil des Teams mit, um die Endkunden-Produkte von Microsoft aggressiv auszubauen. In \u201EThe Coming Wave\u201C beschreibt er die disruptiven Kräfte von KI und synthetischer Biologie, sieht die Lösung jedoch in klugem \u201EContainment\u201C durch Staat und Technik.",
+          "Seine Karriere zeigt eine bemerkenswerte Wandlungsfähigkeit: vom Aktivisten über den Tech-Gründer zum strategischen Corporate Leader. Bis 2026 blieb er CEO von Microsoft AI und betonte in Interviews und dem Buch die Notwendigkeit, Technologie zu kanalisieren, ohne ihre positiven Potenziale zu ersticken; er verband tiefe Kenntnis der Risiken mit der Überzeugung, dass smarte Regulierung und verantwortungsvolle Skalierung zusammen möglich sind und dass Unternehmen eine zentrale Rolle bei der Gestaltung sicherer Systeme spielen müssen.",
+          "Politisch ist Suleyman klar links-progressiv: er hat einen Hintergrund als Menschenrechtsaktivist, kritisierte wiederholt kapitalistische Fehlentwicklungen und retweetete einst Jeremy Corbyn – eine konsistente linke Orientierung, die sich auch in seiner Forderung nach neuen gesellschaftlichen Anreizen jenseits reiner Marktdynamiken zeigt."
+        ],
+        quote: "Wir stehen vor einer Welle von Technologien, die wir vielleicht nicht kontrollieren können. Unser wichtigstes Ziel muss das ‚Containment‘ sein – die Eindämmung der KI auf das, was der Mensch beabsichtigt.",
+        quoteAttr: "Mustafa Suleyman"
+      },
+      {
+        kat: 3,
+        katLabel: "Pragmatische Optimisten & Umsetzer",
+        name: "Yann LeCun",
+        org: "Meta · AMI Labs",
+        img: IMG + "Yann_LeCun.jpg",
+        einordnung: "Ein radikaler, aber gemeinwohlorientierter Optimist, der existenzielle Weltuntergangsszenarien als unbegründet ablehnt und stattdessen Meta-Modelle als Open Source verschenkt, um das Monopol weniger Silicon-Valley-CEOs über die Zukunft der Technologie zu brechen.",
+        bio: [
+          "Yann LeCun, französischer Informatiker und Turing-Preisträger, ist Chief AI Scientist bei Meta. Er hält existenzielle Risiken für übertrieben und treibt Open-Source-KI als demokratisches Gut voran. Seine Einordnung ist optimistisch und lehnt Angstmacherei ab.",
+          "In den 1980er/90er Jahren erfand LeCun an den Bell Labs die Convolutional Neural Networks, die bis heute das Rückgrat vieler visueller KI-Systeme bilden und in unzähligen Anwendungen von der Medizin bis zum autonomen Fahren zum Einsatz kommen. Heute ist er der lautstarke Gegenpol zu Hinton und Bengio. Er kritisiert, dass aktuelle LLMs in einer Sackgasse stecken, und arbeitet an neuen Architekturen wie V-JEPA, die durch Beobachtung der Welt lernen und tierähnliche Intelligenz nachbilden sollen.",
+          "Unter seiner Ägide hat Meta die Llama-Modelle als Open Source veröffentlicht und damit die Zugänglichkeit von Spitzentechnologie massiv erhöht. LeCun sieht in Open Source den einzigen Weg, Monopole zu verhindern und die Menschheit insgesamt klüger zu machen. Bis Anfang 2026 blieb er bei Meta und gründete dann Advanced Machine Intelligence Labs (AMI Labs), das sich auf Weltmodelle und human-like Superintelligenz konzentriert.",
+          "Seine Haltung ist geprägt von tiefem Vertrauen in die menschliche Fähigkeit, Technologie zum Guten zu nutzen, und von der Überzeugung, dass Angst vor existenziellen Risiken von den eigentlichen, lösbaren Herausforderungen ablenkt. Er treibt weiterhin Open Source als demokratisches Gut voran und debattiert öffentlich für eine fokussierte, evidenzbasierte Diskussion, die auf realen Risiken wie Bias und Energieverbrauch statt auf hypothetischen Szenarien basiert.",
+          "Politisch positioniert sich LeCun klar links: er bezeichnet sich selbst als \u201Esehr weit links auf dem US-Spektrum\u201C (links der Mitte im französischen Spektrum), kritisiert Trump und Republikaner öffentlich und warnte vor Kürzungen bei der Forschungsförderung unter Trump."
+        ],
+        quote: "KI ist eine Verstärkung der menschlichen Intelligenz. Sie wird uns nicht dominieren, sondern uns befähigen. Die Angst vor existenziellen Risiken ist völlig übertrieben und lenkt von den eigentlichen, lösbaren Herausforderungen ab.",
+        quoteAttr: "Yann LeCun"
+      },
+
+      // ===== Kategorie 4: Kommerzielle Strategen =====
+      {
+        kat: 4,
+        katLabel: "Kommerzielle Strategen & Macht-Akteure",
+        name: "Sam Altman",
+        org: "OpenAI",
+        img: IMG + "Sam_Altman.jpg",
+        einordnung: "Äußerst ambivalent und im Spannungsfeld der Macht, da er sich zwar rhetorisch für globale Regulierung starkmacht, in der Praxis jedoch OpenAI von einer Non-Profit in ein aggressives Milliarden-Imperium verwandelte, das Kritiker zufolge Sicherheit für schnelle Marktanteile opfert.",
+        bio: [
+          "Sam Altman begann als Non-Profit-Idealist und führt heute ein aggressiv kommerzielles Tech-Imperium. Er spricht viel über Regulierung, beschleunigt das Tempo aber maximal. Seine Einordnung ist ambivalent – Kritiker sehen einen Trade-off zwischen Sicherheit und Marktanteilen.",
+          "Altman brach sein Studium in Stanford ab, wurde Partner bei Y Combinator und prägte die Startup-Kultur, indem er Unternehmen wie Airbnb und Stripe früh förderte. 2015 gründete er OpenAI als Non-Profit. Unter seiner Führung entstand der Capped-Profit-Arm und die Milliarden-Partnerschaft mit Microsoft, die OpenAI zu einem der mächtigsten KI-Unternehmen machte.",
+          "ChatGPT löste 2022 ein globales Beben aus und veränderte die öffentliche Wahrnehmung von KI nachhaltig. Der dramatische Vorstands-Konflikt 2023, aus dem er gestärkt hervorging, unterstrich seine Fähigkeit, Vision und harte Machtpolitik zu verbinden. Neben KI investiert er in Kernfusion, Langlebigkeit und Worldcoin, um breitere gesellschaftliche Auswirkungen zu adressieren.",
+          "Bis 2026 blieb Altman CEO von OpenAI, trieb Projekte wie Stargate voran und betonte in Reflexionen die Ankunft von Agenten und Systemen mit neuem Denkvermögen. Altman verkörpert den klassischen Silicon-Valley-Strategen, der AGI als größte Chance der Menschheit sieht und gleichzeitig die disruptive Kraft des Übergangs akzeptiert; er plädiert für breite Verteilung der Vorteile und sieht in schneller Entwicklung den Schlüssel, um positive Effekte möglichst rasch zu realisieren.",
+          "Politisch war Altman lange klar demokratisch (hunderte Tausend Dollar an Demokraten, Unterstützung für Biden), erklärte sich 2025 jedoch \u201Epolitically homeless\u201C, kritisierte die Demokraten und näherte sich pragmatisch der Trump-Administration an (Spenden an Inauguration, Kooperationen)."
+        ],
+        quote: "Wir wollen AGI bauen, sie sicher machen und herausfinden, wie wir die Vorteile so breit wie möglich verteilen können – auch wenn der Übergang extrem disruptiv wird.",
+        quoteAttr: "Sam Altman"
+      },
+      {
+        kat: 4,
+        katLabel: "Kommerzielle Strategen & Macht-Akteure",
+        name: "Satya Nadella",
+        org: "Microsoft",
+        img: IMG + "Satya_Nadella.jpg",
+        einordnung: "Folgt einem klassischen, rein geschäftsorientierten Corporate-Kompass, der dem Shareholder-Value verpflichtet ist. Er treibt die KI-Integration in jedes Produkt maximal voran, wobei ethische Leitlinien so lange unterstützt werden, wie sie das wirtschaftliche Wachstum nicht bremsen.",
+        bio: [
+          "Satya Nadella ist CEO von Microsoft. Seine primäre Pflicht gilt den Aktionären. Er integriert KI in jedes Produkt, um Wettbewerbsvorteile zu schaffen, und unterstützt \u201EResponsible AI\u201C, solange es das Wachstum nicht bremst. Seine Einordnung ist klassisch unternehmensorientiert.",
+          "Nadella übernahm Microsoft 2014 und vollzog einen kulturellen Wandel vom elitären \u201EKnow-it-all\u201C zum neugierigen \u201ELearn-it-all\u201C, der das Unternehmen wieder innovativ machte. Er investierte früh und massiv in OpenAI und integrierte die Technologie als Copilot in alle Produkte, von Windows über Office bis GitHub.",
+          "Gleichzeitig baute er eigene Fähigkeiten auf (u. a. durch die Übernahme von Inflection-Teams und Investitionen in Mistral), um Abhängigkeiten zu reduzieren. Seine Strategie ist die eines visionären Pragmatikers: KI als neues Interface für natürliche Sprache zu etablieren und Microsoft wieder an die Spitze der Innovation zu führen.",
+          "Bis 2026 betonte er in Ausblicken auf das Jahr, dass 2026 der Übergang von Experimenten zu breiter realweltlicher Deployment sein werde, und sah in KI eine positive-sum-Technologie, die ganze Industrien verändern und wirtschaftliches Wachstum fördern könne. Er versteht Technologie nicht nur als Produkt, sondern als kulturellen und wirtschaftlichen Hebel, der ganze Industrien verändert und gleichzeitig gesellschaftliche Verantwortung erfordert.",
+          "Politisch agiert Nadella als pragmatischer CEO ohne starke ideologische Bindung: Microsoft gratulierte Trump zu Wahlsiegen und arbeitet mit verschiedenen Administrationen zusammen; nach Jan. 6 wurden zeitweise Spenden an bestimmte Republikaner ausgesetzt, später aber pragmatisch fortgesetzt."
+        ],
+        quote: "Wir bewegen uns in eine neue Ära, in der das wichtigste Interface die natürliche Sprache ist. KI wird jede Softwarekategorie grundlegend verändern.",
+        quoteAttr: "Satya Nadella"
+      },
+      {
+        kat: 4,
+        katLabel: "Kommerzielle Strategen & Macht-Akteure",
+        name: "Jensen Huang",
+        org: "Nvidia",
+        img: IMG + "Jensen_Huang.jpg",
+        einordnung: "Vollkommen geschäftsorientiert und pragmatisch im Hintergrund agierend. Als \u201EGroßhändler\u201C im KI-Goldrausch hält er sich aus ethischen und gesellschaftlichen Debatten fast gänzlich heraus und konzentriert sich exklusiv darauf, die technologische Hardware-Spirale unermüdlich voranzutreiben.",
+        bio: [
+          "Jensen Huang ist Gründer und CEO von Nvidia. Er sieht gigantisches industrielles Potenzial und treibt die Hardware-Spirale unermüdlich voran. Er äußert sich selten zu Risiken und positioniert sich als der zentrale Enabler des gesamten KI-Ökosystems – vergleichbar mit dem Superkaufhaus im KI-Zeitalter, das allen Bausteine für den nächsten großen Fortschritt liefert.",
+          "Geboren in Taiwan, gründete Huang 1993 Nvidia bei einem Treffen in einem Denny\u2019s-Diner. Die entscheidende Weichenstellung war 2006 die Plattform CUDA, die GPUs für allgemeine Berechnungen nutzbar machte und damit den Grundstein für das gesamte moderne Deep Learning legte.",
+          "Heute dominiert Nvidia den KI-Hardware-Markt fast vollständig; praktisch jeder große Fortschritt der letzten Jahre wurde auf Nvidia-Chips trainiert. Huang treibt den Bau riesiger \u201EKI-Fabriken\u201C voran und sieht in generativer KI den \u201EiPhone-Moment\u201C der Technologie, der jede Branche transformieren wird.",
+          "Bis 2026 erreichte Nvidia Rekordbewertungen, kündigte neue Blackwell-Architekturen an und warnte vor dem enormen Energiebedarf zukünftiger Systeme, während er gleichzeitig Lösungen wie Effizienzsteigerungen und neue Energiequellen betonte. Politisch bevorzugte Huang 2016 noch eine \u201Eliberalere Regierung\u201C, positionierte sich aber ab 2025 eng mit der Trump-Administration, lobte Deregulierung, lobbyierte für China-Exporte und baute eine enge Beziehung zu Trump auf – ein klarer pragmatischer Shift hin zu republikanischen Positionen aus Geschäftsinteressen.",
+          "Seine Haltung ist rein geschäftsorientiert und visionär zugleich: er schafft die physische Infrastruktur, auf der die Intelligenz-Revolution überhaupt erst möglich wird, ohne sich in philosophische Debatten zu verstricken. Seine Führung hat Nvidia zu einem der wertvollsten Unternehmen der Welt gemacht und gleichzeitig das Fundament für eine neue industrielle Ära gelegt, in der Hardware und Software symbiotisch zusammenwirken."
+        ],
+        quote: "Wir erleben gerade den ‚iPhone-Moment‘ der künstlichen Intelligenz. Jede Branche wird durch generative KI eine Transformation durchlaufen.",
+        quoteAttr: "Jensen Huang"
+      },
+
+      // ===== Kategorie 5: Moralisches Enigma =====
+      {
+        kat: 5,
+        katLabel: "Das moralische Enigma",
+        name: "Elon Musk",
+        org: "xAI · Tesla · SpaceX",
+        img: IMG + "Elon_Musk.jpg",
+        einordnung: "Auf der Skala am ehesten in der Nähe des \u201Efragwürdigen Kompasses\u201C, da seine persönliche Agenda und wirtschaftliche Interessen stark mit apokalyptischen Warnungen verschwimmen – er fordert Entwicklungsstopps, baut aber zeitgleich heimlich eigene Großprojekte aus.",
+        bio: [
+          "Elon Musk warnte jahrelang vor KI als großer existenzieller Bedrohung und forderte Entwicklungsstopps – gründete gleichzeitig xAI, um mit Grok maximale Marktanteile zu gewinnen. Er nutzt das Thema oft für strategische und persönliche Ziele. Seine Einordnung liegt im Bereich des moralischen Enigmas, da Warnungen und wirtschaftliche Interessen eng verwoben sind.",
+          "Musk war früherer Geldgeber von DeepMind und Mitgründer von OpenAI, verließ das Projekt jedoch 2018 aufgrund strategischer Differenzen. 2023 unterzeichnete er den Offenen Brief für einen Entwicklungsstopp, gründete aber parallel heimlich xAI. Mit \u201EColossus\u201C baute er den leistungsstärksten KI-Supercomputer und positioniert Grok bewusst als \u201EAnti-Woke\u201C-Alternative, die maximale Wahrheitsorientierung betont. Gleichzeitig treibt er über Tesla KI-gestützte Robotik und autonome Systeme voran.",
+          "Bis 2026 fusionierte xAI mit SpaceX, brachte Grok-Versionen wie Grok 4 und 5 heraus (mit Claims zu AGI-Nähe) und integrierte KI tief in seine Unternehmen, um Synergien zwischen Raumfahrt, Mobilität und Intelligenz zu schaffen.",
+          "Politisch durchlief Musk einen deutlichen Wandel: frühe Spenden an beide Parteien (eher liberal/centrist), ab ca. 2017 zunehmend republikanisch, ab 2022 vollständig rechts, massiver Trump-Unterstützer 2024 (über 250 Mio. Dollar), temporäre Distanz 2025, dann Wiederaufnahme großer GOP-Spenden für 2026-Midterms.",
+          "Musk verkörpert wie keine andere Figur die Widersprüchlichkeit des KI-Zeitalters: er warnt dramatisch vor dem \u201EDämon\u201C KI und investiert gleichzeitig massiv, um selbst eine Version zu schaffen, die seiner Vision entspricht. Seine Handlungen zeigen eine komplexe Mischung aus tiefer Sorge, unternehmerischem Instinkt und dem Wunsch, die Zukunft der Intelligenz aktiv mitzugestalten – immer mit dem Ziel, die Menschheit multiplanetar und langfristig sicher zu machen."
+        ],
+        quote: "Mit künstlicher Intelligenz beschwören wir den Dämon. Sie ist möglicherweise gefährlicher als Atomwaffen – aber wenn AGI entwickelt wird, müssen wir sicherstellen, dass wir eine Version haben, die die Menschheit nicht vernichtet.",
+        quoteAttr: "Elon Musk"
+      }
+    ];
+
+    // ============ Render-Funktionen ============
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    // Direkter Fallback-Pfad, falls das CDN ein Bild (noch) nicht ausliefert
+    const IMG_FALLBACK = "/bilder/personen/";
+
+    function renderCards() {
+      PERSONEN.forEach((p, idx) => {
+        const grid = document.getElementById("kip-grid-" + p.kat);
+        if (!grid) return;
+        const fallbackUrl = IMG_FALLBACK + p.img.split("/").pop();
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "kip-card";
+        card.setAttribute("aria-label", "Profil von " + p.name + " öffnen");
+        card.dataset.idx = idx;
+        card.innerHTML = `
+          <div class="kip-card-img">
+            <img src="${escapeHtml(p.img)}" alt="Portrait-Zeichnung von ${escapeHtml(p.name)}" loading="lazy"
+                 onerror="if(this.dataset.fallback!=='1'){this.dataset.fallback='1';this.src='${escapeHtml(fallbackUrl)}';}">
+          </div>
+          <div class="kip-card-body">
+            <p class="kip-card-name">${escapeHtml(p.name)}</p>
+            <p class="kip-card-org">${escapeHtml(p.org)}</p>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // ============ Modal-Logik ============
+    const modal = document.getElementById("kip-modal");
+    const modalImg = document.getElementById("kip-modal-img");
+    const modalCat = document.getElementById("kip-modal-cat");
+    const modalName = document.getElementById("kip-modal-name");
+    const modalOrg = document.getElementById("kip-modal-org");
+    const modalEinordnung = document.getElementById("kip-modal-einordnung");
+    const modalBio = document.getElementById("kip-modal-bio");
+    const modalQuoteText = document.getElementById("kip-modal-quote-text");
+    const modalQuoteAttr = document.getElementById("kip-modal-quote-attr");
+    let lastFocused = null;
+
+    function openModal(idx) {
+      const p = PERSONEN[idx];
+      if (!p) return;
+      lastFocused = document.activeElement;
+      modalImg.dataset.fallback = "";
+      modalImg.onerror = function() {
+        if (this.dataset.fallback !== "1") {
+          this.dataset.fallback = "1";
+          this.src = IMG_FALLBACK + p.img.split("/").pop();
+        }
+      };
+      modalImg.src = p.img;
+      modalImg.alt = "Portrait-Zeichnung von " + p.name;
+      modalCat.textContent = p.katLabel;
+      modalName.textContent = p.name;
+      modalOrg.textContent = p.org;
+      modalEinordnung.textContent = p.einordnung;
+      modalBio.innerHTML = p.bio.map(par => "<p>" + escapeHtml(par) + "</p>").join("");
+      modalQuoteText.textContent = "\u201E" + p.quote + "\u201C";
+      modalQuoteAttr.textContent = "— " + p.quoteAttr;
+      modal.classList.add("kip-is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("kip-no-scroll");
+      // Scroll im Modal zurücksetzen
+      modal.scrollTop = 0;
+      // Fokus auf Close-Button
+      setTimeout(() => {
+        const closeBtn = modal.querySelector(".kip-modal-close");
+        if (closeBtn) closeBtn.focus();
+      }, 50);
+    }
+
+    function closeModal() {
+      modal.classList.remove("kip-is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("kip-no-scroll");
+      if (lastFocused && typeof lastFocused.focus === "function") {
+        lastFocused.focus();
+      }
+    }
+
+    // Event-Delegation für Cards
+    document.querySelectorAll(".kip-grid").forEach(grid => {
+      grid.addEventListener("click", (e) => {
+        const card = e.target.closest(".kip-card");
+        if (!card) return;
+        openModal(parseInt(card.dataset.idx, 10));
+      });
+    });
+
+    // Schließen via Close-Button oder Backdrop
+    modal.addEventListener("click", (e) => {
+      if (e.target.matches("[data-kip-close]") || e.target.closest("[data-kip-close]")) {
+        closeModal();
+      }
+    });
+
+    // Schließen via Escape
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("kip-is-open")) {
+        closeModal();
+      }
+    });
+
+    // Initialer Render
+    renderCards();
+  })();
+  </script>
+
+</section>
+<!-- ===================== ENDE: Personen hinter der KI ===================== -->
+</div>

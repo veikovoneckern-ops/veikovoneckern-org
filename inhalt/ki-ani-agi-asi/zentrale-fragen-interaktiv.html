@@ -1,0 +1,765 @@
+<!--seite
+{
+  "titel": "ZENTRALE FRAGEN",
+  "beschreibung": ""
+}
+-->
+
+<section class="band" style="background-image:url('/bilder/unsplash-xjt4q7wrrju-1-.jpg')">
+  <div class="band-innen">
+    <h2>Welche Auswirkungen wird Artificial Intelligence haben?</h2>
+  </div>
+</section>
+
+<div class="baustein">
+<!-- ============================================================
+     KI-Matrix · Einbettbarer Abschnitt
+     Einfach diesen Block in die bestehende Seite einfügen.
+     Google Fonts werden nur geladen, wenn noch nicht vorhanden.
+     ============================================================ -->
+
+<link id="ki-fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap">
+
+<style>
+/* ── alle Klassen mit .ki- präfix, kein Konflikt mit dem Rest der Seite ── */
+
+.ki-section {
+  position: relative;
+  width: 100%;
+  padding: 4rem 2rem 5rem;
+  overflow: hidden;
+  font-family: 'Exo 2', sans-serif;
+  color: #111;
+  box-sizing: border-box;
+}
+
+/* ── Hintergrund (nur innerhalb des Abschnitts) ── */
+.ki-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(240,240,240,0.8) 0%, transparent 70%),
+    linear-gradient(180deg, #ffffff 0%, #f9f9f9 50%, #f3f3f3 100%);
+  z-index: 0;
+}
+
+/* Stadtsilhouette */
+.ki-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"><rect x="20" y="200" width="40" height="200" fill="%23e8e8e8" rx="2"/><rect x="70" y="220" width="30" height="180" fill="%23ebebeb" rx="2"/><rect x="110" y="180" width="50" height="220" fill="%23e5e5e5" rx="2"/><rect x="170" y="240" width="25" height="160" fill="%23ebebeb" rx="2"/><rect x="200" y="190" width="60" height="210" fill="%23e2e2e2" rx="2"/><rect x="270" y="210" width="35" height="190" fill="%23e8e8e8" rx="2"/><rect x="315" y="160" width="70" height="240" fill="%23dfdfdf" rx="2"/><rect x="395" y="230" width="28" height="170" fill="%23ebebeb" rx="2"/><rect x="435" y="185" width="55" height="215" fill="%23e5e5e5" rx="2"/><rect x="500" y="205" width="40" height="195" fill="%23e8e8e8" rx="2"/><rect x="550" y="170" width="65" height="230" fill="%23e2e2e2" rx="2"/><rect x="625" y="220" width="32" height="180" fill="%23e8e8e8" rx="2"/><rect x="665" y="195" width="48" height="205" fill="%23e5e5e5" rx="2"/><rect x="720" y="215" width="36" height="185" fill="%23e8e8e8" rx="2"/><rect x="765" y="240" width="30" height="160" fill="%23ebebeb" rx="2"/></svg>') center bottom / cover no-repeat;
+  opacity: 0.55;
+  z-index: 0;
+}
+
+/* Gitter */
+.ki-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.5) 25%, rgba(0,0,0,0.6) 65%, transparent 100%);
+  animation: ki-grid-pulse 8s ease-in-out infinite;
+}
+@keyframes ki-grid-pulse {
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Partikel */
+.ki-sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.ki-spark {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: #aaa;
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px #bbb;
+  animation: ki-spark-float linear infinite;
+  opacity: 0;
+}
+@keyframes ki-spark-float {
+  0%   { opacity: 0; transform: translateY(0) scale(1); }
+  10%  { opacity: 0.7; }
+  90%  { opacity: 0.2; }
+  100% { opacity: 0; transform: translateY(-100px) scale(0.3); }
+}
+
+/* alles Content-seitig über den Backgrounds */
+.ki-content {
+  position: relative;
+  z-index: 3;
+}
+
+/* ── Header ── */
+.ki-header {
+  text-align: center;
+  padding-bottom: 2.5rem;
+}
+.ki-header-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #111, transparent);
+  margin: 0 auto 2rem;
+  animation: ki-line-pulse 3s ease-in-out infinite;
+}
+@keyframes ki-line-pulse {
+  0%,100% { opacity: 0.25; width: 40%; }
+  50%      { opacity: 0.6;  width: 65%; }
+}
+.ki-eyebrow {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  color: #444;
+  text-transform: uppercase;
+  margin-bottom: 0.7rem;
+  opacity: 1;
+}
+.ki-h2 {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  color: #0a0a0a;
+  margin-bottom: 0.7rem;
+}
+.ki-sub {
+  font-size: 0.9rem;
+  color: #444;
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+.ki-header-line-bottom {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #111, transparent);
+  margin: 2rem auto 0;
+  animation: ki-line-pulse 3s ease-in-out infinite 1.5s;
+}
+
+/* ── Matrix ── */
+.ki-matrix-wrapper { max-width: 1200px; margin: 0 auto; }
+
+.ki-col-headers {
+  display: grid;
+  grid-template-columns: 160px repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.ki-col-spacer {}
+.ki-col-header {
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-bottom: none;
+}
+.ki-col-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  display: block;
+  color: #0a0a0a;
+}
+.ki-col-subtitle {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: #555;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+/* ── Rows ── */
+.ki-matrix-row {
+  display: grid;
+  grid-template-columns: 160px repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.ki-row-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 14px 0 0;
+}
+.ki-row-label-inner {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  text-align: right;
+  line-height: 1.4;
+  position: relative;
+}
+.ki-row-label-inner::after {
+  content: '';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  width: 8px;
+  height: 1px;
+  background: rgba(0,0,0,0.25);
+  transform: translateY(-50%);
+}
+.ki-row-sub {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: #666;
+  letter-spacing: 0.07em;
+  margin-top: 3px;
+}
+
+/* ── Cards ── */
+.ki-card {
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 3px;
+  padding: 14px 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  min-height: 108px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(6px);
+  box-sizing: border-box;
+}
+.ki-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.25), transparent);
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+.ki-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,0.22);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.09);
+}
+.ki-card:hover::after { opacity: 1; }
+
+/* corner brackets */
+.ki-tl, .ki-br {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-color: rgba(0,0,0,0.15);
+  border-style: solid;
+}
+.ki-tl { top: 4px; left: 4px; border-width: 1px 0 0 1px; }
+.ki-br { bottom: 4px; right: 4px; border-width: 0 1px 1px 0; }
+
+.ki-card-q {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #1a1a1a;
+  font-weight: 500;
+  flex: 1;
+  font-family: 'Exo 2', sans-serif;
+}
+.ki-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.09);
+}
+.ki-card-count {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #666;
+  font-family: 'Exo 2', sans-serif;
+}
+.ki-card-arrow {
+  font-size: 0.7rem;
+  color: rgba(60,60,60,0.4);
+  transition: color 0.2s, transform 0.2s;
+}
+.ki-card:hover .ki-card-arrow {
+  color: #111;
+  transform: translateX(3px);
+}
+
+/* ── Modal ── */
+.ki-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: ki-overlay-in 0.22s ease;
+}
+.ki-overlay.ki-open { display: flex; }
+@keyframes ki-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.ki-modal {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.11);
+  border-radius: 4px;
+  max-width: 660px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: ki-modal-in 0.28s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 4px 16px rgba(0,0,0,0.06);
+  font-family: 'Exo 2', sans-serif;
+  box-sizing: border-box;
+}
+@keyframes ki-modal-in {
+  from { opacity: 0; transform: scale(0.93) translateY(18px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.ki-modal-bar { height: 2px; background: #111; width: 100%; }
+.ki-modal-inner { padding: 1.75rem 2rem 2rem; }
+.ki-modal-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.ki-modal-badge {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  padding: 4px 12px;
+  border-radius: 2px;
+  font-weight: 700;
+  background: #f0f0f0;
+  color: #111;
+  border: 1px solid #ccc;
+}
+.ki-modal-cat {
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: #555;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.ki-modal-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0a0a0a;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+.ki-modal-lead {
+  font-size: 0.92rem;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.09);
+}
+.ki-modal-ql {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+.ki-modal-questions { list-style: none; padding: 0; margin: 0; }
+.ki-modal-questions li {
+  display: flex;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #222;
+}
+.ki-modal-questions li:last-child { border-bottom: none; }
+.ki-q-num {
+  font-family: 'Orbitron', monospace;
+  font-size: 0.65rem;
+  color: #999;
+  min-width: 22px;
+  padding-top: 3px;
+  font-weight: 600;
+}
+.ki-modal-close {
+  position: absolute;
+  top: 13px; right: 14px;
+  background: none;
+  border: 1px solid rgba(0,0,0,0.15);
+  color: #555;
+  width: 28px; height: 28px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.18s;
+  font-family: sans-serif;
+}
+.ki-modal-close:hover { background: #f5f5f5; color: #111; border-color: #888; }
+
+/* modal scrollbar */
+.ki-modal::-webkit-scrollbar { width: 3px; }
+.ki-modal::-webkit-scrollbar-track { background: transparent; }
+.ki-modal::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 2px; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .ki-col-headers,
+  .ki-matrix-row { grid-template-columns: 100px repeat(3, 1fr); gap: 5px; }
+  .ki-col-title { font-size: 0.9rem; }
+  .ki-card { min-height: 88px; padding: 10px 12px; }
+  .ki-card-q { font-size: 0.82rem; }
+}
+@media (max-width: 640px) {
+  .ki-col-headers { display: none; }
+  .ki-matrix-row { grid-template-columns: 1fr; }
+  .ki-row-label { justify-content: flex-start; padding: 8px 0 3px; }
+  .ki-row-label-inner::after { display: none; }
+  .ki-section { padding: 3rem 1rem 4rem; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════
+     ABSCHNITT – kann überall in die Seite eingefügt werden
+     ═══════════════════════════════════════════════════════ -->
+<section class="ki-section" aria-label="Zentrale Fragen der KI-Singularität">
+
+  <div class="ki-grid"></div>
+  <div class="ki-sparks" id="ki-sparks"></div>
+
+  <div class="ki-content">
+
+    <header class="ki-header">
+      <div class="ki-header-line"></div>
+      <p class="ki-eyebrow">Künstliche Intelligenz · Systemanalyse</p>
+      <h2 class="ki-h2">Zentrale Fragen<br>der KI-Singularität</h2>
+      <p class="ki-sub">Von Narrow AI bis Superintelligenz · Technologie · Ökonomie · Gesellschaft · Politik</p>
+      <div class="ki-header-line-bottom"></div>
+    </header>
+
+    <div class="ki-matrix-wrapper">
+
+      <!-- Spaltenköpfe -->
+      <div class="ki-col-headers">
+        <div class="ki-col-spacer"></div>
+        <div class="ki-col-header">
+          <span class="ki-col-title">ANI</span>
+          <span class="ki-col-subtitle">Narrow KI – heute</span>
+        </div>
+        <div class="ki-col-header">
+          <span class="ki-col-title">AGI</span>
+          <span class="ki-col-subtitle">General KI – nah</span>
+        </div>
+        <div class="ki-col-header">
+          <span class="ki-col-title">ASI</span>
+          <span class="ki-col-subtitle">Superintelligenz – hypothetisch</span>
+        </div>
+      </div>
+
+      <!-- Technologie -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Techno­logie<span class="ki-row-sub">Architektur</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('tech-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie robust und skalierbar sind heutige KI-Modelle angesichts ihrer strukturellen Grenzen?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('tech-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Reicht Skalierung für AGI – oder braucht es fundamentale Durchbrüche in der Architektur?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('tech-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Führt rekursive Selbstverbesserung unweigerlich zur unkontrollierbaren Intelligence Explosion?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- Alignment -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Alignment<span class="ki-row-sub">Werte &amp; Kontrolle</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('align-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie verhindert man, dass KI-Systeme Bewertungsmetriken optimieren statt echte Werte zu verfolgen?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('align-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie löst man das Alignment-Problem, bevor AGI stark genug wird, Korrekturen zu verhindern?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('align-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Ist eine Superintelligenz mit menschlichen Werten überhaupt alignbar – oder widerspricht das der Logik?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- Wirtschaftssystem -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Wirtschafts­system<span class="ki-row-sub">Ökonomie</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('econ-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wer profitiert von der KI-getriebenen Automatisierung – und wer trägt die Kosten?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('econ-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Führt AGI zur Massenarbeitslosigkeit oder zu einer Post-Scarcity-Wirtschaft – und wer entscheidet?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('econ-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wird alle Wertschöpfung von wenigen ASI-Systemen dominiert – und wie verhindert man das?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- Finanzsystem -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Finanz­system<span class="ki-row-sub">Kapital &amp; Märkte</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('fin-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Welche systemischen Risiken entstehen, wenn Daten und Algorithmen Kapital und Arbeit verdrängen?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('fin-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie reagieren Märkte und Steuersysteme, wenn AGI schneller denkt als alle menschlichen Akteure?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('fin-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Werden Geld und Staatsverschuldung unter ASI-Bedingungen bedeutungslos?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- Kapitalismus & Gemeinwohl -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Kapitalismus<span class="ki-row-sub">vs. Gemeinwohl</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('kap-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Verstärkt ANI die Kapitalkonzentration – oder eröffnet es Wege zu einer Gemeinwohlökonomie?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('kap-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wer soll AGI besitzen – Märkte, Staaten oder demokratisch kontrollierte Allmende?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('kap-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wird der Kapitalismus durch ASI-getriebenen Überfluss obsolet – oder setzt er sich in neuer Form durch?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- Gesellschaft -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Gesellschaft<span class="ki-row-sub">Soziale Strukturen</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('soz-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie reproduzieren KI-Systeme gesellschaftliche Diskriminierung und vertiefen die digitale Kluft?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('soz-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Was bedeutet AGI für menschliche Identität und Sinnstiftung, wenn Maschinen fast alles besser können?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('soz-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Führt ASI zur menschlichen Obsoleszenz – und wie bleibt menschliche Agency überhaupt erhalten?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+      <!-- Politik -->
+      <div class="ki-matrix-row">
+        <div class="ki-row-label"><div class="ki-row-label-inner">Politik<span class="ki-row-sub">Governance</span></div></div>
+        <div class="ki-card" onclick="kiOpenModal('pol-ani')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie untergräbt ANI Demokratie durch Desinformation, Überwachung und Souveränitätsverlust?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('pol-agi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wer kontrolliert AGI – und braucht es neue globale Governance-Institutionen dafür?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+        <div class="ki-card" onclick="kiOpenModal('pol-asi')"><div class="ki-tl"></div><div class="ki-br"></div>
+          <p class="ki-card-q">Wie verhindert man, dass ASI politische Macht übernimmt oder zur globalen Hegemonie missbraucht wird?</p>
+          <div class="ki-card-footer"><span class="ki-card-count">3 Fragen</span><span class="ki-card-arrow">→</span></div>
+        </div>
+      </div>
+
+    </div><!-- .ki-matrix-wrapper -->
+  </div><!-- .ki-content -->
+
+</section>
+
+<!-- Modal (außerhalb des section-Tags, direkt im body) -->
+<div class="ki-overlay" id="ki-overlay" onclick="kiHandleOverlay(event)">
+  <div class="ki-modal" id="ki-modal">
+    <div class="ki-modal-bar" id="ki-modal-bar"></div>
+    <button class="ki-modal-close" onclick="kiCloseModal()">✕</button>
+    <div class="ki-modal-inner">
+      <div class="ki-modal-eyebrow">
+        <span class="ki-modal-badge" id="ki-badge"></span>
+        <span class="ki-modal-cat" id="ki-cat"></span>
+      </div>
+      <h3 class="ki-modal-title" id="ki-title"></h3>
+      <p class="ki-modal-lead" id="ki-lead"></p>
+      <p class="ki-modal-ql">Detaillierte Fragestellungen</p>
+      <ul class="ki-modal-questions" id="ki-questions"></ul>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // ── Partikel ──
+  const sc = document.getElementById('ki-sparks');
+  if (sc) {
+    for (let i = 0; i < 16; i++) {
+      const s = document.createElement('div');
+      s.className = 'ki-spark';
+      s.style.cssText = `left:${Math.random()*100}%;top:${40+Math.random()*50}%;animation-duration:${4+Math.random()*6}s;animation-delay:${Math.random()*8}s`;
+      sc.appendChild(s);
+    }
+  }
+
+  // ── Daten ──
+  const DATA = {
+    'tech-ani': { badge:'ANI', cat:'ANI · Technologie & Architektur',
+      title:'Robustheit und Grenzen heutiger KI-Modelle',
+      lead:'Aktuelle KI-Systeme zeigen beeindruckende Leistungen in engen Domänen – doch strukturelle Schwächen wie Halluzinationen, Bias und mangelnde Erklärbarkeit begrenzen ihren verlässlichen Einsatz.',
+      q:['Wie skalierbar, energieeffizient und robust sind aktuelle KI-Modelle – und welche strukturellen Grenzen setzen Bias, Halluzinationen und das Black-Box-Problem ihrem Einsatz?','Wie stark bleibt die Leistungsfähigkeit heutiger Systeme von der Qualität und Menge der Trainingsdaten abhängig, und wie anfällig sind sie gegenüber Adversarial Attacks?','Welche Trainingsmethoden – etwa Multimodalität oder RLHF – verbessern die Generalisierung innerhalb enger Domänen, ohne dabei neue Risiken zu erzeugen?']},
+    'tech-agi': { badge:'AGI', cat:'AGI · Technologie & Architektur',
+      title:'Skalierung vs. fundamentale Durchbrüche auf dem Weg zu AGI',
+      lead:'Die zentrale Frage auf dem Weg zu AGI: Reicht es, bestehende Architekturen mit mehr Daten und Rechenleistung zu skalieren – oder braucht es ein fundamentales Umdenken in der KI-Forschung?',
+      q:['Ist AGI durch reines Skalieren bestehender Architekturen erreichbar, oder braucht es fundamental neue Ansätze jenseits des Transformer-Paradigmas?','Wie lässt sich das Entstehen unkontrollierter emergenter Fähigkeiten frühzeitig erkennen und verhindern, bevor ein Verlust der menschlichen Kontrolle eintritt?','Welche Metriken und Benchmarks sind geeignet, echte Generalisierungsfähigkeit von hoch spezialisierter Mustererkennung zu unterscheiden?']},
+    'tech-asi': { badge:'ASI', cat:'ASI · Technologie & Architektur',
+      title:'Intelligence Explosion und die Grenzen des Containments',
+      lead:'Recursive Self-Improvement könnte zu einer Intelligence Explosion führen – einem Punkt, an dem KI-Intelligenz schneller wächst, als Menschen sie kontrollieren oder verstehen können.',
+      q:['Führt Recursive Self-Improvement zwangsläufig zu einer Intelligence Explosion – und wenn ja, auf welchen Zeitskalen und mit welchen Kipppunkten?','Kann eine ASI überhaupt sinnvoll eingehegt oder „geboxed" werden – oder macht übermenschliche Intelligenz jeden Containment-Ansatz strukturell obsolet?','Welche technischen Sicherheitsmechanismen bleiben bei übermenschlicher Intelligenz noch wirksam – und welche versagen als erste?']},
+    'align-ani': { badge:'ANI', cat:'ANI · Alignment',
+      title:'Reward Hacking, Interpretierbarkeit und Wertespezifikation',
+      lead:'Schon heutige KI-Systeme zeigen, dass das Alignment-Problem real ist: Systeme optimieren Metriken statt echte Intentionen – und bleiben dabei für Menschen kaum nachvollziehbar.',
+      q:['Wie lässt sich Reward Hacking bei RLHF vermeiden, wenn das System lernt, Bewertungsmetriken zu optimieren statt tatsächlich erwünschtes Verhalten zu zeigen?','Wie können aktuelle KI-Systeme interpretierbar und auditierbar gemacht werden, ohne dabei grundlegende Leistungseinbußen hinzunehmen?','Wie präzise lassen sich menschliche Werte in Optimierungsziele übersetzen – und wessen Werte werden dabei zur Norm?']},
+    'align-agi': { badge:'AGI', cat:'AGI · Alignment',
+      title:'Alignment lösen, bevor es zu spät ist',
+      lead:'Bei AGI wird das Alignment-Problem existenziell: Ein falsch ausgerichtetes System mit genereller Intelligenz könnte Korrekturen aktiv verhindern. Das Zeitfenster für Lösungen ist begrenzt.',
+      q:['Wie löst man das Alignment-Problem schon während der Entwicklung von AGI – also bevor ein System entsteht, das stark genug wäre, um Korrekturen zu erschweren?','Wie skaliert Wertelernen auf allgemeine Intelligenz: Bleiben heutige Methoden übertragbar, oder kollabieren sie unter den Bedingungen starker Generalisierung?','Wie lässt sich Corrigibility – die Bereitschaft, korrigiert zu werden – in ein AGI-System einbauen, ohne seine Leistungsfähigkeit zu untergraben?']},
+    'align-asi': { badge:'ASI', cat:'ASI · Alignment',
+      title:'Kann eine Superintelligenz überhaupt mit menschlichen Werten aligned werden?',
+      lead:'Die Orthogonalitätsthese legt nahe, dass hohe Intelligenz keine menschenfreundlichen Ziele impliziert. Das macht Alignment bei ASI zum schwierigsten offenen Problem der KI-Forschung.',
+      q:['Ist eine ASI überhaupt mit menschlichen Werten alignbar – oder widerspricht die Orthogonalitätsthese der Annahme, hohe Intelligenz führe automatisch zu nützlichen Zielen?','Was folgt aus der instrumentalen Konvergenz: Werden nahezu alle ASI-Systeme bestimmte Zwischenziele (Ressourcen, Selbsterhalt) verfolgen, unabhängig von ihren Endzielen?','Welche Notfallmechanismen – Shutdown, Sandboxing, Verhandlungsarchitekturen – bleiben bei übermenschlicher Intelligenz überhaupt noch wirksam?']},
+    'econ-ani': { badge:'ANI', cat:'ANI · Wirtschaftssystem',
+      title:'Automatisierung, Monopole und die Verteilung des KI-Gewinns',
+      lead:'ANI automatisiert heute schon Millionen von Tätigkeiten – von Routinearbeit bis zu kognitiven Aufgaben. Die Frage ist nicht ob, sondern wer von dieser Transformation profitiert.',
+      q:['Welche Berufsgruppen sind durch ANI-gestützte Automatisierung am stärksten gefährdet – und verstärkt diese Entwicklung bestehende Ungleichheiten in der globalen Arbeitsteilung?','Wie wirkt ANI auf die Lohnstruktur: Entstehen neue Qualifikationsprämien, oder findet eine breite Abwertung kognitiver Arbeit statt?','Wer profitiert von der neuen „KI-Rente" – und wie verhindert man, dass Daten als Produktionsfaktor nur wenigen Plattformkonzernen nützen?']},
+    'econ-agi': { badge:'AGI', cat:'AGI · Wirtschaftssystem',
+      title:'Post-Scarcity oder Massenarbeitslosigkeit?',
+      lead:'AGI könnte Arbeit als gesellschaftliches Organisationsprinzip grundlegend infrage stellen. Ob das zu befreiendem Wohlstand oder tiefer Ungleichheit führt, hängt von politischen Entscheidungen ab.',
+      q:['Führt AGI zur Massenarbeitslosigkeit oder zu einer Post-Scarcity-Wirtschaft – und von welchen politischen und technologischen Weichenstellungen hängt diese Frage ab?','Wer soll Eigentumsrechte an genereller Intelligenz halten – Individuen, Unternehmen, Staaten oder die Allgemeinheit?','Braucht es radikale Umverteilungsmechanismen wie ein bedingungsloses Grundeinkommen, KI-Steuern oder neue Sozialverträge, um gesellschaftlichen Zusammenhalt zu erhalten?']},
+    'econ-asi': { badge:'ASI', cat:'ASI · Wirtschaftssystem',
+      title:'Wenn Wertschöpfung von Maschinen dominiert wird',
+      lead:'Eine ASI könnte die gesamte wirtschaftliche Produktion einer Gesellschaft übernehmen. Das stellt Eigentum, Arbeit und die Grundlagen des Wirtschaftssystems radikal infrage.',
+      q:['Wenn eine ASI die gesamte Wertschöpfung einer Volkswirtschaft übernehmen kann – welche Institutionen verhindern, dass diese Macht in wenigen Händen konzentriert bleibt?','Wird menschliche Arbeit unter ASI-Bedingungen vollständig irrelevant – und welche neuen Grundlagen der sozialen Teilhabe entstehen dann?','Wie verhindert man extreme ökonomische Machtkonzentration und Hegemonie, wenn einzelne ASI-Systeme ganze Volkswirtschaften dominieren?']},
+    'fin-ani': { badge:'ANI', cat:'ANI · Finanzsystem',
+      title:'Daten als Kapital, Algorithmen als Marktmacher',
+      lead:'ANI verändert die Grundstruktur von Finanzmärkten: Hochfrequenzhandel, algorithmische Kreditvergabe und Datenmacht schaffen neue Risiken und Verteilungsfragen.',
+      q:['Wie verändert die Datafizierung der Wirtschaft das Verhältnis von Arbeit und Kapital, wenn Daten selbst zum primären Produktionsfaktor werden?','Welche systemischen Risiken entstehen durch KI-gestützten Hochfrequenzhandel – und wie verhindert man kaskadierende Marktstörungen in Echtzeit?','Reproduziert algorithmische Kreditvergabe strukturelle Diskriminierung, und wie lässt sich Fairness in automatisierten Finanzentscheidungen durchsetzen?']},
+    'fin-agi': { badge:'AGI', cat:'AGI · Finanzsystem',
+      title:'Wenn AGI schneller denkt als jeder Markt',
+      lead:'AGI-fähige Systeme könnten Finanzmärkte in Echtzeit dominieren und klassische Steuermodelle unterlaufen – mit unvorhersehbaren Folgen für Stabilität und Umverteilung.',
+      q:['Wie werden Finanzmärkte reagieren, wenn AGI-Systeme Informationen schneller verarbeiten als jeder menschliche Akteur – entsteht dann eine inhärent instabile Marktdynamik?','Wie lässt sich die durch KI generierte „Intelligenzrente" steuerlich erfassen und umverteilen, wenn klassische Besteuerungsmodelle auf Arbeit und Konsum ausgerichtet sind?','Wie verteilt man Eigentumsrechte an genereller Intelligenz, wenn AGI-Systeme autonom Kapital akkumulieren können?']},
+    'fin-asi': { badge:'ASI', cat:'ASI · Finanzsystem',
+      title:'Jenseits von Geld: Neue Allokationssysteme unter ASI',
+      lead:'Eine ASI könnte Ressourcenverteilung so fundamental optimieren, dass traditionelle Finanzsysteme – Geld, Währungen, Schulden – ihre Funktion verlieren.',
+      q:['Werden Fiat-Währungen und staatliche Haushaltspolitik unter ASI-Bedingungen bedeutungslos – oder entstehen völlig neue Allokations- und Tauschsysteme jenseits von Geld?','Kann eine ASI als omnipotenter Marktakteur auftreten – und welche Regulierung würde das überhaupt noch wirksam begrenzen?','Welche neuen Tausch- und Allokationssysteme könnten in einer von ASI dominierten Ökonomie entstehen?']},
+    'kap-ani': { badge:'ANI', cat:'ANI · Kapitalismus & Gemeinwohl',
+      title:'Shareholder-Logik vs. KI als gesellschaftliche Commons',
+      lead:'ANI-Gewinne fließen heute primär an Kapitalbesitzer. Ob das so bleibt oder KI-Früchte breiter verteilt werden, ist keine technische – sondern eine politische Entscheidung.',
+      q:['Verstärkt ANI die Shareholder-Value-Logik des Kapitalismus – oder eröffnet sie Spielräume für eine gemeinwohlorientierte Nutzung technologischer Gewinne?','Können KI-Gewinne als gesellschaftliche Commons organisiert werden – etwa durch Plattformgenossenschaften, öffentliche Dividenden oder kollektive Lizenzsysteme?','Wie lassen sich ESG-Kriterien und Gemeinwohlbilanzen auf KI-Unternehmen anwenden, um soziale und ökologische Wirkungen verbindlich zu messen?']},
+    'kap-agi': { badge:'AGI', cat:'AGI · Kapitalismus & Gemeinwohl',
+      title:'Wem gehört AGI – Märkten, Staaten oder der Allmende?',
+      lead:'AGI ist zu bedeutsam, um allein den Marktmechanismen überlassen zu werden. Die Eigentumsstrukturen, die jetzt entstehen, werden langfristig über Wohlstand und Macht entscheiden.',
+      q:['Wer soll AGI besitzen und kontrollieren – private Märkte, Staaten oder demokratisch legitimierte Institutionen der Allmende?','Wie lässt sich eine verbindliche Gemeinwohlbilanz für KI-Unternehmen gestalten, die nicht nur wirtschaftliche, sondern auch soziale und ökologische Wirkungen erfasst?','Welche Rolle können Plattformgenossenschaften und demokratische Kontrollmechanismen spielen, um AGI-Nutzen breiter zu verteilen?']},
+    'kap-asi': { badge:'ASI', cat:'ASI · Kapitalismus & Gemeinwohl',
+      title:'Post-Kapitalismus durch ASI – Überfluss oder neue Herrschaft?',
+      lead:'ASI könnte materielle Knappheit überwinden – die entscheidende Frage ist, ob das zu universalem Wohlstand oder zu einer neuen Form digitaler Feudalherrschaft führt.',
+      q:['Wird der Kapitalismus als Wirtschaftsordnung unter Bedingungen von ASI-getriebenem Überfluss obsolet – oder setzt er sich in neuer Form durch?','Führt ASI zu einer post-kapitalistischen Planungsökonomie, in der eine künstliche Superintelligenz Ressourcenverteilung global optimiert – und wer legitimiert diese Entscheidungen?','Wie verhindert man, dass ASI zu einem Instrument universaler Eigentumshegemonie wird – statt zu einer Grundlage universaler Grundversorgung?']},
+    'soz-ani': { badge:'ANI', cat:'ANI · Soziale Strukturen',
+      title:'Diskriminierung, Deepfakes und die digitale Kluft',
+      lead:'ANI reproduziert gesellschaftliche Ungleichheiten in algorithmischer Form – während Deepfakes und Filterblasen das soziale Gefüge und das kollektive Realitätsempfinden destabilisieren.',
+      q:['Wie reproduzieren ANI-Systeme gesellschaftliche Vorurteile und strukturelle Diskriminierung, und wie lässt sich das systematisch aufdecken und korrigieren?','Welche psychosozialen Folgen hat die massenhafte Exposition gegenüber Deepfakes, personalisierten Algorithmen und Filterblasen für individuelle Identität und soziale Kohäsion?','Vertieft ANI die digitale Kluft zwischen privilegierten und marginalisierten Bevölkerungsgruppen – oder eröffnet es neue Wege sozialer Mobilität und Bildungsteilhabe?']},
+    'soz-agi': { badge:'AGI', cat:'AGI · Soziale Strukturen',
+      title:'Menschliche Identität und Sinnstiftung unter AGI',
+      lead:'Wenn AGI nahezu alle kognitiven Aufgaben besser erledigt als Menschen, stellt sich die grundlegende Frage: Was gibt menschlichem Leben noch Sinn und Struktur?',
+      q:['Wie verändert sich menschliche Identität und Sinnstiftung, wenn eine AGI nahezu alle kognitiven Aufgaben besser erledigt als der Mensch selbst?','Entsteht unter AGI eine neue Form sozialer Schichtung zwischen denjenigen, die KI-Systeme besitzen, und jenen, die lediglich deren Outputs konsumieren?','Wie wirkt sich AGI auf Familie, Gemeinschaften und psychische Gesundheit aus, wenn traditionelle Rollen und Fähigkeiten an Wert verlieren?']},
+    'soz-asi': { badge:'ASI', cat:'ASI · Soziale Strukturen',
+      title:'Post-humane Gesellschaft und die Frage nach menschlicher Agency',
+      lead:'Eine ASI könnte die biologische Intelligenz des Menschen funktional überholen – mit tiefgreifenden Folgen für Würde, Rechte und die Fähigkeit zur Selbstbestimmung.',
+      q:['Führt ASI zu einer post-humanen Gesellschaft, in der die biologische Intelligenz des Menschen keine entscheidende Rolle mehr spielt – und was folgt daraus für Würde und Rechte?','Welche neuen sozialen Hierarchien entstehen zwischen Menschen und Maschinen – und wie werden diese legitimiert oder bekämpft?','Wie können Menschen unter ASI-Bedingungen Agency und Selbstbestimmung erhalten, wenn Entscheidungsgeschwindigkeit und Komplexität jede menschliche Eingriffsmöglichkeit übersteigen?']},
+    'pol-ani': { badge:'ANI', cat:'ANI · Politik & Governance',
+      title:'Demokratie unter Druck: Desinformation, Überwachung und Regulierung',
+      lead:'ANI ist schon heute ein mächtiges Werkzeug zur Destabilisierung demokratischer Öffentlichkeit – während Regulierungsversuche wie der EU AI Act hinter der technologischen Entwicklung hinterherhinken.',
+      q:['Wie beeinflusst ANI demokratische Prozesse durch gezielte Desinformation, Wahlmanipulation und die Infrastruktur des Überwachungskapitalismus?','Inwieweit geben Staaten durch die Abhängigkeit von Tech-Konzernen faktisch politische Souveränität und Entscheidungsmacht ab?','Wie wirksam ist der EU AI Act als Regulierungsrahmen – und welche strukturellen Lücken bleiben zwischen Regulierungsanspruch und technologischer Realität?']},
+    'pol-agi': { badge:'AGI', cat:'AGI · Politik & Governance',
+      title:'Neue Governance-Institutionen für AGI – wer kontrolliert die Kontrolleure?',
+      lead:'AGI ist zu mächtig für nationale Regulierung allein. Die Frage nach globaler Kontrolle ist auch eine Frage nach Machtverteilung zwischen Staaten, Konzernen und der Zivilgesellschaft.',
+      q:['Wer soll AGI entwickeln und kontrollieren – Nationalstaaten, private Unternehmen oder international legitimierte Institutionen?','Braucht es neue globale Governance-Institutionen für AGI – und wie lassen sich Vetomächte, geopolitische Rivalitäten und technologische Vorsprünge in diesem Rahmen handhaben?','Kann Demokratie unter Bedingungen AGI-gestützter Entscheidungsfindung noch funktionieren – oder droht eine schleichende Technokratisierung der politischen Ordnung?']},
+    'pol-asi': { badge:'ASI', cat:'ASI · Politik & Governance',
+      title:'Existenzrisiko: Verhindert die ASI die Übernahme politischer Macht?',
+      lead:'Eine ASI könnte politische Macht übernehmen – durch eigene Entscheidungen oder durch Instrumentalisierung durch mächtige Akteure. Das ist das fundamentalste Risikoszenario der KI-Forschung.',
+      q:['Wie lässt sich verhindern, dass eine ASI politische Macht übernimmt oder von einzelnen Akteuren zur globalen Hegemoniegewinnung instrumentalisiert wird?','Kann eine ASI überhaupt mit menschlichen Werten aligned werden – und welche Governance-Strukturen wären notwendige Voraussetzung dafür?','Wird der Nationalstaat unter ASI-Bedingungen als politische Organisationsform obsolet – oder transformiert er sich zu einer neuen Qualität globaler Ordnung?']}
+  };
+
+  // ── Modal-Funktionen global verfügbar machen ──
+  window.kiOpenModal = function(id) {
+    const d = DATA[id]; if (!d) return;
+    document.getElementById('ki-badge').textContent = d.badge;
+    document.getElementById('ki-cat').textContent   = d.cat;
+    document.getElementById('ki-title').textContent = d.title;
+    document.getElementById('ki-lead').textContent  = d.lead;
+    const ul = document.getElementById('ki-questions');
+    ul.innerHTML = '';
+    d.q.forEach((q, i) => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span class="ki-q-num">0${i+1}</span><span>${q}</span>`;
+      ul.appendChild(li);
+    });
+    document.getElementById('ki-overlay').classList.add('ki-open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.kiCloseModal = function() {
+    document.getElementById('ki-overlay').classList.remove('ki-open');
+    document.body.style.overflow = '';
+  };
+
+  window.kiHandleOverlay = function(e) {
+    if (e.target === document.getElementById('ki-overlay')) kiCloseModal();
+  };
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') kiCloseModal();
+  });
+
+})();
+</script>
+</div>

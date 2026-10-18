@@ -1,0 +1,161 @@
+/* Gestaltung angelehnt an die frühere one.com-Seite: weiße Seite, Schrift Outfit,
+   dunkelgraue Bänder mit Bild, weiße Großbuchstaben, umrandete Knöpfe.
+   Die Schrift liegt im Repo, damit keine Anfrage an Google geht. */
+@font-face {
+  font-family: "Outfit";
+  src: url("/schrift/outfit.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+:root {
+  --text: #2b2b2b;
+  --text-leise: #5d5d5d;
+  --grund: #ffffff;
+  --band: #3c3c3c;
+  --linie: #e2e2e2;
+  --akzent: #991b1b;
+  --breite: 860px;
+  --kopfhoehe: 64px;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: calc(var(--kopfhoehe) + 12px); }
+body {
+  margin: 0;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--grund);
+  overflow-x: hidden;
+}
+img, video { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3, h4 { line-height: 1.2; font-weight: 500; margin: 1.6em 0 .5em; }
+h1 { font-size: clamp(32px, 5vw, 52px); }
+h2 { font-size: clamp(26px, 3.6vw, 38px); }
+h3 { font-size: clamp(21px, 2.6vw, 27px); }
+h4 { font-size: 20px; }
+
+/* ---------- Kopf ---------- */
+.kopf {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 24px;
+  height: var(--kopfhoehe); padding: 0 24px;
+  background: rgba(255,255,255,.96);
+  border-bottom: 1px solid var(--linie);
+}
+.marke img { height: 38px; width: auto; }
+.nav { margin-left: auto; }
+.nav > ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.nav li { position: relative; }
+.nav a, .nav .klapp {
+  display: block; padding: 8px 12px;
+  font: inherit; font-size: 14px; letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; color: var(--text); background: none; border: 0; cursor: pointer;
+}
+.nav a:hover, .nav a[aria-current="page"] { color: var(--akzent); }
+.nav .eintrag { display: flex; align-items: center; }
+.nav .klapp { padding: 8px 6px 8px 0; }
+.nav .klapp::after { content: ""; display: inline-block; width: 6px; height: 6px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: translateY(-3px) rotate(45deg); }
+.nav ul ul {
+  display: none; position: absolute; left: 0; top: 100%;
+  min-width: 250px; list-style: none; margin: 0; padding: 6px 0;
+  background: var(--band); box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+.nav ul ul a { color: #fff; text-transform: none; letter-spacing: 0; font-size: 15px; padding: 9px 18px; }
+.nav ul ul a:hover { color: #fff; background: rgba(255,255,255,.1); }
+.nav li:hover > ul, .nav li:focus-within > ul, .nav li.offen > ul { display: block; }
+.menuknopf { display: none; margin-left: auto; background: none; border: 0; padding: 10px; cursor: pointer; }
+.menuknopf span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; }
+
+/* ---------- Bänder ---------- */
+.band {
+  position: relative; overflow: hidden;
+  background-color: var(--band); background-size: cover; background-position: center;
+  color: #fff; padding: clamp(56px, 9vw, 110px) 24px;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+.band::before { content: ""; position: absolute; inset: 0; background: rgba(20,20,22,.55); z-index: 1; }
+.band-schlicht::before { display: none; }
+.bandvideo { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; z-index: 0; }
+.band-innen { position: relative; z-index: 2; max-width: var(--breite); margin: 0 auto; text-align: center; }
+.band h1, .band h2, .band h3 { margin: .25em 0; text-transform: uppercase; letter-spacing: .02em; }
+.band h3 { text-transform: none; font-weight: 400; }
+.band p { font-size: 20px; max-width: 680px; margin: .8em auto 0; }
+
+/* ---------- Fließtext ---------- */
+.fliess { max-width: var(--breite); margin: 0 auto; padding: 40px 24px 56px; }
+.fliess > :first-child { margin-top: 0; }
+.fliess ul, .fliess ol { padding-left: 1.3em; }
+.fliess li { margin: .35em 0; }
+.fliess figure { margin: 28px 0; }
+.fliess figure img, .fliess figure video { margin: 0 auto; border-radius: 4px; }
+.fliess a { color: var(--akzent); }
+
+/* ---------- Knöpfe ---------- */
+.knopfzeile { margin: 24px 0 0; text-align: center; }
+.knopf {
+  display: inline-block; padding: 10px 26px;
+  border: 1.5px solid #fff; color: #fff !important; text-decoration: none;
+  font-size: 14px; letter-spacing: .1em; text-transform: uppercase;
+  transition: background .15s, color .15s;
+}
+.knopf:hover { background: #fff; color: var(--band) !important; }
+.fliess .knopf, .knopf-dunkel { border-color: var(--band); color: var(--band) !important; }
+.fliess .knopf:hover, .knopf-dunkel:hover { background: var(--band); color: #fff !important; }
+
+/* ---------- Karten ---------- */
+.karten {
+  max-width: 1100px; margin: 0 auto; padding: 8px 24px 64px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;
+}
+.karte { text-align: center; min-width: 0; }
+.karte img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
+.karte h4 { margin: 16px 0 6px; }
+.karte p { margin: 0; color: var(--text-leise); font-size: 16px; }
+.karte a { text-decoration: none; }
+
+/* ---------- Eingebettete Bausteine (interaktive Seiten) ---------- */
+.baustein { width: 100%; }
+
+/* ---------- Blog ---------- */
+.blogliste { max-width: 1000px; margin: 0 auto; padding: 48px 24px 64px; display: grid; gap: 36px; }
+.blogeintrag { display: grid; grid-template-columns: 300px 1fr; gap: 28px; text-decoration: none; color: inherit; align-items: start; }
+.blogeintrag img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 4px; }
+.blogeintrag h2 { font-size: 24px; margin: 0 0 8px; }
+.blogeintrag p { margin: 0; color: var(--text-leise); font-size: 16px; }
+.blogeintrag:hover h2 { color: var(--akzent); }
+.blogkopf { max-width: var(--breite); margin: 0 auto; padding: 40px 24px 0; }
+.blogkopf a { font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--text-leise); text-decoration: none; }
+.blogkopf h1 { margin: .4em 0 0; }
+
+/* ---------- Fuß ---------- */
+.fuss { border-top: 1px solid var(--linie); padding: 36px 24px 44px; text-align: center; color: var(--text-leise); font-size: 15px; }
+.fuss p { margin: 8px 0; }
+
+/* ---------- Telefon ---------- */
+@media (max-width: 900px) {
+  .menuknopf { display: block; }
+  .nav {
+    display: none; position: absolute; left: 0; right: 0; top: var(--kopfhoehe);
+    max-height: calc(100vh - var(--kopfhoehe)); overflow-y: auto;
+    background: var(--band); padding: 8px 0 16px;
+  }
+  .nav.offen { display: block; }
+  .nav > ul { flex-direction: column; gap: 0; }
+  .nav a, .nav .klapp { color: #fff; font-size: 16px; padding: 12px 24px; }
+  .nav .klapp { padding: 12px 24px 12px 8px; }
+  .nav ul ul { position: static; display: none; box-shadow: none; background: rgba(255,255,255,.06); padding: 0; }
+  .nav li:hover > ul, .nav li:focus-within > ul { display: none; }
+  .nav li.offen > ul { display: block; }
+  .nav ul ul a { padding-left: 40px; }
+  .blogeintrag { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* Hochkant-Video auf der Startseite nicht über die volle Breite ziehen */
+.fliess figure video { max-width: 440px; width: 100%; margin: 0 auto; }
+
+@media (max-width: 900px) {
+  /* Aktiver Punkt auf dunklem Grund: helles Rot statt Dunkelrot (Kontrast) */
+  .nav a:hover, .nav a[aria-current="page"] { color: #ff9b8f; }
+}

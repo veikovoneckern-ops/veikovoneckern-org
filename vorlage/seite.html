@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{titel_voll}}</title>
+<meta name="description" content="{{beschreibung}}">
+<link rel="canonical" href="{{kanonisch}}">
+<meta property="og:title" content="{{titel}}">
+<meta property="og:description" content="{{beschreibung}}">
+<meta property="og:url" content="{{kanonisch}}">
+{{og_bild}}
+<link rel="icon" href="/bilder/favicon.png">
+<link rel="stylesheet" href="/stil.css?v={{stand}}">
+</head>
+<body>
+<header class="kopf">
+  <a class="marke" href="/" aria-label="Startseite"><img src="/bilder/vveorg-logo-white-background.png" alt="VVEORG"></a>
+  <button class="menuknopf" aria-label="Menü" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  <nav id="nav" class="nav">
+{{navigation}}
+  </nav>
+</header>
+<main>
+{{inhalt}}
+</main>
+<footer class="fuss">
+  <p><a class="knopf knopf-dunkel" href="mailto:{{mail}}">Schreiben Sie mir eine E-Mail</a></p>
+  <p>© {{jahr}} {{name}} · Alle Rechte vorbehalten</p>
+</footer>
+<script>
+// Menü auf dem Telefon auf- und zuklappen; Untermenüs per Tippen öffnen
+(function () {
+  var k = document.querySelector('.menuknopf'), n = document.getElementById('nav');
+  k.addEventListener('click', function () {
+    var auf = n.classList.toggle('offen');
+    k.setAttribute('aria-expanded', auf ? 'true' : 'false');
+  });
+  document.querySelectorAll('.nav .klapp').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var li = b.closest("li"), auf = li.classList.toggle("offen");
+      b.setAttribute('aria-expanded', auf ? 'true' : 'false');
+    });
+  });
+})();
+</script>
+</body>
+</html>
