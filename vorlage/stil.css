@@ -192,3 +192,22 @@ p { margin: 0 0 1em; }
 .spalten > div { min-width: 0; }
 @media (max-width: 760px) { .spalten { grid-template-columns: 1fr; } }
 .fliess li > p { margin: 0; }
+
+/* ---------- Abschnitte aus dem WebSpace-Editor (19.10.2026) ----------
+   Zitat, Bild mit Unterschrift, Video, Trennlinie, Abstand, Bildgrößen.
+   Jeder Typ ist im Editor unter "Abschnitt einfügen" zu finden. */
+.fliess blockquote, blockquote.zitat {
+  margin: 28px 0; padding: 8px 0 8px 28px;
+  border-left: 4px solid var(--akzent);
+  font-size: 24px; line-height: 1.5; font-style: italic;
+}
+blockquote cite, blockquote footer { display: block; margin-top: 10px; font-size: 16px; font-style: normal; color: var(--text-leise); }
+figure figcaption { margin-top: 10px; font-size: 15px; color: var(--text-leise); text-align: center; }
+figure.klein img { max-width: 380px; }
+figure.mittel img { max-width: 720px; }
+figure.voll img { width: 100%; }
+.video { position: relative; aspect-ratio: 16 / 9; margin: 28px 0; background: #000; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+hr.trenner { border: 0; border-top: 1px solid var(--linie); max-width: var(--breite); margin: 32px auto; }
+.abstand { height: var(--abstand, 48px); }
+.mitte { text-align: center; }
