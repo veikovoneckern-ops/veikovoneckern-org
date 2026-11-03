@@ -140,6 +140,12 @@ p { margin: 0 0 1em; }
 .blogkopf { max-width: var(--breite); margin: 0 auto; padding: 40px 24px 0; }
 .blogkopf a { font-size: 16px; text-transform: uppercase; color: var(--text-leise); text-decoration: none; }
 .blogkopf h1 { font-size: 42px; margin: .4em 0 0; }
+/* Bildkopf eines Blogbeitrags: Titelbild über die volle Breite, Titel unten links darauf, ein Verlauf hält ihn lesbar. */
+.blogband { align-items: flex-end; padding: 0 0 44px; }
+.blogband::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(0,0,0,.08) 35%, rgba(0,0,0,.72)); }
+.blogband .blogzurueck { font-size: 16px; text-transform: uppercase; color: rgba(255,255,255,.88); text-decoration: none; }
+.blogband .blogzurueck:hover { color: #fff; }
+.blogband h1 { font-size: 46px; line-height: 1.15; margin: .35em 0 0; max-width: 920px; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
 
 /* ---------- Fuß ---------- */
 .fuss { max-width: var(--breite); margin: 0 auto; padding: 32px 24px 44px; text-align: right; color: var(--text-leise); }

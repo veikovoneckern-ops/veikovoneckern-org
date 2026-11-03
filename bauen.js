@@ -99,7 +99,13 @@ function blogliste(artikel) {
 
 function seiteBauen(s, artikel) {
   let inhalt = s.inhalt;
-  if (s.kopf.blog) {
+  if (s.kopf.blog && s.kopf.blog.kopfbild && s.kopf.blog.bild) {
+    // Bildkopf (03.11.2026, Veiko: "das Bild sollte auch im Blogbeitrag ganz oben mit dem Titel enthalten sein"):
+    // das Titelbild über die volle Breite, darauf Rücksprung und Titel. Nur mit "kopfbild": true im Kopf -- die
+    // bestehenden Beiträge tragen ihr Bild im Text und behalten ihren schlichten Kopf.
+    inhalt = `<section class="band blogband" style="--h:480px"><div class="band-bild" style="background-image:url('${esc(s.kopf.blog.bild)}')"></div>` +
+      `<div class="band-innen"><a class="blogzurueck" href="/inspiration-blog/">← Alle Beiträge</a><h1>${esc(s.kopf.titel)}</h1></div></section>\n` + inhalt;
+  } else if (s.kopf.blog) {
     inhalt = `<div class="blogkopf"><a href="/inspiration-blog/">← Alle Beiträge</a><h1>${esc(s.kopf.titel)}</h1></div>\n` + inhalt;
   }
   if (inhalt.includes('<!--blogliste-->')) inhalt = inhalt.replace('<!--blogliste-->', blogliste(artikel));
