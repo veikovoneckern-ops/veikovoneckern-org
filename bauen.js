@@ -7,6 +7,9 @@
 //   <!--seite { "titel": "...", "beschreibung": "..." } -->
 // Blogartikel tragen zusätzlich "blog": { "reihe": 1, "bild": "/bilder/...", "auszug": "..." }.
 // Kleinere "reihe" steht in der Übersicht weiter oben.
+// Optional "sichtbarkeit" (03.11.2026): "oeffentlich" (Vorgabe), "link" (gebaut und per Adresse
+// erreichbar, aber nicht im Menü, nicht in Blogliste und Sitemap, für Suchmaschinen gesperrt) oder
+// "entwurf" (im öffentlichen Bau gar nicht vorhanden, nur in der Vorschau des Cockpits).
 // Die Datei inhalt/x/y.html wird zu _site/x/y.html; GitHub Pages liefert sie
 // auch unter /x/y (ohne Endung) aus, so bleiben die alten Adressen gültig.
 const fs = require('fs');
@@ -30,6 +33,15 @@ function mitBasis(html) {
     .replace(/url\((['"]?)\/(?!\/)/g, 'url($1' + BASIS + '/')
     .replace(/(["'])\/bilder\//g, '$1' + BASIS + '/bilder/');
 }
+
+// Vorschau = jeder Bau mit eigenem Ausgabeordner (WebSpace im Cockpit). Der Bau für GitHub Pages
+// setzt AUSGABE nicht -- nur dort fallen Entwürfe weg. Die Vorschau zeigt sie, mit Hinweis oben.
+const VORSCHAU = !!process.env.AUSGABE && process.env.AUSGABE !== '_site';
+const stufe = kopf => (kopf.sichtbarkeit === 'entwurf' || kopf.sichtbarkeit === 'link') ? kopf.sichtbarkeit : 'oeffentlich';
+const HINWEIS = {
+  entwurf: 'Entwurf: diese Seite ist nicht veröffentlicht. Sichtbar machen in den Seiteneinstellungen.',
+  link: 'Nur per Link: erreichbar, aber nicht im Menü, nicht in der Blogübersicht und nicht bei Google.',
+};
 
 const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -57,6 +69,13 @@ function adresse(rel) {
   return '/' + rel.replace(/\.html$/, '');
 }
 
+// Adressen, die nicht ins Menü gehören (Entwurf, nur per Link) -- im öffentlichen Bau.
+let verborgen = new Set();
+function sichtbareNavigation(liste) {
+  return liste.filter(p => !verborgen.has(p.href)).map(p => p.unter ? { ...p, unter: sichtbareNavigation(p.unter) } : p)
+    .map(p => (p.unter && !p.unter.length) ? (({ unter, ...rest }) => rest)(p) : p);
+}
+
 function navigation(aktuell) {
   const punkt = (p, tief) => {
     const aktiv = p.href === aktuell ? ' aria-current="page"' : '';
@@ -65,7 +84,7 @@ function navigation(aktuell) {
       `<button class="klapp" aria-expanded="false" aria-label="${esc(p.text)} aufklappen"></button></div>` +
       `<ul>${p.unter.map(u => punkt(u, tief + 1)).join('')}</ul></li>`;
   };
-  return '    <ul>' + cfg.navigation.map(p => punkt(p, 0)).join('\n      ') + '</ul>';
+  return '    <ul>' + sichtbareNavigation(cfg.navigation).map(p => punkt(p, 0)).join('\n      ') + '</ul>';
 }
 
 function blogliste(artikel) {
@@ -91,6 +110,10 @@ function seiteBauen(s, artikel) {
     if (!fs.existsSync(f)) throw new Error(`${s.rel}: Baustein "${name}" fehlt (bausteine/${name}.html)`);
     return `<div class="baustein">\n${fs.readFileSync(f, 'utf8').replace(/\n$/, '')}\n</div>`;
   });
+  const st = stufe(s.kopf);
+  if (VORSCHAU && st !== 'oeffentlich') {
+    inhalt = `<div style="position:sticky;top:0;z-index:50;background:#7a4b00;color:#fff;font:600 14px/1.4 system-ui,sans-serif;padding:8px 16px;text-align:center">${HINWEIS[st]}</div>\n` + inhalt;
+  }
   const url = adresse(s.rel);
   const bild = s.kopf.bild || (s.kopf.blog && s.kopf.blog.bild);
   const werte = {
@@ -98,7 +121,8 @@ function seiteBauen(s, artikel) {
     titel_voll: esc(s.rel === 'index.html' ? s.kopf.titel : `${s.kopf.titel} | ${cfg.name}`),
     beschreibung: esc(s.kopf.beschreibung || ''),
     kanonisch: cfg.domain + url,
-    og_bild: bild ? `<meta property="og:image" content="${cfg.domain}${bild}">` : '',
+    og_bild: (bild ? `<meta property="og:image" content="${cfg.domain}${bild}">` : '')
+      + (st !== 'oeffentlich' ? '\n<meta name="robots" content="noindex, nofollow">' : ''),
     navigation: navigation(url),
     inhalt,
     mail: cfg.mail,
@@ -117,8 +141,13 @@ function kopieren(von, nach) {
 // --- los ---
 fs.rmSync(AUS, { recursive: true, force: true });
 fs.mkdirSync(AUS, { recursive: true });
-const seiten = alleDateien(path.join(WURZEL, 'inhalt')).filter(f => f.endsWith('.html')).map(lesen);
-const artikel = seiten.filter(s => s.kopf.blog);
+const alle = alleDateien(path.join(WURZEL, 'inhalt')).filter(f => f.endsWith('.html')).map(lesen);
+// Öffentlicher Bau: Entwürfe gibt es gar nicht; "nur per Link" wird gebaut, aber nirgends verlinkt.
+// Die Startseite ist immer öffentlich -- eine Website ohne Startseite wäre keine.
+const seiten = VORSCHAU ? alle : alle.filter(s => s.rel === 'index.html' || stufe(s.kopf) !== 'entwurf');
+if (!VORSCHAU) verborgen = new Set(alle.filter(s => s.rel !== 'index.html' && stufe(s.kopf) !== 'oeffentlich').map(s => adresse(s.rel)));
+const oeffentlich = seiten.filter(s => s.rel === 'index.html' || stufe(s.kopf) === 'oeffentlich');
+const artikel = (VORSCHAU ? seiten : oeffentlich).filter(s => s.kopf.blog);
 
 for (const s of seiten) {
   const ziel = path.join(AUS, s.rel);
@@ -132,7 +161,7 @@ if (fs.existsSync(path.join(WURZEL, 'CNAME'))) fs.copyFileSync(path.join(WURZEL,
 fs.writeFileSync(path.join(AUS, '.nojekyll'), '');
 
 // Sitemap und robots.txt
-const urls = seiten.map(s => `  <url><loc>${cfg.domain}${adresse(s.rel)}</loc></url>`).join('\n');
+const urls = oeffentlich.map(s => `  <url><loc>${cfg.domain}${adresse(s.rel)}</loc></url>`).join('\n');
 fs.writeFileSync(path.join(AUS, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`);
 fs.writeFileSync(path.join(AUS, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${cfg.domain}/sitemap.xml\n`);
 
@@ -146,4 +175,5 @@ if (process.env.EDITOR_RAHMEN) {
 fs.writeFileSync(path.join(AUS, '404.html'), mitBasis(seiteBauen({ rel: '404.html', kopf: { titel: 'Seite nicht gefunden' },
   inhalt: '<div class="fliess"><h1>Seite nicht gefunden</h1><p>Diese Seite gibt es nicht (mehr). <a href="/">Zur Startseite</a></p></div>' }, artikel)));
 
-console.log(`${seiten.length} Seiten gebaut (${artikel.length} Blogartikel) -> _site/`);
+const nichtOeff = alle.length - oeffentlich.length;
+console.log(`${seiten.length} Seiten gebaut (${artikel.length} Blogartikel)` + (nichtOeff ? `, ${nichtOeff} nicht öffentlich` + (VORSCHAU ? ' (in der Vorschau mit Hinweis)' : '') : '') + ` -> ${path.basename(AUS)}/`);
